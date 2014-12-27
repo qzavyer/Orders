@@ -120,4 +120,28 @@
   <data name="ExDate" xml:space="preserve">
     <value>Дата допл.</value>
   </data>
+  <data name="ChangeData" xml:space="preserve">
+    <value>Данные были изменены. Сохранить?</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="Future" xml:space="preserve">
+    <value>Функционал сертификатов в разработке</value>
+  </data>
+  <data name="SaveChange" xml:space="preserve">
+    <value>Изменения сохранены</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="ConsType" xml:space="preserve">
+    <value>Тип расх.</value>
+  </data>
 </root>

@@ -30,13 +30,16 @@ namespace Orders
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tabApp = new System.Windows.Forms.TabControl();
             this.tabWork = new System.Windows.Forms.TabPage();
             this.grWork = new System.Windows.Forms.DataGridView();
@@ -111,17 +114,15 @@ namespace Orders
             this.btHistory2 = new System.Windows.Forms.Button();
             this.btHistory1 = new System.Windows.Forms.Button();
             this.tabGraph = new System.Windows.Forms.TabPage();
-            this.zedGraph = new ZedGraph.ZedGraphControl();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button1 = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chYear = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chMonth = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabSert = new System.Windows.Forms.TabPage();
             this.tabConsum = new System.Windows.Forms.TabPage();
-            this.tabGloss = new System.Windows.Forms.TabPage();
-            this.tabArchive = new System.Windows.Forms.TabPage();
+            this.grCons = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btConsSave = new System.Windows.Forms.Button();
-            this.grCons = new System.Windows.Forms.DataGridView();
+            this.tabGloss = new System.Windows.Forms.TabPage();
+            this.tabArchive = new System.Windows.Forms.TabPage();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -130,6 +131,9 @@ namespace Orders
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -150,11 +154,11 @@ namespace Orders
             this.panel1.SuspendLayout();
             this.pHistory.SuspendLayout();
             this.tabGraph.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chMonth)).BeginInit();
             this.tabConsum.SuspendLayout();
-            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabApp
@@ -211,7 +215,6 @@ namespace Orders
             this.grWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellClick);
             this.grWork.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellContentClick);
             this.grWork.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellValueChanged);
-            this.grWork.CellValuePushed += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.grWork_CellValuePushed);
             // 
             // cType
             // 
@@ -898,10 +901,8 @@ namespace Orders
             // 
             // tabGraph
             // 
-            this.tabGraph.Controls.Add(this.zedGraph);
-            this.tabGraph.Controls.Add(this.chart2);
-            this.tabGraph.Controls.Add(this.button1);
-            this.tabGraph.Controls.Add(this.chart1);
+            this.tabGraph.Controls.Add(this.chYear);
+            this.tabGraph.Controls.Add(this.chMonth);
             this.tabGraph.Location = new System.Drawing.Point(4, 25);
             this.tabGraph.Name = "tabGraph";
             this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
@@ -910,71 +911,59 @@ namespace Orders
             this.tabGraph.Text = "Графики";
             this.tabGraph.UseVisualStyleBackColor = true;
             // 
-            // zedGraph
-            // 
-            this.zedGraph.Location = new System.Drawing.Point(0, 0);
-            this.zedGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.zedGraph.Name = "zedGraph";
-            this.zedGraph.ScrollGrace = 0D;
-            this.zedGraph.ScrollMaxX = 0D;
-            this.zedGraph.ScrollMaxY = 0D;
-            this.zedGraph.ScrollMaxY2 = 0D;
-            this.zedGraph.ScrollMinX = 0D;
-            this.zedGraph.ScrollMinY = 0D;
-            this.zedGraph.ScrollMinY2 = 0D;
-            this.zedGraph.Size = new System.Drawing.Size(200, 185);
-            this.zedGraph.TabIndex = 0;
-            this.zedGraph.Visible = false;
-            // 
-            // chart2
+            // chYear
             // 
             chartArea1.AxisY.Crossing = -1.7976931348623157E+308D;
             chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
             chartArea1.AxisY.MaximumAutoSize = 50F;
             chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            this.chart2.Location = new System.Drawing.Point(718, 6);
-            this.chart2.Name = "chart2";
+            chartArea2.Name = "ChartArea2";
+            this.chYear.ChartAreas.Add(chartArea1);
+            this.chYear.ChartAreas.Add(chartArea2);
+            this.chYear.Dock = System.Windows.Forms.DockStyle.Right;
+            this.chYear.Location = new System.Drawing.Point(698, 3);
+            this.chYear.Name = "chYear";
+            this.chYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series1.ChartArea = "ChartArea1";
-            series1.Name = "data";
-            this.chart2.Series.Add(series1);
-            this.chart2.Size = new System.Drawing.Size(623, 235);
-            this.chart2.TabIndex = 2;
-            this.chart2.Text = "chart2";
+            series1.Legend = "Legend1";
+            series1.Name = "count";
+            series2.ChartArea = "ChartArea2";
+            series2.Name = "income";
+            this.chYear.Series.Add(series1);
+            this.chYear.Series.Add(series2);
+            this.chYear.Size = new System.Drawing.Size(712, 559);
+            this.chYear.TabIndex = 2;
+            this.chYear.Text = "Годовой график";
+            title1.Name = "Title1";
+            title1.Text = "Годовой график";
+            this.chYear.Titles.Add(title1);
             // 
-            // button1
+            // chMonth
             // 
-            this.button1.Location = new System.Drawing.Point(637, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // chart1
-            // 
-            this.chart1.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.TopRight;
-            chartArea2.AxisY.Title = "Количество";
-            chartArea2.Name = "ChartArea1";
-            chartArea3.AxisY.Title = "Сумма (тыс.руб.)";
-            chartArea3.Name = "ChartArea2";
-            this.chart1.ChartAreas.Add(chartArea2);
-            this.chart1.ChartAreas.Add(chartArea3);
-            this.chart1.Location = new System.Drawing.Point(8, 6);
-            this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series2.ChartArea = "ChartArea1";
-            series2.Name = "count";
-            series2.YValuesPerPoint = 2;
-            series3.ChartArea = "ChartArea2";
-            series3.Name = "income";
-            this.chart1.Series.Add(series2);
-            this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(623, 553);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            this.chMonth.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.TopRight;
+            chartArea3.AxisY.Title = "Количество";
+            chartArea3.Name = "ChartArea1";
+            chartArea4.AxisY.Title = "Сумма (тыс.руб.)";
+            chartArea4.Name = "ChartArea2";
+            this.chMonth.ChartAreas.Add(chartArea3);
+            this.chMonth.ChartAreas.Add(chartArea4);
+            this.chMonth.Dock = System.Windows.Forms.DockStyle.Left;
+            this.chMonth.Location = new System.Drawing.Point(3, 3);
+            this.chMonth.Name = "chMonth";
+            this.chMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            series3.ChartArea = "ChartArea1";
+            series3.Name = "count";
+            series3.YValuesPerPoint = 2;
+            series4.ChartArea = "ChartArea2";
+            series4.Name = "income";
+            this.chMonth.Series.Add(series3);
+            this.chMonth.Series.Add(series4);
+            this.chMonth.Size = new System.Drawing.Size(689, 559);
+            this.chMonth.TabIndex = 0;
+            this.chMonth.Text = "Месячный график";
+            title2.Name = "Title1";
+            title2.Text = "Месячный график";
+            this.chMonth.Titles.Add(title2);
             // 
             // tabSert
             // 
@@ -998,6 +987,39 @@ namespace Orders
             this.tabConsum.Text = "Расходы";
             this.tabConsum.UseVisualStyleBackColor = true;
             // 
+            // grCons
+            // 
+            this.grCons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grCons.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.csNumber,
+            this.csAmount,
+            this.csComment});
+            this.grCons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grCons.Location = new System.Drawing.Point(3, 3);
+            this.grCons.Name = "grCons";
+            this.grCons.RowTemplate.Height = 24;
+            this.grCons.Size = new System.Drawing.Size(1407, 528);
+            this.grCons.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btConsSave);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(3, 531);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1407, 31);
+            this.panel5.TabIndex = 0;
+            // 
+            // btConsSave
+            // 
+            this.btConsSave.Location = new System.Drawing.Point(1297, 3);
+            this.btConsSave.Name = "btConsSave";
+            this.btConsSave.Size = new System.Drawing.Size(105, 25);
+            this.btConsSave.TabIndex = 0;
+            this.btConsSave.Text = "Сохранить";
+            this.btConsSave.UseVisualStyleBackColor = true;
+            this.btConsSave.Click += new System.EventHandler(this.btConsSave_Click);
+            // 
             // tabGloss
             // 
             this.tabGloss.Location = new System.Drawing.Point(4, 25);
@@ -1017,38 +1039,6 @@ namespace Orders
             this.tabArchive.TabIndex = 5;
             this.tabArchive.Text = "Архив";
             this.tabArchive.UseVisualStyleBackColor = true;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btConsSave);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 531);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1407, 31);
-            this.panel5.TabIndex = 0;
-            // 
-            // btConsSave
-            // 
-            this.btConsSave.Location = new System.Drawing.Point(1297, 3);
-            this.btConsSave.Name = "btConsSave";
-            this.btConsSave.Size = new System.Drawing.Size(105, 25);
-            this.btConsSave.TabIndex = 0;
-            this.btConsSave.Text = "Сохранить";
-            this.btConsSave.UseVisualStyleBackColor = true;
-            // 
-            // grCons
-            // 
-            this.grCons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grCons.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.csNumber,
-            this.csAmount,
-            this.csComment});
-            this.grCons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grCons.Location = new System.Drawing.Point(3, 3);
-            this.grCons.Name = "grCons";
-            this.grCons.RowTemplate.Height = 24;
-            this.grCons.Size = new System.Drawing.Size(1407, 528);
-            this.grCons.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1095,6 +1085,21 @@ namespace Orders
             // 
             this.dataGridViewTextBoxColumn8.HeaderText = "Часы";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Сумма";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.HeaderText = "Комментарий";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             // 
             // cNumber
             // 
@@ -1144,16 +1149,19 @@ namespace Orders
             // 
             // csNumber
             // 
+            this.csNumber.DataPropertyName = "csNumber";
             this.csNumber.HeaderText = "";
             this.csNumber.Name = "csNumber";
             // 
             // csAmount
             // 
+            this.csAmount.DataPropertyName = "csAmount";
             this.csAmount.HeaderText = "Сумма";
             this.csAmount.Name = "csAmount";
             // 
             // csComment
             // 
+            this.csComment.DataPropertyName = "csComment";
             this.csComment.HeaderText = "Комментарий";
             this.csComment.Name = "csComment";
             // 
@@ -1167,6 +1175,7 @@ namespace Orders
             this.Text = "Обсчёт заказов";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.tabApp.ResumeLayout(false);
             this.tabWork.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).EndInit();
@@ -1180,17 +1189,17 @@ namespace Orders
             this.panel1.PerformLayout();
             this.pHistory.ResumeLayout(false);
             this.tabGraph.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chMonth)).EndInit();
             this.tabConsum.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private ZedGraph.ZedGraphControl zedGraph;
+
         private System.Windows.Forms.TabControl tabApp;
         private System.Windows.Forms.TabPage tabWork;
         private System.Windows.Forms.TabPage tabGraph;
@@ -1266,9 +1275,8 @@ namespace Orders
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lIncomeY;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chMonth;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn cId;
         private System.Windows.Forms.DataGridViewTextBoxColumn cClientId;
@@ -1291,6 +1299,9 @@ namespace Orders
         private System.Windows.Forms.DataGridView grCons;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button btConsSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn csNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn csAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn csComment;

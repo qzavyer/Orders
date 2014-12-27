@@ -14,7 +14,7 @@ namespace Orders
         private DataTable _workType;
         private DataTable _consType;
         private DataTable _sourceType;
-        private bool _hasChange = false;
+        private bool _hasChange;
 
         private enum TableCol
         {
@@ -32,7 +32,7 @@ namespace Orders
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void WorkLoad()
         {
             var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
             try
@@ -50,11 +50,14 @@ namespace Orders
                 var wkTable = new DataTable();
                 var wkAdapt = new SQLiteDataAdapter(wkCom);
                 wkAdapt.Fill(wkTable);
-                
+
                 _workType = new DataTable();
                 _sourceType = new DataTable();
                 _consType = new DataTable();
-                var adapter = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tWorkType",conn)};
+                var adapter = new SQLiteDataAdapter
+                {
+                    SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tWorkType", conn)
+                };
                 adapter.Fill(_workType);
                 adapter.SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tSource", conn);
                 adapter.Fill(_sourceType);
@@ -66,16 +69,16 @@ namespace Orders
                 var currDate = DateTime.Now;
                 for (var i = 1; i <= 12; i++)
                 {
-                    mLst.Add(new History{Month = i});
+                    mLst.Add(new History {Month = i});
                 }
-                
+
                 var combo = new DataGridViewComboBoxColumn
                 {
                     Name = "cTypeA",
                     DataSource = _workType,
                     ValueMember = "fId",
                     DisplayMember = "fName",
-                    HeaderText = "Тип"
+                    HeaderText = Resources.Type
                 };
                 grWork.Columns.Insert((int) TableCol.TypeColIndex, combo);
                 combo = new DataGridViewComboBoxColumn
@@ -84,7 +87,7 @@ namespace Orders
                     DataSource = _sourceType,
                     ValueMember = "fId",
                     DisplayMember = "fName",
-                    HeaderText = "Источник"
+                    HeaderText = Resources.Source
                 };
                 grWork.Columns.Insert((int) TableCol.SourColIndex, combo);
 
@@ -94,9 +97,9 @@ namespace Orders
                     DataSource = _consType,
                     ValueMember = "fId",
                     DisplayMember = "fName",
-                    HeaderText = "Тип расх."
+                    HeaderText = Resources.ConsType
                 };
-                grWork.Columns.Insert((int)TableCol.ConsColIndex, combo);
+                grWork.Columns.Insert((int) TableCol.ConsColIndex, combo);
 
                 const string csCmd = "SELECT fTypeId AS \"Type\",fAmount AS Amount," +
                                      "datetime(fDate, 'unixepoch') AS \"Date\",fComment AS \"Comment\" " +
@@ -111,7 +114,7 @@ namespace Orders
                 var csAdapt = new SQLiteDataAdapter(csCom);
                 csAdapt.Fill(csTable);
 
-                grCons.Columns.Insert(0, combo);
+                // grCons.Columns.Insert(0, combo);
                 foreach (DataRow row in csTable.Rows)
                 {
                     var cons = new Cons(row);
@@ -124,10 +127,10 @@ namespace Orders
                 }
 
                 var date = new CalendarColumn {Name = "cPreDate", HeaderText = Resources.Date, Width = 120};
-                grWork.Columns.Insert((int)TableCol.PreDateColIndex, date);
+                grWork.Columns.Insert((int) TableCol.PreDateColIndex, date);
 
-                date = new CalendarColumn { Name = "cExDate", HeaderText = Resources.ExDate, Width = 120 };
-                grWork.Columns.Insert((int)TableCol.ExDateColIndex, date);
+                date = new CalendarColumn {Name = "cExDate", HeaderText = Resources.ExDate, Width = 120};
+                grWork.Columns.Insert((int) TableCol.ExDateColIndex, date);
                 var inc = 0D;
                 var con = 0D;
                 var hrs = 0D;
@@ -168,7 +171,7 @@ namespace Orders
                     iRow["cPrepay"].Value = work.Prepay;
                     iRow["cExcess"].Value = work.Excess;
                     c = iRow["cConsA"] as DataGridViewComboBoxCell;
-                    if (c != null && work.ConsType>0)
+                    if (c != null && work.ConsType > 0)
                         c.Value = work.ConsType;
                     iRow["cCons"].Value = work.Cons;
                     iRow["cHours"].Value = work.Hours;
@@ -187,7 +190,7 @@ namespace Orders
 
 
                 lMonthC.Text = currDate.ToString("MMMM");
-                
+
                 lIncomeC.Text = inc.ToString("C0");
                 lConsC.Text = con.ToString("C0");
                 lProfitC.Text = (inc - con).ToString("C0");
@@ -198,9 +201,9 @@ namespace Orders
                 lProfitY.Text = (yInc - yCon).ToString("C0");
                 lHoursY.Text = yHrs.ToString("N0");
                 lIncomeYA.Text = (yInc/currDate.Month).ToString("C0");
-                
+
                 lYearC.Text = currDate.Year.ToString("D");
-                lYearL.Text = (currDate.Year-1).ToString("D");
+                lYearL.Text = (currDate.Year - 1).ToString("D");
                 lSumCAll.Text = mLst.Sum(m => m.CIncome).ToString("C0");
                 lSumLAll.Text = mLst.Sum(m => m.LIncome).ToString("C0");
                 foreach (var history in mLst)
@@ -210,9 +213,50 @@ namespace Orders
                 }
                 _hasChange = false;
             }
-            catch (Exception ex)
+            finally
             {
-                return;
+                conn.Close();
+            }
+        }
+
+        private void GraphLoad()
+        {
+            var yStart = new DateTime(DateTime.Now.Year, 1, 1);
+            var mStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            try
+            {
+                conn.Open();
+                var chartData = new DataTable();
+                const string selCmd =
+                    "SELECT DISTINCT T.fName AS \"Type\",COUNT(W.fId) AS \"Count\",SUM((fPrepay+fExcess)/1000) AS \"Income\" " +
+                    "FROM tWork W JOIN tWorkType T ON W.fTypeId=T.fId " +
+                    "WHERE W.fDate>=strftime('%s', :start) AND W.fDate<strftime('%s', :end) " +
+                    "GROUP BY fTypeId";
+                var adapter = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand(selCmd, conn)};
+                adapter.SelectCommand.Parameters.AddWithValue("start", mStart);
+                adapter.SelectCommand.Parameters.AddWithValue("end", mStart.AddMonths(1));
+                adapter.SelectCommand.Prepare();
+                adapter.Fill(chartData);
+                chMonth.Series["count"].XValueMember = "Type";
+                chMonth.Series["count"].YValueMembers = "Count";
+                chMonth.Series["income"].XValueMember = "Type";
+                chMonth.Series["income"].YValueMembers = "Income";
+                chMonth.DataSource = chartData;
+                chMonth.DataBind();
+
+                chartData = new DataTable();
+                adapter = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand(selCmd, conn)};
+                adapter.SelectCommand.Parameters.AddWithValue("start", yStart);
+                adapter.SelectCommand.Parameters.AddWithValue("end", yStart.AddYears(1));
+                adapter.SelectCommand.Prepare();
+                adapter.Fill(chartData);
+                chYear.Series["count"].XValueMember = "Type";
+                chYear.Series["count"].YValueMembers = "Count";
+                chYear.Series["income"].XValueMember = "Type";
+                chYear.Series["income"].YValueMembers = "Income";
+                chYear.DataSource = chartData;
+                chYear.DataBind();
             }
             finally
             {
@@ -220,16 +264,73 @@ namespace Orders
             }
         }
 
-      private void History_Click(object sender, EventArgs e)
+        private void ConsLoad()
         {
-          if (_hasChange)
-          {
-              var svResult = MessageBox.Show("Данные были изменены. Сохранить?", "Orders", MessageBoxButtons.YesNo);
-              if (svResult == DialogResult.Yes)
-              {
-                  SaveChanges();
-              }
-          }
+            var mStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            try
+            {
+                conn.Open();
+                var chartData = new DataTable();
+                const string selCmd = "SELECT DISTINCT T.fName AS \"csType\",C.fAmount AS \"csAmount\"," +
+                                      "datetime(C.fDate, 'unixepoch') AS \"csDate\",C.fComment AS \"csComment\" " +
+                                      "FROM tCons C JOIN tConsType T ON C.fTypeId=T.fId " +
+                                      "WHERE C.fDate>=strftime('%s', :start) AND C.fDate<strftime('%s', :end) " +
+                                      "ORDER BY C.fDate";
+                var adapter = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand(selCmd, conn)};
+                adapter.SelectCommand.Parameters.AddWithValue("start", mStart);
+                adapter.SelectCommand.Parameters.AddWithValue("end", mStart.AddMonths(1));
+                adapter.SelectCommand.Prepare();
+                adapter.Fill(chartData);
+                var combo = new DataGridViewComboBoxColumn
+                {
+                    Name = "csType",
+                    DataPropertyName = "csType",
+                    DataSource = _consType,
+                    ValueMember = "fId",
+                    DisplayMember = "fName",
+                    HeaderText = Resources.ConsType
+                };
+                grCons.Columns.Insert(1, combo);
+                var date = new CalendarColumn
+                {
+                    Name = "csDate",
+                    DataPropertyName = "csDate",
+                    HeaderText = Resources.ExDate,
+                    Width = 120
+                };
+                grCons.Columns.Insert(3, date);
+                var bSource = new BindingSource {DataSource = chartData};
+                grCons.DataSource = bSource;
+                
+            }
+            catch (Exception ex)
+            {
+                var a = ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            WorkLoad();
+            GraphLoad();
+            ConsLoad();
+        }
+
+        private void History_Click(object sender, EventArgs e)
+        {
+            if (_hasChange)
+            {
+                var svResult = MessageBox.Show(Resources.ChangeData, Resources.Orders, MessageBoxButtons.YesNo);
+                if (svResult == DialogResult.Yes)
+                {
+                    SaveChanges();
+                }
+            }
             var button = sender as Button;
             if (button == null) return;
             GridMonthLoad(Convert.ToInt32(button.Tag), DateTime.Now.Year);
@@ -243,36 +344,36 @@ namespace Orders
 
         private void grWork_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var cell = sender as DataGridViewCell;
+            //var cell = sender as DataGridViewCell;
             //if (cell!=typeof(DataGridViewCheckBoxCell)) return;
             var iRow = e.RowIndex;
             var iCol = e.ColumnIndex;
             switch (iCol)
             {
-                case (int)TableCol.SertColIndex:
+                case (int) TableCol.SertColIndex:
+                {
+
+                    if (grWork.Rows[iRow].Cells[iCol].Value != null && (bool) grWork.Rows[iRow].Cells[iCol].Value)
+                        grWork.Rows[iRow].Cells[iCol].Value = false;
+                    else
                     {
-                        
-                        if (grWork.Rows[iRow].Cells[iCol].Value != null && (bool) grWork.Rows[iRow].Cells[iCol].Value)
-                            grWork.Rows[iRow].Cells[iCol].Value = false;
-                        else
-                        {
-                            grWork.Rows[iRow].Cells[iCol].Value = true;
-                            MessageBox.Show("Функционал сертификатов в разработке", "Обработка заказов",
-                                MessageBoxButtons.OK);
-                        }
+                        grWork.Rows[iRow].Cells[iCol].Value = true;
+                        MessageBox.Show(Resources.Future, Resources.Orders,
+                            MessageBoxButtons.OK);
                     }
+                }
                     break;
                 case (int) TableCol.NameColIndex:
                     return;
-                    var fr = new FrClient();
+                    /*var fr = new FrClient();
                     fr.ShowDialog();
                     grWork.Rows[iRow].Cells["cClientId"].Value = fr.ClientName.Id;
                     grWork.Rows[iRow].Cells["cClient"].Value = fr.ClientName.Name;
-                    break;
+                    break;*/
             }
         }
 
-        private void GridMonthLoad(int month,int year)
+        private void GridMonthLoad(int month, int year)
         {
             var sDate = new DateTime(year, month, 1);
             month++;
@@ -348,83 +449,27 @@ namespace Orders
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            var year = DateTime.Now.Year;
-            var month = 1;
-            var sDate = new DateTime(year, month, 1);
-            month++;
-            if (month > 12)
-            {
-                year++;
-                month = 1;
-            }
-            var eDate = new DateTime(year, 12, 1);
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
-            try
-            {
-                conn.Open();
-                var monthData = new DataTable();
-                const string selCmd = "SELECT DISTINCT T.fName AS \"Type\",COUNT(W.fId) AS \"Count\",SUM((fPrepay+fExcess)/1000) AS \"Income\"" +
-                                      "FROM tWork W  JOIN tWorkType T ON W.fTypeId=T.fId " +
-                                      "WHERE W.fDate>=strftime('%s', :start) AND W.fDate<strftime('%s', :end) " +
-                                      "GROUP BY fTypeId";
-                var adapter = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand(selCmd, conn)};
-                adapter.SelectCommand.Parameters.AddWithValue("start", sDate);
-                adapter.SelectCommand.Parameters.AddWithValue("end", eDate);
-                adapter.Fill(monthData);
-                chart1.Series["count"].XValueMember = "Type";
-                chart1.Series["count"].YValueMembers = "Count";
-                //chart1.Series["count"].YAxisType = AxisType.Secondary;
-               // chart1.ChartAreas[1].AxisY.LabelStyle.Angle = 90; 
-                
-                //chart1.ChartAreas[1].AxisY2.LineWidth = 100;
-                chart1.Series["income"].XValueMember = "Type";
-                chart1.Series["income"].YValueMembers = "Income";
-                //chart1.Series["income"].YAxisType = AxisType.Secondary;
-                //chart1.Series["count"]["PixelPointWidth"] = "10";
-                chart1.DataSource = monthData;
-                chart1.DataBind();
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        struct types
-        {
-            public int id;
-            public int cnt;
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void grWork_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             var iRow = e.RowIndex;
             var iCol = e.ColumnIndex;
             switch (iCol)
             {
-                case (int)TableCol.SertColIndex:
-                    {
+                case (int) TableCol.SertColIndex:
+                {
 
-                        if (grWork.Rows[iRow].Cells[iCol].Value != null && (bool)grWork.Rows[iRow].Cells[iCol].Value)
-                            grWork.Rows[iRow].Cells[iCol].Value = false;
-                        else
-                        {
-                            grWork.Rows[iRow].Cells[iCol].Value = true;
-                            MessageBox.Show("Функционал сертификатов в разработке", "Обработка заказов",
-                                MessageBoxButtons.OK);
-                        }
+                    if (grWork.Rows[iRow].Cells[iCol].Value != null && (bool) grWork.Rows[iRow].Cells[iCol].Value)
+                        grWork.Rows[iRow].Cells[iCol].Value = false;
+                    else
+                    {
+                        grWork.Rows[iRow].Cells[iCol].Value = true;
+                        MessageBox.Show(Resources.Future, Resources.Orders,
+                            MessageBoxButtons.OK);
                     }
+                }
                     break;
-                case (int)TableCol.NameColIndex:
+                case (int) TableCol.NameColIndex:
                     var fr = new FrClient();
                     fr.ShowDialog();
                     grWork.Rows[iRow].Cells["cClientId"].Value = fr.ClientName.Id;
@@ -460,28 +505,67 @@ namespace Orders
                 insCom.Parameters.AddWithValue("sert", 0);
                 for (var i = 0; i < grWork.RowCount - 1; i++)
                 {
-                    var a = grWork.Rows[i].Cells["cTypeA"].Value;
+                    //var a = grWork.Rows[i].Cells["cTypeA"].Value;
                     if (grWork.Rows[i].Cells["cId"].Value != null) continue;
                     insCom.Parameters["date"].Value = DateTime.Parse(grWork.Rows[i].Cells["cPreDate"].Value.ToString());
                     insCom.Parameters["prepay"].Value = grWork.Rows[i].Cells["cPrepay"].Value;
                     insCom.Parameters["excess"].Value = grWork.Rows[i].Cells["cExcess"].Value;
-                    insCom.Parameters["exdate"].Value = string.IsNullOrEmpty(grWork.Rows[i].Cells["cExcess"].Value.ToString()) 
-                        ? DateTime.Now 
-                        : DateTime.Parse(grWork.Rows[i].Cells["cExDate"].Value.ToString());
-                    insCom.Parameters["constype"].Value = string.IsNullOrEmpty(grWork.Rows[i].Cells["cExcess"].Value.ToString()) || Convert.ToDouble(grWork.Rows[i].Cells["cExcess"].Value) < 0.01 
-                        ? 0 
-                        : grWork.Rows[i].Cells["cConsA"].Value;
+                    insCom.Parameters["exdate"].Value =
+                        string.IsNullOrEmpty(grWork.Rows[i].Cells["cExcess"].Value.ToString())
+                            ? DateTime.Now
+                            : DateTime.Parse(grWork.Rows[i].Cells["cExDate"].Value.ToString());
+                    insCom.Parameters["constype"].Value =
+                        string.IsNullOrEmpty(grWork.Rows[i].Cells["cExcess"].Value.ToString()) ||
+                        Convert.ToDouble(grWork.Rows[i].Cells["cExcess"].Value) < 0.01
+                            ? 0
+                            : grWork.Rows[i].Cells["cConsA"].Value;
                     insCom.Parameters["cons"].Value = grWork.Rows[i].Cells["cCons"].Value;
                     insCom.Parameters["hour"].Value = grWork.Rows[i].Cells["cHours"].Value;
                     insCom.Prepare();
                     insCom.ExecuteNonQuery();
                 }
-                MessageBox.Show("Изменения сохранены", "Orders", MessageBoxButtons.OK);
+                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
                 _hasChange = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, Resources.Error, MessageBoxButtons.OK);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void SaveCons()
+        {
+            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            try
+            {
+                conn.Open();
+                const string insCmd = "INSERT INTO tCons (fTypeId,fAmount,fDate,fComment) " +
+                                      "VALUES(:type,:amount,strftime('%s', :date),:comment)";
+                var insCom = new SQLiteCommand(insCmd, conn);
+                insCom.Parameters.Add(new SQLiteParameter("type", DbType.Int32));
+                insCom.Parameters.Add(new SQLiteParameter("amount", DbType.Double));
+                insCom.Parameters.Add(new SQLiteParameter("date", DbType.Int32));
+                insCom.Parameters.Add(new SQLiteParameter("comment", DbType.AnsiString));
+                for (var i = 0; i < grWork.RowCount - 1; i++)
+                {
+                    if (grCons.Rows[i].Cells["csNumber"].Value != null) continue;
+                    insCom.Parameters["date"].Value = DateTime.Parse(grCons.Rows[i].Cells["csDate"].Value.ToString());
+                    insCom.Parameters["type"].Value = grCons.Rows[i].Cells["csType"].Value;
+                    insCom.Parameters["amount"].Value = grCons.Rows[i].Cells["csAmount"].Value;
+                    insCom.Parameters["comment"].Value = DateTime.Parse(grWork.Rows[i].Cells["cExDate"].Value.ToString());
+                    insCom.Prepare();
+                    insCom.ExecuteNonQuery();
+                }
+                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
+                _hasChange = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Resources.Error, MessageBoxButtons.OK);
             }
             finally
             {
@@ -492,7 +576,7 @@ namespace Orders
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!_hasChange) return;
-            var svResult = MessageBox.Show("Данные были изменены. Сохранить?", "Orders", MessageBoxButtons.YesNo);
+            var svResult = MessageBox.Show(Resources.ChangeData, Resources.Orders, MessageBoxButtons.YesNo);
             if (svResult == DialogResult.Yes)
             {
                 SaveChanges();
@@ -504,9 +588,15 @@ namespace Orders
             _hasChange = true;
         }
 
-        private void grWork_CellValuePushed(object sender, DataGridViewCellValueEventArgs e)
+        private void Form1_Resize(object sender, EventArgs e)
         {
-           
+            chMonth.Width = tabGraph.Width/2 - 5;
+            chYear.Width = tabGraph.Width/2 - 5;
+        }
+
+        private void btConsSave_Click(object sender, EventArgs e)
+        {
+            SaveCons();
         }
     }
 }

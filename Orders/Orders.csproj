@@ -91,6 +91,7 @@
       <DependentUpon>FrClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Gloss.cs" />
+    <Compile Include="Graph.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -61,6 +61,24 @@ namespace Orders.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Данные были изменены. Сохранить?.
+        /// </summary>
+        internal static string ChangeData {
+            get {
+                return ResourceManager.GetString("ChangeData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип расх..
+        /// </summary>
+        internal static string ConsType {
+            get {
+                return ResourceManager.GetString("ConsType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Дата.
         /// </summary>
         internal static string Date {
@@ -70,11 +88,65 @@ namespace Orders.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Дата допл..
         /// </summary>
         internal static string ExDate {
             get {
                 return ResourceManager.GetString("ExDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Функционал сертификатов в разработке.
+        /// </summary>
+        internal static string Future {
+            get {
+                return ResourceManager.GetString("Future", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Orders.
+        /// </summary>
+        internal static string Orders {
+            get {
+                return ResourceManager.GetString("Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Изменения сохранены.
+        /// </summary>
+        internal static string SaveChange {
+            get {
+                return ResourceManager.GetString("SaveChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Источник.
+        /// </summary>
+        internal static string Source {
+            get {
+                return ResourceManager.GetString("Source", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип.
+        /// </summary>
+        internal static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
     }
