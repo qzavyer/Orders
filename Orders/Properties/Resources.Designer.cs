@@ -88,6 +88,24 @@ namespace Orders.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Дата окончания.
+        /// </summary>
+        internal static string DateEnd {
+            get {
+                return ResourceManager.GetString("DateEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дата оплаты.
+        /// </summary>
+        internal static string DatePay {
+            get {
+                return ResourceManager.GetString("DatePay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error.
         /// </summary>
         internal static string Error {

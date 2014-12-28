@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Data.SQLite;
@@ -213,6 +214,10 @@ namespace Orders
                 }
                 _hasChange = false;
             }
+            catch (Exception ex)
+            {
+                var a = ex;
+            }
             finally
             {
                 conn.Close();
@@ -271,17 +276,17 @@ namespace Orders
             try
             {
                 conn.Open();
-                var chartData = new DataTable();
-                const string selCmd = "SELECT DISTINCT T.fName AS \"csType\",C.fAmount AS \"csAmount\"," +
+                var consData = new DataTable();
+                const string selCmd = "SELECT DISTINCT C.fTypeId AS \"csType\",C.fAmount AS \"csAmount\"," +
                                       "datetime(C.fDate, 'unixepoch') AS \"csDate\",C.fComment AS \"csComment\" " +
                                       "FROM tCons C JOIN tConsType T ON C.fTypeId=T.fId " +
                                       "WHERE C.fDate>=strftime('%s', :start) AND C.fDate<strftime('%s', :end) " +
                                       "ORDER BY C.fDate";
                 var adapter = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand(selCmd, conn)};
-                adapter.SelectCommand.Parameters.AddWithValue("start", mStart);
+                adapter.SelectCommand.Parameters.AddWithValue("start", mStart.AddMonths(-1));
                 adapter.SelectCommand.Parameters.AddWithValue("end", mStart.AddMonths(1));
                 adapter.SelectCommand.Prepare();
-                adapter.Fill(chartData);
+                adapter.Fill(consData);
                 var combo = new DataGridViewComboBoxColumn
                 {
                     Name = "csType",
@@ -291,7 +296,7 @@ namespace Orders
                     DisplayMember = "fName",
                     HeaderText = Resources.ConsType
                 };
-                grCons.Columns.Insert(1, combo);
+                grCons.Columns.Insert(0, combo);
                 var date = new CalendarColumn
                 {
                     Name = "csDate",
@@ -300,9 +305,86 @@ namespace Orders
                     Width = 120
                 };
                 grCons.Columns.Insert(3, date);
-                var bSource = new BindingSource {DataSource = chartData};
+                var bSource = new BindingSource {DataSource = consData};
                 grCons.DataSource = bSource;
                 
+                for (var i = 0; i < grCons.Rows.Count; i++)
+                {
+                    grCons.Rows[i].Cells["csNumber"].Value = i.ToString(CultureInfo.InvariantCulture);
+                }
+            }
+            catch (Exception ex)
+            {
+                var a = ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void CertLoad()
+        {
+            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            try
+            {
+                conn.Open();
+                var certData = new DataTable();
+                const string selCmd = "SELECT DISTINCT S.fId AS \"ccId\"," +
+                                      "S.fPayId AS \"ccPayerId\",P.fName AS \"ccPayerName\"," +
+                                      "S.fClientId AS \"ccClientId\",C.fName AS \"ccClientName\"," +
+                                      "S.fTypeId AS \"ccTypeId\",datetime(S.fDatePay, 'unixepoch') AS \"ccDatePay\"," +
+                                      "datetime(S.fDateEnd, 'unixepoch') AS \"ccDateEnd\",S.fPrice AS \"ccPrice\"," +
+                                      "S.fHours AS \"ccHours\",S.fSource AS \"ccSource\" " +
+                                      "FROM tSert S JOIN tClient P ON S.fPayId=P.fId JOIN tClient C ON S.fClientId=C.fId " +
+                                      "WHERE S.fCash=0 ORDER BY S.fDateEnd";
+                var adapter = new SQLiteDataAdapter { SelectCommand = new SQLiteCommand(selCmd, conn) };
+                adapter.Fill(certData);
+
+                var combo = new DataGridViewComboBoxColumn
+                {
+                    Name = "ccType",
+                    DataPropertyName = "ccTypeId",
+                    DataSource = _workType,
+                    ValueMember = "fId",
+                    DisplayMember = "fName",
+                    HeaderText = Resources.Type
+                };
+                grCert.Columns.Insert(0, combo);
+                combo = new DataGridViewComboBoxColumn
+                {
+                    Name = "ccSource",
+                    DataPropertyName = "ccSource",
+                    DataSource = _sourceType,
+                    ValueMember = "fId",
+                    DisplayMember = "fName",
+                    HeaderText = Resources.Source
+                };
+                grCert.Columns.Insert(0, combo);
+                var date = new CalendarColumn
+                {
+                    Name = "ccDatePay",
+                    DataPropertyName = "ccDatePay",
+                    HeaderText = Resources.DatePay,
+                    Width = 120
+                };
+                grCert.Columns.Insert(3, date);
+
+                date = new CalendarColumn
+                {
+                    Name = "ccDateEnd",
+                    DataPropertyName = "ccDateEnd",
+                    HeaderText = Resources.DateEnd,
+                    Width = 120
+                };
+                grCert.Columns.Insert(3, date);
+                var bSource = new BindingSource { DataSource = certData };
+                grCert.DataSource = bSource;
+
+                for (var i = 0; i < grCert.Rows.Count; i++)
+                {
+                    grCert.Rows[i].Cells["csNumber"].Value = i.ToString(CultureInfo.InvariantCulture);
+                }
             }
             catch (Exception ex)
             {
@@ -319,6 +401,7 @@ namespace Orders
             WorkLoad();
             GraphLoad();
             ConsLoad();
+            CertLoad();
         }
 
         private void History_Click(object sender, EventArgs e)
@@ -526,6 +609,7 @@ namespace Orders
                 }
                 MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
                 _hasChange = false;
+                GraphLoad();
             }
             catch (Exception ex)
             {
@@ -556,7 +640,7 @@ namespace Orders
                     insCom.Parameters["date"].Value = DateTime.Parse(grCons.Rows[i].Cells["csDate"].Value.ToString());
                     insCom.Parameters["type"].Value = grCons.Rows[i].Cells["csType"].Value;
                     insCom.Parameters["amount"].Value = grCons.Rows[i].Cells["csAmount"].Value;
-                    insCom.Parameters["comment"].Value = DateTime.Parse(grWork.Rows[i].Cells["cExDate"].Value.ToString());
+                    insCom.Parameters["comment"].Value = DateTime.Parse(grWork.Rows[i].Cells["csComment"].Value.ToString());
                     insCom.Prepare();
                     insCom.ExecuteNonQuery();
                 }

@@ -144,4 +144,10 @@
   <data name="ConsType" xml:space="preserve">
     <value>Тип расх.</value>
   </data>
+  <data name="DatePay" xml:space="preserve">
+    <value>Дата оплаты</value>
+  </data>
+  <data name="DateEnd" xml:space="preserve">
+    <value>Дата окончания</value>
+  </data>
 </root>

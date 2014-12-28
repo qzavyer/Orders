@@ -123,6 +123,9 @@ namespace Orders
             this.btConsSave = new System.Windows.Forms.Button();
             this.tabGloss = new System.Windows.Forms.TabPage();
             this.tabArchive = new System.Windows.Forms.TabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btCertSave = new System.Windows.Forms.Button();
+            this.grCert = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -134,6 +137,13 @@ namespace Orders
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -145,6 +155,13 @@ namespace Orders
             this.csNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccPayerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccPayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabApp.SuspendLayout();
             this.tabWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).BeginInit();
@@ -156,9 +173,12 @@ namespace Orders
             this.tabGraph.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chMonth)).BeginInit();
+            this.tabSert.SuspendLayout();
             this.tabConsum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).BeginInit();
             this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grCert)).BeginInit();
             this.SuspendLayout();
             // 
             // tabApp
@@ -967,6 +987,8 @@ namespace Orders
             // 
             // tabSert
             // 
+            this.tabSert.Controls.Add(this.grCert);
+            this.tabSert.Controls.Add(this.panel6);
             this.tabSert.Location = new System.Drawing.Point(4, 25);
             this.tabSert.Name = "tabSert";
             this.tabSert.Padding = new System.Windows.Forms.Padding(3);
@@ -998,21 +1020,22 @@ namespace Orders
             this.grCons.Location = new System.Drawing.Point(3, 3);
             this.grCons.Name = "grCons";
             this.grCons.RowTemplate.Height = 24;
-            this.grCons.Size = new System.Drawing.Size(1407, 528);
+            this.grCons.Size = new System.Drawing.Size(1407, 534);
             this.grCons.TabIndex = 1;
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.btConsSave);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 531);
+            this.panel5.Location = new System.Drawing.Point(3, 537);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1407, 31);
+            this.panel5.Size = new System.Drawing.Size(1407, 25);
             this.panel5.TabIndex = 0;
             // 
             // btConsSave
             // 
-            this.btConsSave.Location = new System.Drawing.Point(1297, 3);
+            this.btConsSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btConsSave.Location = new System.Drawing.Point(1302, 0);
             this.btConsSave.Name = "btConsSave";
             this.btConsSave.Size = new System.Drawing.Size(105, 25);
             this.btConsSave.TabIndex = 0;
@@ -1039,6 +1062,43 @@ namespace Orders
             this.tabArchive.TabIndex = 5;
             this.tabArchive.Text = "Архив";
             this.tabArchive.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.btCertSave);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(3, 537);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1407, 25);
+            this.panel6.TabIndex = 0;
+            // 
+            // btCertSave
+            // 
+            this.btCertSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btCertSave.Location = new System.Drawing.Point(1302, 0);
+            this.btCertSave.Name = "btCertSave";
+            this.btCertSave.Size = new System.Drawing.Size(105, 25);
+            this.btCertSave.TabIndex = 0;
+            this.btCertSave.Text = "Сохранить";
+            this.btCertSave.UseVisualStyleBackColor = true;
+            // 
+            // grCert
+            // 
+            this.grCert.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grCert.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ccId,
+            this.ccPayerId,
+            this.ccPayerName,
+            this.ccClientId,
+            this.ccClientName,
+            this.ccPrice,
+            this.ccHours});
+            this.grCert.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grCert.Location = new System.Drawing.Point(3, 3);
+            this.grCert.Name = "grCert";
+            this.grCert.RowTemplate.Height = 24;
+            this.grCert.Size = new System.Drawing.Size(1407, 534);
+            this.grCert.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1088,18 +1148,66 @@ namespace Orders
             // 
             // dataGridViewTextBoxColumn9
             // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "ccId";
             this.dataGridViewTextBoxColumn9.HeaderText = "";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Visible = false;
             // 
             // dataGridViewTextBoxColumn10
             // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "ccPayerId";
             this.dataGridViewTextBoxColumn10.HeaderText = "Сумма";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.Visible = false;
             // 
             // dataGridViewTextBoxColumn11
             // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "ccPayName";
             this.dataGridViewTextBoxColumn11.HeaderText = "Комментарий";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "ccClientId";
+            this.dataGridViewTextBoxColumn12.HeaderText = "";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "ccClientName";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Клиент";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "ccPrice";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Сумма";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "ccHours";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Часы";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "csNumber";
+            this.dataGridViewTextBoxColumn16.HeaderText = "";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.DataPropertyName = "csAmount";
+            this.dataGridViewTextBoxColumn17.HeaderText = "Сумма";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.DataPropertyName = "csComment";
+            this.dataGridViewTextBoxColumn18.HeaderText = "Комментарий";
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
             // 
             // cNumber
             // 
@@ -1165,6 +1273,51 @@ namespace Orders
             this.csComment.HeaderText = "Комментарий";
             this.csComment.Name = "csComment";
             // 
+            // ccId
+            // 
+            this.ccId.DataPropertyName = "ccId";
+            this.ccId.HeaderText = "";
+            this.ccId.Name = "ccId";
+            this.ccId.Visible = false;
+            // 
+            // ccPayerId
+            // 
+            this.ccPayerId.DataPropertyName = "ccPayerId";
+            this.ccPayerId.HeaderText = "";
+            this.ccPayerId.Name = "ccPayerId";
+            this.ccPayerId.Visible = false;
+            // 
+            // ccPayerName
+            // 
+            this.ccPayerName.DataPropertyName = "ccPayerName";
+            this.ccPayerName.HeaderText = "Плательщик";
+            this.ccPayerName.Name = "ccPayerName";
+            // 
+            // ccClientId
+            // 
+            this.ccClientId.DataPropertyName = "ccClientId";
+            this.ccClientId.HeaderText = "";
+            this.ccClientId.Name = "ccClientId";
+            this.ccClientId.Visible = false;
+            // 
+            // ccClientName
+            // 
+            this.ccClientName.DataPropertyName = "ccClientName";
+            this.ccClientName.HeaderText = "Клиент";
+            this.ccClientName.Name = "ccClientName";
+            // 
+            // ccPrice
+            // 
+            this.ccPrice.DataPropertyName = "ccPrice";
+            this.ccPrice.HeaderText = "Сумма";
+            this.ccPrice.Name = "ccPrice";
+            // 
+            // ccHours
+            // 
+            this.ccHours.DataPropertyName = "ccHours";
+            this.ccHours.HeaderText = "Часы";
+            this.ccHours.Name = "ccHours";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1191,9 +1344,12 @@ namespace Orders
             this.tabGraph.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chMonth)).EndInit();
+            this.tabSert.ResumeLayout(false);
             this.tabConsum.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).EndInit();
             this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grCert)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1305,6 +1461,23 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn csNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn csAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn csComment;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btCertSave;
+        private System.Windows.Forms.DataGridView grCert;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccClientId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccHours;
     }
 }
 
