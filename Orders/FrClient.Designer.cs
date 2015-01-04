@@ -52,14 +52,15 @@
             this.panel1.Controls.Add(this.btOk);
             this.panel1.Controls.Add(this.btSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 538);
+            this.panel1.Location = new System.Drawing.Point(0, 559);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(521, 46);
+            this.panel1.Size = new System.Drawing.Size(521, 25);
             this.panel1.TabIndex = 3;
             // 
             // btOk
             // 
-            this.btOk.Location = new System.Drawing.Point(12, 12);
+            this.btOk.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btOk.Location = new System.Drawing.Point(0, 0);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(105, 25);
             this.btOk.TabIndex = 4;
@@ -69,7 +70,8 @@
             // 
             // btSave
             // 
-            this.btSave.Location = new System.Drawing.Point(404, 12);
+            this.btSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btSave.Location = new System.Drawing.Point(416, 0);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(105, 25);
             this.btSave.TabIndex = 3;

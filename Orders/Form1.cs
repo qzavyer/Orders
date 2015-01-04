@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using Orders.Classes;
@@ -35,7 +36,7 @@ namespace Orders
 
         private void WorkLoad()
         {
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            var conn = GetConnection();
             try
             {
                 conn.Open();
@@ -51,57 +52,14 @@ namespace Orders
                 var wkTable = new DataTable();
                 var wkAdapt = new SQLiteDataAdapter(wkCom);
                 wkAdapt.Fill(wkTable);
-
-                _workType = new DataTable();
-                _sourceType = new DataTable();
-                _consType = new DataTable();
-                var adapter = new SQLiteDataAdapter
-                {
-                    SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tWorkType", conn)
-                };
-                adapter.Fill(_workType);
-                adapter.SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tSource", conn);
-                adapter.Fill(_sourceType);
-                adapter.SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tConsType", conn);
-                adapter.Fill(_consType);
-
-                //lst.Sort((item1,item2)=>DateTime.Compare(item1.Date, item2.Date));
+                
                 var mLst = new List<History>();
                 var currDate = DateTime.Now;
                 for (var i = 1; i <= 12; i++)
                 {
                     mLst.Add(new History {Month = i});
                 }
-
-                var combo = new DataGridViewComboBoxColumn
-                {
-                    Name = "cTypeA",
-                    DataSource = _workType,
-                    ValueMember = "fId",
-                    DisplayMember = "fName",
-                    HeaderText = Resources.Type
-                };
-                grWork.Columns.Insert((int) TableCol.TypeColIndex, combo);
-                combo = new DataGridViewComboBoxColumn
-                {
-                    Name = "cSourceA",
-                    DataSource = _sourceType,
-                    ValueMember = "fId",
-                    DisplayMember = "fName",
-                    HeaderText = Resources.Source
-                };
-                grWork.Columns.Insert((int) TableCol.SourColIndex, combo);
-
-                combo = new DataGridViewComboBoxColumn
-                {
-                    Name = "cConsA",
-                    DataSource = _consType,
-                    ValueMember = "fId",
-                    DisplayMember = "fName",
-                    HeaderText = Resources.ConsType
-                };
-                grWork.Columns.Insert((int) TableCol.ConsColIndex, combo);
-
+                
                 const string csCmd = "SELECT fTypeId AS \"Type\",fAmount AS Amount," +
                                      "datetime(fDate, 'unixepoch') AS \"Date\",fComment AS \"Comment\" " +
                                      "FROM tCons " +
@@ -114,7 +72,7 @@ namespace Orders
                 var csTable = new DataTable();
                 var csAdapt = new SQLiteDataAdapter(csCom);
                 csAdapt.Fill(csTable);
-
+                grWork.RowCount = 1;
                 // grCons.Columns.Insert(0, combo);
                 foreach (DataRow row in csTable.Rows)
                 {
@@ -127,11 +85,7 @@ namespace Orders
                     iRow["csComment"].Value = cons.Comment;
                 }
 
-                var date = new CalendarColumn {Name = "cPreDate", HeaderText = Resources.Date, Width = 120};
-                grWork.Columns.Insert((int) TableCol.PreDateColIndex, date);
-
-                date = new CalendarColumn {Name = "cExDate", HeaderText = Resources.ExDate, Width = 120};
-                grWork.Columns.Insert((int) TableCol.ExDateColIndex, date);
+                
                 var inc = 0D;
                 var con = 0D;
                 var hrs = 0D;
@@ -163,7 +117,7 @@ namespace Orders
                     grWork.RowCount = grWork.RowCount + 1;
                     var iRow = grWork.Rows[grWork.RowCount - 2].Cells;
                     iRow["cNumber"].Value = grWork.RowCount - 1;
-                    iRow["cId"].Value = work.Date;
+                    iRow["cId"].Value = work.Id;
                     iRow["cClientId"].Value = work.ClientId;
                     iRow["cClient"].Value = work.Client;
                     var c = iRow["cTypeA"] as DataGridViewComboBoxCell;
@@ -216,7 +170,13 @@ namespace Orders
             }
             catch (Exception ex)
             {
-                var a = ex;
+                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                if (declaringType != null)
+                {
+                    var cName = declaringType.Name;
+                    var mName = MethodBase.GetCurrentMethod().Name;
+                    SaveError(ex.Message, cName + "/" + mName);
+                }
             }
             finally
             {
@@ -228,7 +188,7 @@ namespace Orders
         {
             var yStart = new DateTime(DateTime.Now.Year, 1, 1);
             var mStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            var conn = GetConnection();
             try
             {
                 conn.Open();
@@ -272,7 +232,7 @@ namespace Orders
         private void ConsLoad()
         {
             var mStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            var conn = GetConnection();
             try
             {
                 conn.Open();
@@ -287,24 +247,7 @@ namespace Orders
                 adapter.SelectCommand.Parameters.AddWithValue("end", mStart.AddMonths(1));
                 adapter.SelectCommand.Prepare();
                 adapter.Fill(consData);
-                var combo = new DataGridViewComboBoxColumn
-                {
-                    Name = "csType",
-                    DataPropertyName = "csType",
-                    DataSource = _consType,
-                    ValueMember = "fId",
-                    DisplayMember = "fName",
-                    HeaderText = Resources.ConsType
-                };
-                grCons.Columns.Insert(0, combo);
-                var date = new CalendarColumn
-                {
-                    Name = "csDate",
-                    DataPropertyName = "csDate",
-                    HeaderText = Resources.ExDate,
-                    Width = 120
-                };
-                grCons.Columns.Insert(3, date);
+                
                 var bSource = new BindingSource {DataSource = consData};
                 grCons.DataSource = bSource;
                 
@@ -315,7 +258,13 @@ namespace Orders
             }
             catch (Exception ex)
             {
-                var a = ex;
+                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                if (declaringType != null)
+                {
+                    var cName = declaringType.Name;
+                    var mName = MethodBase.GetCurrentMethod().Name;
+                    SaveError(ex.Message, cName + "/" + mName);
+                }
             }
             finally
             {
@@ -325,7 +274,7 @@ namespace Orders
 
         private void CertLoad()
         {
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            var conn = GetConnection();
             try
             {
                 conn.Open();
@@ -341,7 +290,84 @@ namespace Orders
                 var adapter = new SQLiteDataAdapter { SelectCommand = new SQLiteCommand(selCmd, conn) };
                 adapter.Fill(certData);
 
+                
+                var bSource = new BindingSource { DataSource = certData };
+                grCert.DataSource = bSource;
+
+                for (var i = 0; i < grCert.Rows.Count; i++)
+                {
+                    grCert.Rows[i].Cells["ccNumber"].Value = i.ToString(CultureInfo.InvariantCulture);
+                }
+            }
+            catch (Exception ex)
+            {
+                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                if (declaringType != null)
+                {
+                    var cName = declaringType.Name;
+                    var mName = MethodBase.GetCurrentMethod().Name;
+                    SaveError(ex.Message, cName + "/" + mName);
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void ControlLoad()
+        {
+            var conn = GetConnection();
+            try
+            {
+                conn.Open();
+                _workType = new DataTable();
+                _sourceType = new DataTable();
+                _consType = new DataTable();
+                var adapter = new SQLiteDataAdapter
+                {
+                    SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tWorkType", conn)
+                };
+                adapter.Fill(_workType);
+                adapter.SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tSource", conn);
+                adapter.Fill(_sourceType);
+                adapter.SelectCommand = new SQLiteCommand("SELECT fId,fName FROM tConsType", conn);
+                adapter.Fill(_consType);
                 var combo = new DataGridViewComboBoxColumn
+                {
+                    Name = "cTypeA",
+                    DataSource = _workType,
+                    ValueMember = "fId",
+                    DisplayMember = "fName",
+                    HeaderText = Resources.Type
+                };
+                grWork.Columns.Insert((int) TableCol.TypeColIndex, combo);
+                combo = new DataGridViewComboBoxColumn
+                {
+                    Name = "cSourceA",
+                    DataSource = _sourceType,
+                    ValueMember = "fId",
+                    DisplayMember = "fName",
+                    HeaderText = Resources.Source
+                };
+                grWork.Columns.Insert((int) TableCol.SourColIndex, combo);
+
+                combo = new DataGridViewComboBoxColumn
+                {
+                    Name = "cConsA",
+                    DataSource = _consType,
+                    ValueMember = "fId",
+                    DisplayMember = "fName",
+                    HeaderText = Resources.ConsType
+                };
+                grWork.Columns.Insert((int) TableCol.ConsColIndex, combo);
+                var date = new CalendarColumn {Name = "cPreDate", HeaderText = Resources.Date, Width = 120};
+                grWork.Columns.Insert((int) TableCol.PreDateColIndex, date);
+
+                date = new CalendarColumn {Name = "cExDate", HeaderText = Resources.ExDate, Width = 120};
+                grWork.Columns.Insert((int) TableCol.ExDateColIndex, date);
+
+                combo = new DataGridViewComboBoxColumn
                 {
                     Name = "ccType",
                     DataPropertyName = "ccTypeId",
@@ -350,7 +376,7 @@ namespace Orders
                     DisplayMember = "fName",
                     HeaderText = Resources.Type
                 };
-                grCert.Columns.Insert(0, combo);
+                grCert.Columns.Insert(1, combo);
                 combo = new DataGridViewComboBoxColumn
                 {
                     Name = "ccSource",
@@ -360,8 +386,8 @@ namespace Orders
                     DisplayMember = "fName",
                     HeaderText = Resources.Source
                 };
-                grCert.Columns.Insert(0, combo);
-                var date = new CalendarColumn
+                grCert.Columns.Insert(1, combo);
+                date = new CalendarColumn
                 {
                     Name = "ccDatePay",
                     DataPropertyName = "ccDatePay",
@@ -378,17 +404,35 @@ namespace Orders
                     Width = 120
                 };
                 grCert.Columns.Insert(3, date);
-                var bSource = new BindingSource { DataSource = certData };
-                grCert.DataSource = bSource;
 
-                for (var i = 0; i < grCert.Rows.Count; i++)
+                combo = new DataGridViewComboBoxColumn
                 {
-                    grCert.Rows[i].Cells["csNumber"].Value = i.ToString(CultureInfo.InvariantCulture);
-                }
+                    Name = "csType",
+                    DataPropertyName = "csType",
+                    DataSource = _consType,
+                    ValueMember = "fId",
+                    DisplayMember = "fName",
+                    HeaderText = Resources.ConsType
+                };
+                grCons.Columns.Insert(0, combo);
+                date = new CalendarColumn
+                {
+                    Name = "csDate",
+                    DataPropertyName = "csDate",
+                    HeaderText = Resources.ExDate,
+                    Width = 120
+                };
+                grCons.Columns.Insert(3, date);
             }
             catch (Exception ex)
             {
-                var a = ex;
+                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                if (declaringType != null)
+                {
+                    var cName = declaringType.Name;
+                    var mName = MethodBase.GetCurrentMethod().Name;
+                    SaveError(ex.Message, cName + "/" + mName);
+                }
             }
             finally
             {
@@ -398,6 +442,7 @@ namespace Orders
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ControlLoad();
             WorkLoad();
             GraphLoad();
             ConsLoad();
@@ -466,7 +511,7 @@ namespace Orders
                 month = 1;
             }
             var eDate = new DateTime(year, month, 1);
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            var conn = GetConnection();
             try
             {
                 conn.Open();
@@ -494,7 +539,7 @@ namespace Orders
                     grWork.RowCount = grWork.RowCount + 1;
                     var iRow = grWork.Rows[grWork.RowCount - 2].Cells;
                     iRow["cNumber"].Value = grWork.RowCount - 1;
-                    iRow["cId"].Value = work.Date;
+                    iRow["cId"].Value = work.Id;
                     iRow["cClientId"].Value = work.ClientId;
                     iRow["cClient"].Value = work.Client;
                     var c = iRow["cTypeA"] as DataGridViewComboBoxCell;
@@ -563,7 +608,7 @@ namespace Orders
 
         private void SaveChanges()
         {
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            var conn = GetConnection();
             try
             {
                 conn.Open();
@@ -574,35 +619,65 @@ namespace Orders
                                       "CASE WHEN :excess<1 THEN NULL ELSE strftime('%s', :exdate) END," +
                                       ":constype,:cons,:hour,:source," +
                                       "CASE WHEN :sert=0 THEN NULL ELSE :sert END)";
-                var insCom = new SQLiteCommand(insCmd, conn);
-                insCom.Parameters.AddWithValue("client", 1);
-                insCom.Parameters.AddWithValue("type", 1);
-                insCom.Parameters.Add(new SQLiteParameter("date", DbType.DateTime));
-                insCom.Parameters.Add(new SQLiteParameter("prepay", DbType.Double));
-                insCom.Parameters.Add(new SQLiteParameter("excess", DbType.Double));
-                insCom.Parameters.Add(new SQLiteParameter("exdate", DbType.DateTime));
-                insCom.Parameters.Add(new SQLiteParameter("constype", DbType.Int32));
-                insCom.Parameters.Add(new SQLiteParameter("cons", DbType.Double));
-                insCom.Parameters.Add(new SQLiteParameter("hour", DbType.Double));
-                insCom.Parameters.AddWithValue("source", 1);
-                insCom.Parameters.AddWithValue("sert", 0);
-                for (var i = 0; i < grWork.RowCount - 1; i++)
+                const string updCmd = "UPDATE tWork SET fClientId=:client,fTypeId=:type,fDate=strftime('%s', :date)," +
+                                      "fPrepay=:prepay,fExcess=:excess,fExcessDate=CASE WHEN :excess<1 THEN NULL ELSE strftime('%s', :exdate) END," +
+                                      "fConsTypeId=:constype,fCons=:cons,fHours=:hour,fSourceId=:source,fSertId=CASE WHEN :sert=0 THEN NULL ELSE :sert END " +
+                                      "WHERE fId=:id";
+                 for (var i = 0; i < grWork.RowCount - 1; i++)
                 {
+                    var insCom = new SQLiteCommand(conn);
+                    insCom.Parameters.Add(new SQLiteParameter("client", DbType.Int32));
+                    insCom.Parameters.Add(new SQLiteParameter("type", DbType.Int32));
+                    insCom.Parameters.Add(new SQLiteParameter("date", DbType.DateTime));
+                    insCom.Parameters.Add(new SQLiteParameter("prepay", DbType.Double));
+                    insCom.Parameters.Add(new SQLiteParameter("excess", DbType.Double));
+                    insCom.Parameters.Add(new SQLiteParameter("exdate", DbType.DateTime));
+                    insCom.Parameters.Add(new SQLiteParameter("constype", DbType.Int32));
+                    insCom.Parameters.Add(new SQLiteParameter("cons", DbType.Double));
+                    insCom.Parameters.Add(new SQLiteParameter("hour", DbType.Double));
+                    insCom.Parameters.Add(new SQLiteParameter("source", DbType.Int32));
+                    insCom.Parameters.Add(new SQLiteParameter("sert", DbType.Int32));
                     //var a = grWork.Rows[i].Cells["cTypeA"].Value;
-                    if (grWork.Rows[i].Cells["cId"].Value != null) continue;
-                    insCom.Parameters["date"].Value = DateTime.Parse(grWork.Rows[i].Cells["cPreDate"].Value.ToString());
+                    if (grWork.Rows[i].Cells["cId"].Value == null)
+                    {
+                        insCom.CommandText = insCmd;
+                    }
+                    else
+                    {
+                        insCom.CommandText = updCmd;
+                        insCom.Parameters.Add(new SQLiteParameter("id", DbType.Int32));
+                        insCom.Parameters["id"].Value = grWork.Rows[i].Cells["cId"].Value;
+                    }
+                    insCom.Parameters["client"].Value = Convert.ToInt32(grWork.Rows[i].Cells["cClientId"].Value);
+                    insCom.Parameters["type"].Value = Convert.ToInt32(grWork.Rows[i].Cells["cTypeA"].Value);
+                    insCom.Parameters["source"].Value = Convert.ToInt32(grWork.Rows[i].Cells["cSourceA"].Value);
+                    insCom.Parameters["sert"].Value = 0;
+                    insCom.Parameters["date"].Value =
+                        DateTime.Parse(grWork.Rows[i].Cells["cPreDate"].Value.ToString());
                     insCom.Parameters["prepay"].Value = grWork.Rows[i].Cells["cPrepay"].Value;
-                    insCom.Parameters["excess"].Value = grWork.Rows[i].Cells["cExcess"].Value;
+                    insCom.Parameters["excess"].Value = grWork.Rows[i].Cells["cExcess"].Value == null ||
+                                                        string.IsNullOrEmpty(
+                                                            grWork.Rows[i].Cells["cExcess"].Value.ToString()) ||
+                                                        Convert.ToDouble(grWork.Rows[i].Cells["cExcess"].Value) < 0.01
+                        ? 0
+                        : grWork.Rows[i].Cells["cExcess"].Value;
                     insCom.Parameters["exdate"].Value =
+                        grWork.Rows[i].Cells["cExcess"].Value == null ||
                         string.IsNullOrEmpty(grWork.Rows[i].Cells["cExcess"].Value.ToString())
                             ? DateTime.Now
                             : DateTime.Parse(grWork.Rows[i].Cells["cExDate"].Value.ToString());
                     insCom.Parameters["constype"].Value =
-                        string.IsNullOrEmpty(grWork.Rows[i].Cells["cExcess"].Value.ToString()) ||
-                        Convert.ToDouble(grWork.Rows[i].Cells["cExcess"].Value) < 0.01
+                        grWork.Rows[i].Cells["cCons"].Value == null ||
+                        string.IsNullOrEmpty(grWork.Rows[i].Cells["cCons"].Value.ToString()) ||
+                        Convert.ToDouble(grWork.Rows[i].Cells["cCons"].Value) < 0.01
                             ? 0
                             : grWork.Rows[i].Cells["cConsA"].Value;
-                    insCom.Parameters["cons"].Value = grWork.Rows[i].Cells["cCons"].Value;
+                    insCom.Parameters["cons"].Value = grWork.Rows[i].Cells["cCons"].Value == null ||
+                                                        string.IsNullOrEmpty(
+                                                            grWork.Rows[i].Cells["cCons"].Value.ToString()) ||
+                                                        Convert.ToDouble(grWork.Rows[i].Cells["cCons"].Value) < 0.01
+                        ? 0
+                        : grWork.Rows[i].Cells["cCons"].Value;
                     insCom.Parameters["hour"].Value = grWork.Rows[i].Cells["cHours"].Value;
                     insCom.Prepare();
                     insCom.ExecuteNonQuery();
@@ -610,10 +685,17 @@ namespace Orders
                 MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
                 _hasChange = false;
                 GraphLoad();
+                WorkLoad();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Resources.Error, MessageBoxButtons.OK);
+                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                if (declaringType != null)
+                {
+                    var cName = declaringType.Name;
+                    var mName = MethodBase.GetCurrentMethod().Name;
+                    SaveError(ex.Message, cName + "/" + mName);
+                }
             }
             finally
             {
@@ -623,7 +705,7 @@ namespace Orders
 
         private void SaveCons()
         {
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            var conn = GetConnection();
             try
             {
                 conn.Open();
@@ -649,7 +731,13 @@ namespace Orders
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Resources.Error, MessageBoxButtons.OK);
+                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                if (declaringType != null)
+                {
+                    var cName = declaringType.Name;
+                    var mName = MethodBase.GetCurrentMethod().Name;
+                    SaveError(ex.Message, cName + "/" + mName);
+                }
             }
             finally
             {
@@ -681,6 +769,34 @@ namespace Orders
         private void btConsSave_Click(object sender, EventArgs e)
         {
             SaveCons();
+        }
+
+        private void SaveError(string errorMessage, string function)
+        {
+            var conn = GetConnection();
+            try
+            {
+                conn.Open();
+                const string insCmd = "INSERT INTO tError (fDate,fError,fFunc) " +
+                                      "VALUES(strftime('%s', 'now'),:error,:func)";
+                var insCom = new SQLiteCommand(insCmd, conn);
+                insCom.Parameters.Add(new SQLiteParameter("error", DbType.String));
+                insCom.Parameters.Add(new SQLiteParameter("func", DbType.String));
+                insCom.Parameters["error"].Value = errorMessage;
+                insCom.Parameters["func"].Value = function;
+                insCom.Prepare();
+                insCom.ExecuteNonQuery();
+                MessageBox.Show(errorMessage, Resources.Error, MessageBoxButtons.OK);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private SQLiteConnection GetConnection()
+        {
+            return new SQLiteConnection("Data Source=order.db; Version=3;");
         }
     }
 }

@@ -112,6 +112,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="order.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
