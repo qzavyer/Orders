@@ -40,12 +40,13 @@ namespace Orders
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabApp = new System.Windows.Forms.TabControl();
             this.tabWork = new System.Windows.Forms.TabPage();
             this.grWork = new System.Windows.Forms.DataGridView();
-            this.cType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cSource = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cSert = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lHoursC = new System.Windows.Forms.Label();
@@ -125,16 +126,28 @@ namespace Orders
             this.panel5 = new System.Windows.Forms.Panel();
             this.btConsSave = new System.Windows.Forms.Button();
             this.tabGloss = new System.Windows.Forms.TabPage();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
             this.grDicClient = new System.Windows.Forms.DataGridView();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.panel18 = new System.Windows.Forms.Panel();
             this.btDicClientSave = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.grDicSource = new System.Windows.Forms.DataGridView();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.btDicSourceSave = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.grDicWork = new System.Windows.Forms.DataGridView();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.btDicWorkSave = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.grDicCons = new System.Windows.Forms.DataGridView();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.btDicConsSave = new System.Windows.Forms.Button();
             this.tabArchive = new System.Windows.Forms.TabPage();
@@ -157,14 +170,17 @@ namespace Orders
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPrepay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cExcess = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ccNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ccId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ccPayerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -176,6 +192,29 @@ namespace Orders
             this.csNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdpName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdpPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdpMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdpNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdwId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdwName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdcId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cPrepay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cExcess = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSource = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cSert = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.cCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabApp.SuspendLayout();
             this.tabWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).BeginInit();
@@ -194,14 +233,21 @@ namespace Orders
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).BeginInit();
             this.panel5.SuspendLayout();
             this.tabGloss.SuspendLayout();
-            this.panel7.SuspendLayout();
+            this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).BeginInit();
+            this.panel17.SuspendLayout();
+            this.panel18.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grDicSource)).BeginInit();
+            this.panel13.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicWork)).BeginInit();
+            this.panel14.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).BeginInit();
+            this.panel15.SuspendLayout();
             this.panel12.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -248,7 +294,8 @@ namespace Orders
             this.cCons,
             this.cHours,
             this.cSource,
-            this.cSert});
+            this.cSert,
+            this.cCertId});
             this.grWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grWork.Location = new System.Drawing.Point(3, 39);
             this.grWork.Name = "grWork";
@@ -259,26 +306,6 @@ namespace Orders
             this.grWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellClick);
             this.grWork.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellContentClick);
             this.grWork.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellValueChanged);
-            // 
-            // cType
-            // 
-            this.cType.HeaderText = "Тип";
-            this.cType.Name = "cType";
-            this.cType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cType.Visible = false;
-            // 
-            // cSource
-            // 
-            this.cSource.HeaderText = "Источник";
-            this.cSource.Name = "cSource";
-            this.cSource.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cSource.Visible = false;
-            // 
-            // cSert
-            // 
-            this.cSert.HeaderText = "Сертификат";
-            this.cSert.Name = "cSert";
             // 
             // panel3
             // 
@@ -964,8 +991,8 @@ namespace Orders
             chartArea2.Name = "ChartArea2";
             this.chYear.ChartAreas.Add(chartArea1);
             this.chYear.ChartAreas.Add(chartArea2);
-            this.chYear.Dock = System.Windows.Forms.DockStyle.Right;
-            this.chYear.Location = new System.Drawing.Point(698, 3);
+            this.chYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chYear.Location = new System.Drawing.Point(692, 3);
             this.chYear.Name = "chYear";
             this.chYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series1.ChartArea = "ChartArea1";
@@ -975,7 +1002,7 @@ namespace Orders
             series2.Name = "income";
             this.chYear.Series.Add(series1);
             this.chYear.Series.Add(series2);
-            this.chYear.Size = new System.Drawing.Size(712, 559);
+            this.chYear.Size = new System.Drawing.Size(718, 559);
             this.chYear.TabIndex = 2;
             this.chYear.Text = "Годовой график";
             title1.Name = "Title1";
@@ -1109,6 +1136,7 @@ namespace Orders
             // 
             // tabGloss
             // 
+            this.tabGloss.Controls.Add(this.panel16);
             this.tabGloss.Controls.Add(this.panel7);
             this.tabGloss.Controls.Add(this.panel9);
             this.tabGloss.Controls.Add(this.panel8);
@@ -1120,64 +1148,204 @@ namespace Orders
             this.tabGloss.Text = "Справочники";
             this.tabGloss.UseVisualStyleBackColor = true;
             // 
-            // panel7
+            // panel16
             // 
-            this.panel7.Controls.Add(this.grDicClient);
-            this.panel7.Controls.Add(this.panel10);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(3, 3);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(469, 559);
-            this.panel7.TabIndex = 3;
+            this.panel16.Controls.Add(this.grDicClient);
+            this.panel16.Controls.Add(this.panel17);
+            this.panel16.Controls.Add(this.panel18);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel16.Location = new System.Drawing.Point(3, 3);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(597, 559);
+            this.panel16.TabIndex = 5;
             // 
             // grDicClient
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grDicClient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grDicClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grDicClient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cdpId,
+            this.cdpName,
+            this.cdpPhone,
+            this.cdpMail,
+            this.cdpNote});
             this.grDicClient.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicClient.Location = new System.Drawing.Point(0, 0);
+            this.grDicClient.Location = new System.Drawing.Point(0, 25);
             this.grDicClient.Name = "grDicClient";
+            this.grDicClient.RowHeadersVisible = false;
             this.grDicClient.RowTemplate.Height = 24;
-            this.grDicClient.Size = new System.Drawing.Size(469, 534);
-            this.grDicClient.TabIndex = 1;
+            this.grDicClient.Size = new System.Drawing.Size(597, 509);
+            this.grDicClient.TabIndex = 3;
             // 
-            // panel10
+            // panel17
             // 
-            this.panel10.Controls.Add(this.btDicClientSave);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(0, 534);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(469, 25);
-            this.panel10.TabIndex = 0;
+            this.panel17.Controls.Add(this.label11);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel17.Location = new System.Drawing.Point(0, 0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(597, 25);
+            this.panel17.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(0, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(597, 25);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Клинеты";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel18
+            // 
+            this.panel18.Controls.Add(this.btDicClientSave);
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel18.Location = new System.Drawing.Point(0, 534);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(597, 25);
+            this.panel18.TabIndex = 0;
             // 
             // btDicClientSave
             // 
             this.btDicClientSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btDicClientSave.Location = new System.Drawing.Point(364, 0);
+            this.btDicClientSave.Location = new System.Drawing.Point(492, 0);
             this.btDicClientSave.Name = "btDicClientSave";
             this.btDicClientSave.Size = new System.Drawing.Size(105, 25);
             this.btDicClientSave.TabIndex = 1;
             this.btDicClientSave.Text = "Сохранить";
             this.btDicClientSave.UseVisualStyleBackColor = true;
+            this.btDicClientSave.Click += new System.EventHandler(this.btDicClientSave_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.grDicSource);
+            this.panel7.Controls.Add(this.panel13);
+            this.panel7.Controls.Add(this.panel10);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel7.Location = new System.Drawing.Point(600, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(270, 559);
+            this.panel7.TabIndex = 4;
+            // 
+            // grDicSource
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grDicSource.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.grDicSource.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grDicSource.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cdsId,
+            this.cdsName});
+            this.grDicSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grDicSource.Location = new System.Drawing.Point(0, 25);
+            this.grDicSource.Name = "grDicSource";
+            this.grDicSource.RowHeadersVisible = false;
+            this.grDicSource.RowTemplate.Height = 24;
+            this.grDicSource.Size = new System.Drawing.Size(270, 509);
+            this.grDicSource.TabIndex = 3;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.label9);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel13.Location = new System.Drawing.Point(0, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(270, 25);
+            this.panel13.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(0, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(270, 25);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Источники";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.btDicSourceSave);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(0, 534);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(270, 25);
+            this.panel10.TabIndex = 0;
+            // 
+            // btDicSourceSave
+            // 
+            this.btDicSourceSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btDicSourceSave.Location = new System.Drawing.Point(165, 0);
+            this.btDicSourceSave.Name = "btDicSourceSave";
+            this.btDicSourceSave.Size = new System.Drawing.Size(105, 25);
+            this.btDicSourceSave.TabIndex = 1;
+            this.btDicSourceSave.Text = "Сохранить";
+            this.btDicSourceSave.UseVisualStyleBackColor = true;
+            this.btDicSourceSave.Click += new System.EventHandler(this.btDicSourceSave_Click);
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.grDicWork);
+            this.panel9.Controls.Add(this.panel14);
             this.panel9.Controls.Add(this.panel11);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(472, 3);
+            this.panel9.Location = new System.Drawing.Point(870, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(469, 559);
+            this.panel9.Size = new System.Drawing.Size(270, 559);
             this.panel9.TabIndex = 2;
             // 
             // grDicWork
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grDicWork.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grDicWork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grDicWork.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cdwId,
+            this.cdwName});
             this.grDicWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicWork.Location = new System.Drawing.Point(0, 0);
+            this.grDicWork.Location = new System.Drawing.Point(0, 25);
             this.grDicWork.Name = "grDicWork";
+            this.grDicWork.RowHeadersVisible = false;
             this.grDicWork.RowTemplate.Height = 24;
-            this.grDicWork.Size = new System.Drawing.Size(469, 534);
-            this.grDicWork.TabIndex = 1;
+            this.grDicWork.Size = new System.Drawing.Size(270, 509);
+            this.grDicWork.TabIndex = 4;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.label7);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(0, 0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(270, 25);
+            this.panel14.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(0, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(270, 25);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Тип работы";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel11
             // 
@@ -1185,38 +1353,71 @@ namespace Orders
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel11.Location = new System.Drawing.Point(0, 534);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(469, 25);
+            this.panel11.Size = new System.Drawing.Size(270, 25);
             this.panel11.TabIndex = 0;
             // 
             // btDicWorkSave
             // 
             this.btDicWorkSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btDicWorkSave.Location = new System.Drawing.Point(364, 0);
+            this.btDicWorkSave.Location = new System.Drawing.Point(165, 0);
             this.btDicWorkSave.Name = "btDicWorkSave";
             this.btDicWorkSave.Size = new System.Drawing.Size(105, 25);
             this.btDicWorkSave.TabIndex = 0;
             this.btDicWorkSave.Text = "Сохранить";
             this.btDicWorkSave.UseVisualStyleBackColor = true;
+            this.btDicWorkSave.Click += new System.EventHandler(this.btDicWorkSave_Click);
             // 
             // panel8
             // 
             this.panel8.Controls.Add(this.grDicCons);
+            this.panel8.Controls.Add(this.panel15);
             this.panel8.Controls.Add(this.panel12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(941, 3);
+            this.panel8.Location = new System.Drawing.Point(1140, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(469, 559);
+            this.panel8.Size = new System.Drawing.Size(270, 559);
             this.panel8.TabIndex = 1;
             // 
             // grDicCons
             // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grDicCons.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grDicCons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grDicCons.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cdcId,
+            this.cdcName});
             this.grDicCons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicCons.Location = new System.Drawing.Point(0, 0);
+            this.grDicCons.Location = new System.Drawing.Point(0, 25);
             this.grDicCons.Name = "grDicCons";
+            this.grDicCons.RowHeadersVisible = false;
             this.grDicCons.RowTemplate.Height = 24;
-            this.grDicCons.Size = new System.Drawing.Size(469, 534);
-            this.grDicCons.TabIndex = 1;
+            this.grDicCons.Size = new System.Drawing.Size(270, 509);
+            this.grDicCons.TabIndex = 4;
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.label5);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(270, 25);
+            this.panel15.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(270, 25);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Тип расхода";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel12
             // 
@@ -1224,18 +1425,19 @@ namespace Orders
             this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel12.Location = new System.Drawing.Point(0, 534);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(469, 25);
+            this.panel12.Size = new System.Drawing.Size(270, 25);
             this.panel12.TabIndex = 0;
             // 
             // btDicConsSave
             // 
             this.btDicConsSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btDicConsSave.Location = new System.Drawing.Point(364, 0);
+            this.btDicConsSave.Location = new System.Drawing.Point(165, 0);
             this.btDicConsSave.Name = "btDicConsSave";
             this.btDicConsSave.Size = new System.Drawing.Size(105, 25);
             this.btDicConsSave.TabIndex = 0;
             this.btDicConsSave.Text = "Сохранить";
             this.btDicConsSave.UseVisualStyleBackColor = true;
+            this.btDicConsSave.Click += new System.EventHandler(this.btDicConsSave_Click);
             // 
             // tabArchive
             // 
@@ -1355,61 +1557,96 @@ namespace Orders
             // 
             // dataGridViewTextBoxColumn18
             // 
+            this.dataGridViewTextBoxColumn18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn18.DataPropertyName = "csComment";
+            this.dataGridViewTextBoxColumn18.FillWeight = 40F;
             this.dataGridViewTextBoxColumn18.HeaderText = "Комментарий";
             this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
             // 
             // dataGridViewTextBoxColumn19
             // 
+            this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn19.DataPropertyName = "csComment";
             this.dataGridViewTextBoxColumn19.HeaderText = "Комментарий";
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             // 
-            // cNumber
+            // dataGridViewTextBoxColumn20
             // 
-            this.cNumber.HeaderText = "";
-            this.cNumber.Name = "cNumber";
-            this.cNumber.ReadOnly = true;
-            this.cNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNumber.Width = 40;
+            this.dataGridViewTextBoxColumn20.DataPropertyName = "fId";
+            this.dataGridViewTextBoxColumn20.HeaderText = "";
+            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.Visible = false;
             // 
-            // cId
+            // dataGridViewTextBoxColumn21
             // 
-            this.cId.HeaderText = "Id";
-            this.cId.Name = "cId";
-            this.cId.ReadOnly = true;
-            this.cId.Visible = false;
+            this.dataGridViewTextBoxColumn21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridViewTextBoxColumn21.DataPropertyName = "fName";
+            this.dataGridViewTextBoxColumn21.FillWeight = 70F;
+            this.dataGridViewTextBoxColumn21.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            this.dataGridViewTextBoxColumn21.Width = 162;
             // 
-            // cClientId
+            // dataGridViewTextBoxColumn22
             // 
-            this.cClientId.HeaderText = "cClientId";
-            this.cClientId.Name = "cClientId";
-            this.cClientId.Visible = false;
+            this.dataGridViewTextBoxColumn22.DataPropertyName = "fPhone";
+            this.dataGridViewTextBoxColumn22.HeaderText = "Телефон";
+            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
             // 
-            // cClient
+            // dataGridViewTextBoxColumn23
             // 
-            this.cClient.HeaderText = "Клиент";
-            this.cClient.Name = "cClient";
+            this.dataGridViewTextBoxColumn23.DataPropertyName = "fEmail";
+            this.dataGridViewTextBoxColumn23.HeaderText = "E-mail";
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
             // 
-            // cPrepay
+            // dataGridViewTextBoxColumn24
             // 
-            this.cPrepay.HeaderText = "Предоплата";
-            this.cPrepay.Name = "cPrepay";
+            this.dataGridViewTextBoxColumn24.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn24.DataPropertyName = "fNote";
+            this.dataGridViewTextBoxColumn24.HeaderText = "Примечание";
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
             // 
-            // cExcess
+            // dataGridViewTextBoxColumn25
             // 
-            this.cExcess.HeaderText = "Доплата";
-            this.cExcess.Name = "cExcess";
+            this.dataGridViewTextBoxColumn25.DataPropertyName = "fId";
+            this.dataGridViewTextBoxColumn25.HeaderText = "";
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.Visible = false;
             // 
-            // cCons
+            // dataGridViewTextBoxColumn26
             // 
-            this.cCons.HeaderText = "Расход";
-            this.cCons.Name = "cCons";
+            this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn26.DataPropertyName = "fName";
+            this.dataGridViewTextBoxColumn26.FillWeight = 70F;
+            this.dataGridViewTextBoxColumn26.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
             // 
-            // cHours
+            // dataGridViewTextBoxColumn27
             // 
-            this.cHours.HeaderText = "Часы";
-            this.cHours.Name = "cHours";
+            this.dataGridViewTextBoxColumn27.DataPropertyName = "fId";
+            this.dataGridViewTextBoxColumn27.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            this.dataGridViewTextBoxColumn27.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn28
+            // 
+            this.dataGridViewTextBoxColumn28.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn28.DataPropertyName = "fName";
+            this.dataGridViewTextBoxColumn28.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
+            // 
+            // dataGridViewTextBoxColumn29
+            // 
+            this.dataGridViewTextBoxColumn29.DataPropertyName = "fId";
+            this.dataGridViewTextBoxColumn29.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
+            this.dataGridViewTextBoxColumn29.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn30
+            // 
+            this.dataGridViewTextBoxColumn30.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn30.DataPropertyName = "fName";
+            this.dataGridViewTextBoxColumn30.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
             // 
             // ccNumber
             // 
@@ -1470,15 +1707,168 @@ namespace Orders
             // 
             // csAmount
             // 
+            this.csAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.csAmount.DataPropertyName = "csAmount";
+            this.csAmount.FillWeight = 40F;
             this.csAmount.HeaderText = "Сумма";
             this.csAmount.Name = "csAmount";
             // 
             // csComment
             // 
+            this.csComment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.csComment.DataPropertyName = "csComment";
             this.csComment.HeaderText = "Комментарий";
             this.csComment.Name = "csComment";
+            // 
+            // cdpId
+            // 
+            this.cdpId.DataPropertyName = "fId";
+            this.cdpId.HeaderText = "Id";
+            this.cdpId.Name = "cdpId";
+            this.cdpId.Visible = false;
+            // 
+            // cdpName
+            // 
+            this.cdpName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cdpName.DataPropertyName = "fName";
+            this.cdpName.FillWeight = 70F;
+            this.cdpName.HeaderText = "Имя";
+            this.cdpName.Name = "cdpName";
+            // 
+            // cdpPhone
+            // 
+            this.cdpPhone.DataPropertyName = "fPhone";
+            this.cdpPhone.HeaderText = "Телефон";
+            this.cdpPhone.Name = "cdpPhone";
+            // 
+            // cdpMail
+            // 
+            this.cdpMail.DataPropertyName = "fEmail";
+            this.cdpMail.HeaderText = "E-mail";
+            this.cdpMail.Name = "cdpMail";
+            // 
+            // cdpNote
+            // 
+            this.cdpNote.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cdpNote.DataPropertyName = "fNote";
+            this.cdpNote.HeaderText = "Примечание";
+            this.cdpNote.Name = "cdpNote";
+            // 
+            // cdsId
+            // 
+            this.cdsId.DataPropertyName = "fId";
+            this.cdsId.HeaderText = "Id";
+            this.cdsId.Name = "cdsId";
+            this.cdsId.Visible = false;
+            // 
+            // cdsName
+            // 
+            this.cdsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cdsName.DataPropertyName = "fName";
+            this.cdsName.FillWeight = 70F;
+            this.cdsName.HeaderText = "Название";
+            this.cdsName.Name = "cdsName";
+            // 
+            // cdwId
+            // 
+            this.cdwId.DataPropertyName = "fId";
+            this.cdwId.HeaderText = "";
+            this.cdwId.Name = "cdwId";
+            this.cdwId.Visible = false;
+            // 
+            // cdwName
+            // 
+            this.cdwName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cdwName.DataPropertyName = "fName";
+            this.cdwName.HeaderText = "Название";
+            this.cdwName.Name = "cdwName";
+            // 
+            // cdcId
+            // 
+            this.cdcId.DataPropertyName = "fId";
+            this.cdcId.HeaderText = "Id";
+            this.cdcId.Name = "cdcId";
+            this.cdcId.Visible = false;
+            // 
+            // cdcName
+            // 
+            this.cdcName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cdcName.DataPropertyName = "fName";
+            this.cdcName.HeaderText = "Название";
+            this.cdcName.Name = "cdcName";
+            // 
+            // cNumber
+            // 
+            this.cNumber.HeaderText = "";
+            this.cNumber.Name = "cNumber";
+            this.cNumber.ReadOnly = true;
+            this.cNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cNumber.Width = 40;
+            // 
+            // cId
+            // 
+            this.cId.HeaderText = "Id";
+            this.cId.Name = "cId";
+            this.cId.ReadOnly = true;
+            this.cId.Visible = false;
+            // 
+            // cClientId
+            // 
+            this.cClientId.HeaderText = "cClientId";
+            this.cClientId.Name = "cClientId";
+            this.cClientId.Visible = false;
+            // 
+            // cClient
+            // 
+            this.cClient.HeaderText = "Клиент";
+            this.cClient.Name = "cClient";
+            // 
+            // cType
+            // 
+            this.cType.HeaderText = "Тип";
+            this.cType.Name = "cType";
+            this.cType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cType.Visible = false;
+            // 
+            // cPrepay
+            // 
+            this.cPrepay.HeaderText = "Предоплата";
+            this.cPrepay.Name = "cPrepay";
+            // 
+            // cExcess
+            // 
+            this.cExcess.HeaderText = "Доплата";
+            this.cExcess.Name = "cExcess";
+            // 
+            // cCons
+            // 
+            this.cCons.HeaderText = "Расход";
+            this.cCons.Name = "cCons";
+            // 
+            // cHours
+            // 
+            this.cHours.HeaderText = "Часы";
+            this.cHours.Name = "cHours";
+            // 
+            // cSource
+            // 
+            this.cSource.HeaderText = "Источник";
+            this.cSource.Name = "cSource";
+            this.cSource.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.cSource.Visible = false;
+            // 
+            // cSert
+            // 
+            this.cSert.HeaderText = "Сертификат";
+            this.cSert.Name = "cSert";
+            this.cSert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cCertId
+            // 
+            this.cCertId.HeaderText = "CertId";
+            this.cCertId.Name = "cCertId";
+            this.cCertId.Visible = false;
             // 
             // Form1
             // 
@@ -1514,14 +1904,21 @@ namespace Orders
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).EndInit();
             this.panel5.ResumeLayout(false);
             this.tabGloss.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).EndInit();
+            this.panel17.ResumeLayout(false);
+            this.panel18.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grDicSource)).EndInit();
+            this.panel13.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grDicWork)).EndInit();
+            this.panel14.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).EndInit();
+            this.panel15.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1606,17 +2003,6 @@ namespace Orders
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataVisualization.Charting.Chart chMonth;
         private System.Windows.Forms.DataVisualization.Charting.Chart chYear;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cClientId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cClient;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPrepay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cExcess;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cHours;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cSource;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn cSert;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -1631,9 +2017,6 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn csNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn csAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn csComment;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btCertSave;
         private System.Windows.Forms.DataGridView grCert;
@@ -1646,16 +2029,10 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.DataGridView grDicClient;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.DataGridView grDicWork;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.DataGridView grDicCons;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Button btDicWorkSave;
         private System.Windows.Forms.Button btDicConsSave;
-        private System.Windows.Forms.Button btDicClientSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerId;
@@ -1665,6 +2042,61 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn ccPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccHours;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+        private System.Windows.Forms.DataGridView grDicWork;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView grDicCons;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdwId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdwName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csComment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdcId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdcName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.DataGridView grDicClient;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Button btDicClientSave;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.DataGridView grDicSource;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button btDicSourceSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpMail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpNote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdsId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdsName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cClientId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cClient;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cPrepay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cExcess;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cCons;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cHours;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cSource;
+        private System.Windows.Forms.DataGridViewButtonColumn cSert;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cCertId;
     }
 }
 

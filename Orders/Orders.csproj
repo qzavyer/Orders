@@ -73,11 +73,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassConnections.cs" />
     <Compile Include="Classes\CalendarColumn.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Client.cs" />
     <Compile Include="Cons.cs" />
+    <Compile Include="ClassErrors.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
