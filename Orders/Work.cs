@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Orders
 {
-    class Work
+    internal class Work
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
@@ -19,6 +19,7 @@ namespace Orders
         public double Hours { get; set; }
         public Int64 Source { get; set; }
         public int Sert { get; set; }
+        public string PayerName { get; set; }
 
         public Work(DataRow row)
         {
@@ -28,15 +29,16 @@ namespace Orders
             Type = Convert.ToInt64(row["Type"]);
             //TypeStr = row["TypeStr"].ToString();
             Date = Convert.ToDateTime(row["Date"]);
-            if(DBNull.Value!=row["ExDate"])
-            ExDate = Convert.ToDateTime(row["ExDate"]);
+            if (DBNull.Value != row["ExDate"])
+                ExDate = Convert.ToDateTime(row["ExDate"]);
             Prepay = Convert.ToDouble(row["Prepay"]);
             Excess = Convert.ToDouble(row["Excess"]);
-            ConsType = DBNull.Value == row["ConsType"] ? 0 : Convert.ToInt32(row["ConsType"]);
-            Cons = Convert.ToDouble(row["Cons"]);
+            // ConsType = DBNull.Value == row["ConsType"] ? 0 : Convert.ToInt32(row["ConsType"]);
+            Cons = DBNull.Value == row["Cons"] ? 0 : Convert.ToDouble(row["Cons"]);
             Hours = Convert.ToDouble(row["Hours"]);
             Source = Convert.ToInt64(row["Source"]);
             Sert = DBNull.Value == row["Sert"] ? 0 : Convert.ToInt32(row["Sert"]);
+            PayerName = DBNull.Value == row["PayerName"] ? "" : row["PayerName"].ToString();
         }
     }
 

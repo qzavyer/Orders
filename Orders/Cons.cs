@@ -3,13 +3,14 @@ using System.Data;
 
 namespace Orders
 {
-    class Cons
+    public class Cons
     {
         public Int64 Type { get; set; }
         public double Amount { get; set; }
         public DateTime Date { get; set; }
         public string Comment { get; set; }
 
+        public Cons(){}
         public Cons(DataRow row)
         {
             Type = Convert.ToInt32(row["Type"]);

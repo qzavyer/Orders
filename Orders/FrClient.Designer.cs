@@ -86,6 +86,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.grClient);
             this.Name = "FrClient";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrClient";
             this.Load += new System.EventHandler(this.FrClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grClient)).EndInit();

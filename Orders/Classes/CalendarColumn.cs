@@ -5,8 +5,7 @@ namespace Orders.Classes
 {
     public class CalendarColumn : DataGridViewColumn
     {
-        public CalendarColumn()
-            : base(new CalendarCell())
+        public CalendarColumn() : base(new CalendarCell())
         {
         }
 
@@ -46,15 +45,15 @@ namespace Orders.Classes
             if (ctl == null) return;
             if (Value == null)
             {
-                if (DefaultNewRowValue != null) ctl.Value = (DateTime) DefaultNewRowValue;
+                if (DefaultNewRowValue != null) ctl.Value = Convert.ToDateTime(DefaultNewRowValue);
             }
             else
             {
                 try
                 {
-                    ctl.Value = (DateTime) Value;
+                    ctl.Value = Convert.ToDateTime(Value);
                 }
-                catch
+                catch(Exception)
                 {
                     ctl.Value= DateTime.Now;
                 }
@@ -99,25 +98,13 @@ namespace Orders.Classes
         {
             get
             {
-                try
-                {
-                    return Value.ToShortDateString();
-                }
-                catch
-                {
-                    return DateTime.Now;
-                }
+                return Value.ToShortDateString();
             }
             set
             {
                 if (!(value is String)) return;
-                try
                 {
                     Value = DateTime.Parse((String)value);
-                }
-                catch
-                {
-                    Value = DateTime.Now;
                 }
             }
         }

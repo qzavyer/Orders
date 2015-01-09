@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Orders.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="OxyPlot">
       <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
@@ -73,6 +76,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassCert.cs" />
     <Compile Include="ClassConnections.cs" />
     <Compile Include="Classes\CalendarColumn.cs">
       <SubType>Component</SubType>
@@ -86,11 +90,23 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrCert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrCert.Designer.cs">
+      <DependentUpon>FrCert.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrClient.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrClient.Designer.cs">
       <DependentUpon>FrClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrCons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrCons.Designer.cs">
+      <DependentUpon>FrCons.cs</DependentUpon>
     </Compile>
     <Compile Include="Gloss.cs" />
     <Compile Include="Graph.cs" />
@@ -101,8 +117,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrCert.resx">
+      <DependentUpon>FrCert.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrClient.resx">
       <DependentUpon>FrClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrCons.resx">
+      <DependentUpon>FrCons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -131,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <Content Include="Orders.ico" />
     <Content Include="System.Data.SQLite.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

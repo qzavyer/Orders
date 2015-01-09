@@ -29,3 +29,5 @@ c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\O
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\ZedGraph.xml
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\ZedGraph.resources.dll
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrClient.resources
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrCert.resources
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrCons.resources

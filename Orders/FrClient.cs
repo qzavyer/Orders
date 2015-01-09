@@ -21,7 +21,7 @@ namespace Orders
 
         private void FrClient_Load(object sender, EventArgs e)
         {
-            var conn = new SQLiteConnection("Data Source=order.db; Version=3;");
+            var conn = Connections.GetConnection();
             try
             {
                 conn.Open();
@@ -32,7 +32,6 @@ namespace Orders
                 var clAd = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand(clCmd, conn)};
                 clAd.Fill(clients);
                 grClient.DataSource = clients;
-                
             }
             finally
             {
