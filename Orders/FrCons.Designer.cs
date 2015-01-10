@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrCons));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btSave = new System.Windows.Forms.Button();
             this.grCons = new System.Windows.Forms.DataGridView();
@@ -145,9 +146,10 @@
             this.ClientSize = new System.Drawing.Size(673, 463);
             this.Controls.Add(this.grCons);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrCons";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrCons";
+            this.Text = "Расход";
             this.Load += new System.EventHandler(this.FrCons_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).EndInit();

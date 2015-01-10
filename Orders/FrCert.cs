@@ -26,7 +26,8 @@ namespace Orders
                                      "Wt.fName AS fTypeName,Cr.fPrice AS fPrice,Cr.fHours AS fHours," +
                                      "strftime('%d.%m.%Y',date(Cr.fDatePay, 'unixepoch')) AS fDatePay," +
                                      "strftime('%d.%m.%Y',date(Cr.fDateEnd, 'unixepoch')) AS fDateEnd," +
-                                     "Cr.fSource AS fSource,Sr.fName AS fSourceName,SUM(Cn.fAmount) AS cCons " +
+                                     "Cr.fSource AS fSource,Sr.fName AS fSourceName," +
+                                     "SUM(CASE WHEN Cn.fAmount IS NULL THEN 0 ELSE Cn.fAmount END) AS cCons " +
                                      "FROM tSert Cr JOIN tClient P ON Cr.fPayId=P.fId " +
                                      "JOIN tClient Cl ON Cr.fClientId=Cl.fid " +
                                      "JOIN tWorkType Wt ON Cr.fTypeId=Wt.fId " +

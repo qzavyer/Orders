@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -24,12 +23,12 @@ namespace Orders
         private enum TableCol
         {
             TypeColIndex = 3,
-            NameColIndex = 4,
+            //NameColIndex = 4,
             PreDateColIndex = 6,
             ExDateColIndex = 9,
-            ConsColIndex = 8,
+            //ConsColIndex = 8,
             SourColIndex = 11,
-            SertColIndex = 15,
+            //SertColIndex = 15,
         }
 
         public Form1()
@@ -44,18 +43,19 @@ namespace Orders
             {
                 conn.Open();
                 const string wkCmd = "SELECT W.fId AS Id,W.fClientId AS ClientId,Wt.fId AS Type," +
-                                     "date(W.fDate, 'unixepoch') AS Date,W.fPrepay AS Prepay," +
-                                     "W.fExcess AS Excess,SUM(Cs.fAmount) AS Cons,W.fHours AS Hours,S.fId AS Source," +
-                                     "W.fSertId AS Sert,C.fName AS Client,date(W.fExcessDate, 'unixepoch') AS ExDate," +
-                                     "P.fName AS PayerName " +
+                                     "date(W.fDate, 'unixepoch') AS Date," +
+                                     "W.fPrepay AS Prepay," + 
+                                     "W.fExcess AS Excess,W.fHours AS Hours,S.fId AS Source," +
+                                     "SUM(CASE WHEN Cs.fAmount IS NULL THEN 0 ELSE Cs.fAmount END) AS Cons," +
+                                     "W.fSertId AS Sert,C.fName AS Client,P.fName AS PayerName," +
+                                     "date(W.fExcessDate, 'unixepoch') AS ExDate " +
                                      "FROM tWork W " +
                                      "JOIN tClient C ON W.fClientId=C.fId " +
                                      "JOIN tSource S ON W.fSourceId=S.fId " +
                                      "JOIN tWorkType Wt ON W.fTypeId=Wt.fId " +
                                      "LEFT JOIN tSert Sr ON Sr.fId=W.fSertId " +
                                      "LEFT JOIN tClient P ON Sr.fPayId=P.fId " +
-                                     "LEFT JOIN tCons Cs ON Cs.fWorkId=W.fId " +
-                                     "LEFT JOIN tConsType Ct ON Cs.fTypeId=Ct.fId AND Ct.fType=0 " +
+                                     "LEFT JOIN tCons Cs ON Cs.fWorkId=W.fId AND Cs.fCertCons=0 " +
                                      "GROUP BY Id,ClientId,Type,Date,Prepay,Excess,Hours,Source,Sert,Client,ExDate," +
                                      "PayerName ORDER BY Date,Client";
                 var wkCom = new SQLiteCommand(wkCmd, conn);
@@ -77,7 +77,8 @@ namespace Orders
                 var yCon = 0D;
                 var yHrs = 0D;
 
-                grWork.RowCount = 1;
+                grWork.Rows.Clear();
+                //grWork.RowCount = 1;
                 foreach (DataRow row in wkTable.Rows)
                 {
                     var work = new Work(row);
@@ -182,7 +183,7 @@ namespace Orders
                 conn.Open();
                 var chartData = new DataTable();
                 const string selCmd =
-                    "SELECT DISTINCT T.fName AS \"Type\",COUNT(W.fId) AS \"Count\",SUM((fPrepay+fExcess)/1000) AS \"Income\" " +
+                    "SELECT DISTINCT T.fName AS Type,COUNT(W.fId) AS Count,SUM((fPrepay+fExcess)/1000) AS Income " +
                     "FROM tWork W JOIN tWorkType T ON W.fTypeId=T.fId " +
                     "WHERE W.fDate>=strftime('%s', :start) AND W.fDate<strftime('%s', :end) " +
                     "GROUP BY fTypeId";
@@ -197,7 +198,7 @@ namespace Orders
                 chMonth.Series["income"].YValueMembers = "Income";
                 chMonth.DataSource = chartData;
                 chMonth.DataBind();
-
+                
                 chartData = new DataTable();
                 adapter = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand(selCmd, conn)};
                 adapter.SelectCommand.Parameters.AddWithValue("start", yStart);
@@ -210,6 +211,37 @@ namespace Orders
                 chYear.Series["income"].YValueMembers = "Income";
                 chYear.DataSource = chartData;
                 chYear.DataBind();
+
+                var chartConsData = new DataTable();
+                const string cnsCmd =
+                    "SELECT DISTINCT T.fName AS Type,COUNT(C.fId) AS Count,SUM(fAmount/1000) AS Cons " +
+                    "FROM tCons C JOIN tConsType T ON C.fTypeId=T.fId " +
+                    "WHERE C.fDate>=strftime('%s', :start) AND C.fDate<strftime('%s', :end) " +
+                    "GROUP BY fTypeId";
+                var adCons = new SQLiteDataAdapter { SelectCommand = new SQLiteCommand(cnsCmd, conn) };
+                adCons.SelectCommand.Parameters.AddWithValue("start", mStart);
+                adCons.SelectCommand.Parameters.AddWithValue("end", mStart.AddMonths(1));
+                adCons.SelectCommand.Prepare();
+                adCons.Fill(chartConsData);
+                chCMonth.Series["count"].XValueMember = "Type";
+                chCMonth.Series["count"].YValueMembers = "Count";
+                chCMonth.Series["cons"].XValueMember = "Type";
+                chCMonth.Series["cons"].YValueMembers = "Cons";
+                chCMonth.DataSource = chartConsData;
+                chCMonth.DataBind();
+
+                chartConsData = new DataTable();
+                adCons = new SQLiteDataAdapter { SelectCommand = new SQLiteCommand(cnsCmd, conn) };
+                adCons.SelectCommand.Parameters.AddWithValue("start", yStart);
+                adCons.SelectCommand.Parameters.AddWithValue("end", yStart.AddYears(1));
+                adCons.SelectCommand.Prepare();
+                adCons.Fill(chartConsData);
+                chCYear.Series["count"].XValueMember = "Type";
+                chCYear.Series["count"].YValueMembers = "Count";
+                chCYear.Series["cons"].XValueMember = "Type";
+                chCYear.Series["cons"].YValueMembers = "Cons";
+                chCYear.DataSource = chartConsData;
+                chCYear.DataBind();
             }
             finally
             {
@@ -358,23 +390,42 @@ namespace Orders
                     HeaderText = Resources.ConsType
                 };
                 grWork.Columns.Insert((int) TableCol.ConsColIndex, combo);*/
-                var date = new CalendarColumn {Name = "cPreDate", HeaderText = Resources.Date, Width = 120};
-                grWork.Columns.Insert((int) TableCol.PreDateColIndex, date);
-
-                date = new CalendarColumn {Name = "cExDate", HeaderText = Resources.ExDate, Width = 120};
-                grWork.Columns.Insert((int) TableCol.ExDateColIndex, date);
-
-                combo = new DataGridViewComboBoxColumn
+                var date = new CalendarColumn
                 {
-                    Name = "ccType",
-                    DataPropertyName = "ccTypeId",
-                    DataSource = _workType,
-                    ValueMember = "fId",
-                    DisplayMember = "fName",
-                    HeaderText = Resources.Type,
+                    Name = "cPreDate",
+                    DataPropertyName = "cPreDate",
+                    HeaderText = Resources.Date,
                     Width = 120
                 };
-                grCert.Columns.Insert(1, combo);
+                grWork.Columns.Insert((int) TableCol.PreDateColIndex, date);
+
+                date = new CalendarColumn
+                {
+                    Name = "cExDate",
+                    DataPropertyName = "cExDate",
+                    HeaderText = Resources.ExDate,
+                    Width = 120
+                };
+                grWork.Columns.Insert((int) TableCol.ExDateColIndex, date);
+
+
+                date = new CalendarColumn
+                {
+                    Name = "ccDateEnd",
+                    DataPropertyName = "ccDateEnd",
+                    HeaderText = Resources.DateEnd,
+                    Width = 120
+                };
+                grCert.Columns.Insert(6, date);
+                
+                date = new CalendarColumn
+                {
+                    Name = "ccDatePay",
+                    DataPropertyName = "ccDatePay",
+                    HeaderText = Resources.DatePay,
+                    Width = 120
+                };
+                grCert.Columns.Insert(6, date);
 
                 combo = new DataGridViewComboBoxColumn
                 {
@@ -386,26 +437,20 @@ namespace Orders
                     HeaderText = Resources.Source,
                     Width = 120
                 };
-                grCert.Columns.Insert(1, combo);
-
-                date = new CalendarColumn
+                grCert.Columns.Insert(6, combo); 
+                
+                combo = new DataGridViewComboBoxColumn
                 {
-                    Name = "ccDatePay",
-                    DataPropertyName = "ccDatePay",
-                    HeaderText = Resources.DatePay,
+                    Name = "ccType",
+                    DataPropertyName = "ccTypeId",
+                    DataSource = _workType,
+                    ValueMember = "fId",
+                    DisplayMember = "fName",
+                    HeaderText = Resources.Type,
                     Width = 120
                 };
-                grCert.Columns.Insert(6, date);
-
-                date = new CalendarColumn
-                {
-                    Name = "ccDateEnd",
-                    DataPropertyName = "ccDateEnd",
-                    HeaderText = Resources.DateEnd,
-                    Width = 120
-                };
-                grCert.Columns.Insert(7, date);
-
+                grCert.Columns.Insert(6, combo);
+                
                 combo = new DataGridViewComboBoxColumn
                 {
                     Name = "csType",
@@ -421,7 +466,7 @@ namespace Orders
                 {
                     Name = "csDate",
                     DataPropertyName = "csDate",
-                    HeaderText = Resources.ExDate,
+                    HeaderText = Resources.Date,
                     Width = 120
                 };
                 grCons.Columns.Insert(3, date);
@@ -493,6 +538,7 @@ namespace Orders
             ConsLoad();
             CertLoad();
             DictLoad();
+            tabArchive.Dispose();
         }
 
         private void History_Click(object sender, EventArgs e)
@@ -531,8 +577,10 @@ namespace Orders
             {
                 conn.Open();
                 const string wkCmd = "SELECT W.fId AS Id,W.fClientId AS ClientId,Wt.fId AS Type," +
-                                     "date(W.fDate, 'unixepoch') AS Date,W.fPrepay AS Prepay," +
-                                     "W.fExcess AS Excess,SUM(Cs.fAmount) AS Cons,W.fHours AS Hours,S.fId AS Source," +
+                                     "date(W.fDate, 'unixepoch') AS Date," +
+                                     "W.fPrepay AS Prepay," +
+                                     "W.fExcess AS Excess,W.fHours AS Hours,S.fId AS Source," +
+                                     "SUM(CASE WHEN Cs.fAmount IS NULL THEN 0 ELSE Cs.fAmount END) AS Cons," +
                                      "W.fSertId AS Sert,C.fName AS Client,date(W.fExcessDate, 'unixepoch') AS ExDate," +
                                      "P.fName AS PayerName " +
                                      "FROM tWork W " +
@@ -541,8 +589,8 @@ namespace Orders
                                      "JOIN tWorkType Wt ON W.fTypeId=Wt.fId " +
                                      "LEFT JOIN tSert Sr ON Sr.fId=W.fSertId " +
                                      "LEFT JOIN tClient P ON Sr.fPayId=P.fId " +
-                                     "LEFT JOIN tCons Cs ON Cs.fWorkId=W.fId " +
-                                     "LEFT JOIN tConsType Ct ON Cs.fTypeId=Ct.fId AND Ct.fType=0 " +
+                                     "LEFT JOIN tCons Cs ON Cs.fWorkId=W.fId AND Cs.fCertCons=0 " +
+                                    // "LEFT JOIN tCons CCs ON CCs.fWorkId=W.fId AND CCs.fCertCons=1 " +
                                      "WHERE W.fDate>=strftime('%s', :start) AND W.fDate<strftime('%s', :end) " +
                                      "GROUP BY Id,ClientId,Type,Date,Prepay,Excess,Hours,Source,Sert,Client,ExDate," +
                                      "PayerName " +
@@ -622,9 +670,11 @@ namespace Orders
                     grWork.Rows[iRow].Cells["cClient"].Value = frCert.Cert.ClientName;
                     grWork.Rows[iRow].Cells["cTypeA"].Value = frCert.Cert.TypeId;
                     grWork.Rows[iRow].Cells["cPrepay"].Value = frCert.Cert.Price;
+                    grWork.Rows[iRow].Cells["cPreDate"].Value = frCert.Cert.DatePay;
                     grWork.Rows[iRow].Cells["cCons"].Value = frCert.Cert.Cons;
                     grWork.Rows[iRow].Cells["cHours"].Value = frCert.Cert.Hours;
                     grWork.Rows[iRow].Cells["cSourceA"].Value = frCert.Cert.Source;
+
                     break;
                 case "cCons":
                     var frCons = new FrCons();
@@ -652,7 +702,7 @@ namespace Orders
                         }
                     }
                     frCons.ShowDialog();
-                    if (frCons.Cons == null || !frCons.frOk) return;
+                    if (frCons.Cons == null || !frCons.FrOk) return;
 
                     if (frCons.WorkId == 0)
                     {
@@ -667,6 +717,7 @@ namespace Orders
                         }
                     }
                     grWork.Rows[iRow].Cells[iCol].Value = frCons.Cons.Amount;
+                    GraphLoad();
                     break;
                 case "cClient":
                     var fr = new FrClient();
@@ -696,8 +747,11 @@ namespace Orders
                                       "fSertId=CASE WHEN :sert=0 THEN NULL ELSE :sert END " +
                                       "WHERE fId=:id";
                 const string cnsCmd = "UPDATE tCons SET fWorkId=:work WHERE fId=:id";
-                 for (var i = 0; i < grWork.RowCount - 1; i++)
+                const string cnsCertCmd = "UPDATE tCons SET fWorkId=:work WHERE fCertId=:id";
+                foreach (DataGridViewRow row in grWork.Rows)
                 {
+                    if(row.Cells["cClientId"].Value==null) continue;
+                    
                     var insCom = new SQLiteCommand(conn);
                     insCom.Parameters.Add(new SQLiteParameter("client", DbType.Int32));
                     insCom.Parameters.Add(new SQLiteParameter("type", DbType.Int32));
@@ -709,7 +763,7 @@ namespace Orders
                     insCom.Parameters.Add(new SQLiteParameter("source", DbType.Int32));
                     insCom.Parameters.Add(new SQLiteParameter("sert", DbType.Int32));
                     //var a = grWork.Rows[i].Cells["cTypeA"].Value;
-                    if (grWork.Rows[i].Cells["cId"].Value == null)
+                    if (row.Cells["cId"].Value == null)
                     {
                         insCom.CommandText = insCmd;
                     }
@@ -717,35 +771,36 @@ namespace Orders
                     {
                         insCom.CommandText = updCmd;
                         insCom.Parameters.Add(new SQLiteParameter("id", DbType.Int32));
-                        insCom.Parameters["id"].Value = grWork.Rows[i].Cells["cId"].Value;
+                        insCom.Parameters["id"].Value = row.Cells["cId"].Value;
                     }
-                    insCom.Parameters["client"].Value = Convert.ToInt32(grWork.Rows[i].Cells["cClientId"].Value);
-                    insCom.Parameters["type"].Value = Convert.ToInt32(grWork.Rows[i].Cells["cTypeA"].Value);
-                    insCom.Parameters["source"].Value = Convert.ToInt32(grWork.Rows[i].Cells["cSourceA"].Value);
-                    insCom.Parameters["sert"].Value = Convert.ToInt32(grWork.Rows[i].Cells["cCertId"].Value);
+                    insCom.Parameters["client"].Value = Convert.ToInt32(row.Cells["cClientId"].Value);
+                    insCom.Parameters["type"].Value = Convert.ToInt32(row.Cells["cTypeA"].Value);
+                    insCom.Parameters["source"].Value = Convert.ToInt32(row.Cells["cSourceA"].Value);
+                    insCom.Parameters["sert"].Value = Convert.ToInt32(row.Cells["cCertId"].Value);
                     insCom.Parameters["date"].Value =
-                        DateTime.Parse(grWork.Rows[i].Cells["cPreDate"].Value.ToString());
-                    insCom.Parameters["prepay"].Value = grWork.Rows[i].Cells["cPrepay"].Value;
-                    insCom.Parameters["excess"].Value = grWork.Rows[i].Cells["cExcess"].Value == null ||
+                        DateTime.Parse(row.Cells["cPreDate"].Value.ToString());
+                    insCom.Parameters["prepay"].Value = row.Cells["cPrepay"].Value;
+                    insCom.Parameters["excess"].Value = row.Cells["cExcess"].Value == null ||
                                                         string.IsNullOrEmpty(
-                                                            grWork.Rows[i].Cells["cExcess"].Value.ToString()) ||
-                                                        Convert.ToDouble(grWork.Rows[i].Cells["cExcess"].Value) < 0.01
+                                                            row.Cells["cExcess"].Value.ToString()) ||
+                                                        Convert.ToDouble(row.Cells["cExcess"].Value) < 0.01
                         ? 0
-                        : grWork.Rows[i].Cells["cExcess"].Value;
+                        : row.Cells["cExcess"].Value;
                     insCom.Parameters["exdate"].Value =
-                        grWork.Rows[i].Cells["cExcess"].Value == null ||
-                        string.IsNullOrEmpty(grWork.Rows[i].Cells["cExcess"].Value.ToString()) ||
-                        Convert.ToDouble(grWork.Rows[i].Cells["cExcess"].Value) < 0.01
+                        row.Cells["cExcess"].Value == null ||
+                        string.IsNullOrEmpty(row.Cells["cExcess"].Value.ToString()) ||
+                        Convert.ToDouble(row.Cells["cExcess"].Value) < 0.01
                             ? DateTime.Now
-                            : DateTime.Parse(grWork.Rows[i].Cells["cExDate"].Value.ToString());
-                    insCom.Parameters["hour"].Value = grWork.Rows[i].Cells["cHours"].Value;
+                            : DateTime.Parse(row.Cells["cExDate"].Value.ToString());
+                    insCom.Parameters["hour"].Value = row.Cells["cHours"].Value;
                     insCom.Prepare();
                     var insDr = insCom.ExecuteReader();
                     while (insDr.Read())
                     {
                         var id = Convert.ToInt32(insDr[0]);
                         var remove = new List<int>();
-                        foreach (var con in _workCons.Where(c => c.Value == i))
+                        DataGridViewRow row1 = row;
+                        foreach (var con in _workCons.Where(c => c.Value == row1.Index))
                         {
                             var cnsCom = new SQLiteCommand(cnsCmd, conn);
                             cnsCom.Parameters.AddWithValue("id", con.Key);
@@ -758,12 +813,19 @@ namespace Orders
                         {
                             _workCons.Remove(item);
                         }
+                        if (Convert.ToInt32(row.Cells["cCertId"].Value) <= 0) continue;
+                        var cnsCertCom = new SQLiteCommand(cnsCertCmd, conn);
+                        cnsCertCom.Parameters.AddWithValue("id", Convert.ToInt32(row.Cells["cCertId"].Value));
+                        cnsCertCom.Parameters.AddWithValue("work", id);
+                        cnsCertCom.Prepare();
+                        cnsCertCom.ExecuteNonQuery();
                     }
                 }
                 MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
                 _hasChange = false;
                 GraphLoad();
                 WorkLoad();
+                CertLoad();
             }
             catch (Exception ex)
             {
@@ -847,7 +909,8 @@ namespace Orders
                     {
                         var id = Convert.ToInt32(insDr[0]);
                         var remove = new List<int>();
-                        foreach (var con in _certCons.Where(c => c.Value == i))
+                        var i1 = i;
+                        foreach (var con in _certCons.Where(c => c.Value == i1))
                         {
                             var cnsCom = new SQLiteCommand(cnsCmd, conn);
                             cnsCom.Parameters.AddWithValue("id", con.Key);
@@ -890,23 +953,37 @@ namespace Orders
                 conn.Open();
                 const string insCmd = "INSERT INTO tCons (fTypeId,fAmount,fDate,fComment) " +
                                       "VALUES(:type,:amount,strftime('%s', :date),:comment)";
-                var insCom = new SQLiteCommand(insCmd, conn);
+                const string updCmd = "UPDATE tCons SET fTypeId=:type,fAmount=:amount,fComment=:comment," +
+                                      "fDate=strftime('%s', :date) WHERE fId=:id";
+                var insCom = new SQLiteCommand(conn);
                 insCom.Parameters.Add(new SQLiteParameter("type", DbType.Int32));
                 insCom.Parameters.Add(new SQLiteParameter("amount", DbType.Double));
-                insCom.Parameters.Add(new SQLiteParameter("date", DbType.Int32));
+                insCom.Parameters.Add(new SQLiteParameter("date", DbType.DateTime));
                 insCom.Parameters.Add(new SQLiteParameter("comment", DbType.AnsiString));
-                for (var i = 0; i < grWork.RowCount - 1; i++)
+                foreach (DataGridViewRow row in grCons.Rows)
                 {
-                    if (grCons.Rows[i].Cells["csNumber"].Value != null) continue;
-                    insCom.Parameters["date"].Value = DateTime.Parse(grCons.Rows[i].Cells["csDate"].Value.ToString());
-                    insCom.Parameters["type"].Value = grCons.Rows[i].Cells["csType"].Value;
-                    insCom.Parameters["amount"].Value = grCons.Rows[i].Cells["csAmount"].Value;
-                    insCom.Parameters["comment"].Value = DateTime.Parse(grWork.Rows[i].Cells["csComment"].Value.ToString());
+                    if (row.Cells["csId"].Value == null) continue;
+                    if(string.IsNullOrEmpty(row.Cells["csId"].Value.ToString()))
+                    {
+                        insCom.CommandText = insCmd;
+                    }
+                    else
+                    {
+                        insCom.CommandText = updCmd;
+                        insCom.Parameters.Add(new SQLiteParameter("id", DbType.Int32));
+                        insCom.Parameters["id"].Value = Convert.ToInt32(row.Cells["csId"].Value);
+                    }
+                    insCom.Parameters["date"].Value = DateTime.Parse(row.Cells["csDate"].Value.ToString());
+                    insCom.Parameters["type"].Value = row.Cells["csType"].Value;
+                    insCom.Parameters["amount"].Value = row.Cells["csAmount"].Value;
+                    insCom.Parameters["comment"].Value = row.Cells["csComment"].Value.ToString();
                     insCom.Prepare();
                     insCom.ExecuteNonQuery();
                 }
                 MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
-                _hasChange = false;
+                //_hasChange = false;
+                ConsLoad();
+                GraphLoad();
             }
             catch (Exception ex)
             {
@@ -939,29 +1016,14 @@ namespace Orders
             _hasChange = true;
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-           /* chMonth.Width = tabGraph.Width/2 - 5;
-            chYear.Width = tabGraph.Width/2 - 5;*/
-        }
-
         private void btConsSave_Click(object sender, EventArgs e)
         {
             SaveCons();
         }
         
-        private void btDicClientSave_Click(object sender, EventArgs e)
+        private void SourceSave(out Exception exception)
         {
-            ClientSave();
-        }
-
-        private void btDicSourceSave_Click(object sender, EventArgs e)
-        {
-            SourceSave();
-        }
-
-        private void SourceSave()
-        {
+            exception = null;
             var conn = Connections.GetConnection();
             try
             {
@@ -986,7 +1048,6 @@ namespace Orders
                     insCom.Prepare();
                     insCom.ExecuteNonQuery();
                 }
-                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
                 _sourceType = new DataTable();
                 var adapter = new SQLiteDataAdapter
                 {
@@ -1006,6 +1067,7 @@ namespace Orders
             }
             catch (Exception ex)
             {
+                exception = ex;
                 var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
                 if (declaringType != null)
                 {
@@ -1020,13 +1082,9 @@ namespace Orders
             }
         }
 
-        private void btDicWorkSave_Click(object sender, EventArgs e)
+        private void WorkTypeSave(out Exception exception)
         {
-            WorkTypeSave();
-        }
-
-        private void WorkTypeSave()
-        {
+            exception = null;
             var conn = Connections.GetConnection();
             try
             {
@@ -1051,8 +1109,6 @@ namespace Orders
                     insCom.Prepare();
                     insCom.ExecuteNonQuery();
                 }
-                
-                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
                 _workType = new DataTable();
                 var adapter = new SQLiteDataAdapter
                 {
@@ -1066,7 +1122,7 @@ namespace Orders
                     wcol.ValueMember = "fId";
                     wcol.DisplayMember = "fName";
                 }
-                var ccol = grWork.Columns["ccType"] as DataGridViewComboBoxColumn;
+                var ccol = grCert.Columns["ccType"] as DataGridViewComboBoxColumn;
                 if (ccol != null)
                 {
                     ccol.DataSource = _workType;
@@ -1076,6 +1132,7 @@ namespace Orders
             }
             catch (Exception ex)
             {
+                exception = ex;
                 var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
                 if (declaringType != null)
                 {
@@ -1090,13 +1147,9 @@ namespace Orders
             }
         }
 
-        private void btDicConsSave_Click(object sender, EventArgs e)
+        private void ConsTypeSave(out Exception exception)
         {
-            ConsTypeSave();
-        }
-
-        private void ConsTypeSave()
-        {
+            exception = null;
             var conn = Connections.GetConnection();
             try
             {
@@ -1121,7 +1174,6 @@ namespace Orders
                     insCom.Prepare();
                     insCom.ExecuteNonQuery();
                 }
-                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
                 _consType = new DataTable();
                 var adapter = new SQLiteDataAdapter
                 {
@@ -1138,6 +1190,7 @@ namespace Orders
             }
             catch (Exception ex)
             {
+                exception = ex;
                 var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
                 if (declaringType != null)
                 {
@@ -1152,14 +1205,15 @@ namespace Orders
             }
         }
 
-        private void ClientSave()
+        private void ClientSave(out Exception exception)
         {
+            exception = null;
             var conn = Connections.GetConnection();
             try
             {
                 conn.Open();
                 const string insCmd = "INSERT INTO tClient (fName,fPhone,fEmail,fNote) VALUES(:name,:phone,:mail,:note)";
-                const string updCmd = "UPDATE tConsType SET fName=:name,fPhone=:phone,fEmail=:mail,fNote=:note WHERE fId=:id";
+                const string updCmd = "UPDATE tClient SET fName=:name,fPhone=:phone,fEmail=:mail,fNote=:note WHERE fId=:id";
                 for (var i = 0; i < grDicClient.RowCount - 1; i++)
                 {
                     var insCom = new SQLiteCommand(conn);
@@ -1175,7 +1229,7 @@ namespace Orders
                     {
                         insCom.CommandText = updCmd;
                         insCom.Parameters.Add(new SQLiteParameter("id", DbType.Int32));
-                        insCom.Parameters["id"].Value = grDicClient.Rows[i].Cells["cdcId"].Value;
+                        insCom.Parameters["id"].Value = grDicClient.Rows[i].Cells["cdpId"].Value;
                     }
                     insCom.Parameters["name"].Value = grDicClient.Rows[i].Cells["cdpName"].Value.ToString();
                     insCom.Parameters["phone"].Value = grDicClient.Rows[i].Cells["cdpPhone"].Value.ToString();
@@ -1184,10 +1238,10 @@ namespace Orders
                     insCom.Prepare();
                     insCom.ExecuteNonQuery();
                 }
-                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {
+                exception = ex;
                 var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
                 if (declaringType != null)
                 {
@@ -1236,7 +1290,7 @@ namespace Orders
                         }
                     }
                     frCons.ShowDialog();
-                    if (frCons.Cons == null || !frCons.frOk) return;
+                    if (frCons.Cons == null || !frCons.FrOk) return;
 
                     if (frCons.CertId == 0)
                     {
@@ -1251,6 +1305,7 @@ namespace Orders
                         }
                     }
                     grCert.Rows[iRow].Cells[iCol].Value = frCons.Cons.Amount;
+                    GraphLoad();
                     break;
                 case "ccPayerName":
                     fr.ShowDialog();
@@ -1268,6 +1323,32 @@ namespace Orders
         private void btCertSave_Click(object sender, EventArgs e)
         {
             SaveCerts();
+        }
+
+        private void btDicSave_Click(object sender, EventArgs e)
+        {
+            Exception exception;
+            ClientSave(out exception);
+            if (exception == null)
+            {
+                ConsTypeSave(out exception);
+                if (exception == null)
+                {
+                    SourceSave(out exception);
+                    if (exception == null)
+                    {
+                        WorkTypeSave(out exception);
+                    }
+                }
+            }
+            MessageBox.Show(exception == null ? Resources.SaveChange : exception.Message, Resources.Orders,
+                MessageBoxButtons.OK);
+            DictLoad();
+        }
+
+        private void chMonth_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

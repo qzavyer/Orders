@@ -40,6 +40,16 @@ namespace Orders
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -120,9 +130,17 @@ namespace Orders
             this.btHistory2 = new System.Windows.Forms.Button();
             this.btHistory1 = new System.Windows.Forms.Button();
             this.tabGraph = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.chMonth = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chYear = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.chCMonth = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chCYear = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabSert = new System.Windows.Forms.TabPage();
             this.grCert = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -136,26 +154,20 @@ namespace Orders
             this.grDicClient = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.btDicClientSave = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.grDicSource = new System.Windows.Forms.DataGridView();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.btDicSourceSave = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.grDicWork = new System.Windows.Forms.DataGridView();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.btDicWorkSave = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.grDicCons = new System.Windows.Forms.DataGridView();
             this.panel15 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.btDicConsSave = new System.Windows.Forms.Button();
+            this.btDicSave = new System.Windows.Forms.Button();
             this.tabArchive = new System.Windows.Forms.TabPage();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -189,6 +201,7 @@ namespace Orders
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -198,6 +211,15 @@ namespace Orders
             this.cCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccPayerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccPayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -213,15 +235,6 @@ namespace Orders
             this.cdwName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cdcId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cdcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccPayerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccPayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabApp.SuspendLayout();
             this.tabWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).BeginInit();
@@ -231,12 +244,24 @@ namespace Orders
             this.panel1.SuspendLayout();
             this.pHistory.SuspendLayout();
             this.tabGraph.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chMonth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chYear)).BeginInit();
+            this.panel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chCMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chCYear)).BeginInit();
+            this.panel20.SuspendLayout();
             this.tabSert.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grCert)).BeginInit();
             this.panel6.SuspendLayout();
@@ -247,15 +272,12 @@ namespace Orders
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).BeginInit();
             this.panel17.SuspendLayout();
-            this.panel18.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicSource)).BeginInit();
             this.panel13.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicWork)).BeginInit();
             this.panel14.SuspendLayout();
-            this.panel11.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).BeginInit();
             this.panel15.SuspendLayout();
@@ -1003,7 +1025,7 @@ namespace Orders
             // 
             // tabGraph
             // 
-            this.tabGraph.Controls.Add(this.splitContainer1);
+            this.tabGraph.Controls.Add(this.splitContainer2);
             this.tabGraph.Location = new System.Drawing.Point(4, 25);
             this.tabGraph.Name = "tabGraph";
             this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
@@ -1012,10 +1034,31 @@ namespace Orders
             this.tabGraph.Text = "Графики";
             this.tabGraph.UseVisualStyleBackColor = true;
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
+            this.splitContainer2.Panel1.Controls.Add(this.panel19);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
+            this.splitContainer2.Panel2.Controls.Add(this.panel20);
+            this.splitContainer2.Size = new System.Drawing.Size(1407, 559);
+            this.splitContainer2.SplitterDistance = 297;
+            this.splitContainer2.TabIndex = 4;
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -1025,9 +1068,9 @@ namespace Orders
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chYear);
-            this.splitContainer1.Size = new System.Drawing.Size(1407, 559);
-            this.splitContainer1.SplitterDistance = 682;
-            this.splitContainer1.TabIndex = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(1407, 272);
+            this.splitContainer1.SplitterDistance = 702;
+            this.splitContainer1.TabIndex = 6;
             // 
             // chMonth
             // 
@@ -1043,18 +1086,21 @@ namespace Orders
             this.chMonth.Name = "chMonth";
             this.chMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series1.ChartArea = "ChartArea1";
+            series1.IsValueShownAsLabel = true;
             series1.Name = "count";
             series1.YValuesPerPoint = 2;
             series2.ChartArea = "ChartArea2";
+            series2.IsValueShownAsLabel = true;
             series2.Name = "income";
             this.chMonth.Series.Add(series1);
             this.chMonth.Series.Add(series2);
-            this.chMonth.Size = new System.Drawing.Size(682, 559);
+            this.chMonth.Size = new System.Drawing.Size(702, 272);
             this.chMonth.TabIndex = 1;
             this.chMonth.Text = "Месячный график";
             title1.Name = "Title1";
             title1.Text = "Месячный график";
             this.chMonth.Titles.Add(title1);
+            this.chMonth.Click += new System.EventHandler(this.chMonth_Click);
             // 
             // chYear
             // 
@@ -1070,18 +1116,134 @@ namespace Orders
             this.chYear.Name = "chYear";
             this.chYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series3.ChartArea = "ChartArea1";
+            series3.IsValueShownAsLabel = true;
             series3.Legend = "Legend1";
             series3.Name = "count";
             series4.ChartArea = "ChartArea2";
+            series4.IsValueShownAsLabel = true;
             series4.Name = "income";
             this.chYear.Series.Add(series3);
             this.chYear.Series.Add(series4);
-            this.chYear.Size = new System.Drawing.Size(721, 559);
+            this.chYear.Size = new System.Drawing.Size(701, 272);
             this.chYear.TabIndex = 3;
             this.chYear.Text = "Годовой график";
             title2.Name = "Title1";
             title2.Text = "Годовой график";
             this.chYear.Titles.Add(title2);
+            // 
+            // panel19
+            // 
+            this.panel19.Controls.Add(this.label13);
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel19.Location = new System.Drawing.Point(0, 0);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(1407, 25);
+            this.panel19.TabIndex = 5;
+            // 
+            // label13
+            // 
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Location = new System.Drawing.Point(0, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(1407, 25);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Доход";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.IsSplitterFixed = true;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.chCMonth);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.chCYear);
+            this.splitContainer3.Size = new System.Drawing.Size(1407, 233);
+            this.splitContainer3.SplitterDistance = 702;
+            this.splitContainer3.TabIndex = 7;
+            // 
+            // chCMonth
+            // 
+            this.chCMonth.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.TopRight;
+            chartArea5.AxisY.Title = "Количество";
+            chartArea5.Name = "ChartArea1";
+            chartArea6.AxisY.Title = "Сумма (тыс.руб.)";
+            chartArea6.Name = "ChartArea2";
+            this.chCMonth.ChartAreas.Add(chartArea5);
+            this.chCMonth.ChartAreas.Add(chartArea6);
+            this.chCMonth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chCMonth.Location = new System.Drawing.Point(0, 0);
+            this.chCMonth.Name = "chCMonth";
+            this.chCMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            series5.ChartArea = "ChartArea1";
+            series5.IsValueShownAsLabel = true;
+            series5.Name = "count";
+            series5.YValuesPerPoint = 2;
+            series6.ChartArea = "ChartArea2";
+            series6.IsValueShownAsLabel = true;
+            series6.Name = "cons";
+            this.chCMonth.Series.Add(series5);
+            this.chCMonth.Series.Add(series6);
+            this.chCMonth.Size = new System.Drawing.Size(702, 233);
+            this.chCMonth.TabIndex = 1;
+            this.chCMonth.Text = "Месячный график";
+            title3.Name = "Title1";
+            title3.Text = "Месячный график";
+            this.chCMonth.Titles.Add(title3);
+            // 
+            // chCYear
+            // 
+            chartArea7.AxisY.Crossing = -1.7976931348623157E+308D;
+            chartArea7.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea7.AxisY.MaximumAutoSize = 50F;
+            chartArea7.Name = "ChartArea1";
+            chartArea8.Name = "ChartArea2";
+            this.chCYear.ChartAreas.Add(chartArea7);
+            this.chCYear.ChartAreas.Add(chartArea8);
+            this.chCYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chCYear.Location = new System.Drawing.Point(0, 0);
+            this.chCYear.Name = "chCYear";
+            this.chCYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            series7.ChartArea = "ChartArea1";
+            series7.IsValueShownAsLabel = true;
+            series7.Name = "count";
+            series7.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.Diamond;
+            series8.ChartArea = "ChartArea2";
+            series8.IsValueShownAsLabel = true;
+            series8.Name = "cons";
+            this.chCYear.Series.Add(series7);
+            this.chCYear.Series.Add(series8);
+            this.chCYear.Size = new System.Drawing.Size(701, 233);
+            this.chCYear.TabIndex = 3;
+            this.chCYear.Text = "Годовой график";
+            title4.Name = "Title1";
+            title4.Text = "Годовой график";
+            this.chCYear.Titles.Add(title4);
+            // 
+            // panel20
+            // 
+            this.panel20.Controls.Add(this.label16);
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel20.Location = new System.Drawing.Point(0, 0);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(1407, 25);
+            this.panel20.TabIndex = 6;
+            // 
+            // label16
+            // 
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Location = new System.Drawing.Point(0, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(1407, 25);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Расход";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabSert
             // 
@@ -1099,11 +1261,11 @@ namespace Orders
             // 
             this.grCert.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grCert.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ccNumber,
             this.ccId,
             this.ccPayerId,
-            this.ccPayerName,
             this.ccClientId,
+            this.ccNumber,
+            this.ccPayerName,
             this.ccClientName,
             this.ccPrice,
             this.ccCons,
@@ -1201,6 +1363,7 @@ namespace Orders
             this.tabGloss.Controls.Add(this.panel7);
             this.tabGloss.Controls.Add(this.panel9);
             this.tabGloss.Controls.Add(this.panel8);
+            this.tabGloss.Controls.Add(this.panel12);
             this.tabGloss.Location = new System.Drawing.Point(4, 25);
             this.tabGloss.Name = "tabGloss";
             this.tabGloss.Padding = new System.Windows.Forms.Padding(3);
@@ -1213,12 +1376,11 @@ namespace Orders
             // 
             this.panel16.Controls.Add(this.grDicClient);
             this.panel16.Controls.Add(this.panel17);
-            this.panel16.Controls.Add(this.panel18);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(3, 3);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(597, 559);
-            this.panel16.TabIndex = 5;
+            this.panel16.Size = new System.Drawing.Size(597, 534);
+            this.panel16.TabIndex = 12;
             // 
             // grDicClient
             // 
@@ -1264,36 +1426,15 @@ namespace Orders
             this.label11.Text = "Клинеты";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel18
-            // 
-            this.panel18.Controls.Add(this.btDicClientSave);
-            this.panel18.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel18.Location = new System.Drawing.Point(0, 534);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(597, 25);
-            this.panel18.TabIndex = 0;
-            // 
-            // btDicClientSave
-            // 
-            this.btDicClientSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btDicClientSave.Location = new System.Drawing.Point(492, 0);
-            this.btDicClientSave.Name = "btDicClientSave";
-            this.btDicClientSave.Size = new System.Drawing.Size(105, 25);
-            this.btDicClientSave.TabIndex = 1;
-            this.btDicClientSave.Text = "Сохранить";
-            this.btDicClientSave.UseVisualStyleBackColor = true;
-            this.btDicClientSave.Click += new System.EventHandler(this.btDicClientSave_Click);
-            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.grDicSource);
             this.panel7.Controls.Add(this.panel13);
-            this.panel7.Controls.Add(this.panel10);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel7.Location = new System.Drawing.Point(600, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(270, 559);
-            this.panel7.TabIndex = 4;
+            this.panel7.Size = new System.Drawing.Size(270, 534);
+            this.panel7.TabIndex = 11;
             // 
             // grDicSource
             // 
@@ -1336,36 +1477,15 @@ namespace Orders
             this.label9.Text = "Источники";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.btDicSourceSave);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(0, 534);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(270, 25);
-            this.panel10.TabIndex = 0;
-            // 
-            // btDicSourceSave
-            // 
-            this.btDicSourceSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btDicSourceSave.Location = new System.Drawing.Point(165, 0);
-            this.btDicSourceSave.Name = "btDicSourceSave";
-            this.btDicSourceSave.Size = new System.Drawing.Size(105, 25);
-            this.btDicSourceSave.TabIndex = 1;
-            this.btDicSourceSave.Text = "Сохранить";
-            this.btDicSourceSave.UseVisualStyleBackColor = true;
-            this.btDicSourceSave.Click += new System.EventHandler(this.btDicSourceSave_Click);
-            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.grDicWork);
             this.panel9.Controls.Add(this.panel14);
-            this.panel9.Controls.Add(this.panel11);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel9.Location = new System.Drawing.Point(870, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(270, 559);
-            this.panel9.TabIndex = 2;
+            this.panel9.Size = new System.Drawing.Size(270, 534);
+            this.panel9.TabIndex = 10;
             // 
             // grDicWork
             // 
@@ -1408,36 +1528,15 @@ namespace Orders
             this.label7.Text = "Тип работы";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.btDicWorkSave);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 534);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(270, 25);
-            this.panel11.TabIndex = 0;
-            // 
-            // btDicWorkSave
-            // 
-            this.btDicWorkSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btDicWorkSave.Location = new System.Drawing.Point(165, 0);
-            this.btDicWorkSave.Name = "btDicWorkSave";
-            this.btDicWorkSave.Size = new System.Drawing.Size(105, 25);
-            this.btDicWorkSave.TabIndex = 0;
-            this.btDicWorkSave.Text = "Сохранить";
-            this.btDicWorkSave.UseVisualStyleBackColor = true;
-            this.btDicWorkSave.Click += new System.EventHandler(this.btDicWorkSave_Click);
-            // 
             // panel8
             // 
             this.panel8.Controls.Add(this.grDicCons);
             this.panel8.Controls.Add(this.panel15);
-            this.panel8.Controls.Add(this.panel12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel8.Location = new System.Drawing.Point(1140, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(270, 559);
-            this.panel8.TabIndex = 1;
+            this.panel8.Size = new System.Drawing.Size(270, 534);
+            this.panel8.TabIndex = 7;
             // 
             // grDicCons
             // 
@@ -1482,23 +1581,23 @@ namespace Orders
             // 
             // panel12
             // 
-            this.panel12.Controls.Add(this.btDicConsSave);
+            this.panel12.Controls.Add(this.btDicSave);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel12.Location = new System.Drawing.Point(0, 534);
+            this.panel12.Location = new System.Drawing.Point(3, 537);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(270, 25);
-            this.panel12.TabIndex = 0;
+            this.panel12.Size = new System.Drawing.Size(1407, 25);
+            this.panel12.TabIndex = 6;
             // 
-            // btDicConsSave
+            // btDicSave
             // 
-            this.btDicConsSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btDicConsSave.Location = new System.Drawing.Point(165, 0);
-            this.btDicConsSave.Name = "btDicConsSave";
-            this.btDicConsSave.Size = new System.Drawing.Size(105, 25);
-            this.btDicConsSave.TabIndex = 0;
-            this.btDicConsSave.Text = "Сохранить";
-            this.btDicConsSave.UseVisualStyleBackColor = true;
-            this.btDicConsSave.Click += new System.EventHandler(this.btDicConsSave_Click);
+            this.btDicSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btDicSave.Location = new System.Drawing.Point(1302, 0);
+            this.btDicSave.Name = "btDicSave";
+            this.btDicSave.Size = new System.Drawing.Size(105, 25);
+            this.btDicSave.TabIndex = 0;
+            this.btDicSave.Text = "Сохранить";
+            this.btDicSave.UseVisualStyleBackColor = true;
+            this.btDicSave.Click += new System.EventHandler(this.btDicSave_Click);
             // 
             // tabArchive
             // 
@@ -1581,7 +1680,11 @@ namespace Orders
             this.dataGridViewTextBoxColumn11.DataPropertyName = "ccPayName";
             this.dataGridViewTextBoxColumn11.HeaderText = "Комментарий";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn11.Visible = false;
+            this.dataGridViewTextBoxColumn11.Width = 30;
             // 
             // dataGridViewTextBoxColumn12
             // 
@@ -1596,10 +1699,14 @@ namespace Orders
             this.dataGridViewTextBoxColumn13.DataPropertyName = "ccClientName";
             this.dataGridViewTextBoxColumn13.HeaderText = "Клиент";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn13.Visible = false;
             // 
             // dataGridViewTextBoxColumn14
             // 
+            this.dataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn14.DataPropertyName = "ccPrice";
             this.dataGridViewTextBoxColumn14.HeaderText = "Сумма";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
@@ -1644,6 +1751,7 @@ namespace Orders
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             this.dataGridViewTextBoxColumn19.ReadOnly = true;
             this.dataGridViewTextBoxColumn19.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn19.Visible = false;
             // 
             // dataGridViewTextBoxColumn20
             // 
@@ -1652,6 +1760,8 @@ namespace Orders
             this.dataGridViewTextBoxColumn20.FillWeight = 40F;
             this.dataGridViewTextBoxColumn20.HeaderText = "";
             this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.ReadOnly = true;
+            this.dataGridViewTextBoxColumn20.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn20.Visible = false;
             // 
             // dataGridViewTextBoxColumn21
@@ -1662,7 +1772,7 @@ namespace Orders
             this.dataGridViewTextBoxColumn21.HeaderText = "Название";
             this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
             this.dataGridViewTextBoxColumn21.Visible = false;
-            this.dataGridViewTextBoxColumn21.Width = 974;
+            this.dataGridViewTextBoxColumn21.Width = 390;
             // 
             // dataGridViewTextBoxColumn22
             // 
@@ -1680,11 +1790,13 @@ namespace Orders
             this.dataGridViewTextBoxColumn23.FillWeight = 70F;
             this.dataGridViewTextBoxColumn23.HeaderText = "E-mail";
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.Visible = false;
             // 
             // dataGridViewTextBoxColumn24
             // 
             this.dataGridViewTextBoxColumn24.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn24.DataPropertyName = "fNote";
+            this.dataGridViewTextBoxColumn24.FillWeight = 70F;
             this.dataGridViewTextBoxColumn24.HeaderText = "Примечание";
             this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
             // 
@@ -1727,6 +1839,7 @@ namespace Orders
             // 
             this.dataGridViewTextBoxColumn29.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn29.DataPropertyName = "fId";
+            this.dataGridViewTextBoxColumn29.FillWeight = 70F;
             this.dataGridViewTextBoxColumn29.HeaderText = "Id";
             this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
             this.dataGridViewTextBoxColumn29.Visible = false;
@@ -1753,6 +1866,14 @@ namespace Orders
             this.dataGridViewTextBoxColumn32.DataPropertyName = "fName";
             this.dataGridViewTextBoxColumn32.HeaderText = "Название";
             this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
+            this.dataGridViewTextBoxColumn32.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn33
+            // 
+            this.dataGridViewTextBoxColumn33.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn33.DataPropertyName = "fName";
+            this.dataGridViewTextBoxColumn33.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
             // 
             // cNumber
             // 
@@ -1808,10 +1929,73 @@ namespace Orders
             this.cCertId.Name = "cCertId";
             this.cCertId.Visible = false;
             // 
+            // ccId
+            // 
+            this.ccId.DataPropertyName = "ccId";
+            this.ccId.HeaderText = "Id";
+            this.ccId.Name = "ccId";
+            this.ccId.Visible = false;
+            // 
+            // ccPayerId
+            // 
+            this.ccPayerId.DataPropertyName = "ccPayerId";
+            this.ccPayerId.HeaderText = "PayerId";
+            this.ccPayerId.Name = "ccPayerId";
+            this.ccPayerId.Visible = false;
+            // 
+            // ccClientId
+            // 
+            this.ccClientId.DataPropertyName = "ccClientId";
+            this.ccClientId.HeaderText = "ClientId";
+            this.ccClientId.Name = "ccClientId";
+            this.ccClientId.Visible = false;
+            // 
+            // ccNumber
+            // 
+            this.ccNumber.DataPropertyName = "ccNumber";
+            this.ccNumber.HeaderText = "";
+            this.ccNumber.Name = "ccNumber";
+            this.ccNumber.ReadOnly = true;
+            this.ccNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ccNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ccNumber.Width = 30;
+            // 
+            // ccPayerName
+            // 
+            this.ccPayerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ccPayerName.DataPropertyName = "ccPayerName";
+            this.ccPayerName.HeaderText = "Плательщик";
+            this.ccPayerName.Name = "ccPayerName";
+            // 
+            // ccClientName
+            // 
+            this.ccClientName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ccClientName.DataPropertyName = "ccClientName";
+            this.ccClientName.HeaderText = "Клиент";
+            this.ccClientName.Name = "ccClientName";
+            // 
+            // ccPrice
+            // 
+            this.ccPrice.DataPropertyName = "ccPrice";
+            this.ccPrice.HeaderText = "Сумма";
+            this.ccPrice.Name = "ccPrice";
+            // 
+            // ccCons
+            // 
+            this.ccCons.DataPropertyName = "ccCons";
+            this.ccCons.HeaderText = "Расход";
+            this.ccCons.Name = "ccCons";
+            // 
+            // ccHours
+            // 
+            this.ccHours.DataPropertyName = "ccHours";
+            this.ccHours.HeaderText = "Часы";
+            this.ccHours.Name = "ccHours";
+            // 
             // csId
             // 
             this.csId.DataPropertyName = "csId";
-            this.csId.HeaderText = "";
+            this.csId.HeaderText = "Id";
             this.csId.Name = "csId";
             this.csId.ReadOnly = true;
             this.csId.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -1918,69 +2102,6 @@ namespace Orders
             this.cdcName.HeaderText = "Название";
             this.cdcName.Name = "cdcName";
             // 
-            // ccNumber
-            // 
-            this.ccNumber.DataPropertyName = "ccNumber";
-            this.ccNumber.HeaderText = "";
-            this.ccNumber.Name = "ccNumber";
-            this.ccNumber.ReadOnly = true;
-            this.ccNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ccNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ccNumber.Width = 30;
-            // 
-            // ccId
-            // 
-            this.ccId.DataPropertyName = "ccId";
-            this.ccId.HeaderText = "Id";
-            this.ccId.Name = "ccId";
-            this.ccId.Visible = false;
-            // 
-            // ccPayerId
-            // 
-            this.ccPayerId.DataPropertyName = "ccPayerId";
-            this.ccPayerId.HeaderText = "PayerId";
-            this.ccPayerId.Name = "ccPayerId";
-            this.ccPayerId.Visible = false;
-            // 
-            // ccPayerName
-            // 
-            this.ccPayerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ccPayerName.DataPropertyName = "ccPayerName";
-            this.ccPayerName.HeaderText = "Плательщик";
-            this.ccPayerName.Name = "ccPayerName";
-            // 
-            // ccClientId
-            // 
-            this.ccClientId.DataPropertyName = "ccClientId";
-            this.ccClientId.HeaderText = "ClientId";
-            this.ccClientId.Name = "ccClientId";
-            this.ccClientId.Visible = false;
-            // 
-            // ccClientName
-            // 
-            this.ccClientName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ccClientName.DataPropertyName = "ccClientName";
-            this.ccClientName.HeaderText = "Клиент";
-            this.ccClientName.Name = "ccClientName";
-            // 
-            // ccPrice
-            // 
-            this.ccPrice.DataPropertyName = "ccPrice";
-            this.ccPrice.HeaderText = "Сумма";
-            this.ccPrice.Name = "ccPrice";
-            // 
-            // ccCons
-            // 
-            this.ccCons.DataPropertyName = "ccCons";
-            this.ccCons.HeaderText = "Расход";
-            this.ccCons.Name = "ccCons";
-            // 
-            // ccHours
-            // 
-            this.ccHours.DataPropertyName = "ccHours";
-            this.ccHours.HeaderText = "Часы";
-            this.ccHours.Name = "ccHours";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1993,7 +2114,6 @@ namespace Orders
             this.Text = "Обсчёт заказов";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.tabApp.ResumeLayout(false);
             this.tabWork.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).EndInit();
@@ -2007,12 +2127,24 @@ namespace Orders
             this.panel1.PerformLayout();
             this.pHistory.ResumeLayout(false);
             this.tabGraph.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chMonth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chYear)).EndInit();
+            this.panel19.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chCMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chCYear)).EndInit();
+            this.panel20.ResumeLayout(false);
             this.tabSert.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grCert)).EndInit();
             this.panel6.ResumeLayout(false);
@@ -2023,15 +2155,12 @@ namespace Orders
             this.panel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).EndInit();
             this.panel17.ResumeLayout(false);
-            this.panel18.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grDicSource)).EndInit();
             this.panel13.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grDicWork)).EndInit();
             this.panel14.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).EndInit();
             this.panel15.ResumeLayout(false);
@@ -2141,25 +2270,9 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Button btDicWorkSave;
-        private System.Windows.Forms.Button btDicConsSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
-        private System.Windows.Forms.DataGridView grDicWork;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView grDicCons;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdwId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdwName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdcId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdcName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
@@ -2167,36 +2280,10 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.DataGridView grDicClient;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.Button btDicClientSave;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.DataGridView grDicSource;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Button btDicSourceSave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpMail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpNote;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdsId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdsName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chMonth;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
-        private System.Windows.Forms.DataGridViewTextBoxColumn csId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn csNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn csAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn csComment;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn cId;
         private System.Windows.Forms.DataGridViewTextBoxColumn cClientId;
@@ -2209,15 +2296,60 @@ namespace Orders
         private System.Windows.Forms.DataGridViewComboBoxColumn cSource;
         private System.Windows.Forms.DataGridViewButtonColumn cSert;
         private System.Windows.Forms.DataGridViewTextBoxColumn cCertId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccClientId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccClientName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccCons;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csComment;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chMonth;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chYear;
+        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chCMonth;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chCYear;
+        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.DataGridView grDicClient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpMail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdpNote;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.DataGridView grDicSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdsId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdsName;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.DataGridView grDicWork;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdwId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdwName;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.DataGridView grDicCons;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdcId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdcName;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Button btDicSave;
     }
 }
 

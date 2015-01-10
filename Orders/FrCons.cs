@@ -15,7 +15,7 @@ namespace Orders
         public int CertId;
         public List<int> ConsId = new List<int>();
         public DateTime WorkDate;
-        public bool frOk = false;
+        public bool FrOk;
         private DataTable _consType;
         public FrCons()
         {
@@ -72,12 +72,12 @@ namespace Orders
                 var consData = new DataTable();
 
 
-                var cnsCmd = "SELECT DISTINCT C.fId AS cId, C.fTypeId AS cType,C.fAmount AS cAmount," +
-                             "C.fComment AS cComment FROM tCons C WHERE C.fId IN (" + string.Join(",", ConsId) + ")";
-                const string wrkCmd = "SELECT DISTINCT C.fId AS cId, C.fTypeId AS cType,C.fAmount AS cAmount," +
-                                      "C.fComment AS cComment FROM tCons C WHERE C.fWorkId=:work C.fCertId=:cert";
+                var cnsCmd = "SELECT DISTINCT fId AS cId, fTypeId AS cType,fAmount AS cAmount,fCertCons AS cCert," +
+                             "fComment AS cComment FROM tCons WHERE fId IN (" + string.Join(",", ConsId) + ")";
+                const string wrkCmd = "SELECT DISTINCT fId AS cId, fTypeId AS cType,fAmount AS cAmount,fCertCons AS cCert," +
+                                      "fComment AS cComment FROM tCons WHERE fWorkId=:work OR fCertId=:cert";
                 var adapter = new SQLiteDataAdapter { SelectCommand = new SQLiteCommand(conn) };
-                if (WorkId == 0)
+                if (WorkId == 0 && CertId == 0)
                 {
                     adapter.SelectCommand.CommandText = cnsCmd;
                 }
@@ -120,10 +120,10 @@ namespace Orders
         private void btSave_Click(object sender, EventArgs e)
         {
             const string updCmd = "UPDATE tCons SET fTypeId=:type,fAmount=:amount,fDate=strftime('%s', :date)," +
-                                  "fComment=:comment,fWorkId=:work,fCertId=:cert WHERE fId=:id";
+                                  "fComment=:comment,fWorkId=:work,fCertId=:cert,fCertCons=:iscert WHERE fId=:id";
             const string delCmd = "DELETE FROM tCons WHERE fId=:id";
-            const string insCmd = "INSERT INTO tCons (fTypeId,fAmount,fDate,fComment,fWorkId,fCertId) VALUES" +
-                                  "(:type,:amount,strftime('%s', :date),:comment,:work,:cert);" +
+            const string insCmd = "INSERT INTO tCons (fTypeId,fAmount,fDate,fComment,fWorkId,fCertId,fCertCons) " +
+                                  "VALUES(:type,:amount,strftime('%s', :date),:comment,:work,:cert,:iscert);" +
                                   "SELECT DISTINCT last_insert_rowid() FROM tCons";
             Cons.Amount = 0;
             var conn = Connections.GetConnection();
@@ -140,19 +140,27 @@ namespace Orders
                                     Convert.ToDouble(row.Cells["cAmount"].Value) < 0.01;
                     if (!nulAmount)
                     {
-                        Cons.Amount += Convert.ToDouble(row.Cells["cAmount"].Value);
+                        if (string.IsNullOrEmpty(row.Cells["cCert"].Value.ToString())||
+                            !Convert.ToBoolean(row.Cells["cCert"].Value))
+                        {
+                            Cons.Amount += Convert.ToDouble(row.Cells["cAmount"].Value);
+                        }
                         svCom.Parameters.Add(new SQLiteParameter("type", DbType.Int32));
                         svCom.Parameters.Add(new SQLiteParameter("amount", DbType.Double));
                         svCom.Parameters.Add(new SQLiteParameter("date", DbType.Date));
                         svCom.Parameters.Add(new SQLiteParameter("comment", DbType.String));
                         svCom.Parameters.Add(new SQLiteParameter("work", DbType.Int32));
                         svCom.Parameters.Add(new SQLiteParameter("cert", DbType.Int32));
+                        svCom.Parameters.Add(new SQLiteParameter("iscert", DbType.Int32));
                         svCom.Parameters["type"].Value = row.Cells["cType"].Value;
                         svCom.Parameters["amount"].Value = row.Cells["cAmount"].Value;
                         svCom.Parameters["date"].Value = WorkDate;
                         svCom.Parameters["comment"].Value = row.Cells["cComment"].Value;
                         svCom.Parameters["work"].Value = WorkId;
                         svCom.Parameters["cert"].Value = CertId;
+                        svCom.Parameters["iscert"].Value = string.IsNullOrEmpty(row.Cells["cCert"].Value.ToString())
+                            ? false
+                            : row.Cells["cCert"].Value;
                     }
                     if (string.IsNullOrEmpty(row.Cells["cId"].Value.ToString()))
                     {
@@ -175,7 +183,7 @@ namespace Orders
                         svCom.ExecuteNonQuery();
                     }
                 }
-                frOk = true;
+                FrOk = true;
                 Close();
             }
             catch (Exception ex)

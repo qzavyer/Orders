@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrCert));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btChoise = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
@@ -95,6 +96,7 @@
             this.btSave.TabIndex = 0;
             this.btSave.Text = "Сохранить";
             this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Visible = false;
             // 
             // grCert
             // 
@@ -216,6 +218,7 @@
             // 
             // dataGridViewTextBoxColumn12
             // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "cCons";
             this.dataGridViewTextBoxColumn12.HeaderText = "Расход";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.Width = 60;
@@ -349,9 +352,10 @@
             this.ClientSize = new System.Drawing.Size(919, 530);
             this.Controls.Add(this.grCert);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrCert";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrCert";
+            this.Text = "Выбор сертификата";
             this.Load += new System.EventHandler(this.FrCert_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grCert)).EndInit();

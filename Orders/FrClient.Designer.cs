@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrClient));
             this.grClient = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btOk = new System.Windows.Forms.Button();
@@ -85,9 +86,10 @@
             this.ClientSize = new System.Drawing.Size(521, 584);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.grClient);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrClient";
+            this.Text = "Выбор клиента";
             this.Load += new System.EventHandler(this.FrClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grClient)).EndInit();
             this.panel1.ResumeLayout(false);
