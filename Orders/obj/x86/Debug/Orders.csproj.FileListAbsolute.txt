@@ -31,3 +31,8 @@ c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\Z
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrClient.resources
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrCert.resources
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrCons.resources
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\Orders.exe.manifest
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\Orders.application
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.TrustInfo.xml
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.exe.manifest
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.application
