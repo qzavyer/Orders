@@ -22,7 +22,7 @@ namespace Orders
 
         private enum TableCol
         {
-            TypeColIndex = 3,
+            TypeColIndex = 4,
             //NameColIndex = 4,
             PreDateColIndex = 6,
             ExDateColIndex = 9,
@@ -55,49 +55,23 @@ namespace Orders
                                      "JOIN tWorkType Wt ON W.fTypeId=Wt.fId " +
                                      "LEFT JOIN tSert Sr ON Sr.fId=W.fSertId " +
                                      "LEFT JOIN tClient P ON Sr.fPayId=P.fId " +
-                                     "LEFT JOIN tCons Cs ON Cs.fWorkId=W.fId AND Cs.fCertCons=0 " +
+                                     "LEFT JOIN tCons Cs ON Cs.fWorkId=W.fId " +
+                                     //"AND Cs.fCertCons=0 " +
                                      "GROUP BY Id,ClientId,Type,Date,Prepay,Excess,Hours,Source,Sert,Client,ExDate," +
                                      "PayerName ORDER BY Date,Client";
                 var wkCom = new SQLiteCommand(wkCmd, conn);
                 var wkTable = new DataTable();
                 var wkAdapt = new SQLiteDataAdapter(wkCom);
                 wkAdapt.Fill(wkTable);
-                
-                var mLst = new List<History>();
                 var currDate = DateTime.Now;
-                for (var i = 1; i <= 12; i++)
-                {
-                    mLst.Add(new History {Month = i});
-                }
-                
-                var inc = 0D;
-                var con = 0D;
-                var hrs = 0D;
-                var yInc = 0D;
-                var yCon = 0D;
-                var yHrs = 0D;
-
                 grWork.Rows.Clear();
                 //grWork.RowCount = 1;
                 foreach (DataRow row in wkTable.Rows)
                 {
                     var work = new Work(row);
-                    foreach (var history in mLst)
-                    {
-                        if (history.Month == work.Date.Month && work.Date.Year == currDate.Year)
-                        {
-                            history.CIncome += work.Prepay + work.Excess;
-                            break;
-                        }
-                        if (history.Month != work.Date.Month || work.Date.Year != currDate.Year - 1) continue;
-                        history.LIncome += work.Prepay + work.Excess;
-                        break;
-                    }
-
+                
                     if (work.Date.Year != currDate.Year) continue;
-                    yInc += work.Prepay + work.Excess;
-                    yCon += work.Cons;
-                    yHrs += work.Hours;
+                   
 
                     if (work.Date.Month != currDate.Month) continue;
                     grWork.RowCount = grWork.RowCount + 1;
@@ -127,33 +101,7 @@ namespace Orders
                     var bc = iRow["cSert"] as DataGridViewButtonCell;
                     if (bc != null) bc.Value = work.PayerName;
 
-                    inc += work.Prepay + work.Excess;
-                    con += work.Cons;
-                    hrs += work.Hours;
-                }
-
-
-                lMonthC.Text = currDate.ToString("MMMM");
-
-                lIncomeC.Text = inc.ToString("C0");
-                lConsC.Text = con.ToString("C0");
-                lProfitC.Text = (inc - con).ToString("C0");
-                lHoursC.Text = hrs.ToString("N0");
-
-                lIncomeY.Text = yInc.ToString("C0");
-                lConsY.Text = yCon.ToString("C0");
-                lProfitY.Text = (yInc - yCon).ToString("C0");
-                lHoursY.Text = yHrs.ToString("N0");
-                lIncomeYA.Text = (yInc/currDate.Month).ToString("C0");
-
-                lYearC.Text = currDate.Year.ToString("D");
-                lYearL.Text = (currDate.Year - 1).ToString("D");
-                lSumCAll.Text = mLst.Sum(m => m.CIncome).ToString("C0");
-                lSumLAll.Text = mLst.Sum(m => m.LIncome).ToString("C0");
-                foreach (var history in mLst)
-                {
-                    Controls.Find("lSumC" + history.Month, true)[0].Text = history.CIncome.ToString("C0");
-                    Controls.Find("lSumL" + history.Month, true)[0].Text = history.LIncome.ToString("C0");
+                    
                 }
                 _hasChange = false;
             }
@@ -530,8 +478,43 @@ namespace Orders
             
         }
 
+        private void StatLoad()
+        {
+            var currDate = DateTime.Now;
+            var cYear = ClassWork.GetYearStat(currDate.Year);
+            var pYear = ClassWork.GetYearStat(currDate.Year - 1);
+            lMonthC.Text = currDate.ToString("MMMM");
+
+            var cMonth = cYear.Find(st => st.Month == currDate.Month);
+            lIncomeC.Text = cMonth.Income.ToString("### ### ##0");
+            lConsC.Text = cMonth.Cons.ToString("### ### ##0");
+            lProfitC.Text = (cMonth.Income - cMonth.Cons).ToString("### ### ##0");
+            lHoursC.Text = cMonth.Hours.ToString();
+
+
+            lIncomeY.Text = cYear.Sum(st => st.Income).ToString("### ### ##0");
+            lConsY.Text = cYear.Sum(st => st.Cons).ToString("### ### ##0");
+            lProfitY.Text = cYear.Sum(st => st.Income - st.Cons).ToString("### ### ##0");
+            lHoursY.Text = cYear.Sum(st => st.Hours).ToString();
+            lIncomeYA.Text = (cYear.Sum(st => st.Income) / currDate.Month).ToString("### ### ##0");
+
+            lYearC.Text = currDate.Year.ToString("D");
+            lYearL.Text = (currDate.Year - 1).ToString("D");
+            lSumCAll.Text = cYear.Sum(st => st.Income).ToString("### ### ##0");
+            lSumLAll.Text = pYear.Sum(st => st.Income).ToString("### ### ##0");
+            foreach (var stat in cYear)
+            {
+                Controls.Find("lSumC" + stat.Month, true)[0].Text = stat.Income.ToString("### ### ##0");
+            }
+            foreach (var stat in pYear)
+            {
+                Controls.Find("lSumL" + stat.Month, true)[0].Text = stat.Income.ToString("### ### ##0");
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            StatLoad();
             ControlLoad();
             WorkLoad();
             GraphLoad();
@@ -634,10 +617,10 @@ namespace Orders
                     hrs += work.Hours;
                 }
                 lMonthC.Text = sDate.ToString("MMMM");
-                lIncomeC.Text = inc.ToString("C0");
-                lConsC.Text = con.ToString("C0");
-                lProfitC.Text = (inc - con).ToString("C0");
-                lHoursC.Text = hrs.ToString("N0");
+                lIncomeC.Text = inc.ToString("### ### ##0");
+                lConsC.Text = con.ToString("### ### ##0");
+                lProfitC.Text = (inc - con).ToString("### ### ##0");
+                lHoursC.Text = hrs.ToString();
             }
             finally
             {

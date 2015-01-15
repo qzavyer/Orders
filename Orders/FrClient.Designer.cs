@@ -43,6 +43,7 @@
             this.grClient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grClient.Location = new System.Drawing.Point(0, 0);
             this.grClient.Name = "grClient";
+            this.grClient.RowHeadersVisible = false;
             this.grClient.RowTemplate.Height = 24;
             this.grClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grClient.Size = new System.Drawing.Size(521, 584);

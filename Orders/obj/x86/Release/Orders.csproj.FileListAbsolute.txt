@@ -30,3 +30,4 @@ C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Rel
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Release\Orders.csproj.GenerateResource.Cache
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Release\Orders.exe
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Release\Orders.pdb
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Release\Orders.csprojResolveAssemblyReference.cache

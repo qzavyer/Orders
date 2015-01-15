@@ -81,6 +81,7 @@
     <Compile Include="Classes\CalendarColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ClassWork.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Cons.cs" />
     <Compile Include="ClassErrors.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Gloss.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="History.cs" />
+    <Compile Include="ModelStat.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Work.cs" />

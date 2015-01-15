@@ -1,0 +1,4 @@
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.dll
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.pdb
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.dll
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.pdb
