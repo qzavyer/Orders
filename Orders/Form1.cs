@@ -191,7 +191,7 @@ namespace Orders
                 chCYear.DataSource = chartConsData;
                 chCYear.DataBind();
 
-                var chartWConsData = new DataTable();
+                /*var chartWConsData = new DataTable();
                 const string cnsWCmd =
                     "SELECT DISTINCT count(C.fId) AS Count,sum(C.fAmount) AS Cons,T.fName AS Type " +
                     "FROM tCons C JOIN tWork W ON C.fWorkId=W.fId JOIN tWorkType T ON T.fId=w.fTypeId " +
