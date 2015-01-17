@@ -134,7 +134,7 @@ namespace Orders
                     "SELECT DISTINCT T.fName AS Type,COUNT(W.fId) AS Count,SUM((fPrepay+fExcess)/1000) AS Income " +
                     "FROM tWork W JOIN tWorkType T ON W.fTypeId=T.fId " +
                     "WHERE W.fDate>=strftime('%s', :start) AND W.fDate<strftime('%s', :end) " +
-                    "GROUP BY fTypeId";
+                    "GROUP BY fTypeId ORDER BY T.fName";
                 var adapter = new SQLiteDataAdapter {SelectCommand = new SQLiteCommand(selCmd, conn)};
                 adapter.SelectCommand.Parameters.AddWithValue("start", mStart);
                 adapter.SelectCommand.Parameters.AddWithValue("end", mStart.AddMonths(1));
@@ -165,7 +165,7 @@ namespace Orders
                     "SELECT DISTINCT T.fName AS Type,COUNT(C.fId) AS Count,SUM(fAmount/1000) AS Cons " +
                     "FROM tCons C JOIN tConsType T ON C.fTypeId=T.fId " +
                     "WHERE C.fDate>=strftime('%s', :start) AND C.fDate<strftime('%s', :end) " +
-                    "GROUP BY fTypeId";
+                    "GROUP BY fTypeId ORDER BY T.fName";
                 var adCons = new SQLiteDataAdapter { SelectCommand = new SQLiteCommand(cnsCmd, conn) };
                 adCons.SelectCommand.Parameters.AddWithValue("start", mStart);
                 adCons.SelectCommand.Parameters.AddWithValue("end", mStart.AddMonths(1));
@@ -190,6 +190,22 @@ namespace Orders
                 chCYear.Series["cons"].YValueMembers = "Cons";
                 chCYear.DataSource = chartConsData;
                 chCYear.DataBind();
+
+                var chartWConsData = new DataTable();
+                const string cnsWCmd =
+                    "SELECT DISTINCT count(C.fId) AS Count,sum(C.fAmount) AS Cons,T.fName AS Type " +
+                    "FROM tCons C JOIN tWork W ON C.fWorkId=W.fId JOIN tWorkType T ON T.fId=w.fTypeId " +
+                    "WHERE W.fDate>=strftime('%s', :start) AND W.fDate<strftime('%s', :end) " +
+                    "GROUP BY T.fName ORDER BY Type";
+                var adWCons = new SQLiteDataAdapter { SelectCommand = new SQLiteCommand(cnsWCmd, conn) };
+                adWCons.SelectCommand.Parameters.AddWithValue("start", mStart);
+                adWCons.SelectCommand.Parameters.AddWithValue("end", mStart.AddMonths(1));
+                adWCons.SelectCommand.Prepare();
+                adWCons.Fill(chartWConsData);
+                /*chWcons.Series["cons"].XValueMember = "Type";
+                chWcons.Series["cons"].YValueMembers = "Cons";
+                chWcons.DataSource = chartWConsData;
+                chWcons.DataBind();*/
             }
             finally
             {
@@ -418,6 +434,21 @@ namespace Orders
                     Width = 120
                 };
                 grCons.Columns.Insert(3, date);
+
+                var arCom = new SQLiteCommand("SELECT date(MIN(fDate), 'unixepoch') FROM tWork", conn);
+                var arDr = arCom.ExecuteReader();
+                var minYear = DateTime.Now.Year;
+                while (arDr.Read())
+                {
+                    minYear = Convert.ToDateTime(arDr[0]).Year;
+                }
+                for (var i = minYear; i < DateTime.Now.Year; i++)
+                {
+                    cbArchYear.Items.Add(i);
+                }
+                cbArchYear.SelectedIndex = 0;
+                splitCons.SplitterDistance = splitCons.Width/2 - 5;
+                splitIncome.SplitterDistance = splitIncome.Width/2 - 5;
             }
             catch (Exception ex)
             {
@@ -509,6 +540,9 @@ namespace Orders
             foreach (var stat in pYear)
             {
                 Controls.Find("lSumL" + stat.Month, true)[0].Text = stat.Income.ToString("### ### ##0");
+                Controls.Find("lIncAr" + stat.Month, true)[0].Text = stat.Income.ToString("### ### ##0");
+                Controls.Find("lConsAr" + stat.Month, true)[0].Text = stat.Cons.ToString("### ### ##0");
+                Controls.Find("lHourAr" + stat.Month, true)[0].Text = stat.Hours.ToString();
             }
         }
 
@@ -521,7 +555,7 @@ namespace Orders
             ConsLoad();
             CertLoad();
             DictLoad();
-            tabArchive.Dispose();
+            //tabArchive.Dispose();
         }
 
         private void History_Click(object sender, EventArgs e)
@@ -537,7 +571,46 @@ namespace Orders
             var button = sender as Button;
             if (button == null) return;
             GridMonthLoad(Convert.ToInt32(button.Tag), DateTime.Now.Year);
+            var mDate = new DateTime(DateTime.Now.Year, Convert.ToInt32(button.Tag),1);
+            var cYear = ClassWork.GetYearStat(mDate.Year);
+            foreach (var stat in cYear.Where(stat => stat.Month == mDate.Month))
+            {
+                lMonthC.Text = mDate.ToString("MMMM");
+                lIncomeC.Text = stat.Income.ToString("### ### ##0");
+                lConsC.Text = stat.Cons.ToString("### ### ##0");
+                lProfitC.Text = (stat.Income - stat.Cons).ToString("### ### ##0");
+                lHoursC.Text = stat.Hours.ToString();
+            }
             _hasChange = false;
+        }
+
+        private void Archive_Click(object sender, EventArgs e)
+        {
+            if (_hasChange)
+            {
+                var svResult = MessageBox.Show(Resources.ChangeData, Resources.Orders, MessageBoxButtons.YesNo);
+                if (svResult == DialogResult.Yes)
+                {
+                    SaveChanges();
+                }
+            }
+            var button = sender as Button;
+            if (button == null) return;
+            var month = Convert.ToInt32(button.Tag);
+            var year = Convert.ToInt32(cbArchYear.SelectedItem);
+            GridMonthLoad(month, year);
+            
+            var cYear = ClassWork.GetYearStat(year);
+            foreach (var stat in cYear.Where(stat => stat.Month == month))
+            {
+                lMonthC.Text = (new DateTime(year,month,1)).ToString("MMMM");
+                lIncomeC.Text = stat.Income.ToString("### ### ##0");
+                lConsC.Text = stat.Cons.ToString("### ### ##0");
+                lProfitC.Text = (stat.Income - stat.Cons).ToString("### ### ##0");
+                lHoursC.Text = stat.Hours.ToString();
+            }
+            _hasChange = false;
+            tabApp.SelectTab(tabWork);
         }
 
         private void btSave_Click(object sender, EventArgs e)
@@ -547,50 +620,11 @@ namespace Orders
 
         private void GridMonthLoad(int month, int year)
         {
-            var sDate = new DateTime(year, month, 1);
-            month++;
-            if (month > 12)
+            grWork.Rows.Clear();
+            var wrkLst = ClassWork.GetMonthWork(month, year);
+            foreach (var work in wrkLst)
             {
-                year++;
-                month = 1;
-            }
-            var eDate = new DateTime(year, month, 1);
-            var conn = Connections.GetConnection();
-            try
-            {
-                conn.Open();
-                const string wkCmd = "SELECT W.fId AS Id,W.fClientId AS ClientId,Wt.fId AS Type," +
-                                     "date(W.fDate, 'unixepoch') AS Date," +
-                                     "W.fPrepay AS Prepay," +
-                                     "W.fExcess AS Excess,W.fHours AS Hours,S.fId AS Source," +
-                                     "SUM(CASE WHEN Cs.fAmount IS NULL THEN 0 ELSE Cs.fAmount END) AS Cons," +
-                                     "W.fSertId AS Sert,C.fName AS Client,date(W.fExcessDate, 'unixepoch') AS ExDate," +
-                                     "P.fName AS PayerName " +
-                                     "FROM tWork W " +
-                                     "JOIN tClient C ON W.fClientId=C.fId " +
-                                     "JOIN tSource S ON W.fSourceId=S.fId " +
-                                     "JOIN tWorkType Wt ON W.fTypeId=Wt.fId " +
-                                     "LEFT JOIN tSert Sr ON Sr.fId=W.fSertId " +
-                                     "LEFT JOIN tClient P ON Sr.fPayId=P.fId " +
-                                     "LEFT JOIN tCons Cs ON Cs.fWorkId=W.fId AND Cs.fCertCons=0 " +
-                                    // "LEFT JOIN tCons CCs ON CCs.fWorkId=W.fId AND CCs.fCertCons=1 " +
-                                     "WHERE W.fDate>=strftime('%s', :start) AND W.fDate<strftime('%s', :end) " +
-                                     "GROUP BY Id,ClientId,Type,Date,Prepay,Excess,Hours,Source,Sert,Client,ExDate," +
-                                     "PayerName " +
-                                     "ORDER BY Date,Client";
-                var wkCom = new SQLiteCommand(wkCmd, conn);
-                wkCom.Parameters.AddWithValue("start", sDate);
-                wkCom.Parameters.AddWithValue("end", eDate);
-                var wkTable = new DataTable();
-                var wkAdapt = new SQLiteDataAdapter(wkCom);
-                wkAdapt.Fill(wkTable);
-                var inc = 0D;
-                var con = 0D;
-                var hrs = 0D;
-                grWork.RowCount = 1;
-                foreach (var work in from DataRow row in wkTable.Rows select new Work(row))
-                {
-                    grWork.RowCount = grWork.RowCount + 1;
+                grWork.RowCount = grWork.RowCount + 1;
                     var iRow = grWork.Rows[grWork.RowCount - 2].Cells;
                     iRow["cNumber"].Value = grWork.RowCount - 1;
                     iRow["cId"].Value = work.Id;
@@ -601,9 +635,6 @@ namespace Orders
                     iRow["cPreDate"].Value = work.Date.ToString("dd.MM.yyyy");
                     iRow["cPrepay"].Value = work.Prepay;
                     iRow["cExcess"].Value = work.Excess;
-                    /*c = iRow["cConsA"] as DataGridViewComboBoxCell;
-                    if (c != null && work.ConsType > 0)
-                        c.Value = work.ConsType;*/
                     iRow["cCons"].Value = work.Cons;
                     iRow["cHours"].Value = work.Hours;
                     c = iRow["cSourceA"] as DataGridViewComboBoxCell;
@@ -612,19 +643,7 @@ namespace Orders
                     iRow["cExDate"].Value = work.ExDate == null
                         ? ""
                         : work.ExDate.Value.ToString("dd.MM.yyyy");
-                    inc += work.Prepay + work.Excess;
-                    con += work.Cons;
-                    hrs += work.Hours;
-                }
-                lMonthC.Text = sDate.ToString("MMMM");
-                lIncomeC.Text = inc.ToString("### ### ##0");
-                lConsC.Text = con.ToString("### ### ##0");
-                lProfitC.Text = (inc - con).ToString("### ### ##0");
-                lHoursC.Text = hrs.ToString();
-            }
-            finally
-            {
-                conn.Close();
+                    
             }
         }
 
@@ -711,6 +730,11 @@ namespace Orders
             }
         }
 
+        private static bool IsDigit(char liter)
+        {
+            return liter >= 48 && liter <= 57;
+        }
+
         private void SaveChanges()
         {
             var conn = Connections.GetConnection();
@@ -734,7 +758,43 @@ namespace Orders
                 foreach (DataGridViewRow row in grWork.Rows)
                 {
                     if(row.Cells["cClientId"].Value==null) continue;
-                    
+                    DateTime datePay;
+                    DateTime dateExcess;
+                    try
+                    {
+                        datePay = DateTime.Parse(row.Cells["cPreDate"].Value.ToString());
+                    }
+                    catch
+                    {
+                        datePay = DateTime.Now;
+                    }
+                    try
+                    {
+                        dateExcess = DateTime.Parse(row.Cells["cExDate"].Value.ToString());
+                    }
+                    catch
+                    {
+                        dateExcess = DateTime.Now;
+                    }
+                    var prepay =
+                        row.Cells["cPrepay"].Value.ToString()
+                            .Where(chr => IsDigit(chr) || chr == ',' || chr == '.')
+                            .Aggregate("", (current, chr) => current + chr).Replace('.', ',');
+
+                    var excess = "0";
+                    if (row.Cells["cExcess"].Value != null)
+                    {
+                        excess = row.Cells["cExcess"].Value.ToString()
+                            .Where(chr => IsDigit(chr) || chr == ',' || chr == '.')
+                            .Aggregate("", (current, chr) => current + chr).Replace('.', ',');
+                    }
+                    var hours = "0";
+                    if (row.Cells["cHours"].Value != null)
+                    {
+                        hours = row.Cells["cHours"].Value.ToString()
+                            .Where(chr => IsDigit(chr) || chr == ',' || chr == '.')
+                            .Aggregate("", (current, chr) => current + chr).Replace('.', ',');
+                    }
                     var insCom = new SQLiteCommand(conn);
                     insCom.Parameters.Add(new SQLiteParameter("client", DbType.Int32));
                     insCom.Parameters.Add(new SQLiteParameter("type", DbType.Int32));
@@ -760,29 +820,20 @@ namespace Orders
                     insCom.Parameters["type"].Value = Convert.ToInt32(row.Cells["cTypeA"].Value);
                     insCom.Parameters["source"].Value = Convert.ToInt32(row.Cells["cSourceA"].Value);
                     insCom.Parameters["sert"].Value = Convert.ToInt32(row.Cells["cCertId"].Value);
-                    insCom.Parameters["date"].Value =
-                        DateTime.Parse(row.Cells["cPreDate"].Value.ToString());
-                    insCom.Parameters["prepay"].Value = row.Cells["cPrepay"].Value;
-                    insCom.Parameters["excess"].Value = row.Cells["cExcess"].Value == null ||
-                                                        string.IsNullOrEmpty(
-                                                            row.Cells["cExcess"].Value.ToString()) ||
-                                                        Convert.ToDouble(row.Cells["cExcess"].Value) < 0.01
-                        ? 0
-                        : row.Cells["cExcess"].Value;
-                    insCom.Parameters["exdate"].Value =
-                        row.Cells["cExcess"].Value == null ||
-                        string.IsNullOrEmpty(row.Cells["cExcess"].Value.ToString()) ||
-                        Convert.ToDouble(row.Cells["cExcess"].Value) < 0.01
-                            ? DateTime.Now
-                            : DateTime.Parse(row.Cells["cExDate"].Value.ToString());
-                    insCom.Parameters["hour"].Value = row.Cells["cHours"].Value;
+                    insCom.Parameters["date"].Value = datePay;
+                    insCom.Parameters["prepay"].Value = prepay;
+                    insCom.Parameters["excess"].Value = Convert.ToDouble(excess) < 0.01
+                        ? "0"
+                        : excess;
+                    insCom.Parameters["exdate"].Value = dateExcess;
+                    insCom.Parameters["hour"].Value = hours;
                     insCom.Prepare();
                     var insDr = insCom.ExecuteReader();
                     while (insDr.Read())
                     {
                         var id = Convert.ToInt32(insDr[0]);
                         var remove = new List<int>();
-                        DataGridViewRow row1 = row;
+                        var row1 = row;
                         foreach (var con in _workCons.Where(c => c.Value == row1.Index))
                         {
                             var cnsCom = new SQLiteCommand(cnsCmd, conn);
@@ -809,6 +860,7 @@ namespace Orders
                 GraphLoad();
                 WorkLoad();
                 CertLoad();
+                StatLoad();
             }
             catch (Exception ex)
             {
@@ -946,6 +998,15 @@ namespace Orders
                 foreach (DataGridViewRow row in grCons.Rows)
                 {
                     if (row.Cells["csId"].Value == null) continue;
+                    DateTime dateCons;
+                    try
+                    {
+                        dateCons = DateTime.Parse(row.Cells["csDate"].Value.ToString());
+                    }
+                    catch
+                    {
+                        dateCons = DateTime.Now;
+                    }
                     if(string.IsNullOrEmpty(row.Cells["csId"].Value.ToString()))
                     {
                         insCom.CommandText = insCmd;
@@ -956,7 +1017,7 @@ namespace Orders
                         insCom.Parameters.Add(new SQLiteParameter("id", DbType.Int32));
                         insCom.Parameters["id"].Value = Convert.ToInt32(row.Cells["csId"].Value);
                     }
-                    insCom.Parameters["date"].Value = DateTime.Parse(row.Cells["csDate"].Value.ToString());
+                    insCom.Parameters["date"].Value = dateCons;
                     insCom.Parameters["type"].Value = row.Cells["csType"].Value;
                     insCom.Parameters["amount"].Value = row.Cells["csAmount"].Value;
                     insCom.Parameters["comment"].Value = row.Cells["csComment"].Value.ToString();
@@ -1195,7 +1256,8 @@ namespace Orders
             try
             {
                 conn.Open();
-                const string insCmd = "INSERT INTO tClient (fName,fPhone,fEmail,fNote) VALUES(:name,:phone,:mail,:note)";
+                const string insCmd = "INSERT INTO tClient (fName,fPhone,fEmail,fNote,fDate) " +
+                                      "VALUES(:name,:phone,:mail,:note,strftime('%s',date('now')))";
                 const string updCmd = "UPDATE tClient SET fName=:name,fPhone=:phone,fEmail=:mail,fNote=:note WHERE fId=:id";
                 for (var i = 0; i < grDicClient.RowCount - 1; i++)
                 {
@@ -1332,6 +1394,28 @@ namespace Orders
         private void chMonth_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label61_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbArchYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var v = cbArchYear.SelectedItem;
+            var pYear = ClassWork.GetYearStat(Convert.ToInt32(cbArchYear.SelectedItem));
+            foreach (var stat in pYear)
+            {
+                Controls.Find("lIncAr" + stat.Month, true)[0].Text = stat.Income.ToString("### ### ##0");
+                Controls.Find("lConsAr" + stat.Month, true)[0].Text = stat.Cons.ToString("### ### ##0");
+                Controls.Find("lHourAr" + stat.Month, true)[0].Text = stat.Hours.ToString();
+            }
         }
     }
 }

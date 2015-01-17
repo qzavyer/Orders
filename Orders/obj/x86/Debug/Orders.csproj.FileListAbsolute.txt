@@ -16,7 +16,6 @@ c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Deb
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.csproj.GenerateResource.Cache
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.exe
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.pdb
-c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.csprojResolveAssemblyReference.cache
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\bin\Debug\order.db
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\bin\Debug\SQLite.NET.dll
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\OxyPlot.dll

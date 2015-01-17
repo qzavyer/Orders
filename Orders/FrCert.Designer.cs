@@ -71,9 +71,9 @@
             this.panel1.Controls.Add(this.btChoise);
             this.panel1.Controls.Add(this.btSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 505);
+            this.panel1.Location = new System.Drawing.Point(0, 503);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(919, 25);
+            this.panel1.Size = new System.Drawing.Size(1210, 25);
             this.panel1.TabIndex = 0;
             // 
             // btChoise
@@ -90,7 +90,7 @@
             // btSave
             // 
             this.btSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btSave.Location = new System.Drawing.Point(814, 0);
+            this.btSave.Location = new System.Drawing.Point(1105, 0);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(105, 25);
             this.btSave.TabIndex = 0;
@@ -130,7 +130,7 @@
             this.grCert.RowHeadersVisible = false;
             this.grCert.RowTemplate.Height = 24;
             this.grCert.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grCert.Size = new System.Drawing.Size(919, 505);
+            this.grCert.Size = new System.Drawing.Size(1210, 503);
             this.grCert.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -173,6 +173,7 @@
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn6.DataPropertyName = "fPayName";
             this.dataGridViewTextBoxColumn6.HeaderText = "Плательщик";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 50;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
@@ -181,6 +182,7 @@
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn7.DataPropertyName = "fClientName";
             this.dataGridViewTextBoxColumn7.HeaderText = "Клиент";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 50;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
@@ -279,6 +281,7 @@
             this.cPayName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.cPayName.DataPropertyName = "fPayName";
             this.cPayName.HeaderText = "Плательщик";
+            this.cPayName.MinimumWidth = 50;
             this.cPayName.Name = "cPayName";
             this.cPayName.ReadOnly = true;
             // 
@@ -287,6 +290,7 @@
             this.cClientName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.cClientName.DataPropertyName = "fClientName";
             this.cClientName.HeaderText = "Клиент";
+            this.cClientName.MinimumWidth = 50;
             this.cClientName.Name = "cClientName";
             this.cClientName.ReadOnly = true;
             // 
@@ -349,7 +353,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(919, 530);
+            this.ClientSize = new System.Drawing.Size(1210, 528);
             this.Controls.Add(this.grCert);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -369,20 +373,6 @@
         private System.Windows.Forms.Button btChoise;
         private System.Windows.Forms.Button btSave;
         private System.Windows.Forms.DataGridView grCert;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPayId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cClientId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cTypeId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPayName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cClientName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cTypeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cDatePay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cDateEnd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cHours;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSourceName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -397,5 +387,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cPayId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cClientId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cTypeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cPayName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cDatePay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cDateEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cCons;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSourceName;
     }
 }
