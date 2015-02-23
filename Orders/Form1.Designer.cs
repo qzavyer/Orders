@@ -1080,10 +1080,10 @@ namespace Orders
             // tabGraph
             // 
             this.tabGraph.Controls.Add(this.splitContainer2);
-            this.tabGraph.Location = new System.Drawing.Point(4, 25);
+            this.tabGraph.Location = new System.Drawing.Point(4, 27);
             this.tabGraph.Name = "tabGraph";
             this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraph.Size = new System.Drawing.Size(1591, 639);
+            this.tabGraph.Size = new System.Drawing.Size(1591, 637);
             this.tabGraph.TabIndex = 4;
             this.tabGraph.Text = "Графики";
             this.tabGraph.UseVisualStyleBackColor = true;
@@ -1104,8 +1104,8 @@ namespace Orders
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2.Controls.Add(this.panel20);
-            this.splitContainer2.Size = new System.Drawing.Size(1585, 633);
-            this.splitContainer2.SplitterDistance = 336;
+            this.splitContainer2.Size = new System.Drawing.Size(1585, 631);
+            this.splitContainer2.SplitterDistance = 334;
             this.splitContainer2.TabIndex = 4;
             // 
             // splitContainer1
@@ -1122,7 +1122,7 @@ namespace Orders
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chYear);
-            this.splitContainer1.Size = new System.Drawing.Size(1585, 308);
+            this.splitContainer1.Size = new System.Drawing.Size(1585, 306);
             this.splitContainer1.SplitterDistance = 790;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -1140,15 +1140,17 @@ namespace Orders
             this.chMonth.Name = "chMonth";
             this.chMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series1.ChartArea = "ChartArea1";
+            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series1.IsValueShownAsLabel = true;
             series1.Name = "count";
             series1.YValuesPerPoint = 2;
             series2.ChartArea = "ChartArea2";
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series2.IsValueShownAsLabel = true;
             series2.Name = "income";
             this.chMonth.Series.Add(series1);
             this.chMonth.Series.Add(series2);
-            this.chMonth.Size = new System.Drawing.Size(790, 308);
+            this.chMonth.Size = new System.Drawing.Size(790, 306);
             this.chMonth.TabIndex = 1;
             this.chMonth.Text = "Месячный график";
             title1.Name = "Title1";
@@ -1170,15 +1172,17 @@ namespace Orders
             this.chYear.Name = "chYear";
             this.chYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series3.ChartArea = "ChartArea1";
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series3.IsValueShownAsLabel = true;
             series3.Legend = "Legend1";
             series3.Name = "count";
             series4.ChartArea = "ChartArea2";
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series4.IsValueShownAsLabel = true;
             series4.Name = "income";
             this.chYear.Series.Add(series3);
             this.chYear.Series.Add(series4);
-            this.chYear.Size = new System.Drawing.Size(791, 308);
+            this.chYear.Size = new System.Drawing.Size(791, 306);
             this.chYear.TabIndex = 3;
             this.chYear.Text = "Годовой график";
             title2.Name = "Title1";
@@ -1236,10 +1240,12 @@ namespace Orders
             this.chCMonth.Name = "chCMonth";
             this.chCMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series5.ChartArea = "ChartArea1";
+            series5.Color = System.Drawing.Color.Red;
             series5.IsValueShownAsLabel = true;
             series5.Name = "count";
             series5.YValuesPerPoint = 2;
             series6.ChartArea = "ChartArea2";
+            series6.Color = System.Drawing.Color.Red;
             series6.IsValueShownAsLabel = true;
             series6.Name = "cons";
             this.chCMonth.Series.Add(series5);
@@ -1265,10 +1271,12 @@ namespace Orders
             this.chCYear.Name = "chCYear";
             this.chCYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series7.ChartArea = "ChartArea1";
+            series7.Color = System.Drawing.Color.Red;
             series7.IsValueShownAsLabel = true;
             series7.Name = "count";
             series7.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.Diamond;
             series8.ChartArea = "ChartArea2";
+            series8.Color = System.Drawing.Color.Red;
             series8.IsValueShownAsLabel = true;
             series8.Name = "cons";
             this.chCYear.Series.Add(series7);
@@ -1303,10 +1311,10 @@ namespace Orders
             // 
             this.tabSert.Controls.Add(this.grCert);
             this.tabSert.Controls.Add(this.panel6);
-            this.tabSert.Location = new System.Drawing.Point(4, 25);
+            this.tabSert.Location = new System.Drawing.Point(4, 27);
             this.tabSert.Name = "tabSert";
             this.tabSert.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSert.Size = new System.Drawing.Size(1591, 639);
+            this.tabSert.Size = new System.Drawing.Size(1591, 637);
             this.tabSert.TabIndex = 1;
             this.tabSert.Text = "Сертификаты";
             this.tabSert.UseVisualStyleBackColor = true;
@@ -1329,7 +1337,7 @@ namespace Orders
             this.grCert.Name = "grCert";
             this.grCert.RowHeadersVisible = false;
             this.grCert.RowTemplate.Height = 24;
-            this.grCert.Size = new System.Drawing.Size(1585, 605);
+            this.grCert.Size = new System.Drawing.Size(1585, 603);
             this.grCert.TabIndex = 1;
             this.grCert.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCert_CellClick);
             // 
@@ -1400,7 +1408,7 @@ namespace Orders
             // 
             this.panel6.Controls.Add(this.btCertSave);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(3, 608);
+            this.panel6.Location = new System.Drawing.Point(3, 606);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1585, 28);
             this.panel6.TabIndex = 0;
@@ -1420,10 +1428,10 @@ namespace Orders
             // 
             this.tabConsum.Controls.Add(this.grCons);
             this.tabConsum.Controls.Add(this.panel5);
-            this.tabConsum.Location = new System.Drawing.Point(4, 25);
+            this.tabConsum.Location = new System.Drawing.Point(4, 27);
             this.tabConsum.Name = "tabConsum";
             this.tabConsum.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConsum.Size = new System.Drawing.Size(1591, 639);
+            this.tabConsum.Size = new System.Drawing.Size(1591, 637);
             this.tabConsum.TabIndex = 2;
             this.tabConsum.Text = "Расходы";
             this.tabConsum.UseVisualStyleBackColor = true;
@@ -1451,7 +1459,7 @@ namespace Orders
             this.grCons.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grCons.RowHeadersVisible = false;
             this.grCons.RowTemplate.Height = 24;
-            this.grCons.Size = new System.Drawing.Size(1585, 605);
+            this.grCons.Size = new System.Drawing.Size(1585, 603);
             this.grCons.TabIndex = 1;
             // 
             // csId
@@ -1491,7 +1499,7 @@ namespace Orders
             // 
             this.panel5.Controls.Add(this.btConsSave);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 608);
+            this.panel5.Location = new System.Drawing.Point(3, 606);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1585, 28);
             this.panel5.TabIndex = 0;
@@ -1514,10 +1522,10 @@ namespace Orders
             this.tabGloss.Controls.Add(this.panel9);
             this.tabGloss.Controls.Add(this.panel8);
             this.tabGloss.Controls.Add(this.panel12);
-            this.tabGloss.Location = new System.Drawing.Point(4, 25);
+            this.tabGloss.Location = new System.Drawing.Point(4, 27);
             this.tabGloss.Name = "tabGloss";
             this.tabGloss.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGloss.Size = new System.Drawing.Size(1591, 639);
+            this.tabGloss.Size = new System.Drawing.Size(1591, 637);
             this.tabGloss.TabIndex = 3;
             this.tabGloss.Text = "Справочники";
             this.tabGloss.UseVisualStyleBackColor = true;
@@ -1529,7 +1537,7 @@ namespace Orders
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(3, 3);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(673, 605);
+            this.panel16.Size = new System.Drawing.Size(673, 603);
             this.panel16.TabIndex = 12;
             // 
             // grDicClient
@@ -1554,7 +1562,7 @@ namespace Orders
             this.grDicClient.Name = "grDicClient";
             this.grDicClient.RowHeadersVisible = false;
             this.grDicClient.RowTemplate.Height = 24;
-            this.grDicClient.Size = new System.Drawing.Size(673, 577);
+            this.grDicClient.Size = new System.Drawing.Size(673, 575);
             this.grDicClient.TabIndex = 3;
             // 
             // cdpId
@@ -1617,7 +1625,7 @@ namespace Orders
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel7.Location = new System.Drawing.Point(676, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(304, 605);
+            this.panel7.Size = new System.Drawing.Size(304, 603);
             this.panel7.TabIndex = 11;
             // 
             // grDicSource
@@ -1639,7 +1647,7 @@ namespace Orders
             this.grDicSource.Name = "grDicSource";
             this.grDicSource.RowHeadersVisible = false;
             this.grDicSource.RowTemplate.Height = 24;
-            this.grDicSource.Size = new System.Drawing.Size(304, 577);
+            this.grDicSource.Size = new System.Drawing.Size(304, 575);
             this.grDicSource.TabIndex = 3;
             // 
             // cdsId
@@ -1683,7 +1691,7 @@ namespace Orders
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel9.Location = new System.Drawing.Point(980, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(304, 605);
+            this.panel9.Size = new System.Drawing.Size(304, 603);
             this.panel9.TabIndex = 10;
             // 
             // grDicWork
@@ -1705,7 +1713,7 @@ namespace Orders
             this.grDicWork.Name = "grDicWork";
             this.grDicWork.RowHeadersVisible = false;
             this.grDicWork.RowTemplate.Height = 24;
-            this.grDicWork.Size = new System.Drawing.Size(304, 577);
+            this.grDicWork.Size = new System.Drawing.Size(304, 575);
             this.grDicWork.TabIndex = 4;
             // 
             // cdwId
@@ -1748,7 +1756,7 @@ namespace Orders
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel8.Location = new System.Drawing.Point(1284, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(304, 605);
+            this.panel8.Size = new System.Drawing.Size(304, 603);
             this.panel8.TabIndex = 7;
             // 
             // grDicCons
@@ -1770,7 +1778,7 @@ namespace Orders
             this.grDicCons.Name = "grDicCons";
             this.grDicCons.RowHeadersVisible = false;
             this.grDicCons.RowTemplate.Height = 24;
-            this.grDicCons.Size = new System.Drawing.Size(304, 577);
+            this.grDicCons.Size = new System.Drawing.Size(304, 575);
             this.grDicCons.TabIndex = 4;
             // 
             // cdcId
@@ -1810,7 +1818,7 @@ namespace Orders
             // 
             this.panel12.Controls.Add(this.btDicSave);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel12.Location = new System.Drawing.Point(3, 608);
+            this.panel12.Location = new System.Drawing.Point(3, 606);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(1585, 28);
             this.panel12.TabIndex = 6;
@@ -1828,10 +1836,10 @@ namespace Orders
             // 
             // tabArchive
             // 
-            this.tabArchive.Location = new System.Drawing.Point(4, 25);
+            this.tabArchive.Location = new System.Drawing.Point(4, 27);
             this.tabArchive.Name = "tabArchive";
             this.tabArchive.Padding = new System.Windows.Forms.Padding(3);
-            this.tabArchive.Size = new System.Drawing.Size(1591, 639);
+            this.tabArchive.Size = new System.Drawing.Size(1591, 637);
             this.tabArchive.TabIndex = 5;
             this.tabArchive.Text = "Архив";
             this.tabArchive.UseVisualStyleBackColor = true;
