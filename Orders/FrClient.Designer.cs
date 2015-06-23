@@ -79,6 +79,7 @@
             this.btSave.TabIndex = 3;
             this.btSave.Text = "Сохранить";
             this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // FrClient
             // 

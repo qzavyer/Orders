@@ -10,6 +10,7 @@ namespace Orders
 {
     public partial class FrCons : Form
     {
+        private static readonly OrderContext Db = new OrderContext();
         public readonly Cons Cons = new Cons();
         public int WorkId;
         public int CertId;
@@ -24,7 +25,7 @@ namespace Orders
 
         private void ControlLoad()
         {
-            var conn = Connections.GetConnection();
+            var conn = new SQLiteConnection(Db.Database.Connection.ConnectionString);
             try
             {
                 conn.Open();
@@ -65,7 +66,7 @@ namespace Orders
 
         private void ConsLoad()
         {
-            var conn = Connections.GetConnection();
+            var conn = new SQLiteConnection(Db.Database.Connection.ConnectionString);
             try
             {
                 conn.Open();
@@ -126,7 +127,7 @@ namespace Orders
                                   "VALUES(:type,:amount,strftime('%s', :date),:comment,:work,:cert,:iscert);" +
                                   "SELECT DISTINCT last_insert_rowid() FROM tCons";
             Cons.Amount = 0;
-            var conn = Connections.GetConnection();
+            var conn = new SQLiteConnection(Db.Database.Connection.ConnectionString);
             try
             {
                 conn.Open();

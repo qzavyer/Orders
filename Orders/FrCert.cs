@@ -7,6 +7,7 @@ namespace Orders
 {
     public partial class FrCert : Form
     {
+        private static readonly OrderContext Db = new OrderContext();
         public Cert Cert;
         public bool FrOk;
         public FrCert()
@@ -16,7 +17,7 @@ namespace Orders
 
         private void FrCert_Load(object sender, EventArgs e)
         {
-            var conn = Connections.GetConnection();
+            var conn = new SQLiteConnection(Db.Database.Connection.ConnectionString);
             try
             {
                 conn.Open();

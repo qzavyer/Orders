@@ -30,6 +30,7 @@ namespace Orders
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -59,18 +60,6 @@ namespace Orders
             this.tabApp = new System.Windows.Forms.TabControl();
             this.tabWork = new System.Windows.Forms.TabPage();
             this.grWork = new System.Windows.Forms.DataGridView();
-            this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cPrepay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cExcess = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSource = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cSert = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.cCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lHoursC = new System.Windows.Forms.Label();
@@ -235,6 +224,25 @@ namespace Orders
             this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn35 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eWorkBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cwNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwPrepay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwExcess = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwSourceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwSert = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.cwCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabApp.SuspendLayout();
             this.tabWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).BeginInit();
@@ -282,6 +290,7 @@ namespace Orders
             ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).BeginInit();
             this.panel15.SuspendLayout();
             this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eWorkBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabApp
@@ -317,18 +326,20 @@ namespace Orders
             // 
             this.grWork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grWork.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cNumber,
-            this.cId,
-            this.cClientId,
-            this.cClient,
-            this.cType,
-            this.cPrepay,
-            this.cExcess,
-            this.cCons,
-            this.cHours,
-            this.cSource,
-            this.cSert,
-            this.cCertId});
+            this.cwNumber,
+            this.cwId,
+            this.cwClientId,
+            this.cwClient,
+            this.cwTypeId,
+            this.cwType,
+            this.cwPrepay,
+            this.cwExcess,
+            this.cwCons,
+            this.cwHours,
+            this.cwSourceId,
+            this.cwSource,
+            this.cwSert,
+            this.cwCertId});
             this.grWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grWork.Location = new System.Drawing.Point(3, 43);
             this.grWork.Name = "grWork";
@@ -338,81 +349,6 @@ namespace Orders
             this.grWork.TabIndex = 5;
             this.grWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellClick);
             this.grWork.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellValueChanged);
-            // 
-            // cNumber
-            // 
-            this.cNumber.HeaderText = "";
-            this.cNumber.Name = "cNumber";
-            this.cNumber.ReadOnly = true;
-            this.cNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNumber.Width = 40;
-            // 
-            // cId
-            // 
-            this.cId.HeaderText = "Id";
-            this.cId.Name = "cId";
-            this.cId.ReadOnly = true;
-            this.cId.Visible = false;
-            // 
-            // cClientId
-            // 
-            this.cClientId.HeaderText = "cClientId";
-            this.cClientId.Name = "cClientId";
-            this.cClientId.Visible = false;
-            // 
-            // cClient
-            // 
-            this.cClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cClient.HeaderText = "Клиент";
-            this.cClient.Name = "cClient";
-            // 
-            // cType
-            // 
-            this.cType.HeaderText = "Тип";
-            this.cType.Name = "cType";
-            this.cType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cType.Visible = false;
-            // 
-            // cPrepay
-            // 
-            this.cPrepay.HeaderText = "Предоплата";
-            this.cPrepay.Name = "cPrepay";
-            // 
-            // cExcess
-            // 
-            this.cExcess.HeaderText = "Доплата";
-            this.cExcess.Name = "cExcess";
-            // 
-            // cCons
-            // 
-            this.cCons.HeaderText = "Расход";
-            this.cCons.Name = "cCons";
-            // 
-            // cHours
-            // 
-            this.cHours.HeaderText = "Часы";
-            this.cHours.Name = "cHours";
-            // 
-            // cSource
-            // 
-            this.cSource.HeaderText = "Источник";
-            this.cSource.Name = "cSource";
-            this.cSource.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cSource.Visible = false;
-            // 
-            // cSert
-            // 
-            this.cSert.HeaderText = "Сертификат";
-            this.cSert.Name = "cSert";
-            this.cSert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cCertId
-            // 
-            this.cCertId.DataPropertyName = "cCertId";
-            this.cCertId.HeaderText = "CertId";
-            this.cCertId.Name = "cCertId";
-            this.cCertId.Visible = false;
             // 
             // panel3
             // 
@@ -1105,7 +1041,7 @@ namespace Orders
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2.Controls.Add(this.panel20);
             this.splitContainer2.Size = new System.Drawing.Size(1585, 631);
-            this.splitContainer2.SplitterDistance = 334;
+            this.splitContainer2.SplitterDistance = 333;
             this.splitContainer2.TabIndex = 4;
             // 
             // splitContainer1
@@ -1122,7 +1058,7 @@ namespace Orders
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chYear);
-            this.splitContainer1.Size = new System.Drawing.Size(1585, 306);
+            this.splitContainer1.Size = new System.Drawing.Size(1585, 305);
             this.splitContainer1.SplitterDistance = 790;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -1140,23 +1076,20 @@ namespace Orders
             this.chMonth.Name = "chMonth";
             this.chMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series1.ChartArea = "ChartArea1";
-            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series1.IsValueShownAsLabel = true;
             series1.Name = "count";
             series1.YValuesPerPoint = 2;
             series2.ChartArea = "ChartArea2";
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series2.IsValueShownAsLabel = true;
             series2.Name = "income";
             this.chMonth.Series.Add(series1);
             this.chMonth.Series.Add(series2);
-            this.chMonth.Size = new System.Drawing.Size(790, 306);
+            this.chMonth.Size = new System.Drawing.Size(790, 305);
             this.chMonth.TabIndex = 1;
             this.chMonth.Text = "Месячный график";
             title1.Name = "Title1";
             title1.Text = "Месячный график";
             this.chMonth.Titles.Add(title1);
-            this.chMonth.Click += new System.EventHandler(this.chMonth_Click);
             // 
             // chYear
             // 
@@ -1172,17 +1105,15 @@ namespace Orders
             this.chYear.Name = "chYear";
             this.chYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series3.ChartArea = "ChartArea1";
-            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series3.IsValueShownAsLabel = true;
             series3.Legend = "Legend1";
             series3.Name = "count";
             series4.ChartArea = "ChartArea2";
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series4.IsValueShownAsLabel = true;
             series4.Name = "income";
             this.chYear.Series.Add(series3);
             this.chYear.Series.Add(series4);
-            this.chYear.Size = new System.Drawing.Size(791, 306);
+            this.chYear.Size = new System.Drawing.Size(791, 305);
             this.chYear.TabIndex = 3;
             this.chYear.Text = "Годовой график";
             title2.Name = "Title1";
@@ -1222,7 +1153,7 @@ namespace Orders
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.chCYear);
-            this.splitContainer3.Size = new System.Drawing.Size(1585, 265);
+            this.splitContainer3.Size = new System.Drawing.Size(1585, 266);
             this.splitContainer3.SplitterDistance = 790;
             this.splitContainer3.TabIndex = 7;
             // 
@@ -1240,17 +1171,15 @@ namespace Orders
             this.chCMonth.Name = "chCMonth";
             this.chCMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series5.ChartArea = "ChartArea1";
-            series5.Color = System.Drawing.Color.Red;
             series5.IsValueShownAsLabel = true;
             series5.Name = "count";
             series5.YValuesPerPoint = 2;
             series6.ChartArea = "ChartArea2";
-            series6.Color = System.Drawing.Color.Red;
             series6.IsValueShownAsLabel = true;
             series6.Name = "cons";
             this.chCMonth.Series.Add(series5);
             this.chCMonth.Series.Add(series6);
-            this.chCMonth.Size = new System.Drawing.Size(790, 265);
+            this.chCMonth.Size = new System.Drawing.Size(790, 266);
             this.chCMonth.TabIndex = 1;
             this.chCMonth.Text = "Месячный график";
             title3.Name = "Title1";
@@ -1271,17 +1200,15 @@ namespace Orders
             this.chCYear.Name = "chCYear";
             this.chCYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             series7.ChartArea = "ChartArea1";
-            series7.Color = System.Drawing.Color.Red;
             series7.IsValueShownAsLabel = true;
             series7.Name = "count";
             series7.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.Diamond;
             series8.ChartArea = "ChartArea2";
-            series8.Color = System.Drawing.Color.Red;
             series8.IsValueShownAsLabel = true;
             series8.Name = "cons";
             this.chCYear.Series.Add(series7);
             this.chCYear.Series.Add(series8);
-            this.chCYear.Size = new System.Drawing.Size(791, 265);
+            this.chCYear.Size = new System.Drawing.Size(791, 266);
             this.chCYear.TabIndex = 3;
             this.chCYear.Text = "Годовой график";
             title4.Name = "Title1";
@@ -1422,7 +1349,6 @@ namespace Orders
             this.btCertSave.TabIndex = 0;
             this.btCertSave.Text = "Сохранить";
             this.btCertSave.UseVisualStyleBackColor = true;
-            this.btCertSave.Click += new System.EventHandler(this.btCertSave_Click);
             // 
             // tabConsum
             // 
@@ -1513,7 +1439,6 @@ namespace Orders
             this.btConsSave.TabIndex = 0;
             this.btConsSave.Text = "Сохранить";
             this.btConsSave.UseVisualStyleBackColor = true;
-            this.btConsSave.Click += new System.EventHandler(this.btConsSave_Click);
             // 
             // tabGloss
             // 
@@ -1832,7 +1757,6 @@ namespace Orders
             this.btDicSave.TabIndex = 0;
             this.btDicSave.Text = "Сохранить";
             this.btDicSave.UseVisualStyleBackColor = true;
-            this.btDicSave.Click += new System.EventHandler(this.btDicSave_Click);
             // 
             // tabArchive
             // 
@@ -1875,6 +1799,7 @@ namespace Orders
             // 
             this.dataGridViewTextBoxColumn5.HeaderText = "Предоплата";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Visible = false;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -1953,18 +1878,24 @@ namespace Orders
             this.dataGridViewTextBoxColumn15.DataPropertyName = "ccHours";
             this.dataGridViewTextBoxColumn15.HeaderText = "Часы";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.Visible = false;
             // 
             // dataGridViewTextBoxColumn16
             // 
             this.dataGridViewTextBoxColumn16.DataPropertyName = "csNumber";
             this.dataGridViewTextBoxColumn16.HeaderText = "";
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.Visible = false;
             // 
             // dataGridViewTextBoxColumn17
             // 
             this.dataGridViewTextBoxColumn17.DataPropertyName = "csAmount";
             this.dataGridViewTextBoxColumn17.HeaderText = "Сумма";
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            this.dataGridViewTextBoxColumn17.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn17.Width = 30;
             // 
             // dataGridViewTextBoxColumn18
             // 
@@ -2024,6 +1955,8 @@ namespace Orders
             this.dataGridViewTextBoxColumn23.FillWeight = 70F;
             this.dataGridViewTextBoxColumn23.HeaderText = "E-mail";
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.ReadOnly = true;
+            this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn23.Visible = false;
             // 
             // dataGridViewTextBoxColumn24
@@ -2033,11 +1966,14 @@ namespace Orders
             this.dataGridViewTextBoxColumn24.FillWeight = 70F;
             this.dataGridViewTextBoxColumn24.HeaderText = "Примечание";
             this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.ReadOnly = true;
+            this.dataGridViewTextBoxColumn24.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // dataGridViewTextBoxColumn25
             // 
             this.dataGridViewTextBoxColumn25.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn25.DataPropertyName = "fId";
+            this.dataGridViewTextBoxColumn25.FillWeight = 40F;
             this.dataGridViewTextBoxColumn25.HeaderText = "";
             this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
             this.dataGridViewTextBoxColumn25.Visible = false;
@@ -2106,8 +2042,125 @@ namespace Orders
             // 
             this.dataGridViewTextBoxColumn33.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn33.DataPropertyName = "fName";
+            this.dataGridViewTextBoxColumn33.FillWeight = 70F;
             this.dataGridViewTextBoxColumn33.HeaderText = "Название";
             this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
+            // 
+            // dataGridViewTextBoxColumn34
+            // 
+            this.dataGridViewTextBoxColumn34.DataPropertyName = "fId";
+            this.dataGridViewTextBoxColumn34.HeaderText = "";
+            this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
+            this.dataGridViewTextBoxColumn34.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn35
+            // 
+            this.dataGridViewTextBoxColumn35.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn35.DataPropertyName = "fName";
+            this.dataGridViewTextBoxColumn35.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn35.Name = "dataGridViewTextBoxColumn35";
+            // 
+            // dataGridViewTextBoxColumn36
+            // 
+            this.dataGridViewTextBoxColumn36.DataPropertyName = "fId";
+            this.dataGridViewTextBoxColumn36.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn36.Name = "dataGridViewTextBoxColumn36";
+            this.dataGridViewTextBoxColumn36.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn37
+            // 
+            this.dataGridViewTextBoxColumn37.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn37.DataPropertyName = "fName";
+            this.dataGridViewTextBoxColumn37.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn37.Name = "dataGridViewTextBoxColumn37";
+            // 
+            // eWorkBindingSource
+            // 
+            this.eWorkBindingSource.DataSource = typeof(Orders.EWork);
+            // 
+            // cwNumber
+            // 
+            this.cwNumber.HeaderText = "";
+            this.cwNumber.Name = "cwNumber";
+            this.cwNumber.ReadOnly = true;
+            this.cwNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cwNumber.Width = 40;
+            // 
+            // cwId
+            // 
+            this.cwId.HeaderText = "Id";
+            this.cwId.Name = "cwId";
+            this.cwId.ReadOnly = true;
+            this.cwId.Visible = false;
+            // 
+            // cwClientId
+            // 
+            this.cwClientId.HeaderText = "ClientId";
+            this.cwClientId.Name = "cwClientId";
+            this.cwClientId.Visible = false;
+            // 
+            // cwClient
+            // 
+            this.cwClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cwClient.HeaderText = "Клиент";
+            this.cwClient.Name = "cwClient";
+            // 
+            // cwTypeId
+            // 
+            this.cwTypeId.HeaderText = "TypeId";
+            this.cwTypeId.Name = "cwTypeId";
+            this.cwTypeId.Visible = false;
+            // 
+            // cwType
+            // 
+            this.cwType.HeaderText = "Вид работы";
+            this.cwType.Name = "cwType";
+            this.cwType.Width = 120;
+            // 
+            // cwPrepay
+            // 
+            this.cwPrepay.HeaderText = "Предоплата";
+            this.cwPrepay.Name = "cwPrepay";
+            // 
+            // cwExcess
+            // 
+            this.cwExcess.HeaderText = "Доплата";
+            this.cwExcess.Name = "cwExcess";
+            // 
+            // cwCons
+            // 
+            this.cwCons.HeaderText = "Расход";
+            this.cwCons.Name = "cwCons";
+            // 
+            // cwHours
+            // 
+            this.cwHours.HeaderText = "Часы";
+            this.cwHours.Name = "cwHours";
+            // 
+            // cwSourceId
+            // 
+            this.cwSourceId.HeaderText = "SourceId";
+            this.cwSourceId.Name = "cwSourceId";
+            this.cwSourceId.Visible = false;
+            // 
+            // cwSource
+            // 
+            this.cwSource.HeaderText = "Источник";
+            this.cwSource.Name = "cwSource";
+            this.cwSource.Width = 120;
+            // 
+            // cwSert
+            // 
+            this.cwSert.HeaderText = "Сертификат";
+            this.cwSert.Name = "cwSert";
+            this.cwSert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cwCertId
+            // 
+            this.cwCertId.DataPropertyName = "cCertId";
+            this.cwCertId.HeaderText = "CertId";
+            this.cwCertId.Name = "cwCertId";
+            this.cwCertId.Visible = false;
             // 
             // Form1
             // 
@@ -2173,6 +2226,7 @@ namespace Orders
             ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.eWorkBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2292,18 +2346,6 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cClientId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cClient;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPrepay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cExcess;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cHours;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cSource;
-        private System.Windows.Forms.DataGridViewButtonColumn cSert;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCertId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerId;
@@ -2358,6 +2400,25 @@ namespace Orders
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Button btDicSave;
+        private System.Windows.Forms.BindingSource eWorkBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn35;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn36;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn37;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwClientId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwClient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwTypeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwPrepay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwExcess;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwCons;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwSourceId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwSource;
+        private System.Windows.Forms.DataGridViewButtonColumn cwSert;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwCertId;
     }
 }
 

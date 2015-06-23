@@ -150,4 +150,16 @@
   <data name="DateEnd" xml:space="preserve">
     <value>Дата окончания</value>
   </data>
+  <data name="Work_Type" xml:space="preserve">
+    <value>Вид работы</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
 </root>

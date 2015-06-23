@@ -1,15 +1,16 @@
 ﻿using System.Data;
-using System.Data.SQLite;
 using System.Windows.Forms;
 using Orders.Properties;
+using System.Data.SQLite;
 
 namespace Orders
 {
     public static class Errors
     {
+        private static readonly OrderContext Db = new OrderContext();
         public static void SaveError(string errorMessage, string function)
         {
-            var conn = Connections.GetConnection();
+            var conn = new SQLiteConnection(Db.Database.Connection.ConnectionString);
             try
             {
                 conn.Open();
@@ -28,6 +29,7 @@ namespace Orders
             {
                 conn.Close();
             }
+
         }
     }
 }
