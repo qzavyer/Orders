@@ -29,25 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrClient));
-            this.grClient = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btOk = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.grClient)).BeginInit();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btAdd = new System.Windows.Forms.Button();
+            this.tbFind = new System.Windows.Forms.TextBox();
+            this.grClient = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grClient)).BeginInit();
             this.SuspendLayout();
-            // 
-            // grClient
-            // 
-            this.grClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grClient.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grClient.Location = new System.Drawing.Point(0, 0);
-            this.grClient.Name = "grClient";
-            this.grClient.RowHeadersVisible = false;
-            this.grClient.RowTemplate.Height = 24;
-            this.grClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grClient.Size = new System.Drawing.Size(521, 584);
-            this.grClient.TabIndex = 0;
             // 
             // panel1
             // 
@@ -81,29 +73,80 @@
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btAdd);
+            this.panel2.Controls.Add(this.tbFind);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(521, 25);
+            this.panel2.TabIndex = 4;
+            // 
+            // btAdd
+            // 
+            this.btAdd.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btAdd.Location = new System.Drawing.Point(250, 0);
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(105, 25);
+            this.btAdd.TabIndex = 1;
+            this.btAdd.Text = "Добавить";
+            this.btAdd.UseVisualStyleBackColor = true;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
+            // 
+            // tbFind
+            // 
+            this.tbFind.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tbFind.Location = new System.Drawing.Point(0, 0);
+            this.tbFind.Name = "tbFind";
+            this.tbFind.Size = new System.Drawing.Size(250, 22);
+            this.tbFind.TabIndex = 0;
+            this.tbFind.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbFind_KeyUp);
+            // 
+            // grClient
+            // 
+            this.grClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grClient.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grClient.Location = new System.Drawing.Point(0, 25);
+            this.grClient.Name = "grClient";
+            this.grClient.RowHeadersVisible = false;
+            this.grClient.RowTemplate.Height = 24;
+            this.grClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grClient.Size = new System.Drawing.Size(521, 534);
+            this.grClient.TabIndex = 5;
+            this.grClient.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grClient_CellContentClick);
+            this.grClient.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grClient_CellValueChanged);
+            // 
             // FrClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 584);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.grClient);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrClient";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Выбор клиента";
             this.Load += new System.EventHandler(this.FrClient_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grClient)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grClient)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView grClient;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btOk;
         private System.Windows.Forms.Button btSave;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView grClient;
+        private System.Windows.Forms.TextBox tbFind;
+        private System.Windows.Forms.Button btAdd;
     }
 }

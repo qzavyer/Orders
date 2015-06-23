@@ -151,6 +151,24 @@ namespace Orders.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Примечание.
+        /// </summary>
+        internal static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Поле &quot;Имя&quot; не может быть пустым.
+        /// </summary>
+        internal static string NotEmptyName {
+            get {
+                return ResourceManager.GetString("NotEmptyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Orders.
         /// </summary>
         internal static string Orders {
