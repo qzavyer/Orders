@@ -10,6 +10,6 @@ namespace Orders
         public DbSet<ECert> Certs { get; set; }
         public DbSet<ESourceType> SourceTypes { get; set; }
         public DbSet<EWork> Works { get; set; }
-        public DbSet<EWorkType> WorkTypes { get; set; }
+        public DbSet<EWorkType> WorkTypes { get; set; }        
     }
 }

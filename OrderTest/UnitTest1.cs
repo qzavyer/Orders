@@ -14,9 +14,7 @@ namespace OrderTest
     {
         public UnitTest1()
         {
-            //
-            // TODO: добавьте здесь логику конструктора
-            //
+           
         }
 
         private TestContext testContextInstance;
@@ -62,9 +60,7 @@ namespace OrderTest
         [TestMethod]
         public void TestMethod1()
         {
-            //
-            // TODO: добавьте здесь логику теста
-            //
+            
         }
     }
 }

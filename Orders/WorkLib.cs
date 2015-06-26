@@ -9,6 +9,7 @@ namespace Orders
     public static class WorkLib
     {
         static readonly OrderContext Db = new OrderContext();
+
         public static IEnumerable<EWork> GetMonthWorks(DateTime date)
         {
             var monthWorkLst = new List<EWork>();
@@ -19,8 +20,8 @@ namespace Orders
                 var dateMonthStartInt = DateLib.GetDateInt(dateMonthStart);
                 var dateMonthEndInt = DateLib.GetDateInt(dateMonthEnd);
                 // список всех работ за месяц
-                monthWorkLst = Db.Works.Where(w =>
-                    w._datePay >= dateMonthStartInt && w._datePay < dateMonthEndInt)
+                monthWorkLst = Db.Works
+                    .Where(w =>w.datePay >= dateMonthStartInt && w.datePay < dateMonthEndInt)
                     .Include(r => r.Client)
                     .Include(r => r.Source)
                     .Include(r => r.Type)
@@ -54,7 +55,7 @@ namespace Orders
                 var dateYearEndInt = DateLib.GetDateInt(dateYearEnd);
                 // список всех работ за год
                 monthWorkLst = Db.Works.Where(w =>
-                    w._datePay >= dateYearStartInt && w._datePay < dateYearEndInt)
+                    w.datePay >= dateYearStartInt && w.datePay < dateYearEndInt)
                     .Include(r => r.Client)
                     .Include(r => r.Source)
                     .Include(r => r.Type)
@@ -88,7 +89,7 @@ namespace Orders
                 var dateMonthEndInt = DateLib.GetDateInt(dateMonthEnd);
                 // список всех расходов за месяц
                 monthWorkLst = Db.Conses.Where(w =>
-                    w._date >= dateMonthStartInt && w._date < dateMonthEndInt)
+                    w.date >= dateMonthStartInt && w.date < dateMonthEndInt)
                     .Include(r => r.Type)
                     .ToList();
             }
@@ -116,7 +117,7 @@ namespace Orders
                 var dateYearEndInt = DateLib.GetDateInt(dateYearEnd);
                 // список всех расходов за год
                 monthWorkLst = Db.Conses.Where(w =>
-                    w._date >= dateYearStartInt && w._date < dateYearEndInt)
+                    w.date >= dateYearStartInt && w.date < dateYearEndInt)
                     .Include(r => r.Type)
                     .ToList();
             }

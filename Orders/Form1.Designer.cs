@@ -60,6 +60,20 @@ namespace Orders
             this.tabApp = new System.Windows.Forms.TabControl();
             this.tabWork = new System.Windows.Forms.TabPage();
             this.grWork = new System.Windows.Forms.DataGridView();
+            this.cwNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwPrepay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwExcess = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwSourceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwSert = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.cwCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lHoursC = new System.Windows.Forms.Label();
@@ -229,20 +243,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eWorkBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cwNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwPrepay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwExcess = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwSourceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwSert = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.cwCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabApp.SuspendLayout();
             this.tabWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).BeginInit();
@@ -305,7 +305,7 @@ namespace Orders
             this.tabApp.Location = new System.Drawing.Point(0, 0);
             this.tabApp.Name = "tabApp";
             this.tabApp.SelectedIndex = 0;
-            this.tabApp.Size = new System.Drawing.Size(1599, 668);
+            this.tabApp.Size = new System.Drawing.Size(1599, 674);
             this.tabApp.TabIndex = 0;
             // 
             // tabWork
@@ -314,10 +314,10 @@ namespace Orders
             this.tabWork.Controls.Add(this.panel3);
             this.tabWork.Controls.Add(this.panel2);
             this.tabWork.Controls.Add(this.pHistory);
-            this.tabWork.Location = new System.Drawing.Point(4, 27);
+            this.tabWork.Location = new System.Drawing.Point(4, 24);
             this.tabWork.Name = "tabWork";
             this.tabWork.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWork.Size = new System.Drawing.Size(1591, 637);
+            this.tabWork.Size = new System.Drawing.Size(1591, 646);
             this.tabWork.TabIndex = 0;
             this.tabWork.Text = "Работа";
             this.tabWork.UseVisualStyleBackColor = true;
@@ -345,10 +345,94 @@ namespace Orders
             this.grWork.Name = "grWork";
             this.grWork.RowHeadersVisible = false;
             this.grWork.RowTemplate.Height = 24;
-            this.grWork.Size = new System.Drawing.Size(1306, 551);
+            this.grWork.Size = new System.Drawing.Size(1306, 560);
             this.grWork.TabIndex = 5;
             this.grWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellClick);
             this.grWork.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellValueChanged);
+            // 
+            // cwNumber
+            // 
+            this.cwNumber.HeaderText = "";
+            this.cwNumber.Name = "cwNumber";
+            this.cwNumber.ReadOnly = true;
+            this.cwNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cwNumber.Width = 40;
+            // 
+            // cwId
+            // 
+            this.cwId.HeaderText = "Id";
+            this.cwId.Name = "cwId";
+            this.cwId.ReadOnly = true;
+            this.cwId.Visible = false;
+            // 
+            // cwClientId
+            // 
+            this.cwClientId.HeaderText = "ClientId";
+            this.cwClientId.Name = "cwClientId";
+            this.cwClientId.Visible = false;
+            // 
+            // cwClient
+            // 
+            this.cwClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cwClient.HeaderText = "Клиент";
+            this.cwClient.Name = "cwClient";
+            // 
+            // cwTypeId
+            // 
+            this.cwTypeId.HeaderText = "TypeId";
+            this.cwTypeId.Name = "cwTypeId";
+            this.cwTypeId.Visible = false;
+            // 
+            // cwType
+            // 
+            this.cwType.HeaderText = "Вид работы";
+            this.cwType.Name = "cwType";
+            this.cwType.Width = 120;
+            // 
+            // cwPrepay
+            // 
+            this.cwPrepay.HeaderText = "Предоплата";
+            this.cwPrepay.Name = "cwPrepay";
+            // 
+            // cwExcess
+            // 
+            this.cwExcess.HeaderText = "Доплата";
+            this.cwExcess.Name = "cwExcess";
+            // 
+            // cwCons
+            // 
+            this.cwCons.HeaderText = "Расход";
+            this.cwCons.Name = "cwCons";
+            // 
+            // cwHours
+            // 
+            this.cwHours.HeaderText = "Часы";
+            this.cwHours.Name = "cwHours";
+            // 
+            // cwSourceId
+            // 
+            this.cwSourceId.HeaderText = "SourceId";
+            this.cwSourceId.Name = "cwSourceId";
+            this.cwSourceId.Visible = false;
+            // 
+            // cwSource
+            // 
+            this.cwSource.HeaderText = "Источник";
+            this.cwSource.Name = "cwSource";
+            this.cwSource.Width = 120;
+            // 
+            // cwSert
+            // 
+            this.cwSert.HeaderText = "Сертификат";
+            this.cwSert.Name = "cwSert";
+            this.cwSert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cwCertId
+            // 
+            this.cwCertId.DataPropertyName = "cCertId";
+            this.cwCertId.HeaderText = "CertId";
+            this.cwCertId.Name = "cwCertId";
+            this.cwCertId.Visible = false;
             // 
             // panel3
             // 
@@ -361,7 +445,7 @@ namespace Orders
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.lMonthC);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(3, 594);
+            this.panel3.Location = new System.Drawing.Point(3, 603);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1306, 40);
             this.panel3.TabIndex = 4;
@@ -371,7 +455,7 @@ namespace Orders
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(576, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 18);
+            this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 47;
             this.label2.Text = "Часы:";
             // 
@@ -409,7 +493,7 @@ namespace Orders
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 18);
+            this.label1.Size = new System.Drawing.Size(46, 15);
             this.label1.TabIndex = 30;
             this.label1.Text = "Доход:";
             // 
@@ -428,7 +512,7 @@ namespace Orders
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(345, 11);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 18);
+            this.label6.Size = new System.Drawing.Size(60, 15);
             this.label6.TabIndex = 32;
             this.label6.Text = "Прибыль";
             // 
@@ -446,7 +530,7 @@ namespace Orders
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(147, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 18);
+            this.label4.Size = new System.Drawing.Size(51, 15);
             this.label4.TabIndex = 30;
             this.label4.Text = "Расход:";
             // 
@@ -482,7 +566,7 @@ namespace Orders
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(576, 11);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 18);
+            this.label3.Size = new System.Drawing.Size(40, 15);
             this.label3.TabIndex = 45;
             this.label3.Text = "Часы:";
             // 
@@ -520,7 +604,7 @@ namespace Orders
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(3, 11);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 18);
+            this.label12.Size = new System.Drawing.Size(46, 15);
             this.label12.TabIndex = 36;
             this.label12.Text = "Доход:";
             // 
@@ -547,7 +631,7 @@ namespace Orders
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(757, 11);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(78, 18);
+            this.label14.Size = new System.Drawing.Size(62, 15);
             this.label14.TabIndex = 40;
             this.label14.Text = "Ср.доход:";
             // 
@@ -565,7 +649,7 @@ namespace Orders
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(345, 11);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 18);
+            this.label8.Size = new System.Drawing.Size(60, 15);
             this.label8.TabIndex = 38;
             this.label8.Text = "Прибыль";
             // 
@@ -583,7 +667,7 @@ namespace Orders
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(147, 11);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(63, 18);
+            this.label10.Size = new System.Drawing.Size(51, 15);
             this.label10.TabIndex = 36;
             this.label10.Text = "Расход:";
             // 
@@ -634,13 +718,13 @@ namespace Orders
             this.pHistory.Dock = System.Windows.Forms.DockStyle.Right;
             this.pHistory.Location = new System.Drawing.Point(1309, 3);
             this.pHistory.Name = "pHistory";
-            this.pHistory.Size = new System.Drawing.Size(279, 631);
+            this.pHistory.Size = new System.Drawing.Size(279, 640);
             this.pHistory.TabIndex = 1;
             // 
             // btSave
             // 
             this.btSave.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btSave.Location = new System.Drawing.Point(0, 594);
+            this.btSave.Location = new System.Drawing.Point(0, 603);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(279, 37);
             this.btSave.TabIndex = 47;
@@ -1016,10 +1100,10 @@ namespace Orders
             // tabGraph
             // 
             this.tabGraph.Controls.Add(this.splitContainer2);
-            this.tabGraph.Location = new System.Drawing.Point(4, 27);
+            this.tabGraph.Location = new System.Drawing.Point(4, 24);
             this.tabGraph.Name = "tabGraph";
             this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraph.Size = new System.Drawing.Size(1591, 637);
+            this.tabGraph.Size = new System.Drawing.Size(1591, 640);
             this.tabGraph.TabIndex = 4;
             this.tabGraph.Text = "Графики";
             this.tabGraph.UseVisualStyleBackColor = true;
@@ -1040,8 +1124,8 @@ namespace Orders
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel2.Controls.Add(this.panel20);
-            this.splitContainer2.Size = new System.Drawing.Size(1585, 631);
-            this.splitContainer2.SplitterDistance = 333;
+            this.splitContainer2.Size = new System.Drawing.Size(1585, 634);
+            this.splitContainer2.SplitterDistance = 334;
             this.splitContainer2.TabIndex = 4;
             // 
             // splitContainer1
@@ -1058,7 +1142,7 @@ namespace Orders
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chYear);
-            this.splitContainer1.Size = new System.Drawing.Size(1585, 305);
+            this.splitContainer1.Size = new System.Drawing.Size(1585, 306);
             this.splitContainer1.SplitterDistance = 790;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -1084,7 +1168,7 @@ namespace Orders
             series2.Name = "income";
             this.chMonth.Series.Add(series1);
             this.chMonth.Series.Add(series2);
-            this.chMonth.Size = new System.Drawing.Size(790, 305);
+            this.chMonth.Size = new System.Drawing.Size(790, 306);
             this.chMonth.TabIndex = 1;
             this.chMonth.Text = "Месячный график";
             title1.Name = "Title1";
@@ -1113,7 +1197,7 @@ namespace Orders
             series4.Name = "income";
             this.chYear.Series.Add(series3);
             this.chYear.Series.Add(series4);
-            this.chYear.Size = new System.Drawing.Size(791, 305);
+            this.chYear.Size = new System.Drawing.Size(791, 306);
             this.chYear.TabIndex = 3;
             this.chYear.Text = "Годовой график";
             title2.Name = "Title1";
@@ -1153,7 +1237,7 @@ namespace Orders
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.chCYear);
-            this.splitContainer3.Size = new System.Drawing.Size(1585, 266);
+            this.splitContainer3.Size = new System.Drawing.Size(1585, 268);
             this.splitContainer3.SplitterDistance = 790;
             this.splitContainer3.TabIndex = 7;
             // 
@@ -1179,7 +1263,7 @@ namespace Orders
             series6.Name = "cons";
             this.chCMonth.Series.Add(series5);
             this.chCMonth.Series.Add(series6);
-            this.chCMonth.Size = new System.Drawing.Size(790, 266);
+            this.chCMonth.Size = new System.Drawing.Size(790, 268);
             this.chCMonth.TabIndex = 1;
             this.chCMonth.Text = "Месячный график";
             title3.Name = "Title1";
@@ -1208,7 +1292,7 @@ namespace Orders
             series8.Name = "cons";
             this.chCYear.Series.Add(series7);
             this.chCYear.Series.Add(series8);
-            this.chCYear.Size = new System.Drawing.Size(791, 266);
+            this.chCYear.Size = new System.Drawing.Size(791, 268);
             this.chCYear.TabIndex = 3;
             this.chCYear.Text = "Годовой график";
             title4.Name = "Title1";
@@ -1238,10 +1322,10 @@ namespace Orders
             // 
             this.tabSert.Controls.Add(this.grCert);
             this.tabSert.Controls.Add(this.panel6);
-            this.tabSert.Location = new System.Drawing.Point(4, 27);
+            this.tabSert.Location = new System.Drawing.Point(4, 24);
             this.tabSert.Name = "tabSert";
             this.tabSert.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSert.Size = new System.Drawing.Size(1591, 637);
+            this.tabSert.Size = new System.Drawing.Size(1591, 640);
             this.tabSert.TabIndex = 1;
             this.tabSert.Text = "Сертификаты";
             this.tabSert.UseVisualStyleBackColor = true;
@@ -1264,7 +1348,7 @@ namespace Orders
             this.grCert.Name = "grCert";
             this.grCert.RowHeadersVisible = false;
             this.grCert.RowTemplate.Height = 24;
-            this.grCert.Size = new System.Drawing.Size(1585, 603);
+            this.grCert.Size = new System.Drawing.Size(1585, 606);
             this.grCert.TabIndex = 1;
             this.grCert.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCert_CellClick);
             // 
@@ -1335,7 +1419,7 @@ namespace Orders
             // 
             this.panel6.Controls.Add(this.btCertSave);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(3, 606);
+            this.panel6.Location = new System.Drawing.Point(3, 609);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1585, 28);
             this.panel6.TabIndex = 0;
@@ -1354,10 +1438,10 @@ namespace Orders
             // 
             this.tabConsum.Controls.Add(this.grCons);
             this.tabConsum.Controls.Add(this.panel5);
-            this.tabConsum.Location = new System.Drawing.Point(4, 27);
+            this.tabConsum.Location = new System.Drawing.Point(4, 24);
             this.tabConsum.Name = "tabConsum";
             this.tabConsum.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConsum.Size = new System.Drawing.Size(1591, 637);
+            this.tabConsum.Size = new System.Drawing.Size(1591, 640);
             this.tabConsum.TabIndex = 2;
             this.tabConsum.Text = "Расходы";
             this.tabConsum.UseVisualStyleBackColor = true;
@@ -1385,7 +1469,7 @@ namespace Orders
             this.grCons.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grCons.RowHeadersVisible = false;
             this.grCons.RowTemplate.Height = 24;
-            this.grCons.Size = new System.Drawing.Size(1585, 603);
+            this.grCons.Size = new System.Drawing.Size(1585, 606);
             this.grCons.TabIndex = 1;
             // 
             // csId
@@ -1425,7 +1509,7 @@ namespace Orders
             // 
             this.panel5.Controls.Add(this.btConsSave);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 606);
+            this.panel5.Location = new System.Drawing.Point(3, 609);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1585, 28);
             this.panel5.TabIndex = 0;
@@ -1447,10 +1531,10 @@ namespace Orders
             this.tabGloss.Controls.Add(this.panel9);
             this.tabGloss.Controls.Add(this.panel8);
             this.tabGloss.Controls.Add(this.panel12);
-            this.tabGloss.Location = new System.Drawing.Point(4, 27);
+            this.tabGloss.Location = new System.Drawing.Point(4, 24);
             this.tabGloss.Name = "tabGloss";
             this.tabGloss.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGloss.Size = new System.Drawing.Size(1591, 637);
+            this.tabGloss.Size = new System.Drawing.Size(1591, 640);
             this.tabGloss.TabIndex = 3;
             this.tabGloss.Text = "Справочники";
             this.tabGloss.UseVisualStyleBackColor = true;
@@ -1462,7 +1546,7 @@ namespace Orders
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(3, 3);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(673, 603);
+            this.panel16.Size = new System.Drawing.Size(673, 606);
             this.panel16.TabIndex = 12;
             // 
             // grDicClient
@@ -1487,7 +1571,7 @@ namespace Orders
             this.grDicClient.Name = "grDicClient";
             this.grDicClient.RowHeadersVisible = false;
             this.grDicClient.RowTemplate.Height = 24;
-            this.grDicClient.Size = new System.Drawing.Size(673, 575);
+            this.grDicClient.Size = new System.Drawing.Size(673, 578);
             this.grDicClient.TabIndex = 3;
             // 
             // cdpId
@@ -1550,7 +1634,7 @@ namespace Orders
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel7.Location = new System.Drawing.Point(676, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(304, 603);
+            this.panel7.Size = new System.Drawing.Size(304, 606);
             this.panel7.TabIndex = 11;
             // 
             // grDicSource
@@ -1572,7 +1656,7 @@ namespace Orders
             this.grDicSource.Name = "grDicSource";
             this.grDicSource.RowHeadersVisible = false;
             this.grDicSource.RowTemplate.Height = 24;
-            this.grDicSource.Size = new System.Drawing.Size(304, 575);
+            this.grDicSource.Size = new System.Drawing.Size(304, 578);
             this.grDicSource.TabIndex = 3;
             // 
             // cdsId
@@ -1616,7 +1700,7 @@ namespace Orders
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel9.Location = new System.Drawing.Point(980, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(304, 603);
+            this.panel9.Size = new System.Drawing.Size(304, 606);
             this.panel9.TabIndex = 10;
             // 
             // grDicWork
@@ -1638,7 +1722,7 @@ namespace Orders
             this.grDicWork.Name = "grDicWork";
             this.grDicWork.RowHeadersVisible = false;
             this.grDicWork.RowTemplate.Height = 24;
-            this.grDicWork.Size = new System.Drawing.Size(304, 575);
+            this.grDicWork.Size = new System.Drawing.Size(304, 578);
             this.grDicWork.TabIndex = 4;
             // 
             // cdwId
@@ -1681,7 +1765,7 @@ namespace Orders
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel8.Location = new System.Drawing.Point(1284, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(304, 603);
+            this.panel8.Size = new System.Drawing.Size(304, 606);
             this.panel8.TabIndex = 7;
             // 
             // grDicCons
@@ -1703,7 +1787,7 @@ namespace Orders
             this.grDicCons.Name = "grDicCons";
             this.grDicCons.RowHeadersVisible = false;
             this.grDicCons.RowTemplate.Height = 24;
-            this.grDicCons.Size = new System.Drawing.Size(304, 575);
+            this.grDicCons.Size = new System.Drawing.Size(304, 578);
             this.grDicCons.TabIndex = 4;
             // 
             // cdcId
@@ -1743,7 +1827,7 @@ namespace Orders
             // 
             this.panel12.Controls.Add(this.btDicSave);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel12.Location = new System.Drawing.Point(3, 606);
+            this.panel12.Location = new System.Drawing.Point(3, 609);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(1585, 28);
             this.panel12.TabIndex = 6;
@@ -1760,10 +1844,10 @@ namespace Orders
             // 
             // tabArchive
             // 
-            this.tabArchive.Location = new System.Drawing.Point(4, 27);
+            this.tabArchive.Location = new System.Drawing.Point(4, 24);
             this.tabArchive.Name = "tabArchive";
             this.tabArchive.Padding = new System.Windows.Forms.Padding(3);
-            this.tabArchive.Size = new System.Drawing.Size(1591, 637);
+            this.tabArchive.Size = new System.Drawing.Size(1591, 640);
             this.tabArchive.TabIndex = 5;
             this.tabArchive.Text = "Архив";
             this.tabArchive.UseVisualStyleBackColor = true;
@@ -2074,99 +2158,11 @@ namespace Orders
             this.dataGridViewTextBoxColumn37.HeaderText = "Название";
             this.dataGridViewTextBoxColumn37.Name = "dataGridViewTextBoxColumn37";
             // 
-            // eWorkBindingSource
-            // 
-            this.eWorkBindingSource.DataSource = typeof(Orders.EWork);
-            // 
-            // cwNumber
-            // 
-            this.cwNumber.HeaderText = "";
-            this.cwNumber.Name = "cwNumber";
-            this.cwNumber.ReadOnly = true;
-            this.cwNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cwNumber.Width = 40;
-            // 
-            // cwId
-            // 
-            this.cwId.HeaderText = "Id";
-            this.cwId.Name = "cwId";
-            this.cwId.ReadOnly = true;
-            this.cwId.Visible = false;
-            // 
-            // cwClientId
-            // 
-            this.cwClientId.HeaderText = "ClientId";
-            this.cwClientId.Name = "cwClientId";
-            this.cwClientId.Visible = false;
-            // 
-            // cwClient
-            // 
-            this.cwClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cwClient.HeaderText = "Клиент";
-            this.cwClient.Name = "cwClient";
-            // 
-            // cwTypeId
-            // 
-            this.cwTypeId.HeaderText = "TypeId";
-            this.cwTypeId.Name = "cwTypeId";
-            this.cwTypeId.Visible = false;
-            // 
-            // cwType
-            // 
-            this.cwType.HeaderText = "Вид работы";
-            this.cwType.Name = "cwType";
-            this.cwType.Width = 120;
-            // 
-            // cwPrepay
-            // 
-            this.cwPrepay.HeaderText = "Предоплата";
-            this.cwPrepay.Name = "cwPrepay";
-            // 
-            // cwExcess
-            // 
-            this.cwExcess.HeaderText = "Доплата";
-            this.cwExcess.Name = "cwExcess";
-            // 
-            // cwCons
-            // 
-            this.cwCons.HeaderText = "Расход";
-            this.cwCons.Name = "cwCons";
-            // 
-            // cwHours
-            // 
-            this.cwHours.HeaderText = "Часы";
-            this.cwHours.Name = "cwHours";
-            // 
-            // cwSourceId
-            // 
-            this.cwSourceId.HeaderText = "SourceId";
-            this.cwSourceId.Name = "cwSourceId";
-            this.cwSourceId.Visible = false;
-            // 
-            // cwSource
-            // 
-            this.cwSource.HeaderText = "Источник";
-            this.cwSource.Name = "cwSource";
-            this.cwSource.Width = 120;
-            // 
-            // cwSert
-            // 
-            this.cwSert.HeaderText = "Сертификат";
-            this.cwSert.Name = "cwSert";
-            this.cwSert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cwCertId
-            // 
-            this.cwCertId.DataPropertyName = "cCertId";
-            this.cwCertId.HeaderText = "CertId";
-            this.cwCertId.Name = "cwCertId";
-            this.cwCertId.Visible = false;
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1599, 668);
+            this.ClientSize = new System.Drawing.Size(1599, 674);
             this.Controls.Add(this.tabApp);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2175,6 +2171,7 @@ namespace Orders
             this.Text = "Обсчёт заказов";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Move += new System.EventHandler(this.Form1_Move);
             this.tabApp.ResumeLayout(false);
             this.tabWork.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).EndInit();

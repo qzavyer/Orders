@@ -33,10 +33,10 @@ namespace Orders
         public EWorkType Type { get; set; }
 
         [Column("fDatePay")]
-        public int _datePay { get; set; }
+        public int datePay { get; set; }
 
         [Column("fDateEnd")]
-        public int _dateEnd { get; set; }
+        public int dateEnd { get; set; }
 
         [Column("fPrice")]
         public double Price { get; set; }
@@ -60,13 +60,13 @@ namespace Orders
             get
             {
                 var date = new DateTime(1970, 1, 1, 0, 0, 0);
-                return date.AddSeconds(_datePay);
+                return date.AddSeconds(datePay);
             }
             set
             {
                 var date = new DateTime(1970, 1, 1, 0, 0, 0);
                 var span = value - date;
-                _datePay = (int) span.TotalSeconds;
+                datePay = (int) span.TotalSeconds;
             }
         }
 
@@ -76,13 +76,13 @@ namespace Orders
             get
             {
                 var date = new DateTime(1970, 1, 1, 0, 0, 0);
-                return date.AddSeconds(_dateEnd);
+                return date.AddSeconds(dateEnd);
             }
             set
             {
                 var date = new DateTime(1970, 1, 1, 0, 0, 0);
                 var span = value - date;
-                _dateEnd = (int) span.TotalSeconds;
+                dateEnd = (int) span.TotalSeconds;
             }
         }
     }
