@@ -8,6 +8,7 @@ namespace Orders
     public static class Errors
     {
         private static readonly OrderContext Db = new OrderContext();
+
         public static void SaveError(string errorMessage, string function)
         {
             var conn = new SQLiteConnection(Db.Database.Connection.ConnectionString);

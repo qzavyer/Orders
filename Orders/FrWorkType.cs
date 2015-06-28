@@ -8,23 +8,23 @@ namespace Orders
 {
     public partial class FrWorkType : Form
     {
+        #region Поля класса
+        
         private static readonly OrderContext Db = new OrderContext();
         public EWorkType WorkType;
+        
+        #endregion
+
+        #region Управление формой
         
         public FrWorkType()
         {
             InitializeComponent();
         }
-
-        private void tbFind_KeyUp(object sender, KeyEventArgs e)
-        {
-            FilterTypes();
-        }
-
         private void FrWorkType_Load(object sender, EventArgs e)
         {
             var types = Db.WorkTypes.ToList();
-            types.Sort((item1,item2)=>String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
+            types.Sort((item1, item2) => String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
             grWorkTypes.DataSource = types;
             var cId = grWorkTypes.Columns["Id"];
             if (cId != null)
@@ -40,6 +40,14 @@ namespace Orders
             }
         }
 
+        #endregion
+
+        #region Работа формы
+
+        private void tbFind_KeyUp(object sender, KeyEventArgs e)
+        {
+            FilterTypes();
+        }
         private void btOk_Click(object sender, EventArgs e)
         {
             var row = grWorkTypes.SelectedRows[0];
@@ -47,7 +55,6 @@ namespace Orders
             WorkType = new EWorkType {Id = Convert.ToInt32(row.Cells[0].Value), Name = row.Cells[1].Value.ToString()};
             Close();
         }
-
         private void FilterTypes()
         {
             try
@@ -63,7 +70,7 @@ namespace Orders
                 types.Sort(
                     (item1, item2) => String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
                 grWorkTypes.DataSource = types;
-                btAdd.Enabled = grWorkTypes.RowCount == 0;
+                btAdd.Enabled = grWorkTypes.RowCount == 0 && !string.IsNullOrEmpty(text);
             }
             catch (Exception exception)
             {
@@ -76,13 +83,13 @@ namespace Orders
                 }
             }
         }
-
         private void btAdd_Click(object sender, EventArgs e)
         {
             try
             {
                 var text = tbFind.Text.Trim();
                 text = System.Text.RegularExpressions.Regex.Replace(text, " +", " ");
+                if (string.IsNullOrEmpty(text)) return;
                 Db.WorkTypes.Add(new EWorkType {Name = text});
                 Db.SaveChanges();
                 FilterTypes();
@@ -98,7 +105,6 @@ namespace Orders
                 }
             }
         }
-
         private void btSave_Click(object sender, EventArgs e)
         {
             try
@@ -129,5 +135,7 @@ namespace Orders
                 FilterTypes();
             }
         }
+
+        #endregion
     }
 }

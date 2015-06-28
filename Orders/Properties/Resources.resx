@@ -168,4 +168,13 @@
   <data name="NotEmptyName" xml:space="preserve">
     <value>Поле "Имя" не может быть пустым</value>
   </data>
+  <data name="CheckInputData" xml:space="preserve">
+    <value>Проверьте правильность ввода</value>
+  </data>
+  <data name="Cons_Type" xml:space="preserve">
+    <value>Вид расхода</value>
+  </data>
+  <data name="DeleteRecord" xml:space="preserve">
+    <value>Удалить запись?</value>
+  </data>
 </root>

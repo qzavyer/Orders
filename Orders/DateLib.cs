@@ -10,5 +10,10 @@ namespace Orders
         {
             return (int)((date - Date).TotalSeconds);
         }
+
+        public static DateTime GetDateFromInt(int intDate)
+        {
+            return Date.AddSeconds(intDate);
+        }
     }
 }

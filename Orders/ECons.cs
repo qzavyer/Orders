@@ -29,34 +29,35 @@ namespace Orders
         [Column("fWorkId")]
         public int WorkId { get; set; }
 
-        [NotMapped]
         [ForeignKey("WorkId")]
         public EWork Work { get; set; }
 
         [Column("fCertId")]
         public int CertId { get; set; }
 
-        [NotMapped]
         [ForeignKey("CertId")]
         public ECert Cert { get; set; }
 
         [Column("fDate")]
-        public int _date { get; set; }
+        public int date { get; set; }
 
         [NotMapped]
         public DateTime Date
         {
             get
             {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0);
-                return date.AddSeconds(_date);
+                var tdate = new DateTime(1970, 1, 1, 0, 0, 0);
+                return tdate.AddSeconds(date);
             }
             set
             {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0);
-                var span = value - date;
-                _date = (int) span.TotalSeconds;
+                var tdate = new DateTime(1970, 1, 1, 0, 0, 0);
+                var span = value -tdate;
+                date = (int) span.TotalSeconds;
             }
         }
+
+        [NotMapped]
+        public int RowId { get; set; }
     }
 }

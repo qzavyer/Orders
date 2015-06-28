@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,10 +25,10 @@ namespace Orders
         public EWorkType Type { get; set; }
 
         [Column("fDate")]
-        public int _datePay { get; set; }
+        public int datePay { get; set; }
 
         [Column("fExcessDate")]
-        public int? _dateExcess { get; set; }
+        public int? dateExcess { get; set; }
 
         [Column("fPrepay")]
         public double Prepay { get; set; }
@@ -58,12 +59,11 @@ namespace Orders
         {
             get
             {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0);
-                return date.AddSeconds(_datePay);
+                return DateLib.GetDateFromInt(datePay);
             }
             set
             {
-                _datePay = DateLib.GetDateInt(value);
+                datePay = DateLib.GetDateInt(value);
             }
         }
 
@@ -72,21 +72,23 @@ namespace Orders
         {
             get
             {
-                if (_dateExcess == null) return null;
+                if (dateExcess == null) return null;
                 var date = new DateTime(1970, 1, 1, 0, 0, 0);
-                return date.AddSeconds(_dateExcess.Value);
+                return date.AddSeconds(dateExcess.Value);
             }
             set
             {
                 if (value == null)
                 {
-                    _dateExcess = null;
+                    dateExcess = null;
                     return;
                 }
                 var date = new DateTime(1970, 1, 1, 0, 0, 0);
                 var span = value.Value - date;
-                _dateExcess = (int) span.TotalSeconds;
+                dateExcess = (int) span.TotalSeconds;
             }
         }
+
+        public List<ECons> Conses { get; set; }
     }
 }

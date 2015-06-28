@@ -9,15 +9,21 @@ namespace Orders
 {
     public partial class FrClient : Form
     {
+        #region Поля класса
+
         private static readonly OrderContext Db = new OrderContext();
         private static bool _hasChange;
         public Client ClientName;
+
+        #endregion
+
+        #region Управление формой
+        
         public FrClient()
         {
             //ClientName = new Client();
             InitializeComponent();
         }
-
         private void FrClient_Load(object sender, EventArgs e)
         {
             try
@@ -56,6 +62,20 @@ namespace Orders
                     cNote.Width = 150;
                     cNote.HeaderText = Resources.Note;
                 }
+
+                var cDateP = grClient.Columns["idate"];
+                if (cDateP != null)
+                {
+                    cDateP.Visible = false;
+                    cDateP.Width = 1;
+                }
+
+                var cDate = grClient.Columns["Date"];
+                if (cDate != null)
+                {
+                    cDate.Visible = false;
+                    cDate.Width = 1;
+                }
                 _hasChange = false;
             }
             catch(Exception exception)
@@ -69,6 +89,10 @@ namespace Orders
                 }
             }
         }
+
+        #endregion
+
+        #region Работа формы
 
         private void btOk_Click(object sender, EventArgs e)
         {
@@ -86,15 +110,28 @@ namespace Orders
             ClientName = new Client { Id = Convert.ToInt32(row.Cells[0].Value), Name = row.Cells[1].Value.ToString() };
             Close();
         }
-
         private void btSave_Click(object sender, EventArgs e)
         {
             SaveChanges();
         }
-
+        private void btAdd_Click(object sender, EventArgs e)
+        {
+            var fr = new FrAddClient();
+            fr.tbName.Text = tbFind.Text;
+            fr.ShowDialog();
+            FilterClients();
+        }
         private void tbFind_KeyUp(object sender, KeyEventArgs e)
         {
-           FilterClients();
+            FilterClients();
+        }
+        private void grClient_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void grClient_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            _hasChange = true;
         }
 
         private void FilterClients()
@@ -111,17 +148,6 @@ namespace Orders
             });
             grClient.DataSource = clients;
         }
-
-        private void grClient_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void grClient_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            _hasChange = true;
-        }
-
         private void SaveChanges()
         {
             try
@@ -174,12 +200,6 @@ namespace Orders
             }
         }
 
-        private void btAdd_Click(object sender, EventArgs e)
-        {
-            var fr = new FrAddClient();
-            fr.tbName.Text = tbFind.Text;
-            fr.ShowDialog();
-            FilterClients();
-        }
+        #endregion
     }
 }

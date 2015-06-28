@@ -24,21 +24,21 @@ namespace Orders
         public string Note { get; set; }
 
         [Column("fDate")]
-        public int _date { get; set; }
+        public int idate { get; set; }
 
         [NotMapped]
         public DateTime Date
         {
             get
             {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0);
-                return date.AddSeconds(_date);
+                var tdate = new DateTime(1970, 1, 1, 0, 0, 0);
+                return tdate.AddSeconds(idate);
             }
             set
             {
-                var date = new DateTime(1970, 1, 1, 0, 0, 0);
-                var span = value - date;
-                _date = (int) span.TotalSeconds;
+                var tdate = new DateTime(1970, 1, 1, 0, 0, 0);
+                var span = value - tdate;
+                idate = (int) span.TotalSeconds;
             }
         }
 
