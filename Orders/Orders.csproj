@@ -139,6 +139,12 @@
     <Compile Include="FrCons.Designer.cs">
       <DependentUpon>FrCons.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrConsType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrConsType.Designer.cs">
+      <DependentUpon>FrConsType.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrEvents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FrCert.resx">
       <DependentUpon>FrCert.cs</DependentUpon>
@@ -182,6 +189,9 @@
     <EmbeddedResource Include="FrCons.resx">
       <DependentUpon>FrCons.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrConsType.resx">
+      <DependentUpon>FrConsType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrEvents.resx">
       <DependentUpon>FrEvents.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +200,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrWorkType.resx">
       <DependentUpon>FrWorkType.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

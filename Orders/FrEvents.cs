@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
@@ -13,14 +7,10 @@ namespace Orders
     public partial class FrEvents : Form
     {
         private static readonly OrderContext DbContext = new OrderContext();
+        
         public FrEvents()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void FrEvents_Load(object sender, EventArgs e)
@@ -29,7 +19,9 @@ namespace Orders
             "FROM tWork W JOIN tClient C ON W.fClientId=C.fId JOIN tWorkType T ON W.fTypeId=T.fId " +
             "WHERE CAST(strftime('%j',date(W.fDate,'unixepoch')) AS INTEGER)>=CAST(strftime('%j', :date1) AS INTEGER) AND " +
             "CAST(strftime('%j',date(W.fDate,'unixepoch')) AS INTEGER)<CAST(strftime('%j', :date2) AS INTEGER)";
+
             var conn = new SQLiteConnection(DbContext.Database.Connection.ConnectionString);
+            conn.Open();
             using(var evCom = new SQLiteCommand(evCmd, conn)){
                 var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
                 evCom.Parameters.AddWithValue("date1", start);
@@ -40,15 +32,27 @@ namespace Orders
                     var i = 0;
                     while (evDr.Read())
                     {
-                        var l = new Label();
-                        l.Parent = list;
-                        l.Text = string.Format("{0}: {1} {2:dd.MM.yyyy}", evDr[1], evDr[2], evDr[3]);
-                        l.Top = i*20+5;
-                        l.Left = 5;
+                        var date = Convert.ToDateTime(evDr[0].ToString());
+                        var name = evDr[1].ToString();
+                        var type = evDr[2].ToString();
+                        new Label
+                        {
+                            Parent = list,
+                            Text = string.Format("{0}: {1} {2:dd.MM.yyyy}", name, type, date),
+                            Top = i*20 + 5,
+                            Left = 5,
+                            AutoSize = true
+                        };
+                        i++;
                     }
                 }
             }
 
+        }
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

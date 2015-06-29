@@ -70,6 +70,24 @@ namespace Orders.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Проверьте правильность ввода.
+        /// </summary>
+        internal static string CheckInputData {
+            get {
+                return ResourceManager.GetString("CheckInputData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вид расхода.
+        /// </summary>
+        internal static string Cons_Type {
+            get {
+                return ResourceManager.GetString("Cons_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Тип расх..
         /// </summary>
         internal static string ConsType {
@@ -102,6 +120,15 @@ namespace Orders.Properties {
         internal static string DatePay {
             get {
                 return ResourceManager.GetString("DatePay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить запись?.
+        /// </summary>
+        internal static string DeleteRecord {
+            get {
+                return ResourceManager.GetString("DeleteRecord", resourceCulture);
             }
         }
         

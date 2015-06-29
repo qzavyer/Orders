@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Data.SQLite;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Orders.Properties;
 
@@ -19,10 +20,9 @@ namespace Orders
         public int CertId;
         public List<int> ConsId = new List<int>();
         public List<ECons> Conses = new List<ECons>();
-        public DateTime WorkDate;
         public bool FrOk;
-        private DataTable _consType;
-        
+        public readonly List<int> DeleteConsList = new List<int>(); 
+
         #endregion
 
         #region Управление формой
@@ -33,10 +33,15 @@ namespace Orders
         }
         private void FrCons_Load(object sender, EventArgs e)
         {
+            FrOk = false;
             ControlLoad();
-            var conses = Db.Conses.Where(r => r.WorkId == WorkId && !Conses.Select(l => l.Id).Contains(r.Id)).ToList();
-            ConsLoad(conses);
-            Conses.AddRange(conses);
+            if (WorkId != 0)
+            {
+                var conses = Db.Conses.Where(r => r.WorkId == WorkId).ToList();
+                conses.RemoveAll(r => Conses.Select(l => l.Id).Contains(r.Id));
+                Conses.AddRange(conses);
+            }
+            ConsLoad(Conses);
         }
 
         #endregion
@@ -47,19 +52,19 @@ namespace Orders
         {
             
         }
-        private void ConsLoad(List<ECons> list)
+        private void ConsLoad(IEnumerable<ECons> list)
         {
             grCons.Rows.Clear();
             try
             {
                 foreach (var cons in list)
                 {
-                    var iRow = grCons.RowCount-1;
+                    var iRow = grCons.RowCount - 1;
                     grCons.RowCount = grCons.RowCount + 1;
                     var row = grCons.Rows[iRow];
                     row.Cells["cId"].Value = cons.Id;
                     row.Cells["cTypeId"].Value = cons.TypeId;
-                    row.Cells["cType"].Value = cons.Type;
+                    row.Cells["cType"].Value = Db.ConsTypes.Find(cons.TypeId).Return(r => r.Name, "");
                     row.Cells["cComment"].Value = cons.Comment;
                     row.Cells["cAmount"].Value = cons.Amount;                    
                 }
@@ -75,27 +80,92 @@ namespace Orders
                 }
             }
         }
+        private void grCons_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var iRow = e.RowIndex;
+            if (iRow < 0) return;
+            var iCol = e.ColumnIndex;
+            switch (grCons.Columns[iCol].Name)
+            {
+                case "cType":
+                    using (var fr = new FrConsType())
+                    {
+                        fr.ShowDialog(this);
+                        if (fr.ConsType == null) return;
+                        grCons.Rows[iRow].Cells["cTypeId"].Value = fr.ConsType.Id;
+                        grCons.Rows[iRow].Cells["cType"].Value = fr.ConsType.Name;
+                    }
+                    break;
+                case "cDelete":
+                    var res = MessageBox.Show(Resources.DeleteRecord, Resources.Orders, MessageBoxButtons.YesNo);
+                    if (res == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            var id = Convert.ToInt32(grCons.Rows[iRow].Cells["cId"].Value);
+                            DeleteConsList.Add(id);
+                        }
+                        catch
+                        {
+
+                        }
+                        grCons.Rows.RemoveAt(iRow);
+                    }
+                    break;
+            }
+        }
         private void btSave_Click(object sender, EventArgs e)
         {
             try
             {
+                Conses.Clear();
                 var rows = grCons.Rows;
                 foreach (DataGridViewRow row in rows)
                 {
-                    var cons = new ECons
+                    var cons = new ECons();
+                    try
                     {
-                        Comment = row.Cells["ccComment"].Value.ToString().Trim(),
-                        TypeId = string.IsNullOrEmpty(row.Cells["ccTypeId"].Value.ToString().Trim()) ? 0 : Convert.ToInt32(row.Cells["ccTypeId"].Value),
-                        Id = string.IsNullOrEmpty(row.Cells["ccId"].Value.ToString().Trim()) ? 0 : Convert.ToInt32(row.Cells["ccId"].Value),
-                        Amount = string.IsNullOrEmpty(row.Cells["ccAmount"].Value.ToString().Trim()) ? 0 : Convert.ToDouble(row.Cells["ccAmount"].Value)
-                    };
-                    if (cons.Id == 0 || cons.TypeId == 0 || cons.Amount < 0.01 || string.IsNullOrEmpty(cons.Comment)) throw new ArgumentException();
+                        cons.Id = Convert.ToInt32(row.Cells["cId"].Value);
+                    }
+                    catch
+                    {
+                        cons.Id = 0;
+                    }
+                    try
+                    {
+                        cons.TypeId = Convert.ToInt32(row.Cells["cTypeId"].Value);
+                    }
+                    catch
+                    {
+                        cons.TypeId = 0;
+                    }
+                    try
+                    {
+                        var comment = row.Cells["cComment"].Value.ToString().Trim();
+                        comment = Regex.Replace(comment, " +", " ");
+                        cons.Comment = comment;
+                    }
+                    catch
+                    {
+                        cons.Comment = "";
+                    }
+                    try
+                    {
+                        cons.Amount = Convert.ToDouble(row.Cells["cAmount"].Value);
+                    }
+                    catch
+                    {
+                        cons.Amount = 0;
+                    }
+                    if (cons.TypeId == 0 || cons.Amount < 0.01) continue;
                     Conses.Add(cons);
                 }
+                Close();
+                FrOk = true;
             }
             catch (ArgumentException)
             {
-                MessageBox.Show("Проверьте правильность ввода", Resources.Orders, MessageBoxButtons.OK);
+                MessageBox.Show(Resources.CheckInputData, Resources.Orders, MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {
@@ -112,10 +182,15 @@ namespace Orders
         {
             var text = tbFind.Text.Trim();
             text = System.Text.RegularExpressions.Regex.Replace(text, " +", " ");
-            var conses = string.IsNullOrEmpty(text) ? Conses : Conses.Where(r => r.Comment.IndexOf(text) > -1).ToList();
+            var conses = string.IsNullOrEmpty(text)
+                ? Conses
+                : Conses.Where(r => r.With(l => l.Type).Return(l => l.Name, "")
+                    .IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1).ToList();
             ConsLoad(conses);
         }
-
+        
         #endregion
+
+        
     }
 }

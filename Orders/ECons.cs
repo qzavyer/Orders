@@ -29,14 +29,12 @@ namespace Orders
         [Column("fWorkId")]
         public int WorkId { get; set; }
 
-        [NotMapped]
         [ForeignKey("WorkId")]
         public EWork Work { get; set; }
 
         [Column("fCertId")]
         public int CertId { get; set; }
 
-        [NotMapped]
         [ForeignKey("CertId")]
         public ECert Cert { get; set; }
 

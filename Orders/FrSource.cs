@@ -63,7 +63,7 @@ namespace Orders
                 types.Sort(
                     (item1, item2) => String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
                 grSources.DataSource = types;
-                btAdd.Enabled = grSources.RowCount == 0;
+                btAdd.Enabled = grSources.RowCount == 0 && !string.IsNullOrEmpty(text);
             }
             catch (Exception exception)
             {
@@ -83,6 +83,7 @@ namespace Orders
             {
                 var text = tbFind.Text.Trim();
                 text = System.Text.RegularExpressions.Regex.Replace(text, " +", " ");
+                if (string.IsNullOrEmpty(text)) return;
                 Db.SourceTypes.Add(new ESourceType { Name = text });
                 Db.SaveChanges();
                 FilterTypes();

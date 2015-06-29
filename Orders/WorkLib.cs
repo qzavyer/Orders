@@ -90,7 +90,7 @@ namespace Orders
                 // список всех расходов за месяц
                 monthWorkLst = Db.Conses.Where(w =>
                     w.date >= dateMonthStartInt && w.date < dateMonthEndInt)
-                    .Include(r => r.Type)
+                    .Include(r => r.Type).OrderBy(r=>r.date)
                     .ToList();
             }
             catch (Exception exception)
@@ -132,6 +132,12 @@ namespace Orders
                 }
             }
             return monthWorkLst;
+        }
+
+        public static DateTime GetMinDate()
+        {
+            var mindate = Db.Works.Min(r => r.datePay);
+            return DateLib.GetDateFromInt(mindate);
         }
     }
 }
