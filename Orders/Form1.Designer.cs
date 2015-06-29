@@ -32,16 +32,11 @@ namespace Orders
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -49,6 +44,7 @@ namespace Orders
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabArchive = new System.Windows.Forms.TabPage();
             this.lArcHourAvg = new System.Windows.Forms.Label();
@@ -132,18 +128,6 @@ namespace Orders
             this.grDicClient = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.grDicSource = new System.Windows.Forms.DataGridView();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.grDicWork = new System.Windows.Forms.DataGridView();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.grDicCons = new System.Windows.Forms.DataGridView();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.btDicSave = new System.Windows.Forms.Button();
             this.tabConsum = new System.Windows.Forms.TabPage();
@@ -304,26 +288,11 @@ namespace Orders
             this.cdpPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cdpMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cdpNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdwId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdwName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdcId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabArchive.SuspendLayout();
             this.tabGloss.SuspendLayout();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).BeginInit();
             this.panel17.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grDicSource)).BeginInit();
-            this.panel13.SuspendLayout();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grDicWork)).BeginInit();
-            this.panel14.SuspendLayout();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).BeginInit();
-            this.panel15.SuspendLayout();
             this.panel12.SuspendLayout();
             this.tabConsum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).BeginInit();
@@ -1084,9 +1053,6 @@ namespace Orders
             // tabGloss
             // 
             this.tabGloss.Controls.Add(this.panel16);
-            this.tabGloss.Controls.Add(this.panel7);
-            this.tabGloss.Controls.Add(this.panel9);
-            this.tabGloss.Controls.Add(this.panel8);
             this.tabGloss.Controls.Add(this.panel12);
             this.tabGloss.Location = new System.Drawing.Point(4, 24);
             this.tabGloss.Name = "tabGloss";
@@ -1103,7 +1069,7 @@ namespace Orders
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(3, 3);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(673, 614);
+            this.panel16.Size = new System.Drawing.Size(1585, 612);
             this.panel16.TabIndex = 12;
             // 
             // grDicClient
@@ -1128,7 +1094,7 @@ namespace Orders
             this.grDicClient.Name = "grDicClient";
             this.grDicClient.RowHeadersVisible = false;
             this.grDicClient.RowTemplate.Height = 24;
-            this.grDicClient.Size = new System.Drawing.Size(673, 586);
+            this.grDicClient.Size = new System.Drawing.Size(1585, 584);
             this.grDicClient.TabIndex = 3;
             // 
             // panel17
@@ -1137,7 +1103,7 @@ namespace Orders
             this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel17.Location = new System.Drawing.Point(0, 0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(673, 28);
+            this.panel17.Size = new System.Drawing.Size(1585, 28);
             this.panel17.TabIndex = 2;
             // 
             // label11
@@ -1145,169 +1111,16 @@ namespace Orders
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Location = new System.Drawing.Point(0, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(673, 28);
+            this.label11.Size = new System.Drawing.Size(1585, 28);
             this.label11.TabIndex = 1;
             this.label11.Text = "Клинеты";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.grDicSource);
-            this.panel7.Controls.Add(this.panel13);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(676, 3);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(304, 614);
-            this.panel7.TabIndex = 11;
-            // 
-            // grDicSource
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grDicSource.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.grDicSource.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grDicSource.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cdsId,
-            this.cdsName});
-            this.grDicSource.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicSource.Location = new System.Drawing.Point(0, 28);
-            this.grDicSource.Name = "grDicSource";
-            this.grDicSource.RowHeadersVisible = false;
-            this.grDicSource.RowTemplate.Height = 24;
-            this.grDicSource.Size = new System.Drawing.Size(304, 586);
-            this.grDicSource.TabIndex = 3;
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.label9);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(0, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(304, 28);
-            this.panel13.TabIndex = 2;
-            // 
-            // label9
-            // 
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(0, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(304, 28);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Источники";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.grDicWork);
-            this.panel9.Controls.Add(this.panel14);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(980, 3);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(304, 614);
-            this.panel9.TabIndex = 10;
-            // 
-            // grDicWork
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grDicWork.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.grDicWork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grDicWork.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cdwId,
-            this.cdwName});
-            this.grDicWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicWork.Location = new System.Drawing.Point(0, 28);
-            this.grDicWork.Name = "grDicWork";
-            this.grDicWork.RowHeadersVisible = false;
-            this.grDicWork.RowTemplate.Height = 24;
-            this.grDicWork.Size = new System.Drawing.Size(304, 586);
-            this.grDicWork.TabIndex = 4;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.label7);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(0, 0);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(304, 28);
-            this.panel14.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(0, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(304, 28);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Тип работы";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.grDicCons);
-            this.panel8.Controls.Add(this.panel15);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(1284, 3);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(304, 614);
-            this.panel8.TabIndex = 7;
-            // 
-            // grDicCons
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grDicCons.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grDicCons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grDicCons.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cdcId,
-            this.cdcName});
-            this.grDicCons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicCons.Location = new System.Drawing.Point(0, 28);
-            this.grDicCons.Name = "grDicCons";
-            this.grDicCons.RowHeadersVisible = false;
-            this.grDicCons.RowTemplate.Height = 24;
-            this.grDicCons.Size = new System.Drawing.Size(304, 586);
-            this.grDicCons.TabIndex = 4;
-            // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.label5);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel15.Location = new System.Drawing.Point(0, 0);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(304, 28);
-            this.panel15.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(304, 28);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Тип расхода";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel12
             // 
             this.panel12.Controls.Add(this.btDicSave);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel12.Location = new System.Drawing.Point(3, 617);
+            this.panel12.Location = new System.Drawing.Point(3, 615);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(1585, 28);
             this.panel12.TabIndex = 6;
@@ -1349,19 +1162,19 @@ namespace Orders
             this.grCons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grCons.Location = new System.Drawing.Point(3, 3);
             this.grCons.Name = "grCons";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grCons.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grCons.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grCons.RowHeadersVisible = false;
             this.grCons.RowTemplate.Height = 24;
-            this.grCons.Size = new System.Drawing.Size(1585, 614);
+            this.grCons.Size = new System.Drawing.Size(1585, 612);
             this.grCons.TabIndex = 1;
             this.grCons.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCons_CellClick);
             this.grCons.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCons_CellValueChanged);
@@ -1381,7 +1194,7 @@ namespace Orders
             this.panel5.Controls.Add(this.chShowAll);
             this.panel5.Controls.Add(this.btConsSave);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 617);
+            this.panel5.Location = new System.Drawing.Point(3, 615);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1585, 28);
             this.panel5.TabIndex = 0;
@@ -1439,7 +1252,7 @@ namespace Orders
             this.grCert.Name = "grCert";
             this.grCert.RowHeadersVisible = false;
             this.grCert.RowTemplate.Height = 24;
-            this.grCert.Size = new System.Drawing.Size(1585, 614);
+            this.grCert.Size = new System.Drawing.Size(1585, 612);
             this.grCert.TabIndex = 1;
             this.grCert.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCert_CellClick);
             // 
@@ -1447,7 +1260,7 @@ namespace Orders
             // 
             this.panel6.Controls.Add(this.btCertSave);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(3, 617);
+            this.panel6.Location = new System.Drawing.Point(3, 615);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1585, 28);
             this.panel6.TabIndex = 0;
@@ -1480,53 +1293,81 @@ namespace Orders
             chartArea1.AxisX.IsLabelAutoFit = false;
             chartArea1.AxisX.MajorGrid.Enabled = false;
             chartArea1.AxisX.MajorTickMark.Enabled = false;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.LawnGreen;
-            chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.LawnGreen;
-            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.Blue;
-            chartArea1.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.Blue;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.Empty;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Green;
+            chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Green;
+            chartArea1.AxisY2.LineColor = System.Drawing.Color.Empty;
+            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.Gold;
+            chartArea1.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.Gold;
             chartArea1.Name = "arIncSum";
+            chartArea1.Position.Auto = false;
+            chartArea1.Position.Height = 30F;
+            chartArea1.Position.Width = 50F;
+            chartArea1.Position.Y = 3F;
             chartArea2.AxisX.Interval = 1D;
             chartArea2.AxisX.IsLabelAutoFit = false;
             chartArea2.AxisX.MajorGrid.Enabled = false;
             chartArea2.AxisX.MajorTickMark.Enabled = false;
-            chartArea2.Name = "arIncCount";
+            chartArea2.AxisY.LineColor = System.Drawing.Color.Empty;
+            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Green;
+            chartArea2.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Green;
+            chartArea2.AxisY2.LineColor = System.Drawing.Color.Empty;
+            chartArea2.AxisY2.MajorGrid.LineColor = System.Drawing.Color.Gold;
+            chartArea2.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.Gold;
+            chartArea2.Name = "arSourceSum";
+            chartArea2.Position.Auto = false;
+            chartArea2.Position.Height = 30F;
+            chartArea2.Position.Width = 50F;
+            chartArea2.Position.Y = 35F;
             chartArea3.AxisX.Interval = 1D;
             chartArea3.AxisX.IsLabelAutoFit = false;
             chartArea3.AxisX.MajorGrid.Enabled = false;
             chartArea3.AxisX.MajorTickMark.Enabled = false;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.Empty;
+            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.Tomato;
+            chartArea3.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Tomato;
             chartArea3.Name = "arConsWork";
+            chartArea3.Position.Auto = false;
+            chartArea3.Position.Height = 30F;
+            chartArea3.Position.Width = 50F;
+            chartArea3.Position.X = 50F;
+            chartArea3.Position.Y = 3F;
             chartArea4.AxisX.Interval = 1D;
             chartArea4.AxisX.IsLabelAutoFit = false;
             chartArea4.AxisX.MajorGrid.Enabled = false;
             chartArea4.AxisX.MajorTickMark.Enabled = false;
+            chartArea4.AxisY.LineColor = System.Drawing.Color.Empty;
+            chartArea4.AxisY.MajorGrid.LineColor = System.Drawing.Color.Tomato;
+            chartArea4.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Tomato;
             chartArea4.Name = "arConsType";
+            chartArea4.Position.Auto = false;
+            chartArea4.Position.Height = 30F;
+            chartArea4.Position.Width = 50F;
+            chartArea4.Position.X = 50F;
+            chartArea4.Position.Y = 35F;
             chartArea5.AxisX.Interval = 1D;
             chartArea5.AxisX.IsLabelAutoFit = false;
             chartArea5.AxisX.MajorGrid.Enabled = false;
             chartArea5.AxisX.MajorTickMark.Enabled = false;
-            chartArea5.Name = "arSourceSum";
-            chartArea6.AxisX.Interval = 1D;
-            chartArea6.AxisX.IsLabelAutoFit = false;
-            chartArea6.AxisX.MajorGrid.Enabled = false;
-            chartArea6.AxisX.MajorTickMark.Enabled = false;
-            chartArea6.Name = "arSourceCount";
-            chartArea7.AxisX.Interval = 1D;
-            chartArea7.AxisX.IsLabelAutoFit = false;
-            chartArea7.AxisX.MajorGrid.Enabled = false;
-            chartArea7.AxisX.MajorTickMark.Enabled = false;
-            chartArea7.Name = "arMonth";
+            chartArea5.AxisY.LineColor = System.Drawing.Color.Empty;
+            chartArea5.AxisY.MajorGrid.LineColor = System.Drawing.Color.Green;
+            chartArea5.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Green;
+            chartArea5.Name = "arMonth";
+            chartArea5.Position.Auto = false;
+            chartArea5.Position.Height = 30F;
+            chartArea5.Position.Width = 100F;
+            chartArea5.Position.Y = 67F;
             this.chrtSourceSum.ChartAreas.Add(chartArea1);
             this.chrtSourceSum.ChartAreas.Add(chartArea2);
             this.chrtSourceSum.ChartAreas.Add(chartArea3);
             this.chrtSourceSum.ChartAreas.Add(chartArea4);
             this.chrtSourceSum.ChartAreas.Add(chartArea5);
-            this.chrtSourceSum.ChartAreas.Add(chartArea6);
-            this.chrtSourceSum.ChartAreas.Add(chartArea7);
             this.chrtSourceSum.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chrtSourceSum.Location = new System.Drawing.Point(3, 3);
             this.chrtSourceSum.Name = "chrtSourceSum";
             this.chrtSourceSum.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.ChartArea = "arIncSum";
+            series1.Color = System.Drawing.Color.Green;
             series1.CustomProperties = "DrawingStyle=Cylinder";
             series1.IsValueShownAsLabel = true;
             series1.LabelToolTip = "#VAL";
@@ -1534,6 +1375,7 @@ namespace Orders
             series1.Name = "serIncSum";
             series1.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series2.ChartArea = "arIncSum";
+            series2.Color = System.Drawing.Color.Gold;
             series2.CustomProperties = "DrawingStyle=Cylinder";
             series2.IsValueShownAsLabel = true;
             series2.LabelToolTip = "#VAL";
@@ -1542,6 +1384,7 @@ namespace Orders
             series2.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series3.ChartArea = "arConsWork";
+            series3.Color = System.Drawing.Color.Tomato;
             series3.CustomProperties = "DrawingStyle=Cylinder";
             series3.IsValueShownAsLabel = true;
             series3.LabelToolTip = "#VAL";
@@ -1549,6 +1392,7 @@ namespace Orders
             series3.Name = "serConsWork";
             series3.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series4.ChartArea = "arConsType";
+            series4.Color = System.Drawing.Color.Tomato;
             series4.CustomProperties = "DrawingStyle=Cylinder";
             series4.IsValueShownAsLabel = true;
             series4.LabelToolTip = "#VAL";
@@ -1556,26 +1400,36 @@ namespace Orders
             series4.Name = "serConsType";
             series4.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series5.ChartArea = "arSourceSum";
+            series5.Color = System.Drawing.Color.Green;
             series5.CustomProperties = "DrawingStyle=Cylinder";
             series5.IsValueShownAsLabel = true;
             series5.LabelToolTip = "#VAL";
             series5.Legend = "Legend1";
             series5.Name = "serSourceSum";
             series5.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
-            series6.ChartArea = "arSourceCount";
+            series6.ChartArea = "arSourceSum";
+            series6.Color = System.Drawing.Color.Gold;
             series6.CustomProperties = "DrawingStyle=Cylinder";
             series6.IsValueShownAsLabel = true;
             series6.LabelToolTip = "#VAL";
-            series6.Legend = "Legend1";
             series6.Name = "serSourceCount";
             series6.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series7.ChartArea = "arMonth";
+            series7.Color = System.Drawing.Color.Green;
             series7.CustomProperties = "DrawingStyle=Cylinder";
             series7.IsValueShownAsLabel = true;
             series7.LabelToolTip = "#VAL";
             series7.Legend = "Legend1";
             series7.Name = "serMonth";
             series7.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series8.ChartArea = "arMonth";
+            series8.Color = System.Drawing.Color.Beige;
+            series8.CustomProperties = "DrawingStyle=Cylinder";
+            series8.IsValueShownAsLabel = true;
+            series8.LabelToolTip = "#VAL";
+            series8.Name = "serMonthP";
+            series8.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             this.chrtSourceSum.Series.Add(series1);
             this.chrtSourceSum.Series.Add(series2);
             this.chrtSourceSum.Series.Add(series3);
@@ -1583,6 +1437,7 @@ namespace Orders
             this.chrtSourceSum.Series.Add(series5);
             this.chrtSourceSum.Series.Add(series6);
             this.chrtSourceSum.Series.Add(series7);
+            this.chrtSourceSum.Series.Add(series8);
             this.chrtSourceSum.Size = new System.Drawing.Size(1585, 640);
             this.chrtSourceSum.TabIndex = 0;
             this.chrtSourceSum.MouseEnter += new System.EventHandler(this.chrtSourceSum_MouseEnter);
@@ -2884,49 +2739,6 @@ namespace Orders
             this.cdpNote.HeaderText = "Примечание";
             this.cdpNote.Name = "cdpNote";
             // 
-            // cdsId
-            // 
-            this.cdsId.DataPropertyName = "fId";
-            this.cdsId.HeaderText = "Id";
-            this.cdsId.Name = "cdsId";
-            this.cdsId.Visible = false;
-            // 
-            // cdsName
-            // 
-            this.cdsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cdsName.DataPropertyName = "fName";
-            this.cdsName.FillWeight = 70F;
-            this.cdsName.HeaderText = "Название";
-            this.cdsName.Name = "cdsName";
-            // 
-            // cdwId
-            // 
-            this.cdwId.DataPropertyName = "fId";
-            this.cdwId.HeaderText = "";
-            this.cdwId.Name = "cdwId";
-            this.cdwId.Visible = false;
-            // 
-            // cdwName
-            // 
-            this.cdwName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cdwName.DataPropertyName = "fName";
-            this.cdwName.HeaderText = "Название";
-            this.cdwName.Name = "cdwName";
-            // 
-            // cdcId
-            // 
-            this.cdcId.DataPropertyName = "fId";
-            this.cdcId.HeaderText = "Id";
-            this.cdcId.Name = "cdcId";
-            this.cdcId.Visible = false;
-            // 
-            // cdcName
-            // 
-            this.cdcName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cdcName.DataPropertyName = "fName";
-            this.cdcName.HeaderText = "Название";
-            this.cdcName.Name = "cdcName";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2947,15 +2759,6 @@ namespace Orders
             this.panel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).EndInit();
             this.panel17.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grDicSource)).EndInit();
-            this.panel13.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grDicWork)).EndInit();
-            this.panel14.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).EndInit();
-            this.panel15.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.tabConsum.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).EndInit();
@@ -3111,24 +2914,6 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn cdpNote;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.DataGridView grDicSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdsId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdsName;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.DataGridView grDicWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdwId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdwName;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.DataGridView grDicCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdcId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdcName;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Button btDicSave;
         private System.Windows.Forms.TabPage tabConsum;

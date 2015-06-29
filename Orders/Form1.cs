@@ -374,6 +374,8 @@ namespace Orders
             lYearL.Text = date.AddYears(-1).ToString("yyyy");
             lMonthC.Text = date.ToString("MMMM");
 
+            Text = string.Format("Обсчёт заказов ({0:MMMM yyyy})", _currentDate);
+
             #region Графики
 
             var incSumDic = new Dictionary<string, double>();
@@ -449,6 +451,7 @@ namespace Orders
             chrtSourceSum.Series["serConsType"].Points.DataBind(consTypeDic, "Key", "Value", "");
 
             var incMonthDic = new Dictionary<string, double>();
+            var incMonthPDic = new Dictionary<string, double>();
             foreach (var work in yearWorkLst)
             {
                 if (incMonthDic.ContainsKey(work.DatePay.ToString("MMMM")))
@@ -460,8 +463,19 @@ namespace Orders
                     incMonthDic.Add(work.DatePay.ToString("MMMM"), work.Prepay + work.Excess);
                 }
             }
+            foreach (var work in pastYearWorkLst)
+            {
+                if (incMonthPDic.ContainsKey(work.DatePay.ToString("MMMM")))
+                {
+                    incMonthPDic[work.DatePay.ToString("MMMM")] += (work.Prepay + work.Excess);
+                }
+                else
+                {
+                    incMonthPDic.Add(work.DatePay.ToString("MMMM"), work.Prepay + work.Excess);
+                }
+            }
             chrtSourceSum.Series["serMonth"].Points.DataBind(incMonthDic, "Key", "Value", "");
-            
+            chrtSourceSum.Series["serMonthP"].Points.DataBind(incMonthPDic, "Key", "Value", "");
             #endregion
 
         }
