@@ -38,28 +38,25 @@ namespace Orders
                 var cName = grClient.Columns["Name"];
                 if (cName != null)
                 {
-                    cName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    cName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     cName.HeaderText = Resources.Name;
                 }
                 var cPhone = grClient.Columns["Phone"];
                 if (cPhone != null)
                 {
-                    cPhone.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    cPhone.Width = 120;
+                    cName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     cPhone.HeaderText = Resources.Phone;
                 }
                 var cEmail = grClient.Columns["Mail"];
                 if (cEmail != null)
                 {
-                    cEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    cEmail.Width = 120;
+                    cName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     cEmail.HeaderText = Resources.Email;
                 }
                 var cNote = grClient.Columns["Note"];
                 if (cNote != null)
                 {
                     cNote.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    cNote.Width = 150;
                     cNote.HeaderText = Resources.Note;
                 }
 
@@ -67,14 +64,12 @@ namespace Orders
                 if (cDateP != null)
                 {
                     cDateP.Visible = false;
-                    cDateP.Width = 1;
                 }
 
                 var cDate = grClient.Columns["Date"];
                 if (cDate != null)
                 {
                     cDate.Visible = false;
-                    cDate.Width = 1;
                 }
                 _hasChange = false;
             }

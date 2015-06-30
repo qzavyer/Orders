@@ -49,17 +49,19 @@
             this.panel1.Controls.Add(this.btSave);
             this.panel1.Controls.Add(this.btOk);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 512);
+            this.panel1.Location = new System.Drawing.Point(0, 421);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(432, 25);
+            this.panel1.Size = new System.Drawing.Size(324, 20);
             this.panel1.TabIndex = 0;
             // 
             // btSave
             // 
             this.btSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btSave.Location = new System.Drawing.Point(327, 0);
+            this.btSave.Location = new System.Drawing.Point(245, 0);
+            this.btSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(105, 25);
+            this.btSave.Size = new System.Drawing.Size(79, 20);
             this.btSave.TabIndex = 1;
             this.btSave.Text = "Сохранить";
             this.btSave.UseVisualStyleBackColor = true;
@@ -69,8 +71,9 @@
             // 
             this.btOk.Dock = System.Windows.Forms.DockStyle.Left;
             this.btOk.Location = new System.Drawing.Point(0, 0);
+            this.btOk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btOk.Name = "btOk";
-            this.btOk.Size = new System.Drawing.Size(105, 25);
+            this.btOk.Size = new System.Drawing.Size(79, 20);
             this.btOk.TabIndex = 0;
             this.btOk.Text = "Выбрать";
             this.btOk.UseVisualStyleBackColor = true;
@@ -82,17 +85,19 @@
             this.panel2.Controls.Add(this.tbFind);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(432, 25);
+            this.panel2.Size = new System.Drawing.Size(324, 20);
             this.panel2.TabIndex = 1;
             // 
             // btAdd
             // 
             this.btAdd.Dock = System.Windows.Forms.DockStyle.Left;
             this.btAdd.Enabled = false;
-            this.btAdd.Location = new System.Drawing.Point(250, 0);
+            this.btAdd.Location = new System.Drawing.Point(188, 0);
+            this.btAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(105, 25);
+            this.btAdd.Size = new System.Drawing.Size(79, 20);
             this.btAdd.TabIndex = 1;
             this.btAdd.Text = "Добавить";
             this.btAdd.UseVisualStyleBackColor = true;
@@ -102,8 +107,9 @@
             // 
             this.tbFind.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbFind.Location = new System.Drawing.Point(0, 0);
+            this.tbFind.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbFind.Name = "tbFind";
-            this.tbFind.Size = new System.Drawing.Size(250, 22);
+            this.tbFind.Size = new System.Drawing.Size(188, 20);
             this.tbFind.TabIndex = 0;
             this.tbFind.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbFind_KeyUp);
             // 
@@ -111,12 +117,13 @@
             // 
             this.grWorkTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grWorkTypes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grWorkTypes.Location = new System.Drawing.Point(0, 25);
+            this.grWorkTypes.Location = new System.Drawing.Point(0, 20);
+            this.grWorkTypes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grWorkTypes.Name = "grWorkTypes";
             this.grWorkTypes.RowHeadersVisible = false;
             this.grWorkTypes.RowTemplate.Height = 24;
             this.grWorkTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grWorkTypes.Size = new System.Drawing.Size(432, 487);
+            this.grWorkTypes.Size = new System.Drawing.Size(324, 401);
             this.grWorkTypes.TabIndex = 2;
             // 
             // eWorkBindingSource
@@ -125,15 +132,17 @@
             // 
             // FrWorkType
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 537);
+            this.ClientSize = new System.Drawing.Size(324, 441);
             this.Controls.Add(this.grWorkTypes);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(440, 570);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(332, 468);
             this.Name = "FrWorkType";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Виды работ";
             this.Load += new System.EventHandler(this.FrWorkType_Load);
             this.panel1.ResumeLayout(false);

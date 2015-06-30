@@ -39,19 +39,17 @@
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.btClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 194);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(0, 158);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(389, 25);
+            this.panel1.Size = new System.Drawing.Size(292, 20);
             this.panel1.TabIndex = 2;
             // 
             // btClose
             // 
             this.btClose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btClose.Location = new System.Drawing.Point(289, 0);
-            this.btClose.Margin = new System.Windows.Forms.Padding(4);
+            this.btClose.Location = new System.Drawing.Point(217, 0);
             this.btClose.Name = "btClose";
-            this.btClose.Size = new System.Drawing.Size(100, 25);
+            this.btClose.Size = new System.Drawing.Size(75, 20);
             this.btClose.TabIndex = 1;
             this.btClose.Text = "Закрыть";
             this.btClose.UseVisualStyleBackColor = true;
@@ -62,21 +60,20 @@
             this.list.AutoScroll = true;
             this.list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.list.Location = new System.Drawing.Point(0, 0);
-            this.list.Margin = new System.Windows.Forms.Padding(4);
             this.list.Name = "list";
-            this.list.Size = new System.Drawing.Size(389, 194);
+            this.list.Size = new System.Drawing.Size(292, 158);
             this.list.TabIndex = 3;
             // 
             // FrEvents
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 219);
+            this.ClientSize = new System.Drawing.Size(292, 178);
             this.Controls.Add(this.list);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrEvents";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrEvents";
             this.TopMost = true;

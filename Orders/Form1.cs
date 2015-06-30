@@ -45,7 +45,8 @@ namespace Orders
                 ControlLoad();
                 _currentDate = DateTime.Now;
                 GridMonthLoad(_currentDate);
-
+                GetClients();
+                
                 var minDate = WorkLib.GetMinDate();
                 for (var i = minDate.Year; i < DateTime.Now.Year; i++)
                 {
@@ -941,7 +942,92 @@ namespace Orders
         }
 
         #endregion
-        
+
+        #region Вкладка Справочник
+
+        private void GetClients()
+        {
+            try
+            {
+                FilterClients();
+                var cId = grDicClient.Columns["Id"];
+                if (cId != null)
+                {
+                    cId.Visible = false;
+                    cId.ReadOnly = true;
+                }
+                var cName = grDicClient.Columns["Name"];
+                if (cName != null)
+                {
+                    cName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    cName.HeaderText = Resources.Name;
+                }
+                var cPhone = grDicClient.Columns["Phone"];
+                if (cPhone != null)
+                {
+                    cPhone.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    cPhone.HeaderText = Resources.Phone;
+                }
+                var cEmail = grDicClient.Columns["Mail"];
+                if (cEmail != null)
+                {
+                    cEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    cEmail.HeaderText = Resources.Email;
+                }
+                var cNote = grDicClient.Columns["Note"];
+                if (cNote != null)
+                {
+                    cNote.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    cNote.HeaderText = Resources.Note;
+                }
+                var cDateP = grDicClient.Columns["idate"];
+                if (cDateP != null)
+                {
+                    cDateP.Visible = false;                    
+                }
+
+                var cDate = grDicClient.Columns["Date"];
+                if (cDate != null)
+                {
+                    cDate.HeaderText = "Дата создания";
+                    cDate.Width = 100;
+                    cDate.Resizable = DataGridViewTriState.False;
+                }
+            }
+            catch (Exception exception)
+            {
+                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                if (declaringType != null)
+                {
+                    var cName = declaringType.Name;
+                    var mName = MethodBase.GetCurrentMethod().Name;
+                    Errors.SaveError(exception.Message, cName + "/" + mName);
+                }
+            }
+        }
+        private void tbFindClient_KeyUp(object sender, KeyEventArgs e)
+        {
+            FilterClients();
+        }
+        private void FilterClients()
+        {
+            var text = tbFindClient.Text.Trim();
+            text = System.Text.RegularExpressions.Regex.Replace(text, " +", " ");
+            var clients = _db.Clients.ToList();
+            if (!string.IsNullOrEmpty(text))
+                clients = clients.Where(r =>
+                    (!string.IsNullOrEmpty(r.Name) && r.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1) ||
+                    (!string.IsNullOrEmpty(r.Phone) && r.Phone.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1) ||
+                    (!string.IsNullOrEmpty(r.Mail) && r.Mail.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1)).ToList();
+            clients.Sort((item1, item2) =>
+            {
+                var order1 = item1.Date.CompareTo(item2.Date);
+                return order1 == 0 ? String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase) : order1;
+            });
+            grDicClient.DataSource = clients;
+        }
+        #endregion
+
         #region Вкладка Архив
 
         private void cbArchYear_SelectedIndexChanged(object sender, EventArgs e)

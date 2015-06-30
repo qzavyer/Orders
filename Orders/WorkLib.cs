@@ -20,7 +20,7 @@ namespace Orders
                 var dateMonthStartInt = DateLib.GetDateInt(dateMonthStart);
                 var dateMonthEndInt = DateLib.GetDateInt(dateMonthEnd);
                 // список всех работ за месяц
-                monthWorkLst = Db.Works
+                    monthWorkLst = Db.Works
                     .Where(w =>w.datePay >= dateMonthStartInt && w.datePay < dateMonthEndInt)
                     .Include(r => r.Client)
                     .Include(r => r.Source)
