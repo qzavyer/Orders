@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Data;
+<<<<<<< HEAD
 using System.Linq;
+=======
+using System.Data.SQLite;
+>>>>>>> origin/Расход
 using System.Reflection;
 using System.Windows.Forms;
 using Orders.Properties;
@@ -24,10 +28,16 @@ namespace Orders
             //ClientName = new Client();
             InitializeComponent();
         }
+<<<<<<< HEAD
         private void FrClient_Load(object sender, EventArgs e)
+=======
+
+        private void LoadClients()
+>>>>>>> origin/Расход
         {
             try
             {
+<<<<<<< HEAD
                 FilterClients();
                 var cId = grClient.Columns["Id"];
                 if (cId != null)
@@ -72,6 +82,15 @@ namespace Orders
                     cDate.Visible = false;
                 }
                 _hasChange = false;
+=======
+                conn.Open();
+                var clients = new DataTable();
+                const string clCmd = "SELECT fId,fName,fPhone,fEmail,fNote " +
+                                     "FROM tClient ORDER BY fName";
+                var clAd = new SQLiteDataAdapter { SelectCommand = new SQLiteCommand(clCmd, conn) };
+                clAd.Fill(clients);
+                grClient.DataSource = clients;
+>>>>>>> origin/Расход
             }
             catch(Exception exception)
             {
@@ -85,9 +104,16 @@ namespace Orders
             }
         }
 
+<<<<<<< HEAD
         #endregion
 
         #region Работа формы
+=======
+        private void FrClient_Load(object sender, EventArgs e)
+        {
+            LoadClients();
+        }
+>>>>>>> origin/Расход
 
         private void btOk_Click(object sender, EventArgs e)
         {
@@ -105,6 +131,7 @@ namespace Orders
             ClientName = new EClient { Id = Convert.ToInt32(row.Cells[0].Value), Name = row.Cells[1].Value.ToString() };
             Close();
         }
+<<<<<<< HEAD
         private void btSave_Click(object sender, EventArgs e)
         {
             SaveChanges();
@@ -183,12 +210,52 @@ namespace Orders
                 MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
             }
             catch (Exception exception)
+=======
+
+        private void btSave_Click(object sender, EventArgs e)
+        {
+            var conn = Connections.GetConnection();
+            try
+            {
+                conn.Open();
+                const string insCmd = "INSERT INTO tClient (fName,fPhone,fEmail,fNote,fDate) " +
+                                      "VALUES(:name,:phone,:mail,:note,strftime('%s',date('now')))";
+                const string updCmd = "UPDATE tClient SET fName=:name,fPhone=:phone,fEmail=:mail,fNote=:note WHERE fId=:id";
+                for (var i = 0; i < grClient.RowCount - 1; i++)
+                {
+                    var insCom = new SQLiteCommand(conn);
+                    insCom.Parameters.Add(new SQLiteParameter("name", DbType.String));
+                    insCom.Parameters.Add(new SQLiteParameter("phone", DbType.String));
+                    insCom.Parameters.Add(new SQLiteParameter("mail", DbType.String));
+                    insCom.Parameters.Add(new SQLiteParameter("note", DbType.String));
+                    if (string.IsNullOrEmpty(grClient.Rows[i].Cells["fId"].Value.ToString()))
+                    {
+                        insCom.CommandText = insCmd;
+                    }
+                    else
+                    {
+                        insCom.CommandText = updCmd;
+                        insCom.Parameters.Add(new SQLiteParameter("id", DbType.Int32));
+                        insCom.Parameters["id"].Value = grClient.Rows[i].Cells["fId"].Value;
+                    }
+                    insCom.Parameters["name"].Value = grClient.Rows[i].Cells["fName"].Value.ToString();
+                    insCom.Parameters["phone"].Value = grClient.Rows[i].Cells["fPhone"].Value.ToString();
+                    insCom.Parameters["mail"].Value = grClient.Rows[i].Cells["fEmail"].Value.ToString();
+                    insCom.Parameters["note"].Value = grClient.Rows[i].Cells["fNote"].Value.ToString();
+                    insCom.Prepare();
+                    insCom.ExecuteNonQuery();
+                }
+                LoadClients();
+            }
+            catch (Exception ex)
+>>>>>>> origin/Расход
             {
                 var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
                 if (declaringType != null)
                 {
                     var cName = declaringType.Name;
                     var mName = MethodBase.GetCurrentMethod().Name;
+<<<<<<< HEAD
                     Errors.SaveError(exception.Message, cName + "/" + mName);
                 }
                 tbFind.Clear();
@@ -196,5 +263,15 @@ namespace Orders
         }
 
         #endregion
+=======
+                    Errors.SaveError(ex.Message, cName + "/" + mName);
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+>>>>>>> origin/Расход
     }
 }
