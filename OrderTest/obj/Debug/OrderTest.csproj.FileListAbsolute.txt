@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\OrderTest\bin\Debug\OrderTest.dll
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\OrderTest\bin\Debug\OrderTest.pdb
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\OrderTest\obj\Debug\OrderTest.csprojResolveAssemblyReference.cache
@@ -8,10 +7,3 @@ c:\Users\Qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debu
 c:\Users\Qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.pdb
 c:\Users\Qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.dll
 c:\Users\Qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.pdb
-=======
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.dll
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.pdb
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.dll
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.pdb
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.csprojResolveAssemblyReference.cache
->>>>>>> origin/Расход

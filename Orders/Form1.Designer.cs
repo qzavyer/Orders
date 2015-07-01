@@ -49,19 +49,7 @@ namespace Orders
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-<<<<<<< HEAD
             System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
-=======
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
->>>>>>> origin/Расход
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabArchive = new System.Windows.Forms.TabPage();
             this.lArcHourAvg = new System.Windows.Forms.Label();
@@ -147,6 +135,14 @@ namespace Orders
             this.tbFindClient = new System.Windows.Forms.TextBox();
             this.tabConsum = new System.Windows.Forms.TabPage();
             this.grCons = new System.Windows.Forms.DataGridView();
+            this.csId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csWorkId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.chShowAll = new System.Windows.Forms.CheckBox();
             this.btConsSave = new System.Windows.Forms.Button();
@@ -167,7 +163,6 @@ namespace Orders
             this.chrtSourceSum = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabWork = new System.Windows.Forms.TabPage();
             this.grWork = new System.Windows.Forms.DataGridView();
-<<<<<<< HEAD
             this.cwNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -183,8 +178,6 @@ namespace Orders
             this.cwCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwSert = new System.Windows.Forms.DataGridViewButtonColumn();
             this.cwDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-=======
->>>>>>> origin/Расход
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lHoursC = new System.Windows.Forms.Label();
@@ -252,132 +245,8 @@ namespace Orders
             this.btHistory3 = new System.Windows.Forms.Button();
             this.btHistory2 = new System.Windows.Forms.Button();
             this.btHistory1 = new System.Windows.Forms.Button();
-<<<<<<< HEAD
             this.tabApp = new System.Windows.Forms.TabControl();
             this.sdBackUp = new System.Windows.Forms.FolderBrowserDialog();
-=======
-            this.tabGraph = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.splitIncome = new System.Windows.Forms.SplitContainer();
-            this.chMonth = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chYear = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.splitCons = new System.Windows.Forms.SplitContainer();
-            this.chCMonth = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chCYear = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tabCert = new System.Windows.Forms.TabPage();
-            this.grCert = new System.Windows.Forms.DataGridView();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.btCertSave = new System.Windows.Forms.Button();
-            this.tabConsum = new System.Windows.Forms.TabPage();
-            this.grCons = new System.Windows.Forms.DataGridView();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btConsSave = new System.Windows.Forms.Button();
-            this.tabGloss = new System.Windows.Forms.TabPage();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.grDicClient = new System.Windows.Forms.DataGridView();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.grDicSource = new System.Windows.Forms.DataGridView();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.grDicWork = new System.Windows.Forms.DataGridView();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.grDicCons = new System.Windows.Forms.DataGridView();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.btDicSave = new System.Windows.Forms.Button();
-            this.tabArchive = new System.Windows.Forms.TabPage();
-            this.cType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cSource = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cSert = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
-            this.cbArchYear = new System.Windows.Forms.ComboBox();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
-            this.panel22 = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.label24 = new System.Windows.Forms.Label();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.label25 = new System.Windows.Forms.Label();
-            this.panel26 = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
-            this.panel27 = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.panel28 = new System.Windows.Forms.Panel();
-            this.label28 = new System.Windows.Forms.Label();
-            this.panel29 = new System.Windows.Forms.Panel();
-            this.label29 = new System.Windows.Forms.Label();
-            this.panel30 = new System.Windows.Forms.Panel();
-            this.label30 = new System.Windows.Forms.Label();
-            this.lHourAr1 = new System.Windows.Forms.Label();
-            this.lConsAr1 = new System.Windows.Forms.Label();
-            this.lIncAr1 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.btArchEdit01 = new System.Windows.Forms.Button();
-            this.btArchEdit02 = new System.Windows.Forms.Button();
-            this.lHourAr2 = new System.Windows.Forms.Label();
-            this.lConsAr2 = new System.Windows.Forms.Label();
-            this.lIncAr2 = new System.Windows.Forms.Label();
-            this.lHourAr3 = new System.Windows.Forms.Label();
-            this.lConsAr3 = new System.Windows.Forms.Label();
-            this.lIncAr3 = new System.Windows.Forms.Label();
-            this.btArchEdit03 = new System.Windows.Forms.Button();
-            this.lHourAr4 = new System.Windows.Forms.Label();
-            this.lConsAr4 = new System.Windows.Forms.Label();
-            this.lIncAr4 = new System.Windows.Forms.Label();
-            this.btArchEdit04 = new System.Windows.Forms.Button();
-            this.lHourAr5 = new System.Windows.Forms.Label();
-            this.lConsAr5 = new System.Windows.Forms.Label();
-            this.lIncAr5 = new System.Windows.Forms.Label();
-            this.btArchEdit05 = new System.Windows.Forms.Button();
-            this.lHourAr6 = new System.Windows.Forms.Label();
-            this.lConsAr6 = new System.Windows.Forms.Label();
-            this.lIncAr6 = new System.Windows.Forms.Label();
-            this.btArchEdit06 = new System.Windows.Forms.Button();
-            this.lHourAr7 = new System.Windows.Forms.Label();
-            this.lConsAr7 = new System.Windows.Forms.Label();
-            this.lIncAr7 = new System.Windows.Forms.Label();
-            this.btArchEdit07 = new System.Windows.Forms.Button();
-            this.lHourAr8 = new System.Windows.Forms.Label();
-            this.lConsAr8 = new System.Windows.Forms.Label();
-            this.lIncAr8 = new System.Windows.Forms.Label();
-            this.btArchEdit08 = new System.Windows.Forms.Button();
-            this.lHourAr9 = new System.Windows.Forms.Label();
-            this.lConsAr9 = new System.Windows.Forms.Label();
-            this.lIncAr9 = new System.Windows.Forms.Label();
-            this.btArchEdit09 = new System.Windows.Forms.Button();
-            this.lHourAr10 = new System.Windows.Forms.Label();
-            this.lConsAr10 = new System.Windows.Forms.Label();
-            this.lIncAr10 = new System.Windows.Forms.Label();
-            this.btArchEdit10 = new System.Windows.Forms.Button();
-            this.lHourAr11 = new System.Windows.Forms.Label();
-            this.lConsAr11 = new System.Windows.Forms.Label();
-            this.lIncAr11 = new System.Windows.Forms.Label();
-            this.btArchEdit11 = new System.Windows.Forms.Button();
-            this.lHourAr12 = new System.Windows.Forms.Label();
-            this.lConsAr12 = new System.Windows.Forms.Label();
-            this.lIncAr12 = new System.Windows.Forms.Label();
-            this.btArchEdit12 = new System.Windows.Forms.Button();
->>>>>>> origin/Расход
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -411,7 +280,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-<<<<<<< HEAD
             this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn35 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -419,14 +287,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn39 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csWorkId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabArchive.SuspendLayout();
             this.tabGloss.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).BeginInit();
@@ -439,42 +299,6 @@ namespace Orders
             this.panel6.SuspendLayout();
             this.tabGraph.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrtSourceSum)).BeginInit();
-=======
-            this.cNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cPrepay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cExcess = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccPayerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccPayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdpName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdpPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdpMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdpNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdwId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdwName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdcId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdcName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabApp.SuspendLayout();
->>>>>>> origin/Расход
             this.tabWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grWork)).BeginInit();
             this.panel3.SuspendLayout();
@@ -482,68 +306,11 @@ namespace Orders
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pHistory.SuspendLayout();
-<<<<<<< HEAD
             this.tabApp.SuspendLayout();
-=======
-            this.tabGraph.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitIncome)).BeginInit();
-            this.splitIncome.Panel1.SuspendLayout();
-            this.splitIncome.Panel2.SuspendLayout();
-            this.splitIncome.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chMonth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chYear)).BeginInit();
-            this.panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitCons)).BeginInit();
-            this.splitCons.Panel1.SuspendLayout();
-            this.splitCons.Panel2.SuspendLayout();
-            this.splitCons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chCMonth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chCYear)).BeginInit();
-            this.panel20.SuspendLayout();
-            this.tabCert.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grCert)).BeginInit();
-            this.panel6.SuspendLayout();
-            this.tabConsum.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grCons)).BeginInit();
-            this.panel5.SuspendLayout();
-            this.tabGloss.SuspendLayout();
-            this.panel16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).BeginInit();
-            this.panel17.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grDicSource)).BeginInit();
-            this.panel13.SuspendLayout();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grDicWork)).BeginInit();
-            this.panel14.SuspendLayout();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).BeginInit();
-            this.panel15.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.tabArchive.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel18.SuspendLayout();
-            this.panel21.SuspendLayout();
-            this.panel22.SuspendLayout();
-            this.panel23.SuspendLayout();
-            this.panel24.SuspendLayout();
-            this.panel25.SuspendLayout();
-            this.panel26.SuspendLayout();
-            this.panel27.SuspendLayout();
-            this.panel28.SuspendLayout();
-            this.panel29.SuspendLayout();
-            this.panel30.SuspendLayout();
->>>>>>> origin/Расход
             this.SuspendLayout();
             // 
             // tabArchive
             // 
-<<<<<<< HEAD
             this.tabArchive.Controls.Add(this.lArcHourAvg);
             this.tabArchive.Controls.Add(this.lArcHourAll);
             this.tabArchive.Controls.Add(this.lArcHour12);
@@ -627,20 +394,6 @@ namespace Orders
             this.tabArchive.TabIndex = 5;
             this.tabArchive.Text = "Архив";
             this.tabArchive.UseVisualStyleBackColor = true;
-=======
-            this.tabApp.Controls.Add(this.tabWork);
-            this.tabApp.Controls.Add(this.tabGraph);
-            this.tabApp.Controls.Add(this.tabCert);
-            this.tabApp.Controls.Add(this.tabConsum);
-            this.tabApp.Controls.Add(this.tabGloss);
-            this.tabApp.Controls.Add(this.tabArchive);
-            this.tabApp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabApp.Location = new System.Drawing.Point(0, 0);
-            this.tabApp.Name = "tabApp";
-            this.tabApp.SelectedIndex = 0;
-            this.tabApp.Size = new System.Drawing.Size(1599, 668);
-            this.tabApp.TabIndex = 0;
->>>>>>> origin/Расход
             // 
             // lArcHourAvg
             // 
@@ -658,7 +411,6 @@ namespace Orders
             this.lArcHourAll.TabIndex = 112;
             this.lArcHourAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-<<<<<<< HEAD
             // lArcHour12
             // 
             this.lArcHour12.Location = new System.Drawing.Point(734, 498);
@@ -756,9 +508,6 @@ namespace Orders
             this.lArcHour1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lArcProfAvg
-=======
-            // panel3
->>>>>>> origin/Расход
             // 
             this.lArcProfAvg.Location = new System.Drawing.Point(569, 583);
             this.lArcProfAvg.Name = "lArcProfAvg";
@@ -1403,6 +1152,67 @@ namespace Orders
             this.grCons.TabIndex = 1;
             this.grCons.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCons_CellClick);
             this.grCons.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCons_CellValueChanged);
+            // 
+            // csId
+            // 
+            this.csId.DataPropertyName = "csId";
+            this.csId.HeaderText = "Id";
+            this.csId.Name = "csId";
+            this.csId.ReadOnly = true;
+            this.csId.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.csId.Visible = false;
+            // 
+            // csNumber
+            // 
+            this.csNumber.DataPropertyName = "csNumber";
+            this.csNumber.HeaderText = "";
+            this.csNumber.Name = "csNumber";
+            this.csNumber.ReadOnly = true;
+            this.csNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.csNumber.Width = 40;
+            // 
+            // csTypeId
+            // 
+            this.csTypeId.HeaderText = "TypeId";
+            this.csTypeId.Name = "csTypeId";
+            this.csTypeId.Visible = false;
+            // 
+            // csType
+            // 
+            this.csType.HeaderText = "Вид расхода";
+            this.csType.Name = "csType";
+            this.csType.Width = 140;
+            // 
+            // csAmount
+            // 
+            this.csAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.csAmount.DataPropertyName = "csAmount";
+            this.csAmount.FillWeight = 40F;
+            this.csAmount.HeaderText = "Сумма";
+            this.csAmount.Name = "csAmount";
+            // 
+            // csComment
+            // 
+            this.csComment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.csComment.DataPropertyName = "csComment";
+            this.csComment.HeaderText = "Комментарий";
+            this.csComment.Name = "csComment";
+            // 
+            // csWorkId
+            // 
+            this.csWorkId.HeaderText = "Работа";
+            this.csWorkId.Name = "csWorkId";
+            this.csWorkId.ReadOnly = true;
+            // 
+            // csDelete
+            // 
+            this.csDelete.HeaderText = "X";
+            this.csDelete.Name = "csDelete";
+            this.csDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.csDelete.Text = "X";
+            this.csDelete.ToolTipText = "Удалить запись";
+            this.csDelete.UseColumnTextForButtonValue = true;
+            this.csDelete.Width = 25;
             // 
             // panel5
             // 
@@ -2235,18 +2045,7 @@ namespace Orders
             this.lYearC.TabIndex = 44;
             this.lYearC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-<<<<<<< HEAD
             // lSumLAll
-=======
-            this.tabGraph.Controls.Add(this.splitContainer2);
-            this.tabGraph.Location = new System.Drawing.Point(4, 27);
-            this.tabGraph.Name = "tabGraph";
-            this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraph.Size = new System.Drawing.Size(1591, 637);
-            this.tabGraph.TabIndex = 4;
-            this.tabGraph.Text = "Графики";
-            this.tabGraph.UseVisualStyleBackColor = true;
->>>>>>> origin/Расход
             // 
             this.lSumLAll.Location = new System.Drawing.Point(189, 537);
             this.lSumLAll.Name = "lSumLAll";
@@ -2262,12 +2061,7 @@ namespace Orders
             this.lSumCAll.TabIndex = 42;
             this.lSumCAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-<<<<<<< HEAD
             // lSumL12
-=======
-            this.splitContainer2.Panel1.Controls.Add(this.splitIncome);
-            this.splitContainer2.Panel1.Controls.Add(this.panel19);
->>>>>>> origin/Расход
             // 
             this.lSumL12.Location = new System.Drawing.Point(189, 487);
             this.lSumL12.Name = "lSumL12";
@@ -2275,7 +2069,6 @@ namespace Orders
             this.lSumL12.TabIndex = 41;
             this.lSumL12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-<<<<<<< HEAD
             // lSumC12
             // 
             this.lSumC12.Location = new System.Drawing.Point(99, 487);
@@ -2304,31 +2097,6 @@ namespace Orders
             this.lSumL11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lSumC11
-=======
-            this.splitContainer2.Panel2.Controls.Add(this.splitCons);
-            this.splitContainer2.Panel2.Controls.Add(this.panel20);
-            this.splitContainer2.Size = new System.Drawing.Size(1585, 631);
-            this.splitContainer2.SplitterDistance = 334;
-            this.splitContainer2.TabIndex = 4;
-            // 
-            // splitIncome
-            // 
-            this.splitIncome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitIncome.IsSplitterFixed = true;
-            this.splitIncome.Location = new System.Drawing.Point(0, 28);
-            this.splitIncome.Name = "splitIncome";
-            // 
-            // splitIncome.Panel1
-            // 
-            this.splitIncome.Panel1.Controls.Add(this.chMonth);
-            // 
-            // splitIncome.Panel2
-            // 
-            this.splitIncome.Panel2.Controls.Add(this.chYear);
-            this.splitIncome.Size = new System.Drawing.Size(1585, 306);
-            this.splitIncome.SplitterDistance = 790;
-            this.splitIncome.TabIndex = 6;
->>>>>>> origin/Расход
             // 
             this.lSumC11.Location = new System.Drawing.Point(99, 447);
             this.lSumC11.Name = "lSumC11";
@@ -2336,7 +2104,6 @@ namespace Orders
             this.lSumC11.TabIndex = 37;
             this.lSumC11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-<<<<<<< HEAD
             // btHistory11
             // 
             this.btHistory11.Location = new System.Drawing.Point(7, 447);
@@ -2349,209 +2116,6 @@ namespace Orders
             this.btHistory11.Click += new System.EventHandler(this.History_Click);
             // 
             // lSumL9
-=======
-            this.chMonth.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.TopRight;
-            chartArea1.AxisY.Title = "Сумма (тыс.руб.)";
-            chartArea1.Name = "ChartArea2";
-            chartArea2.AxisY.Title = "Количество";
-            chartArea2.Name = "ChartArea1";
-            this.chMonth.ChartAreas.Add(chartArea1);
-            this.chMonth.ChartAreas.Add(chartArea2);
-            this.chMonth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chMonth.Location = new System.Drawing.Point(0, 0);
-            this.chMonth.Name = "chMonth";
-            this.chMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series1.ChartArea = "ChartArea2";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series1.IsValueShownAsLabel = true;
-            series1.Name = "income";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series2.IsValueShownAsLabel = true;
-            series2.LabelBackColor = System.Drawing.Color.Transparent;
-            series2.Name = "count";
-            series2.YValuesPerPoint = 2;
-            this.chMonth.Series.Add(series1);
-            this.chMonth.Series.Add(series2);
-            this.chMonth.Size = new System.Drawing.Size(790, 306);
-            this.chMonth.TabIndex = 1;
-            this.chMonth.Text = "Месячный график";
-            title1.Name = "Title1";
-            title1.Text = "Месячный график";
-            this.chMonth.Titles.Add(title1);
-            this.chMonth.Click += new System.EventHandler(this.chMonth_Click);
-            // 
-            // chYear
-            // 
-            chartArea3.AxisY.Title = "Сумма (тыс.руб.)";
-            chartArea3.Name = "ChartArea2";
-            chartArea4.AxisY.Crossing = -1.7976931348623157E+308D;
-            chartArea4.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea4.AxisY.MaximumAutoSize = 50F;
-            chartArea4.AxisY.Title = "Количество";
-            chartArea4.Name = "ChartArea1";
-            this.chYear.ChartAreas.Add(chartArea3);
-            this.chYear.ChartAreas.Add(chartArea4);
-            this.chYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chYear.Location = new System.Drawing.Point(0, 0);
-            this.chYear.Name = "chYear";
-            this.chYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series3.IsValueShownAsLabel = true;
-            series3.Legend = "Legend1";
-            series3.Name = "count";
-            series4.ChartArea = "ChartArea2";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series4.IsValueShownAsLabel = true;
-            series4.Name = "income";
-            this.chYear.Series.Add(series3);
-            this.chYear.Series.Add(series4);
-            this.chYear.Size = new System.Drawing.Size(791, 306);
-            this.chYear.TabIndex = 3;
-            this.chYear.Text = "Доход за год";
-            title2.Name = "Title1";
-            title2.Text = "Доход за год";
-            this.chYear.Titles.Add(title2);
-            // 
-            // panel19
-            // 
-            this.panel19.Controls.Add(this.label13);
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel19.Location = new System.Drawing.Point(0, 0);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(1585, 28);
-            this.panel19.TabIndex = 5;
-            // 
-            // label13
-            // 
-            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(0, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(1585, 28);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Доход";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // splitCons
-            // 
-            this.splitCons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitCons.IsSplitterFixed = true;
-            this.splitCons.Location = new System.Drawing.Point(0, 28);
-            this.splitCons.Name = "splitCons";
-            // 
-            // splitCons.Panel1
-            // 
-            this.splitCons.Panel1.Controls.Add(this.chCMonth);
-            // 
-            // splitCons.Panel2
-            // 
-            this.splitCons.Panel2.Controls.Add(this.chCYear);
-            this.splitCons.Size = new System.Drawing.Size(1585, 265);
-            this.splitCons.SplitterDistance = 790;
-            this.splitCons.TabIndex = 7;
-            // 
-            // chCMonth
-            // 
-            this.chCMonth.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.TopRight;
-            chartArea5.AxisY.Title = "Сумма (тыс.руб.)";
-            chartArea5.Name = "ChartArea2";
-            chartArea6.AxisY.Title = "Количество";
-            chartArea6.Name = "ChartArea1";
-            this.chCMonth.ChartAreas.Add(chartArea5);
-            this.chCMonth.ChartAreas.Add(chartArea6);
-            this.chCMonth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chCMonth.Location = new System.Drawing.Point(0, 0);
-            this.chCMonth.Name = "chCMonth";
-            this.chCMonth.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series5.IsValueShownAsLabel = true;
-            series5.Name = "count";
-            series5.YValuesPerPoint = 2;
-            series6.ChartArea = "ChartArea2";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series6.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series6.IsValueShownAsLabel = true;
-            series6.Name = "cons";
-            this.chCMonth.Series.Add(series5);
-            this.chCMonth.Series.Add(series6);
-            this.chCMonth.Size = new System.Drawing.Size(790, 265);
-            this.chCMonth.TabIndex = 1;
-            this.chCMonth.Text = "Месячный график";
-            title3.Name = "Title1";
-            title3.Text = "Месячный график";
-            this.chCMonth.Titles.Add(title3);
-            // 
-            // chCYear
-            // 
-            chartArea7.Name = "ChartArea2";
-            chartArea8.AxisY.Crossing = -1.7976931348623157E+308D;
-            chartArea8.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea8.AxisY.MaximumAutoSize = 50F;
-            chartArea8.Name = "ChartArea1";
-            this.chCYear.ChartAreas.Add(chartArea7);
-            this.chCYear.ChartAreas.Add(chartArea8);
-            this.chCYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chCYear.Location = new System.Drawing.Point(0, 0);
-            this.chCYear.Name = "chCYear";
-            this.chCYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series7.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series7.IsValueShownAsLabel = true;
-            series7.Name = "count";
-            series7.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.Diamond;
-            series8.ChartArea = "ChartArea2";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series8.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series8.IsValueShownAsLabel = true;
-            series8.Name = "cons";
-            this.chCYear.Series.Add(series7);
-            this.chCYear.Series.Add(series8);
-            this.chCYear.Size = new System.Drawing.Size(791, 265);
-            this.chCYear.TabIndex = 3;
-            this.chCYear.Text = "Годовой график";
-            title4.Name = "Title1";
-            title4.Text = "Расход за год";
-            this.chCYear.Titles.Add(title4);
-            // 
-            // panel20
-            // 
-            this.panel20.Controls.Add(this.label16);
-            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel20.Location = new System.Drawing.Point(0, 0);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(1585, 28);
-            this.panel20.TabIndex = 6;
-            // 
-            // label16
-            // 
-            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.Location = new System.Drawing.Point(0, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(1585, 28);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Расход";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tabCert
-            // 
-            this.tabCert.Controls.Add(this.grCert);
-            this.tabCert.Controls.Add(this.panel6);
-            this.tabCert.Location = new System.Drawing.Point(4, 27);
-            this.tabCert.Name = "tabCert";
-            this.tabCert.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCert.Size = new System.Drawing.Size(1591, 637);
-            this.tabCert.TabIndex = 1;
-            this.tabCert.Text = "Сертификаты";
-            this.tabCert.UseVisualStyleBackColor = true;
->>>>>>> origin/Расход
             // 
             this.lSumL9.Location = new System.Drawing.Point(189, 366);
             this.lSumL9.Name = "lSumL9";
@@ -2559,7 +2123,6 @@ namespace Orders
             this.lSumL9.TabIndex = 35;
             this.lSumL9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-<<<<<<< HEAD
             // lSumC9
             // 
             this.lSumC9.Location = new System.Drawing.Point(99, 366);
@@ -2641,36 +2204,6 @@ namespace Orders
             this.lSumL6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lSumC6
-=======
-            this.grCert.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grCert.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ccId,
-            this.ccPayerId,
-            this.ccClientId,
-            this.ccNumber,
-            this.ccPayerName,
-            this.ccClientName,
-            this.ccPrice,
-            this.ccCons,
-            this.ccHours});
-            this.grCert.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grCert.Location = new System.Drawing.Point(3, 3);
-            this.grCert.Name = "grCert";
-            this.grCert.RowHeadersVisible = false;
-            this.grCert.RowTemplate.Height = 24;
-            this.grCert.Size = new System.Drawing.Size(1585, 603);
-            this.grCert.TabIndex = 1;
-            this.grCert.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCert_CellClick);
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.btCertSave);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(3, 606);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1585, 28);
-            this.panel6.TabIndex = 0;
->>>>>>> origin/Расход
             // 
             this.lSumC6.Location = new System.Drawing.Point(99, 244);
             this.lSumC6.Name = "lSumC6";
@@ -2686,19 +2219,7 @@ namespace Orders
             this.lSumL3.TabIndex = 23;
             this.lSumL3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-<<<<<<< HEAD
             // lSumC3
-=======
-            this.tabConsum.Controls.Add(this.grCons);
-            this.tabConsum.Controls.Add(this.panel5);
-            this.tabConsum.Location = new System.Drawing.Point(4, 27);
-            this.tabConsum.Name = "tabConsum";
-            this.tabConsum.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConsum.Size = new System.Drawing.Size(1591, 637);
-            this.tabConsum.TabIndex = 2;
-            this.tabConsum.Text = "Расходы";
-            this.tabConsum.UseVisualStyleBackColor = true;
->>>>>>> origin/Расход
             // 
             this.lSumC3.Location = new System.Drawing.Point(99, 123);
             this.lSumC3.Name = "lSumC3";
@@ -2706,7 +2227,6 @@ namespace Orders
             this.lSumC3.TabIndex = 22;
             this.lSumC3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-<<<<<<< HEAD
             // lSumL4
             // 
             this.lSumL4.Location = new System.Drawing.Point(189, 163);
@@ -2748,40 +2268,6 @@ namespace Orders
             this.lSumL2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lSumC2
-=======
-            this.grCons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grCons.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.csId,
-            this.csNumber,
-            this.csAmount,
-            this.csComment});
-            this.grCons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grCons.Location = new System.Drawing.Point(3, 3);
-            this.grCons.Name = "grCons";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = "0";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grCons.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.grCons.RowHeadersVisible = false;
-            this.grCons.RowTemplate.Height = 24;
-            this.grCons.Size = new System.Drawing.Size(1585, 603);
-            this.grCons.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btConsSave);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 606);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1585, 28);
-            this.panel5.TabIndex = 0;
->>>>>>> origin/Расход
             // 
             this.lSumC2.Location = new System.Drawing.Point(99, 82);
             this.lSumC2.Name = "lSumC2";
@@ -2800,22 +2286,7 @@ namespace Orders
             this.btHistory10.UseVisualStyleBackColor = true;
             this.btHistory10.Click += new System.EventHandler(this.History_Click);
             // 
-<<<<<<< HEAD
             // btHistory9
-=======
-            this.tabGloss.Controls.Add(this.panel16);
-            this.tabGloss.Controls.Add(this.panel7);
-            this.tabGloss.Controls.Add(this.panel9);
-            this.tabGloss.Controls.Add(this.panel8);
-            this.tabGloss.Controls.Add(this.panel12);
-            this.tabGloss.Location = new System.Drawing.Point(4, 27);
-            this.tabGloss.Name = "tabGloss";
-            this.tabGloss.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGloss.Size = new System.Drawing.Size(1591, 637);
-            this.tabGloss.TabIndex = 3;
-            this.tabGloss.Text = "Справочники";
-            this.tabGloss.UseVisualStyleBackColor = true;
->>>>>>> origin/Расход
             // 
             this.btHistory9.Location = new System.Drawing.Point(7, 366);
             this.btHistory9.Name = "btHistory9";
@@ -2826,17 +2297,7 @@ namespace Orders
             this.btHistory9.UseVisualStyleBackColor = true;
             this.btHistory9.Click += new System.EventHandler(this.History_Click);
             // 
-<<<<<<< HEAD
             // btHistory8
-=======
-            this.panel16.Controls.Add(this.grDicClient);
-            this.panel16.Controls.Add(this.panel17);
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel16.Location = new System.Drawing.Point(3, 3);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(673, 603);
-            this.panel16.TabIndex = 12;
->>>>>>> origin/Расход
             // 
             this.btHistory8.Location = new System.Drawing.Point(7, 325);
             this.btHistory8.Name = "btHistory8";
@@ -2847,7 +2308,6 @@ namespace Orders
             this.btHistory8.UseVisualStyleBackColor = true;
             this.btHistory8.Click += new System.EventHandler(this.History_Click);
             // 
-<<<<<<< HEAD
             // btHistory7
             // 
             this.btHistory7.Location = new System.Drawing.Point(7, 285);
@@ -2915,222 +2375,6 @@ namespace Orders
             this.btHistory2.Click += new System.EventHandler(this.History_Click);
             // 
             // btHistory1
-=======
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grDicClient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grDicClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grDicClient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cdpId,
-            this.cdpName,
-            this.cdpPhone,
-            this.cdpMail,
-            this.cdpNote});
-            this.grDicClient.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicClient.Location = new System.Drawing.Point(0, 28);
-            this.grDicClient.Name = "grDicClient";
-            this.grDicClient.RowHeadersVisible = false;
-            this.grDicClient.RowTemplate.Height = 24;
-            this.grDicClient.Size = new System.Drawing.Size(673, 575);
-            this.grDicClient.TabIndex = 3;
-            // 
-            // panel17
-            // 
-            this.panel17.Controls.Add(this.label11);
-            this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel17.Location = new System.Drawing.Point(0, 0);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(673, 28);
-            this.panel17.TabIndex = 2;
-            // 
-            // label11
-            // 
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(0, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(673, 28);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Клинеты";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.grDicSource);
-            this.panel7.Controls.Add(this.panel13);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(676, 3);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(304, 603);
-            this.panel7.TabIndex = 11;
-            // 
-            // grDicSource
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grDicSource.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.grDicSource.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grDicSource.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cdsId,
-            this.cdsName});
-            this.grDicSource.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicSource.Location = new System.Drawing.Point(0, 28);
-            this.grDicSource.Name = "grDicSource";
-            this.grDicSource.RowHeadersVisible = false;
-            this.grDicSource.RowTemplate.Height = 24;
-            this.grDicSource.Size = new System.Drawing.Size(304, 575);
-            this.grDicSource.TabIndex = 3;
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.label9);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(0, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(304, 28);
-            this.panel13.TabIndex = 2;
-            // 
-            // label9
-            // 
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(0, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(304, 28);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Источники";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.grDicWork);
-            this.panel9.Controls.Add(this.panel14);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(980, 3);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(304, 603);
-            this.panel9.TabIndex = 10;
-            // 
-            // grDicWork
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grDicWork.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.grDicWork.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grDicWork.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cdwId,
-            this.cdwName});
-            this.grDicWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicWork.Location = new System.Drawing.Point(0, 28);
-            this.grDicWork.Name = "grDicWork";
-            this.grDicWork.RowHeadersVisible = false;
-            this.grDicWork.RowTemplate.Height = 24;
-            this.grDicWork.Size = new System.Drawing.Size(304, 575);
-            this.grDicWork.TabIndex = 4;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.label7);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(0, 0);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(304, 28);
-            this.panel14.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(0, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(304, 28);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Тип работы";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.grDicCons);
-            this.panel8.Controls.Add(this.panel15);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(1284, 3);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(304, 603);
-            this.panel8.TabIndex = 7;
-            // 
-            // grDicCons
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grDicCons.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.grDicCons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grDicCons.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cdcId,
-            this.cdcName});
-            this.grDicCons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grDicCons.Location = new System.Drawing.Point(0, 28);
-            this.grDicCons.Name = "grDicCons";
-            this.grDicCons.RowHeadersVisible = false;
-            this.grDicCons.RowTemplate.Height = 24;
-            this.grDicCons.Size = new System.Drawing.Size(304, 575);
-            this.grDicCons.TabIndex = 4;
-            // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.label5);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel15.Location = new System.Drawing.Point(0, 0);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(304, 28);
-            this.panel15.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(304, 28);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Тип расхода";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.btDicSave);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel12.Location = new System.Drawing.Point(3, 606);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1585, 28);
-            this.panel12.TabIndex = 6;
-            // 
-            // btDicSave
-            // 
-            this.btDicSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btDicSave.Location = new System.Drawing.Point(1467, 0);
-            this.btDicSave.Name = "btDicSave";
-            this.btDicSave.Size = new System.Drawing.Size(118, 28);
-            this.btDicSave.TabIndex = 0;
-            this.btDicSave.Text = "Сохранить";
-            this.btDicSave.UseVisualStyleBackColor = true;
-            this.btDicSave.Click += new System.EventHandler(this.btDicSave_Click);
->>>>>>> origin/Расход
             // 
             this.btHistory1.Location = new System.Drawing.Point(7, 42);
             this.btHistory1.Name = "btHistory1";
@@ -3141,7 +2385,6 @@ namespace Orders
             this.btHistory1.UseVisualStyleBackColor = true;
             this.btHistory1.Click += new System.EventHandler(this.History_Click);
             // 
-<<<<<<< HEAD
             // tabApp
             // 
             this.tabApp.Controls.Add(this.tabWork);
@@ -3156,853 +2399,6 @@ namespace Orders
             this.tabApp.SelectedIndex = 0;
             this.tabApp.Size = new System.Drawing.Size(1599, 674);
             this.tabApp.TabIndex = 0;
-=======
-            this.tabArchive.Controls.Add(this.panel26);
-            this.tabArchive.Controls.Add(this.panel27);
-            this.tabArchive.Controls.Add(this.panel28);
-            this.tabArchive.Controls.Add(this.panel29);
-            this.tabArchive.Controls.Add(this.panel30);
-            this.tabArchive.Controls.Add(this.panel25);
-            this.tabArchive.Controls.Add(this.panel24);
-            this.tabArchive.Controls.Add(this.panel23);
-            this.tabArchive.Controls.Add(this.panel22);
-            this.tabArchive.Controls.Add(this.panel21);
-            this.tabArchive.Controls.Add(this.panel18);
-            this.tabArchive.Controls.Add(this.panel11);
-            this.tabArchive.Controls.Add(this.panel10);
-            this.tabArchive.Location = new System.Drawing.Point(4, 27);
-            this.tabArchive.Name = "tabArchive";
-            this.tabArchive.Padding = new System.Windows.Forms.Padding(3);
-            this.tabArchive.Size = new System.Drawing.Size(1591, 637);
-            this.tabArchive.TabIndex = 5;
-            this.tabArchive.Text = "Архив";
-            this.tabArchive.UseVisualStyleBackColor = true;
->>>>>>> origin/Расход
-            // 
-            // cType
-            // 
-            this.cType.HeaderText = "Тип";
-            this.cType.Name = "cType";
-            this.cType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cType.Visible = false;
-            // 
-            // cSource
-            // 
-            this.cSource.HeaderText = "Источник";
-            this.cSource.Name = "cSource";
-            this.cSource.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cSource.Visible = false;
-            // 
-            // cSert
-            // 
-            this.cSert.HeaderText = "Сертификат";
-            this.cSert.Name = "cSert";
-            this.cSert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.label34);
-            this.panel10.Controls.Add(this.label35);
-            this.panel10.Controls.Add(this.label36);
-            this.panel10.Controls.Add(this.label17);
-            this.panel10.Controls.Add(this.cbArchYear);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(3, 3);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1585, 86);
-            this.panel10.TabIndex = 2;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(3, 9);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(35, 18);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "Год";
-            // 
-            // cbArchYear
-            // 
-            this.cbArchYear.FormattingEnabled = true;
-            this.cbArchYear.Location = new System.Drawing.Point(3, 30);
-            this.cbArchYear.Name = "cbArchYear";
-            this.cbArchYear.Size = new System.Drawing.Size(121, 26);
-            this.cbArchYear.TabIndex = 2;
-            this.cbArchYear.SelectedIndexChanged += new System.EventHandler(this.cbArchYear_SelectedIndexChanged);
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.btArchEdit01);
-            this.panel11.Controls.Add(this.lHourAr1);
-            this.panel11.Controls.Add(this.lConsAr1);
-            this.panel11.Controls.Add(this.lIncAr1);
-            this.panel11.Controls.Add(this.label19);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(3, 89);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1585, 40);
-            this.panel11.TabIndex = 3;
-            // 
-            // label19
-            // 
-            this.label19.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(0, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(160, 40);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "Январь";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel18
-            // 
-            this.panel18.Controls.Add(this.lHourAr2);
-            this.panel18.Controls.Add(this.lConsAr2);
-            this.panel18.Controls.Add(this.lIncAr2);
-            this.panel18.Controls.Add(this.btArchEdit02);
-            this.panel18.Controls.Add(this.label20);
-            this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel18.Location = new System.Drawing.Point(3, 129);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(1585, 40);
-            this.panel18.TabIndex = 4;
-            // 
-            // label20
-            // 
-            this.label20.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(0, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(160, 40);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "Февраль";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel21
-            // 
-            this.panel21.Controls.Add(this.lHourAr3);
-            this.panel21.Controls.Add(this.lConsAr3);
-            this.panel21.Controls.Add(this.lIncAr3);
-            this.panel21.Controls.Add(this.btArchEdit03);
-            this.panel21.Controls.Add(this.label21);
-            this.panel21.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel21.Location = new System.Drawing.Point(3, 169);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(1585, 40);
-            this.panel21.TabIndex = 5;
-            // 
-            // label21
-            // 
-            this.label21.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label21.Location = new System.Drawing.Point(0, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(160, 40);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "Март";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel22
-            // 
-            this.panel22.Controls.Add(this.lHourAr4);
-            this.panel22.Controls.Add(this.lConsAr4);
-            this.panel22.Controls.Add(this.lIncAr4);
-            this.panel22.Controls.Add(this.btArchEdit04);
-            this.panel22.Controls.Add(this.label22);
-            this.panel22.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel22.Location = new System.Drawing.Point(3, 209);
-            this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(1585, 40);
-            this.panel22.TabIndex = 6;
-            // 
-            // label22
-            // 
-            this.label22.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label22.Location = new System.Drawing.Point(0, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(160, 40);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "Апрель";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel23
-            // 
-            this.panel23.Controls.Add(this.lHourAr5);
-            this.panel23.Controls.Add(this.lConsAr5);
-            this.panel23.Controls.Add(this.lIncAr5);
-            this.panel23.Controls.Add(this.btArchEdit05);
-            this.panel23.Controls.Add(this.label23);
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(3, 249);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(1585, 40);
-            this.panel23.TabIndex = 7;
-            // 
-            // label23
-            // 
-            this.label23.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label23.Location = new System.Drawing.Point(0, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(160, 40);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "Май";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label23.Click += new System.EventHandler(this.label23_Click);
-            // 
-            // panel24
-            // 
-            this.panel24.Controls.Add(this.lHourAr6);
-            this.panel24.Controls.Add(this.lConsAr6);
-            this.panel24.Controls.Add(this.lIncAr6);
-            this.panel24.Controls.Add(this.btArchEdit06);
-            this.panel24.Controls.Add(this.label24);
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel24.Location = new System.Drawing.Point(3, 289);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(1585, 40);
-            this.panel24.TabIndex = 8;
-            // 
-            // label24
-            // 
-            this.label24.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label24.Location = new System.Drawing.Point(0, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(160, 40);
-            this.label24.TabIndex = 0;
-            this.label24.Text = "Июнь";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel25
-            // 
-            this.panel25.Controls.Add(this.lHourAr7);
-            this.panel25.Controls.Add(this.lConsAr7);
-            this.panel25.Controls.Add(this.lIncAr7);
-            this.panel25.Controls.Add(this.btArchEdit07);
-            this.panel25.Controls.Add(this.label25);
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel25.Location = new System.Drawing.Point(3, 329);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(1585, 40);
-            this.panel25.TabIndex = 9;
-            // 
-            // label25
-            // 
-            this.label25.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label25.Location = new System.Drawing.Point(0, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(160, 40);
-            this.label25.TabIndex = 0;
-            this.label25.Text = "Июль";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel26
-            // 
-            this.panel26.Controls.Add(this.lHourAr12);
-            this.panel26.Controls.Add(this.lConsAr12);
-            this.panel26.Controls.Add(this.lIncAr12);
-            this.panel26.Controls.Add(this.btArchEdit12);
-            this.panel26.Controls.Add(this.label26);
-            this.panel26.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel26.Location = new System.Drawing.Point(3, 529);
-            this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(1585, 40);
-            this.panel26.TabIndex = 14;
-            // 
-            // label26
-            // 
-            this.label26.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label26.Location = new System.Drawing.Point(0, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(160, 40);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "Декабрь";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel27
-            // 
-            this.panel27.Controls.Add(this.lHourAr11);
-            this.panel27.Controls.Add(this.lConsAr11);
-            this.panel27.Controls.Add(this.lIncAr11);
-            this.panel27.Controls.Add(this.btArchEdit11);
-            this.panel27.Controls.Add(this.label27);
-            this.panel27.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel27.Location = new System.Drawing.Point(3, 489);
-            this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(1585, 40);
-            this.panel27.TabIndex = 13;
-            // 
-            // label27
-            // 
-            this.label27.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label27.Location = new System.Drawing.Point(0, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(160, 40);
-            this.label27.TabIndex = 0;
-            this.label27.Text = "Ноябрь";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel28
-            // 
-            this.panel28.Controls.Add(this.lHourAr10);
-            this.panel28.Controls.Add(this.lConsAr10);
-            this.panel28.Controls.Add(this.lIncAr10);
-            this.panel28.Controls.Add(this.btArchEdit10);
-            this.panel28.Controls.Add(this.label28);
-            this.panel28.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel28.Location = new System.Drawing.Point(3, 449);
-            this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(1585, 40);
-            this.panel28.TabIndex = 12;
-            // 
-            // label28
-            // 
-            this.label28.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label28.Location = new System.Drawing.Point(0, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(160, 40);
-            this.label28.TabIndex = 0;
-            this.label28.Text = "Октябрь";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel29
-            // 
-            this.panel29.Controls.Add(this.lHourAr9);
-            this.panel29.Controls.Add(this.lConsAr9);
-            this.panel29.Controls.Add(this.lIncAr9);
-            this.panel29.Controls.Add(this.btArchEdit09);
-            this.panel29.Controls.Add(this.label29);
-            this.panel29.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel29.Location = new System.Drawing.Point(3, 409);
-            this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(1585, 40);
-            this.panel29.TabIndex = 11;
-            // 
-            // label29
-            // 
-            this.label29.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label29.Location = new System.Drawing.Point(0, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(160, 40);
-            this.label29.TabIndex = 0;
-            this.label29.Text = "Сентябрь";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel30
-            // 
-            this.panel30.Controls.Add(this.lHourAr8);
-            this.panel30.Controls.Add(this.lConsAr8);
-            this.panel30.Controls.Add(this.lIncAr8);
-            this.panel30.Controls.Add(this.btArchEdit08);
-            this.panel30.Controls.Add(this.label30);
-            this.panel30.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel30.Location = new System.Drawing.Point(3, 369);
-            this.panel30.Name = "panel30";
-            this.panel30.Size = new System.Drawing.Size(1585, 40);
-            this.panel30.TabIndex = 10;
-            // 
-            // label30
-            // 
-            this.label30.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label30.Location = new System.Drawing.Point(0, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(160, 40);
-            this.label30.TabIndex = 0;
-            this.label30.Text = "Август";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lHourAr1
-            // 
-            this.lHourAr1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr1.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr1.Name = "lHourAr1";
-            this.lHourAr1.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr1.TabIndex = 47;
-            this.lHourAr1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr1
-            // 
-            this.lConsAr1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr1.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr1.Name = "lConsAr1";
-            this.lConsAr1.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr1.TabIndex = 46;
-            this.lConsAr1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr1
-            // 
-            this.lIncAr1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr1.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr1.Name = "lIncAr1";
-            this.lIncAr1.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr1.TabIndex = 45;
-            this.lIncAr1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(667, 65);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(49, 18);
-            this.label34.TabIndex = 48;
-            this.label34.Text = "Часы:";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(455, 65);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(59, 18);
-            this.label35.TabIndex = 47;
-            this.label35.Text = "Расход";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(243, 65);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(58, 18);
-            this.label36.TabIndex = 46;
-            this.label36.Text = "Доход:";
-            // 
-            // btArchEdit01
-            // 
-            this.btArchEdit01.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit01.Name = "btArchEdit01";
-            this.btArchEdit01.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit01.TabIndex = 48;
-            this.btArchEdit01.Tag = "1";
-            this.btArchEdit01.Text = "Править";
-            this.btArchEdit01.UseVisualStyleBackColor = true;
-            this.btArchEdit01.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // btArchEdit02
-            // 
-            this.btArchEdit02.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit02.Name = "btArchEdit02";
-            this.btArchEdit02.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit02.TabIndex = 49;
-            this.btArchEdit02.Tag = "2";
-            this.btArchEdit02.Text = "Править";
-            this.btArchEdit02.UseVisualStyleBackColor = true;
-            this.btArchEdit02.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr2
-            // 
-            this.lHourAr2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr2.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr2.Name = "lHourAr2";
-            this.lHourAr2.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr2.TabIndex = 52;
-            this.lHourAr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr2
-            // 
-            this.lConsAr2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr2.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr2.Name = "lConsAr2";
-            this.lConsAr2.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr2.TabIndex = 51;
-            this.lConsAr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr2
-            // 
-            this.lIncAr2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr2.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr2.Name = "lIncAr2";
-            this.lIncAr2.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr2.TabIndex = 50;
-            this.lIncAr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lHourAr3
-            // 
-            this.lHourAr3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr3.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr3.Name = "lHourAr3";
-            this.lHourAr3.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr3.TabIndex = 56;
-            this.lHourAr3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr3
-            // 
-            this.lConsAr3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr3.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr3.Name = "lConsAr3";
-            this.lConsAr3.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr3.TabIndex = 55;
-            this.lConsAr3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr3
-            // 
-            this.lIncAr3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr3.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr3.Name = "lIncAr3";
-            this.lIncAr3.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr3.TabIndex = 54;
-            this.lIncAr3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit03
-            // 
-            this.btArchEdit03.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit03.Name = "btArchEdit03";
-            this.btArchEdit03.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit03.TabIndex = 53;
-            this.btArchEdit03.Tag = "3";
-            this.btArchEdit03.Text = "Править";
-            this.btArchEdit03.UseVisualStyleBackColor = true;
-            this.btArchEdit03.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr4
-            // 
-            this.lHourAr4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr4.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr4.Name = "lHourAr4";
-            this.lHourAr4.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr4.TabIndex = 56;
-            this.lHourAr4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr4
-            // 
-            this.lConsAr4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr4.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr4.Name = "lConsAr4";
-            this.lConsAr4.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr4.TabIndex = 55;
-            this.lConsAr4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr4
-            // 
-            this.lIncAr4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr4.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr4.Name = "lIncAr4";
-            this.lIncAr4.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr4.TabIndex = 54;
-            this.lIncAr4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit04
-            // 
-            this.btArchEdit04.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit04.Name = "btArchEdit04";
-            this.btArchEdit04.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit04.TabIndex = 53;
-            this.btArchEdit04.Tag = "4";
-            this.btArchEdit04.Text = "Править";
-            this.btArchEdit04.UseVisualStyleBackColor = true;
-            this.btArchEdit04.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr5
-            // 
-            this.lHourAr5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr5.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr5.Name = "lHourAr5";
-            this.lHourAr5.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr5.TabIndex = 56;
-            this.lHourAr5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr5
-            // 
-            this.lConsAr5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr5.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr5.Name = "lConsAr5";
-            this.lConsAr5.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr5.TabIndex = 55;
-            this.lConsAr5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr5
-            // 
-            this.lIncAr5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr5.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr5.Name = "lIncAr5";
-            this.lIncAr5.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr5.TabIndex = 54;
-            this.lIncAr5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit05
-            // 
-            this.btArchEdit05.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit05.Name = "btArchEdit05";
-            this.btArchEdit05.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit05.TabIndex = 53;
-            this.btArchEdit05.Tag = "5";
-            this.btArchEdit05.Text = "Править";
-            this.btArchEdit05.UseVisualStyleBackColor = true;
-            this.btArchEdit05.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr6
-            // 
-            this.lHourAr6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr6.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr6.Name = "lHourAr6";
-            this.lHourAr6.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr6.TabIndex = 56;
-            this.lHourAr6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr6
-            // 
-            this.lConsAr6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr6.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr6.Name = "lConsAr6";
-            this.lConsAr6.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr6.TabIndex = 55;
-            this.lConsAr6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr6
-            // 
-            this.lIncAr6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr6.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr6.Name = "lIncAr6";
-            this.lIncAr6.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr6.TabIndex = 54;
-            this.lIncAr6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit06
-            // 
-            this.btArchEdit06.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit06.Name = "btArchEdit06";
-            this.btArchEdit06.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit06.TabIndex = 53;
-            this.btArchEdit06.Tag = "6";
-            this.btArchEdit06.Text = "Править";
-            this.btArchEdit06.UseVisualStyleBackColor = true;
-            this.btArchEdit06.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr7
-            // 
-            this.lHourAr7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr7.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr7.Name = "lHourAr7";
-            this.lHourAr7.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr7.TabIndex = 56;
-            this.lHourAr7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr7
-            // 
-            this.lConsAr7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr7.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr7.Name = "lConsAr7";
-            this.lConsAr7.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr7.TabIndex = 55;
-            this.lConsAr7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr7
-            // 
-            this.lIncAr7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr7.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr7.Name = "lIncAr7";
-            this.lIncAr7.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr7.TabIndex = 54;
-            this.lIncAr7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit07
-            // 
-            this.btArchEdit07.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit07.Name = "btArchEdit07";
-            this.btArchEdit07.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit07.TabIndex = 53;
-            this.btArchEdit07.Tag = "7";
-            this.btArchEdit07.Text = "Править";
-            this.btArchEdit07.UseVisualStyleBackColor = true;
-            this.btArchEdit07.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr8
-            // 
-            this.lHourAr8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr8.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr8.Name = "lHourAr8";
-            this.lHourAr8.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr8.TabIndex = 56;
-            this.lHourAr8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr8
-            // 
-            this.lConsAr8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr8.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr8.Name = "lConsAr8";
-            this.lConsAr8.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr8.TabIndex = 55;
-            this.lConsAr8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr8
-            // 
-            this.lIncAr8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr8.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr8.Name = "lIncAr8";
-            this.lIncAr8.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr8.TabIndex = 54;
-            this.lIncAr8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit08
-            // 
-            this.btArchEdit08.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit08.Name = "btArchEdit08";
-            this.btArchEdit08.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit08.TabIndex = 53;
-            this.btArchEdit08.Tag = "8";
-            this.btArchEdit08.Text = "Править";
-            this.btArchEdit08.UseVisualStyleBackColor = true;
-            this.btArchEdit08.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr9
-            // 
-            this.lHourAr9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr9.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr9.Name = "lHourAr9";
-            this.lHourAr9.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr9.TabIndex = 56;
-            this.lHourAr9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr9
-            // 
-            this.lConsAr9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr9.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr9.Name = "lConsAr9";
-            this.lConsAr9.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr9.TabIndex = 55;
-            this.lConsAr9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr9
-            // 
-            this.lIncAr9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr9.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr9.Name = "lIncAr9";
-            this.lIncAr9.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr9.TabIndex = 54;
-            this.lIncAr9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit09
-            // 
-            this.btArchEdit09.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit09.Name = "btArchEdit09";
-            this.btArchEdit09.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit09.TabIndex = 53;
-            this.btArchEdit09.Tag = "9";
-            this.btArchEdit09.Text = "Править";
-            this.btArchEdit09.UseVisualStyleBackColor = true;
-            this.btArchEdit09.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr10
-            // 
-            this.lHourAr10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr10.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr10.Name = "lHourAr10";
-            this.lHourAr10.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr10.TabIndex = 56;
-            this.lHourAr10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lHourAr10.Click += new System.EventHandler(this.label61_Click);
-            // 
-            // lConsAr10
-            // 
-            this.lConsAr10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr10.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr10.Name = "lConsAr10";
-            this.lConsAr10.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr10.TabIndex = 55;
-            this.lConsAr10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr10
-            // 
-            this.lIncAr10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr10.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr10.Name = "lIncAr10";
-            this.lIncAr10.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr10.TabIndex = 54;
-            this.lIncAr10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit10
-            // 
-            this.btArchEdit10.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit10.Name = "btArchEdit10";
-            this.btArchEdit10.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit10.TabIndex = 53;
-            this.btArchEdit10.Tag = "10";
-            this.btArchEdit10.Text = "Править";
-            this.btArchEdit10.UseVisualStyleBackColor = true;
-            this.btArchEdit10.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr11
-            // 
-            this.lHourAr11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr11.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr11.Name = "lHourAr11";
-            this.lHourAr11.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr11.TabIndex = 56;
-            this.lHourAr11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr11
-            // 
-            this.lConsAr11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr11.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr11.Name = "lConsAr11";
-            this.lConsAr11.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr11.TabIndex = 55;
-            this.lConsAr11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr11
-            // 
-            this.lIncAr11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr11.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr11.Name = "lIncAr11";
-            this.lIncAr11.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr11.TabIndex = 54;
-            this.lIncAr11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit11
-            // 
-            this.btArchEdit11.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit11.Name = "btArchEdit11";
-            this.btArchEdit11.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit11.TabIndex = 53;
-            this.btArchEdit11.Tag = "11";
-            this.btArchEdit11.Text = "Править";
-            this.btArchEdit11.UseVisualStyleBackColor = true;
-            this.btArchEdit11.Click += new System.EventHandler(this.Archive_Click);
-            // 
-            // lHourAr12
-            // 
-            this.lHourAr12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lHourAr12.Location = new System.Drawing.Point(648, 3);
-            this.lHourAr12.Name = "lHourAr12";
-            this.lHourAr12.Size = new System.Drawing.Size(88, 34);
-            this.lHourAr12.TabIndex = 56;
-            this.lHourAr12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lConsAr12
-            // 
-            this.lConsAr12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lConsAr12.Location = new System.Drawing.Point(440, 3);
-            this.lConsAr12.Name = "lConsAr12";
-            this.lConsAr12.Size = new System.Drawing.Size(88, 34);
-            this.lConsAr12.TabIndex = 55;
-            this.lConsAr12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lIncAr12
-            // 
-            this.lIncAr12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lIncAr12.Location = new System.Drawing.Point(231, 3);
-            this.lIncAr12.Name = "lIncAr12";
-            this.lIncAr12.Size = new System.Drawing.Size(88, 34);
-            this.lIncAr12.TabIndex = 54;
-            this.lIncAr12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btArchEdit12
-            // 
-            this.btArchEdit12.Location = new System.Drawing.Point(891, 8);
-            this.btArchEdit12.Name = "btArchEdit12";
-            this.btArchEdit12.Size = new System.Drawing.Size(105, 25);
-            this.btArchEdit12.TabIndex = 53;
-            this.btArchEdit12.Tag = "12";
-            this.btArchEdit12.Text = "Править";
-            this.btArchEdit12.UseVisualStyleBackColor = true;
-            this.btArchEdit12.Click += new System.EventHandler(this.Archive_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -4033,18 +2429,12 @@ namespace Orders
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn5.HeaderText = "Предоплата";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Visible = false;
             // 
             // dataGridViewTextBoxColumn6
             // 
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn6.HeaderText = "Доплата";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.Width = 120;
@@ -4113,7 +2503,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn14.DataPropertyName = "ccPrice";
             this.dataGridViewTextBoxColumn14.HeaderText = "Сумма";
-            this.dataGridViewTextBoxColumn14.MinimumWidth = 50;
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.Visible = false;
             // 
@@ -4122,7 +2511,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn15.DataPropertyName = "ccHours";
             this.dataGridViewTextBoxColumn15.HeaderText = "Часы";
-            this.dataGridViewTextBoxColumn15.MinimumWidth = 50;
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.Visible = false;
             // 
@@ -4184,7 +2572,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn21.HeaderText = "Название";
             this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
             this.dataGridViewTextBoxColumn21.Visible = false;
-            this.dataGridViewTextBoxColumn21.Width = 441;
             // 
             // dataGridViewTextBoxColumn22
             // 
@@ -4294,7 +2681,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn33.HeaderText = "Название";
             this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
             // 
-<<<<<<< HEAD
             // dataGridViewTextBoxColumn34
             // 
             this.dataGridViewTextBoxColumn34.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -4348,275 +2734,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn40.DataPropertyName = "fName";
             this.dataGridViewTextBoxColumn40.HeaderText = "Название";
             this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
-=======
-            // cNumber
-            // 
-            this.cNumber.HeaderText = "";
-            this.cNumber.Name = "cNumber";
-            this.cNumber.ReadOnly = true;
-            this.cNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNumber.Width = 40;
-            // 
-            // cId
-            // 
-            this.cId.HeaderText = "Id";
-            this.cId.Name = "cId";
-            this.cId.ReadOnly = true;
-            this.cId.Visible = false;
-            // 
-            // cClientId
-            // 
-            this.cClientId.HeaderText = "cClientId";
-            this.cClientId.Name = "cClientId";
-            this.cClientId.Visible = false;
-            // 
-            // cClient
-            // 
-            this.cClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cClient.HeaderText = "Клиент";
-            this.cClient.Name = "cClient";
-            // 
-            // cPrepay
-            // 
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.cPrepay.DefaultCellStyle = dataGridViewCellStyle1;
-            this.cPrepay.HeaderText = "Предоплата";
-            this.cPrepay.Name = "cPrepay";
-            // 
-            // cExcess
-            // 
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.cExcess.DefaultCellStyle = dataGridViewCellStyle2;
-            this.cExcess.HeaderText = "Доплата";
-            this.cExcess.Name = "cExcess";
-            // 
-            // cCons
-            // 
-            this.cCons.HeaderText = "Расход";
-            this.cCons.Name = "cCons";
-            // 
-            // cHours
-            // 
-            this.cHours.HeaderText = "Часы";
-            this.cHours.Name = "cHours";
-            // 
-            // cCertId
-            // 
-            this.cCertId.DataPropertyName = "cCertId";
-            this.cCertId.HeaderText = "CertId";
-            this.cCertId.Name = "cCertId";
-            this.cCertId.Visible = false;
-            // 
-            // ccId
-            // 
-            this.ccId.DataPropertyName = "ccId";
-            this.ccId.HeaderText = "Id";
-            this.ccId.Name = "ccId";
-            this.ccId.Visible = false;
-            // 
-            // ccPayerId
-            // 
-            this.ccPayerId.DataPropertyName = "ccPayerId";
-            this.ccPayerId.HeaderText = "PayerId";
-            this.ccPayerId.Name = "ccPayerId";
-            this.ccPayerId.Visible = false;
-            // 
-            // ccClientId
-            // 
-            this.ccClientId.DataPropertyName = "ccClientId";
-            this.ccClientId.HeaderText = "ClientId";
-            this.ccClientId.Name = "ccClientId";
-            this.ccClientId.Visible = false;
-            // 
-            // ccNumber
-            // 
-            this.ccNumber.DataPropertyName = "ccNumber";
-            this.ccNumber.HeaderText = "";
-            this.ccNumber.Name = "ccNumber";
-            this.ccNumber.ReadOnly = true;
-            this.ccNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ccNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ccNumber.Width = 30;
-            // 
-            // ccPayerName
-            // 
-            this.ccPayerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ccPayerName.DataPropertyName = "ccPayerName";
-            this.ccPayerName.HeaderText = "Плательщик";
-            this.ccPayerName.MinimumWidth = 50;
-            this.ccPayerName.Name = "ccPayerName";
-            // 
-            // ccClientName
-            // 
-            this.ccClientName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ccClientName.DataPropertyName = "ccClientName";
-            this.ccClientName.HeaderText = "Клиент";
-            this.ccClientName.MinimumWidth = 50;
-            this.ccClientName.Name = "ccClientName";
-            // 
-            // ccPrice
-            // 
-            this.ccPrice.DataPropertyName = "ccPrice";
-            this.ccPrice.HeaderText = "Сумма";
-            this.ccPrice.Name = "ccPrice";
-            // 
-            // ccCons
-            // 
-            this.ccCons.DataPropertyName = "ccCons";
-            this.ccCons.HeaderText = "Расход";
-            this.ccCons.Name = "ccCons";
-            // 
-            // ccHours
-            // 
-            this.ccHours.DataPropertyName = "ccHours";
-            this.ccHours.HeaderText = "Часы";
-            this.ccHours.Name = "ccHours";
->>>>>>> origin/Расход
-            // 
-            // csId
-            // 
-            this.csId.DataPropertyName = "csId";
-            this.csId.HeaderText = "Id";
-            this.csId.Name = "csId";
-            this.csId.ReadOnly = true;
-            this.csId.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.csId.Visible = false;
-            // 
-            // csNumber
-            // 
-            this.csNumber.DataPropertyName = "csNumber";
-            this.csNumber.HeaderText = "";
-            this.csNumber.Name = "csNumber";
-            this.csNumber.ReadOnly = true;
-            this.csNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.csNumber.Width = 40;
-            // 
-<<<<<<< HEAD
-            // csTypeId
-            // 
-            this.csTypeId.HeaderText = "TypeId";
-            this.csTypeId.Name = "csTypeId";
-            this.csTypeId.Visible = false;
-            // 
-            // csType
-            // 
-            this.csType.HeaderText = "Вид расхода";
-            this.csType.Name = "csType";
-            this.csType.Width = 140;
-            // 
-=======
->>>>>>> origin/Расход
-            // csAmount
-            // 
-            this.csAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.csAmount.DataPropertyName = "csAmount";
-            this.csAmount.FillWeight = 40F;
-            this.csAmount.HeaderText = "Сумма";
-            this.csAmount.Name = "csAmount";
-            // 
-            // csComment
-            // 
-            this.csComment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.csComment.DataPropertyName = "csComment";
-            this.csComment.HeaderText = "Комментарий";
-            this.csComment.Name = "csComment";
-            // 
-<<<<<<< HEAD
-            // csWorkId
-            // 
-            this.csWorkId.HeaderText = "Работа";
-            this.csWorkId.Name = "csWorkId";
-            this.csWorkId.ReadOnly = true;
-            // 
-            // csDelete
-            // 
-            this.csDelete.HeaderText = "X";
-            this.csDelete.Name = "csDelete";
-            this.csDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.csDelete.Text = "X";
-            this.csDelete.ToolTipText = "Удалить запись";
-            this.csDelete.UseColumnTextForButtonValue = true;
-            this.csDelete.Width = 25;
-=======
-            // cdpId
-            // 
-            this.cdpId.DataPropertyName = "fId";
-            this.cdpId.HeaderText = "Id";
-            this.cdpId.Name = "cdpId";
-            this.cdpId.Visible = false;
-            // 
-            // cdpName
-            // 
-            this.cdpName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cdpName.DataPropertyName = "fName";
-            this.cdpName.FillWeight = 70F;
-            this.cdpName.HeaderText = "Имя";
-            this.cdpName.Name = "cdpName";
-            // 
-            // cdpPhone
-            // 
-            this.cdpPhone.DataPropertyName = "fPhone";
-            this.cdpPhone.HeaderText = "Телефон";
-            this.cdpPhone.Name = "cdpPhone";
-            // 
-            // cdpMail
-            // 
-            this.cdpMail.DataPropertyName = "fEmail";
-            this.cdpMail.HeaderText = "E-mail";
-            this.cdpMail.Name = "cdpMail";
-            // 
-            // cdpNote
-            // 
-            this.cdpNote.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cdpNote.DataPropertyName = "fNote";
-            this.cdpNote.HeaderText = "Примечание";
-            this.cdpNote.Name = "cdpNote";
-            // 
-            // cdsId
-            // 
-            this.cdsId.DataPropertyName = "fId";
-            this.cdsId.HeaderText = "Id";
-            this.cdsId.Name = "cdsId";
-            this.cdsId.Visible = false;
-            // 
-            // cdsName
-            // 
-            this.cdsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cdsName.DataPropertyName = "fName";
-            this.cdsName.FillWeight = 70F;
-            this.cdsName.HeaderText = "Название";
-            this.cdsName.Name = "cdsName";
-            // 
-            // cdwId
-            // 
-            this.cdwId.DataPropertyName = "fId";
-            this.cdwId.HeaderText = "";
-            this.cdwId.Name = "cdwId";
-            this.cdwId.Visible = false;
-            // 
-            // cdwName
-            // 
-            this.cdwName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cdwName.DataPropertyName = "fName";
-            this.cdwName.HeaderText = "Название";
-            this.cdwName.Name = "cdwName";
-            // 
-            // cdcId
-            // 
-            this.cdcId.DataPropertyName = "fId";
-            this.cdcId.HeaderText = "Id";
-            this.cdcId.Name = "cdcId";
-            this.cdcId.Visible = false;
-            // 
-            // cdcName
-            // 
-            this.cdcName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cdcName.DataPropertyName = "fName";
-            this.cdcName.HeaderText = "Название";
-            this.cdcName.Name = "cdcName";
->>>>>>> origin/Расход
             // 
             // Form1
             // 
@@ -4658,148 +2775,13 @@ namespace Orders
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pHistory.ResumeLayout(false);
-<<<<<<< HEAD
             this.tabApp.ResumeLayout(false);
-=======
-            this.tabGraph.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.splitIncome.Panel1.ResumeLayout(false);
-            this.splitIncome.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitIncome)).EndInit();
-            this.splitIncome.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chMonth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chYear)).EndInit();
-            this.panel19.ResumeLayout(false);
-            this.splitCons.Panel1.ResumeLayout(false);
-            this.splitCons.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitCons)).EndInit();
-            this.splitCons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chCMonth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chCYear)).EndInit();
-            this.panel20.ResumeLayout(false);
-            this.tabCert.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grCert)).EndInit();
-            this.panel6.ResumeLayout(false);
-            this.tabConsum.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grCons)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.tabGloss.ResumeLayout(false);
-            this.panel16.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grDicClient)).EndInit();
-            this.panel17.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grDicSource)).EndInit();
-            this.panel13.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grDicWork)).EndInit();
-            this.panel14.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grDicCons)).EndInit();
-            this.panel15.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.tabArchive.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel18.ResumeLayout(false);
-            this.panel21.ResumeLayout(false);
-            this.panel22.ResumeLayout(false);
-            this.panel23.ResumeLayout(false);
-            this.panel24.ResumeLayout(false);
-            this.panel25.ResumeLayout(false);
-            this.panel26.ResumeLayout(false);
-            this.panel27.ResumeLayout(false);
-            this.panel28.ResumeLayout(false);
-            this.panel29.ResumeLayout(false);
-            this.panel30.ResumeLayout(false);
->>>>>>> origin/Расход
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-<<<<<<< HEAD
-=======
-        private System.Windows.Forms.TabControl tabApp;
-        private System.Windows.Forms.TabPage tabWork;
-        private System.Windows.Forms.TabPage tabGraph;
-        private System.Windows.Forms.TabPage tabCert;
-        private System.Windows.Forms.TabPage tabConsum;
-        private System.Windows.Forms.TabPage tabGloss;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel pHistory;
-        private System.Windows.Forms.DataGridView grWork;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btHistory10;
-        private System.Windows.Forms.Button btHistory9;
-        private System.Windows.Forms.Button btHistory8;
-        private System.Windows.Forms.Button btHistory7;
-        private System.Windows.Forms.Button btHistory6;
-        private System.Windows.Forms.Button btHistory5;
-        private System.Windows.Forms.Button btHistory4;
-        private System.Windows.Forms.Button btHistory3;
-        private System.Windows.Forms.Button btHistory2;
-        private System.Windows.Forms.Button btHistory1;
-        private System.Windows.Forms.Label lSumC2;
-        private System.Windows.Forms.Label lSumL2;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label lYearL;
-        private System.Windows.Forms.Label lYearC;
-        private System.Windows.Forms.Label lSumLAll;
-        private System.Windows.Forms.Label lSumCAll;
-        private System.Windows.Forms.Label lSumL12;
-        private System.Windows.Forms.Label lSumC12;
-        private System.Windows.Forms.Button btHistory12;
-        private System.Windows.Forms.Label lSumL11;
-        private System.Windows.Forms.Label lSumC11;
-        private System.Windows.Forms.Button btHistory11;
-        private System.Windows.Forms.Label lSumL9;
-        private System.Windows.Forms.Label lSumC9;
-        private System.Windows.Forms.Label lSumL10;
-        private System.Windows.Forms.Label lSumC10;
-        private System.Windows.Forms.Label lSumL7;
-        private System.Windows.Forms.Label lSumC7;
-        private System.Windows.Forms.Label lSumL8;
-        private System.Windows.Forms.Label lSumC8;
-        private System.Windows.Forms.Label lSumL5;
-        private System.Windows.Forms.Label lSumC5;
-        private System.Windows.Forms.Label lSumL6;
-        private System.Windows.Forms.Label lSumC6;
-        private System.Windows.Forms.Label lSumL3;
-        private System.Windows.Forms.Label lSumC3;
-        private System.Windows.Forms.Label lSumL4;
-        private System.Windows.Forms.Label lSumC4;
-        private System.Windows.Forms.Label lSumL1;
-        private System.Windows.Forms.Label lSumC1;
-        private System.Windows.Forms.TabPage tabArchive;
-        private System.Windows.Forms.Label lProfitC;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lConsC;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lMonthC;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lIncomeYA;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label lProfitY;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lConsY;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btSave;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lHoursC;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lIncomeC;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lHoursY;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lIncomeY;
-        private System.Windows.Forms.Label label12;
->>>>>>> origin/Расход
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -4833,7 +2815,6 @@ namespace Orders
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
-<<<<<<< HEAD
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn35;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn36;
@@ -5029,158 +3010,14 @@ namespace Orders
         private System.Windows.Forms.TextBox tbFindClient;
         private System.Windows.Forms.FolderBrowserDialog sdBackUp;
         private System.Windows.Forms.Button btBackUp;
-=======
->>>>>>> origin/Расход
         private System.Windows.Forms.DataGridViewTextBoxColumn csId;
         private System.Windows.Forms.DataGridViewTextBoxColumn csNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn csTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn csType;
         private System.Windows.Forms.DataGridViewTextBoxColumn csAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn csComment;
-<<<<<<< HEAD
         private System.Windows.Forms.DataGridViewTextBoxColumn csWorkId;
         private System.Windows.Forms.DataGridViewButtonColumn csDelete;
-=======
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.SplitContainer splitIncome;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chMonth;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chYear;
-        private System.Windows.Forms.Panel panel19;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.SplitContainer splitCons;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chCMonth;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chCYear;
-        private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.DataGridView grDicClient;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpMail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdpNote;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.DataGridView grDicSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdsId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdsName;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.DataGridView grDicWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdwId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdwName;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.DataGridView grDicCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdcId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdcName;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Button btDicSave;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cClientId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cClient;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cPrepay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cExcess;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cHours;
-        private System.Windows.Forms.DataGridViewComboBoxColumn cSource;
-        private System.Windows.Forms.DataGridViewButtonColumn cSert;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cCertId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccClientId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccClientName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccHours;
-        private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Panel panel22;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Panel panel21;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox cbArchYear;
-        private System.Windows.Forms.Panel panel25;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Panel panel26;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Panel panel27;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Panel panel28;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Panel panel29;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Panel panel30;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label lHourAr12;
-        private System.Windows.Forms.Label lConsAr12;
-        private System.Windows.Forms.Label lIncAr12;
-        private System.Windows.Forms.Button btArchEdit12;
-        private System.Windows.Forms.Label lHourAr11;
-        private System.Windows.Forms.Label lConsAr11;
-        private System.Windows.Forms.Label lIncAr11;
-        private System.Windows.Forms.Button btArchEdit11;
-        private System.Windows.Forms.Label lHourAr10;
-        private System.Windows.Forms.Label lConsAr10;
-        private System.Windows.Forms.Label lIncAr10;
-        private System.Windows.Forms.Button btArchEdit10;
-        private System.Windows.Forms.Label lHourAr9;
-        private System.Windows.Forms.Label lConsAr9;
-        private System.Windows.Forms.Label lIncAr9;
-        private System.Windows.Forms.Button btArchEdit09;
-        private System.Windows.Forms.Label lHourAr8;
-        private System.Windows.Forms.Label lConsAr8;
-        private System.Windows.Forms.Label lIncAr8;
-        private System.Windows.Forms.Button btArchEdit08;
-        private System.Windows.Forms.Label lHourAr7;
-        private System.Windows.Forms.Label lConsAr7;
-        private System.Windows.Forms.Label lIncAr7;
-        private System.Windows.Forms.Button btArchEdit07;
-        private System.Windows.Forms.Label lHourAr6;
-        private System.Windows.Forms.Label lConsAr6;
-        private System.Windows.Forms.Label lIncAr6;
-        private System.Windows.Forms.Button btArchEdit06;
-        private System.Windows.Forms.Label lHourAr5;
-        private System.Windows.Forms.Label lConsAr5;
-        private System.Windows.Forms.Label lIncAr5;
-        private System.Windows.Forms.Button btArchEdit05;
-        private System.Windows.Forms.Label lHourAr4;
-        private System.Windows.Forms.Label lConsAr4;
-        private System.Windows.Forms.Label lIncAr4;
-        private System.Windows.Forms.Button btArchEdit04;
-        private System.Windows.Forms.Label lHourAr3;
-        private System.Windows.Forms.Label lConsAr3;
-        private System.Windows.Forms.Label lIncAr3;
-        private System.Windows.Forms.Button btArchEdit03;
-        private System.Windows.Forms.Label lHourAr2;
-        private System.Windows.Forms.Label lConsAr2;
-        private System.Windows.Forms.Label lIncAr2;
-        private System.Windows.Forms.Button btArchEdit02;
-        private System.Windows.Forms.Button btArchEdit01;
-        private System.Windows.Forms.Label lHourAr1;
-        private System.Windows.Forms.Label lConsAr1;
-        private System.Windows.Forms.Label lIncAr1;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label36;
->>>>>>> origin/Расход
     }
 }
 

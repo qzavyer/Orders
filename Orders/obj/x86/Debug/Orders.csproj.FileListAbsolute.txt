@@ -16,11 +16,7 @@ c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Deb
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.csproj.GenerateResource.Cache
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.exe
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.pdb
-<<<<<<< HEAD
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.csprojResolveAssemblyReference.cache
-=======
-c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\bin\Debug\order.db
->>>>>>> origin/Расход
 c:\users\qzavyer\documents\visual studio 2010\Projects\Orders\Orders\bin\Debug\SQLite.NET.dll
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\OxyPlot.dll
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\OxyPlot.WindowsForms.dll
@@ -30,7 +26,6 @@ c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\O
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\OxyPlot.WindowsForms.xml
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrClient.resources
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrCons.resources
-<<<<<<< HEAD
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\Orders\obj\x86\Debug\Orders.exe
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\Orders\obj\x86\Debug\Orders.pdb
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\Orders\bin\Debug\System.Data.SQLite.dll
@@ -85,10 +80,3 @@ c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\E
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrAddClient.resources
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrEvents.resources
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.FrConsType.resources
-=======
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\Orders.exe.manifest
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Debug\Orders.application
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.TrustInfo.xml
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.exe.manifest
-C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.application
->>>>>>> origin/Расход
