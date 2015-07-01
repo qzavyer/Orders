@@ -13,7 +13,7 @@ namespace Orders
 
         private static readonly OrderContext Db = new OrderContext();
         private static bool _hasChange;
-        public Client ClientName;
+        public EClient ClientName;
 
         #endregion
 
@@ -102,7 +102,7 @@ namespace Orders
             }
             var row = grClient.SelectedRows[0];
             if (row == null) return;
-            ClientName = new Client { Id = Convert.ToInt32(row.Cells[0].Value), Name = row.Cells[1].Value.ToString() };
+            ClientName = new EClient { Id = Convert.ToInt32(row.Cells[0].Value), Name = row.Cells[1].Value.ToString() };
             Close();
         }
         private void btSave_Click(object sender, EventArgs e)

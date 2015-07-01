@@ -7,14 +7,11 @@ namespace Orders
     public partial class FrEvents : Form
     {
         private static readonly OrderContext DbContext = new OrderContext();
-        
+        public int ItemCount;
+
         public FrEvents()
         {
             InitializeComponent();
-        }
-
-        private void FrEvents_Load(object sender, EventArgs e)
-        {
             const string evCmd = "SELECT date(W.fDate,'unixepoch'), C.fName, T.fName " +
             "FROM tWork W JOIN tClient C ON W.fClientId=C.fId JOIN tWorkType T ON W.fTypeId=T.fId " +
             "WHERE CAST(strftime('%j',date(W.fDate,'unixepoch')) AS INTEGER)>=CAST(strftime('%j', :date1) AS INTEGER) AND " +
@@ -22,7 +19,8 @@ namespace Orders
 
             var conn = new SQLiteConnection(DbContext.Database.Connection.ConnectionString);
             conn.Open();
-            using(var evCom = new SQLiteCommand(evCmd, conn)){
+            using (var evCom = new SQLiteCommand(evCmd, conn))
+            {
                 var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
                 evCom.Parameters.AddWithValue("date1", start);
                 evCom.Parameters.AddWithValue("date2", start.AddDays(7));
@@ -39,14 +37,20 @@ namespace Orders
                         {
                             Parent = list,
                             Text = string.Format("{0}: {1} {2:dd.MM.yyyy}", name, type, date),
-                            Top = i*20 + 5,
+                            Top = i * 20 + 5,
                             Left = 5,
                             AutoSize = true
                         };
                         i++;
                     }
+                    ItemCount = i;
                 }
             }
+        }
+
+        private void FrEvents_Load(object sender, EventArgs e)
+        {
+            
 
         }
 

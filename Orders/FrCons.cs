@@ -15,7 +15,7 @@ namespace Orders
         #region Поля класса
 
         private static readonly OrderContext Db = new OrderContext();
-        public readonly Cons Cons = new Cons();
+        public readonly ECons Cons = new ECons();
         public int WorkId;
         public int CertId;
         public List<int> ConsId = new List<int>();

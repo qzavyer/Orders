@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -14,7 +15,7 @@ namespace Orders
     {
         #region Поля класса
         
-        readonly OrderContext _db = new OrderContext();
+        //readonly OrderContext _db = new OrderContext();
         private bool _hasChange;
         private readonly Dictionary<int, int> _workCons = new Dictionary<int, int>();
         private readonly List<ECons> _workConses = new List<ECons>();
@@ -48,15 +49,22 @@ namespace Orders
                 GetClients();
                 
                 var minDate = WorkLib.GetMinDate();
-                for (var i = minDate.Year; i < DateTime.Now.Year; i++)
+                for (var i = minDate.Year; i <= DateTime.Now.Year; i++)
                 {
                     cbArchYear.Items.Add(i);
                 }
 
                 var fr = new FrEvents();
-                fr.Top = Top + ClientSize.Height - fr.Height;
-                fr.Left = Left + ClientSize.Width - fr.Width;
-                fr.Show();
+                if (fr.ItemCount > 0)
+                {
+                    fr.Top = Top + ClientSize.Height - fr.Height;
+                    fr.Left = Left + ClientSize.Width - fr.Width;
+                    fr.Show();
+                }
+                else 
+                { 
+                    fr.Close(); 
+                }
             }
             catch (Exception exception)
             {
@@ -438,7 +446,7 @@ namespace Orders
                     consTypeDic.Add(cons.Type.Name, cons.Amount);
                 }
 
-                if(cons.WorkId==0)continue;
+                if (cons.WorkId == null) continue;
                 if (consWorkDic.ContainsKey(cons.Work.Type.Name))
                 {
                     consWorkDic[cons.Work.Type.Name] += cons.Amount;
@@ -447,6 +455,8 @@ namespace Orders
                 {
                     consWorkDic.Add(cons.Work.Type.Name, cons.Amount);
                 }
+
+
             }
             chrtSourceSum.Series["serConsWork"].Points.DataBind(consWorkDic, "Key", "Value", "");
             chrtSourceSum.Series["serConsType"].Points.DataBind(consTypeDic, "Key", "Value", "");
@@ -520,257 +530,261 @@ namespace Orders
         }
         private void SaveChanges()
         {
-            var t = _db.Database.BeginTransaction();
-            try
+            using (var db = new OrderContext())
             {
-                
-                #region SaveWorks
-
-                foreach (DataGridViewRow row in grWork.Rows)
+                var t = db.Database.BeginTransaction();
+                try
                 {
-                    var rowId = row.Index;
-                    var work = new EWork();
-                    double excess;
-                    try
+
+                    #region SaveWorks
+
+                    foreach (DataGridViewRow row in grWork.Rows)
                     {
-                        work.Id = Convert.ToInt32(row.Cells["cwId"].Value);
-                    }
-                    catch
-                    {
-                        work.Id = 0;
-                    }
-                    try
-                    {
-                        work.ClientId = Convert.ToInt32(row.Cells["cwClientId"].Value);
-                    }
-                    catch
-                    {
-                        work.ClientId = 0;
-                    }
-                    try
-                    {
-                        var dateStr = row.Cells["cwDatePay"].Value.ToString().Trim();
-                        dateStr = System.Text.RegularExpressions.Regex.Replace(dateStr, " +", "");
-                        dateStr = System.Text.RegularExpressions.Regex.Replace(dateStr, ",", ".");
-                        work.DatePay = Convert.ToDateTime(dateStr);
-                    }
-                    catch
-                    {
-                        work.DatePay = DateTime.Now;
-                    }
-                    try
-                    {
-                        var payStr = row.Cells["cwPrepay"].Value.ToString().Trim();
-                        payStr = System.Text.RegularExpressions.Regex.Replace(payStr, " +", "");
-                        payStr = System.Text.RegularExpressions.Regex.Replace(payStr, ",", ".");
-                        work.Prepay = Convert.ToDouble(payStr);
-                    }
-                    catch
-                    {
-                        work.Prepay = 0;
-                    }
-                    try
-                    {
-                        work.TypeId = Convert.ToInt32(row.Cells["cwTypeId"].Value);
-                    }
-                    catch
-                    {
-                        work.TypeId = 0;
-                    }
-                    try
-                    {
-                        var hoursStr = row.Cells["cwHours"].Value.ToString().Trim();
-                        hoursStr = System.Text.RegularExpressions.Regex.Replace(hoursStr, " +", "");
-                        hoursStr = System.Text.RegularExpressions.Regex.Replace(hoursStr, ",", ".");
-                        work.Hours = Convert.ToDouble(hoursStr);
-                    }
-                    catch
-                    {
-                        work.Hours = 0;
-                    }
-                    try
-                    {
-                        work.SourceId = Convert.ToInt32(row.Cells["cwSourceId"].Value);
-                    }
-                    catch
-                    {
-                        work.SourceId = 0;
-                    }
-                    try
-                    {
-                        var payExcess = row.Cells["cwExcess"].Value.ToString().Trim();
-                        payExcess = System.Text.RegularExpressions.Regex.Replace(payExcess, " +", "");
-                        payExcess = System.Text.RegularExpressions.Regex.Replace(payExcess, ",", ".");
-                        excess = Convert.ToInt32(payExcess);
-                    }
-                    catch
-                    {
-                        excess = 0;
-                    }
-                    if (excess > 0)
-                    {
-                        work.Excess = excess;
+                        var rowId = row.Index;
+                        var work = new EWork();
+                        double excess;
                         try
                         {
-                            var dateStr = row.Cells["cwDateExcess"].Value.ToString().Trim();
-                            dateStr = System.Text.RegularExpressions.Regex.Replace(dateStr, " +", "");
-                            dateStr = System.Text.RegularExpressions.Regex.Replace(dateStr, ",", ".");
-                            work.DateExcess = Convert.ToDateTime(dateStr);
+                            work.Id = Convert.ToInt32(row.Cells["cwId"].Value);
                         }
                         catch
                         {
-                            work.DateExcess = DateTime.Now;
+                            work.Id = 0;
+                        }
+                        try
+                        {
+                            work.ClientId = Convert.ToInt32(row.Cells["cwClientId"].Value);
+                        }
+                        catch
+                        {
+                            work.ClientId = 0;
+                        }
+                        try
+                        {
+                            var dateStr = row.Cells["cwDatePay"].Value.ToString().Trim();
+                            dateStr = System.Text.RegularExpressions.Regex.Replace(dateStr, " +", "");
+                            dateStr = System.Text.RegularExpressions.Regex.Replace(dateStr, ",", ".");
+                            work.DatePay = Convert.ToDateTime(dateStr);
+                        }
+                        catch
+                        {
+                            work.DatePay = DateTime.Now;
+                        }
+                        try
+                        {
+                            var payStr = row.Cells["cwPrepay"].Value.ToString().Trim();
+                            payStr = System.Text.RegularExpressions.Regex.Replace(payStr, " +", "");
+                            payStr = System.Text.RegularExpressions.Regex.Replace(payStr, ",", ".");
+                            work.Prepay = Convert.ToDouble(payStr);
+                        }
+                        catch
+                        {
+                            work.Prepay = 0;
+                        }
+                        try
+                        {
+                            work.TypeId = Convert.ToInt32(row.Cells["cwTypeId"].Value);
+                        }
+                        catch
+                        {
+                            work.TypeId = 0;
+                        }
+                        try
+                        {
+                            var hoursStr = row.Cells["cwHours"].Value.ToString().Trim();
+                            hoursStr = System.Text.RegularExpressions.Regex.Replace(hoursStr, " +", "");
+                            hoursStr = System.Text.RegularExpressions.Regex.Replace(hoursStr, ",", ".");
+                            work.Hours = Convert.ToDouble(hoursStr);
+                        }
+                        catch
+                        {
+                            work.Hours = 0;
+                        }
+                        try
+                        {
+                            work.SourceId = Convert.ToInt32(row.Cells["cwSourceId"].Value);
+                        }
+                        catch
+                        {
+                            work.SourceId = 0;
+                        }
+                        try
+                        {
+                            var payExcess = row.Cells["cwExcess"].Value.ToString().Trim();
+                            payExcess = System.Text.RegularExpressions.Regex.Replace(payExcess, " +", "");
+                            payExcess = System.Text.RegularExpressions.Regex.Replace(payExcess, ",", ".");
+                            excess = Convert.ToInt32(payExcess);
+                        }
+                        catch
+                        {
+                            excess = 0;
+                        }
+                        if (excess > 0)
+                        {
+                            work.Excess = excess;
+                            try
+                            {
+                                var dateStr = row.Cells["cwDateExcess"].Value.ToString().Trim();
+                                dateStr = System.Text.RegularExpressions.Regex.Replace(dateStr, " +", "");
+                                dateStr = System.Text.RegularExpressions.Regex.Replace(dateStr, ",", ".");
+                                work.DateExcess = Convert.ToDateTime(dateStr);
+                            }
+                            catch
+                            {
+                                work.DateExcess = DateTime.Now;
+                            }
+
+                        }
+                        else
+                        {
+                            work.Excess = 0;
+                            work.DateExcess = null;
+                        }
+                        if (work.TypeId == 0 || work.ClientId == 0 || work.SourceId == 0) continue;
+                        if (work.Id == 0)
+                        {
+                            work = db.Works.Add(work);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            var twork = db.Works.Find(work.Id);
+                            twork.ClientId = work.ClientId;
+                            twork.DatePay = work.DatePay;
+                            twork.Prepay = work.Prepay;
+                            twork.TypeId = work.TypeId;
+                            twork.Hours = work.Hours;
+                            twork.Excess = work.Excess;
+                            twork.DateExcess = work.DateExcess;
+                        }
+                        var conses = _workConses.Where(r => r.RowId == rowId && r.Id == 0).ToList();
+                        foreach (var cons in conses)
+                        {
+                            cons.Date = work.DatePay;
+                            cons.WorkId = work.Id;
+                        }
+                        db.Conses.AddRange(conses);
+                        _workConses.RemoveAll(r => r.RowId == rowId && r.Id == 0);
+                        conses = _workConses.Where(r => r.RowId == rowId).ToList();
+                        foreach (var cons in conses)
+                        {
+                            var dCons = db.Conses.Find(cons.Id);
+                            dCons.TypeId = cons.TypeId;
+                            dCons.Amount = cons.Amount;
+                            dCons.Comment = cons.Comment;
+                            dCons.Date = work.DatePay;
+                            dCons.WorkId = work.Id;
+                        }
+                        _workConses.RemoveAll(r => r.RowId == rowId && r.Id == 0);
+                        db.SaveChanges();
+                    }
+
+
+                    _workConses.Clear();
+                    foreach (var i in _deleteWorkList)
+                    {
+                        var work = db.Works.Find(i);
+                        if (work == null) continue;
+                        var workCons = db.Conses.Where(r => r.WorkId == work.Id);
+                        db.Conses.RemoveRange(workCons);
+                        db.Works.Remove(work);
+                    }
+                    #endregion
+
+                    #region SaveCons
+
+                    foreach (DataGridViewRow row in grCons.Rows)
+                    {
+                        var cons = new ECons();
+                        try
+                        {
+                            cons.Id = Convert.ToInt32(row.Cells["csId"].Value);
+                        }
+                        catch
+                        {
+                            cons.Id = 0;
+                        }
+                        try
+                        {
+                            cons.TypeId = Convert.ToInt32(row.Cells["csTypeId"].Value);
+                        }
+                        catch
+                        {
+                            cons.TypeId = 0;
                         }
 
+                        try
+                        {
+                            var amount = row.Cells["csAmount"].Value.ToString().Trim();
+                            amount = Regex.Replace(amount, " +", "");
+                            amount = amount.Replace(",", ".");
+                            cons.Amount = Convert.ToDouble(amount);
+                        }
+                        catch
+                        {
+                            cons.Amount = 0;
+                        }
+                        try
+                        {
+                            var comment = row.Cells["csComment"].Value.ToString().Trim();
+                            comment = Regex.Replace(comment, " +", " ");
+                            cons.Comment = comment;
+                        }
+                        catch
+                        {
+                            cons.Comment = null;
+                        }
+                        try
+                        {
+                            var date = row.Cells["csDate"].Value.ToString().Trim();
+                            date = Regex.Replace(date, " +", " ");
+                            date = Regex.Replace(date, ",", ".");
+                            cons.Date = Convert.ToDateTime(date);
+                        }
+                        catch
+                        {
+                            cons.Date = DateTime.Now;
+                        }
+                        if (cons.TypeId == 0 || cons.Amount < 0.01 || cons.Date == DateTime.MinValue) continue;
+                        if (cons.Id == 0)
+                        {
+                            db.Conses.Add(cons);
+                        }
+                        else
+                        {
+                            var tcons = db.Conses.Find(cons.Id);
+                            tcons.Amount = cons.Amount;
+                            tcons.Comment = cons.Comment;
+                            tcons.Date = cons.Date;
+                            tcons.TypeId = cons.TypeId;
+                        }
                     }
-                    else
+                    foreach (var i in _deleteConsList)
                     {
-                        work.Excess = 0;
-                        work.DateExcess = null;
+                        var cons = db.Conses.Find(i);
+                        if (cons == null) continue;
+                        db.Conses.Remove(cons);
                     }
-                    if (work.TypeId == 0 || work.ClientId == 0 || work.SourceId == 0) continue;
-                    if (work.Id == 0)
-                    {
-                        work = _db.Works.Add(work);
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        var twork = _db.Works.Find(work.Id);
-                        twork.ClientId = work.ClientId;
-                        twork.DatePay = work.DatePay;
-                        twork.Prepay = work.Prepay;
-                        twork.TypeId = work.TypeId;
-                        twork.Hours = work.Hours;
-                        twork.Excess = work.Excess;
-                        twork.DateExcess = work.DateExcess;
-                    }
-                    var conses = _workConses.Where(r => r.RowId == rowId && r.Id == 0).ToList();
-                    foreach (var cons in conses)
-                    {
-                        cons.Date = work.DatePay;
-                        cons.WorkId = work.Id;
-                    }
-                    _db.Conses.AddRange(conses);
-                    _workConses.RemoveAll(r => r.RowId == rowId && r.Id == 0);
-                    conses = _workConses.Where(r => r.RowId == rowId).ToList();
-                    foreach (var cons in conses)
-                    {
-                        var dCons = _db.Conses.Find(cons.Id);
-                        dCons.TypeId = cons.TypeId;
-                        dCons.Amount = cons.Amount;
-                        dCons.Comment = cons.Comment;
-                        dCons.Date = work.DatePay;
-                        dCons.WorkId = work.Id;
-                    }
-                    _workConses.RemoveAll(r => r.RowId == rowId && r.Id == 0);
-                    _db.SaveChanges();
-                }
-                
+                    db.SaveChanges();
 
-                _workConses.Clear();
-                foreach (var i in _deleteWorkList)
-                {
-                    var work = _db.Works.Find(i);
-                    if (work == null) continue;
-                    var workCons = _db.Conses.Where(r => r.WorkId == work.Id);
-                    _db.Conses.RemoveRange(workCons);
-                    _db.Works.Remove(work);
-                }
-                #endregion
+                    #endregion
 
-                #region SaveCons
-
-                foreach (DataGridViewRow row in grCons.Rows)
-                {
-                    var cons = new ECons();
-                    try
-                    {
-                        cons.Id = Convert.ToInt32(row.Cells["csId"].Value);
-                    }
-                    catch
-                    {
-                        cons.Id = 0;
-                    }
-                    try
-                    {
-                        cons.TypeId = Convert.ToInt32(row.Cells["csTypeId"].Value);
-                    }
-                    catch
-                    {
-                        cons.TypeId = 0;
-                    }
-
-                    try{
-                        var amount = row.Cells["csAmount"].Value.ToString().Trim();
-                        amount = Regex.Replace(amount, " +", "");
-                        amount = amount.Replace(",", ".");
-                        cons.Amount = Convert.ToDouble(amount);
-                    }
-                    catch
-                    {
-                        cons.Amount = 0;
-                    }
-                    try
-                    {
-                        var comment = row.Cells["csComment"].Value.ToString().Trim();
-                        comment = Regex.Replace(comment, " +", " ");
-                        cons.Comment = comment;
-                    }
-                    catch
-                    {
-                        cons.Comment = null;
-                    }
-                    try
-                    {
-                        var date = row.Cells["csDate"].Value.ToString().Trim();
-                        date = Regex.Replace(date, " +"," ");
-                        date = Regex.Replace(date, ",", ".");
-                        cons.Date = Convert.ToDateTime(date);
-                    }
-                    catch
-                    {
-                        cons.Date = DateTime.Now;
-                    }
-                    if (cons.TypeId == 0 || cons.Amount < 0.01 || cons.Date == DateTime.MinValue) continue;
-                    if (cons.Id == 0)
-                    {
-                        _db.Conses.Add(cons);
-                    }
-                    else
-                    {
-                        var tcons = _db.Conses.Find(cons.Id);
-                        tcons.Amount = cons.Amount;
-                        tcons.Comment = cons.Comment;
-                        tcons.Date = cons.Date;
-                        tcons.TypeId = cons.TypeId;
-                    }
+                    t.Commit();
+                    MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
+                    _hasChange = false;
+                    _currentDate = DateTime.Now;
+                    GridMonthLoad(_currentDate);
                 }
-                foreach (var i in _deleteConsList)
+                catch (Exception ex)
                 {
-                    var cons = _db.Conses.Find(i);
-                    if (cons == null) continue;
-                    _db.Conses.Remove(cons);
-                }
-                _db.SaveChanges();
-                
-                #endregion
-                
-                t.Commit();
-                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
-                _hasChange = false;
-                _currentDate = DateTime.Now;
-                GridMonthLoad(_currentDate);
-            }
-            catch (Exception ex)
-            {
-                t.Rollback();
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
-                {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(ex.Message, cName + "/" + mName);
+                    t.Rollback();
+                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                    if (declaringType != null)
+                    {
+                        var cName = declaringType.Name;
+                        var mName = MethodBase.GetCurrentMethod().Name;
+                        Errors.SaveError(ex.Message, cName + "/" + mName);
+                    }
                 }
             }
         }
@@ -877,7 +891,7 @@ namespace Orders
                     iRow["csDate"].Value = cons.Date.ToString("dd.MM.yyyy");
                     iRow["csAmount"].Value = cons.Amount;
                     iRow["csComment"].Value = cons.Comment;
-                    iRow["csWorkId"].Value = cons.WorkId;
+                    iRow["csWorkId"].Value = cons.With(r => r.Work).Return(r => r.DatePay.ToString("dd.MM.yyyy"), "");
                 }
                 _hasChange = false;
             }
@@ -1011,21 +1025,65 @@ namespace Orders
         }
         private void FilterClients()
         {
-            var text = tbFindClient.Text.Trim();
-            text = System.Text.RegularExpressions.Regex.Replace(text, " +", " ");
-            var clients = _db.Clients.ToList();
-            if (!string.IsNullOrEmpty(text))
-                clients = clients.Where(r =>
-                    (!string.IsNullOrEmpty(r.Name) && r.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1) ||
-                    (!string.IsNullOrEmpty(r.Phone) && r.Phone.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1) ||
-                    (!string.IsNullOrEmpty(r.Mail) && r.Mail.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1)).ToList();
-            clients.Sort((item1, item2) =>
+            using (var db = new OrderContext())
             {
-                var order1 = item1.Date.CompareTo(item2.Date);
-                return order1 == 0 ? String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase) : order1;
-            });
-            grDicClient.DataSource = clients;
+                var text = tbFindClient.Text.Trim();
+                text = System.Text.RegularExpressions.Regex.Replace(text, " +", " ");
+                var clients = db.Clients.ToList();
+                if (!string.IsNullOrEmpty(text))
+                    clients = clients.Where(r =>
+                        (!string.IsNullOrEmpty(r.Name) && r.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1) ||
+                        (!string.IsNullOrEmpty(r.Phone) && r.Phone.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1) ||
+                        (!string.IsNullOrEmpty(r.Mail) && r.Mail.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1)).ToList();
+                clients.Sort((item1, item2) =>
+                {
+                    var order1 = item1.Date.CompareTo(item2.Date);
+                    return order1 == 0 ? String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase) : order1;
+                });
+                grDicClient.DataSource = clients;
+            }
         }
+        private void btBackUp_Click(object sender, EventArgs e)
+        {
+            using (var db = new OrderContext())
+            {
+                try
+                {
+                    var path = AppDomain.CurrentDomain.BaseDirectory + db.Database.Connection.DataSource + ".db";
+                    if (File.Exists(path))
+                    {
+                        if (sdBackUp.ShowDialog() == DialogResult.OK)
+                        {
+                            var file = sdBackUp.SelectedPath + "\\" + db.Database.Connection.DataSource + ".db";
+                            var i = 1;
+                            while (File.Exists(file))
+                            {
+                                file = sdBackUp.SelectedPath + "\\" + db.Database.Connection.DataSource + "[" + i + "]" + ".db";
+                                i++;
+                            }
+                            File.Copy(path, file);
+                            MessageBox.Show("OK");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(path);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                    if (declaringType != null)
+                    {
+                        var cName = declaringType.Name;
+                        var mName = MethodBase.GetCurrentMethod().Name;
+                        Errors.SaveError(exception.Message, cName + "/" + mName);
+                    }
+                    MessageBox.Show("Error");
+                }
+            }
+        }
+
         #endregion
 
         #region Вкладка Архив
@@ -1102,7 +1160,5 @@ namespace Orders
         }
 
         #endregion
-
-        
     }
 }

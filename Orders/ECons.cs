@@ -27,13 +27,13 @@ namespace Orders
         public int CertCons { get; set; }
 
         [Column("fWorkId")]
-        public int WorkId { get; set; }
+        public int? WorkId { get; set; }
 
         [ForeignKey("WorkId")]
         public EWork Work { get; set; }
 
         [Column("fCertId")]
-        public int CertId { get; set; }
+        public int? CertId { get; set; }
 
         [ForeignKey("CertId")]
         public ECert Cert { get; set; }

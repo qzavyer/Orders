@@ -8,10 +8,11 @@ namespace Orders
 {
     public static class WorkLib
     {
-        static readonly OrderContext Db = new OrderContext();
+        
 
         public static IEnumerable<EWork> GetMonthWorks(DateTime date)
         {
+            OrderContext Db = new OrderContext();
             var monthWorkLst = new List<EWork>();
             try
             {
@@ -46,6 +47,7 @@ namespace Orders
 
         public static IEnumerable<EWork> GetYearWorks(DateTime date)
         {
+            OrderContext Db = new OrderContext();
             var monthWorkLst = new List<EWork>();
             try
             {
@@ -80,6 +82,7 @@ namespace Orders
 
         public static IEnumerable<ECons> GetMonthConses(DateTime date)
         {
+            OrderContext Db = new OrderContext();
             var monthWorkLst = new List<ECons>();
             try
             {
@@ -90,7 +93,9 @@ namespace Orders
                 // список всех расходов за месяц
                 monthWorkLst = Db.Conses.Where(w =>
                     w.date >= dateMonthStartInt && w.date < dateMonthEndInt)
-                    .Include(r => r.Type).OrderBy(r=>r.date)
+                    .Include(r => r.Work)
+                    .Include(r => r.Work.Type)
+                    .Include(r => r.Type).OrderBy(r => r.date)
                     .ToList();
             }
             catch (Exception exception)
@@ -108,6 +113,7 @@ namespace Orders
 
         public static IEnumerable<ECons> GetYearConses(DateTime date)
         {
+            OrderContext Db = new OrderContext();
             var monthWorkLst = new List<ECons>();
             try
             {
@@ -118,7 +124,9 @@ namespace Orders
                 // список всех расходов за год
                 monthWorkLst = Db.Conses.Where(w =>
                     w.date >= dateYearStartInt && w.date < dateYearEndInt)
-                    .Include(r => r.Type)
+                    .Include(r => r.Work)
+                    .Include(r=>r.Work.Type)
+                    .Include(r => r.Type).OrderBy(r => r.date)
                     .ToList();
             }
             catch (Exception exception)
@@ -136,6 +144,7 @@ namespace Orders
 
         public static DateTime GetMinDate()
         {
+            OrderContext Db = new OrderContext();
             var mindate = Db.Works.Min(r => r.datePay);
             return DateLib.GetDateFromInt(mindate);
         }
