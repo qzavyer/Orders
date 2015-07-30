@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Collections.Generic;
 
 namespace Orders
 {
@@ -12,6 +11,7 @@ namespace Orders
         public DbSet<ESourceType> SourceTypes { get; set; }
         public DbSet<EWork> Works { get; set; }
         public DbSet<EWorkType> WorkTypes { get; set; }
-        public DbSet<Error> Errors { get; set; }                
-    }    
+        public DbSet<Error> Errors { get; set; }
+    }
 }
+

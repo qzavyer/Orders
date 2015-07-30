@@ -35,18 +35,18 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbFind = new System.Windows.Forms.TextBox();
             this.grCons = new System.Windows.Forms.DataGridView();
-            this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCert = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.cComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cIsCert = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grCons)).BeginInit();
@@ -110,7 +110,7 @@
             this.cTypeId,
             this.cType,
             this.cAmount,
-            this.cCert,
+            this.cIsCert,
             this.cComment,
             this.cDelete});
             this.grCons.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -122,59 +122,6 @@
             this.grCons.Size = new System.Drawing.Size(673, 407);
             this.grCons.TabIndex = 2;
             this.grCons.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCons_CellClick);
-            // 
-            // cId
-            // 
-            this.cId.DataPropertyName = "cId";
-            this.cId.HeaderText = "Id";
-            this.cId.Name = "cId";
-            this.cId.Visible = false;
-            // 
-            // cTypeId
-            // 
-            this.cTypeId.HeaderText = "TypeId";
-            this.cTypeId.Name = "cTypeId";
-            this.cTypeId.Visible = false;
-            // 
-            // cType
-            // 
-            this.cType.HeaderText = "Тип";
-            this.cType.Name = "cType";
-            // 
-            // cAmount
-            // 
-            this.cAmount.DataPropertyName = "cAmount";
-            this.cAmount.HeaderText = "Сумма";
-            this.cAmount.Name = "cAmount";
-            // 
-            // cCert
-            // 
-            this.cCert.DataPropertyName = "cCert";
-            this.cCert.FalseValue = "0";
-            this.cCert.HeaderText = "Услуга серт.";
-            this.cCert.Name = "cCert";
-            this.cCert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cCert.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cCert.TrueValue = "1";
-            this.cCert.Visible = false;
-            this.cCert.Width = 120;
-            // 
-            // cComment
-            // 
-            this.cComment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cComment.DataPropertyName = "cComment";
-            this.cComment.HeaderText = "Комментарий";
-            this.cComment.Name = "cComment";
-            // 
-            // cDelete
-            // 
-            this.cDelete.HeaderText = "X";
-            this.cDelete.Name = "cDelete";
-            this.cDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cDelete.Text = "X";
-            this.cDelete.ToolTipText = "Удалить запись";
-            this.cDelete.UseColumnTextForButtonValue = true;
-            this.cDelete.Width = 25;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -209,6 +156,54 @@
             this.dataGridViewTextBoxColumn5.DataPropertyName = "cComment";
             this.dataGridViewTextBoxColumn5.HeaderText = "Комментарий";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // cId
+            // 
+            this.cId.DataPropertyName = "cId";
+            this.cId.HeaderText = "Id";
+            this.cId.Name = "cId";
+            this.cId.Visible = false;
+            // 
+            // cTypeId
+            // 
+            this.cTypeId.HeaderText = "TypeId";
+            this.cTypeId.Name = "cTypeId";
+            this.cTypeId.Visible = false;
+            // 
+            // cType
+            // 
+            this.cType.HeaderText = "Тип";
+            this.cType.Name = "cType";
+            // 
+            // cAmount
+            // 
+            this.cAmount.DataPropertyName = "cAmount";
+            this.cAmount.HeaderText = "Сумма";
+            this.cAmount.Name = "cAmount";
+            // 
+            // cIsCert
+            // 
+            this.cIsCert.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cIsCert.HeaderText = "Сертификат";
+            this.cIsCert.Name = "cIsCert";
+            this.cIsCert.Width = 95;
+            // 
+            // cComment
+            // 
+            this.cComment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cComment.DataPropertyName = "cComment";
+            this.cComment.HeaderText = "Комментарий";
+            this.cComment.Name = "cComment";
+            // 
+            // cDelete
+            // 
+            this.cDelete.HeaderText = "X";
+            this.cDelete.Name = "cDelete";
+            this.cDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cDelete.Text = "X";
+            this.cDelete.ToolTipText = "Удалить запись";
+            this.cDelete.UseColumnTextForButtonValue = true;
+            this.cDelete.Width = 25;
             // 
             // FrCons
             // 
@@ -248,7 +243,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn cType;
         private System.Windows.Forms.DataGridViewTextBoxColumn cAmount;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn cCert;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn cIsCert;
         private System.Windows.Forms.DataGridViewTextBoxColumn cComment;
         private System.Windows.Forms.DataGridViewButtonColumn cDelete;
     }

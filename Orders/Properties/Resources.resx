@@ -177,4 +177,16 @@
   <data name="DeleteRecord" xml:space="preserve">
     <value>Удалить запись?</value>
   </data>
+  <data name="CreateDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Cert" xml:space="preserve">
+    <value>Сертификат</value>
+  </data>
+  <data name="FrCertsErrorData" xml:space="preserve">
+    <value>Выбранный сертификат содержит ошибки и не будет сохранён. Продолжить работу?</value>
+  </data>
 </root>

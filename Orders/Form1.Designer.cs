@@ -37,6 +37,7 @@ namespace Orders
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -45,11 +46,14 @@ namespace Orders
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabArchive = new System.Windows.Forms.TabPage();
             this.lArcHourAvg = new System.Windows.Forms.Label();
@@ -131,7 +135,6 @@ namespace Orders
             this.tabGloss = new System.Windows.Forms.TabPage();
             this.grDicClient = new System.Windows.Forms.DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.btBackUp = new System.Windows.Forms.Button();
             this.tbFindClient = new System.Windows.Forms.TextBox();
             this.tabConsum = new System.Windows.Forms.TabPage();
             this.grCons = new System.Windows.Forms.DataGridView();
@@ -139,26 +142,34 @@ namespace Orders
             this.csNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csDate = new Orders.Classes.CalendarColumn();
             this.csAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csIsCert = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.csComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csWorkId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.chShowAll = new System.Windows.Forms.CheckBox();
-            this.btConsSave = new System.Windows.Forms.Button();
             this.tabSert = new System.Windows.Forms.TabPage();
             this.grCert = new System.Windows.Forms.DataGridView();
             this.ccId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccPayerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ccNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccPayerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccPayerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccPayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccClientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccDatePay = new Orders.Classes.CalendarColumn();
+            this.ccDateEnd = new Orders.Classes.CalendarColumn();
             this.ccPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ccCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccConsed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ccHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccSourceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ccIsCash = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btCertSave = new System.Windows.Forms.Button();
+            this.chCertAll = new System.Windows.Forms.CheckBox();
             this.tabGraph = new System.Windows.Forms.TabPage();
             this.chrtSourceSum = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabWork = new System.Windows.Forms.TabPage();
@@ -169,14 +180,17 @@ namespace Orders
             this.cwClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwDatePay = new Orders.Classes.CalendarColumn();
             this.cwPrepay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwDateExcess = new Orders.Classes.CalendarColumn();
             this.cwExcess = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwSourceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cwDuty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cwCertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cwSert = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.cwCert = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cwDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -202,7 +216,30 @@ namespace Orders
             this.label8 = new System.Windows.Forms.Label();
             this.lConsY = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.tabApp = new System.Windows.Forms.TabControl();
+            this.tabDuty = new System.Windows.Forms.TabPage();
+            this.grDuty = new System.Windows.Forms.DataGridView();
+            this.cdNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdDuty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdConfirm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdConfirmAll = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tabAdmin = new System.Windows.Forms.TabPage();
+            this.grErrors = new System.Windows.Forms.DataGridView();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.btClear = new System.Windows.Forms.Button();
+            this.btReloadErrors = new System.Windows.Forms.Button();
+            this.btBackUp = new System.Windows.Forms.Button();
+            this.sdBackUp = new System.Windows.Forms.FolderBrowserDialog();
             this.pHistory = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lVirt = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.btHome = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.lYearL = new System.Windows.Forms.Label();
@@ -245,15 +282,15 @@ namespace Orders
             this.btHistory3 = new System.Windows.Forms.Button();
             this.btHistory2 = new System.Windows.Forms.Button();
             this.btHistory1 = new System.Windows.Forms.Button();
-            this.tabApp = new System.Windows.Forms.TabControl();
-            this.sdBackUp = new System.Windows.Forms.FolderBrowserDialog();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.calendarColumn1 = new Orders.Classes.CalendarColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.calendarColumn2 = new Orders.Classes.CalendarColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -305,8 +342,14 @@ namespace Orders
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.pHistory.SuspendLayout();
             this.tabApp.SuspendLayout();
+            this.tabDuty.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grDuty)).BeginInit();
+            this.tabAdmin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grErrors)).BeginInit();
+            this.panel8.SuspendLayout();
+            this.pHistory.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabArchive
@@ -387,10 +430,10 @@ namespace Orders
             this.tabArchive.Controls.Add(this.btArcHistory1);
             this.tabArchive.Controls.Add(this.label17);
             this.tabArchive.Controls.Add(this.cbArchYear);
-            this.tabArchive.Location = new System.Drawing.Point(4, 24);
+            this.tabArchive.Location = new System.Drawing.Point(4, 27);
             this.tabArchive.Name = "tabArchive";
             this.tabArchive.Padding = new System.Windows.Forms.Padding(3);
-            this.tabArchive.Size = new System.Drawing.Size(1591, 646);
+            this.tabArchive.Size = new System.Drawing.Size(1312, 643);
             this.tabArchive.TabIndex = 5;
             this.tabArchive.Text = "Архив";
             this.tabArchive.UseVisualStyleBackColor = true;
@@ -1034,7 +1077,7 @@ namespace Orders
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(8, 9);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(31, 15);
+            this.label17.Size = new System.Drawing.Size(39, 18);
             this.label17.TabIndex = 1;
             this.label17.Text = "Год:";
             // 
@@ -1043,7 +1086,7 @@ namespace Orders
             this.cbArchYear.FormattingEnabled = true;
             this.cbArchYear.Location = new System.Drawing.Point(53, 6);
             this.cbArchYear.Name = "cbArchYear";
-            this.cbArchYear.Size = new System.Drawing.Size(127, 23);
+            this.cbArchYear.Size = new System.Drawing.Size(127, 26);
             this.cbArchYear.TabIndex = 0;
             this.cbArchYear.SelectedIndexChanged += new System.EventHandler(this.cbArchYear_SelectedIndexChanged);
             // 
@@ -1051,16 +1094,18 @@ namespace Orders
             // 
             this.tabGloss.Controls.Add(this.grDicClient);
             this.tabGloss.Controls.Add(this.panel17);
-            this.tabGloss.Location = new System.Drawing.Point(4, 24);
+            this.tabGloss.Location = new System.Drawing.Point(4, 27);
             this.tabGloss.Name = "tabGloss";
             this.tabGloss.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGloss.Size = new System.Drawing.Size(1591, 646);
+            this.tabGloss.Size = new System.Drawing.Size(1312, 643);
             this.tabGloss.TabIndex = 3;
             this.tabGloss.Text = "Справочники";
             this.tabGloss.UseVisualStyleBackColor = true;
             // 
             // grDicClient
             // 
+            this.grDicClient.AllowUserToAddRows = false;
+            this.grDicClient.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -1073,39 +1118,26 @@ namespace Orders
             this.grDicClient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grDicClient.Location = new System.Drawing.Point(3, 28);
             this.grDicClient.Name = "grDicClient";
-            this.grDicClient.ReadOnly = true;
             this.grDicClient.RowHeadersVisible = false;
             this.grDicClient.RowTemplate.Height = 24;
-            this.grDicClient.Size = new System.Drawing.Size(1585, 615);
+            this.grDicClient.Size = new System.Drawing.Size(1306, 612);
             this.grDicClient.TabIndex = 0;
             // 
             // panel17
             // 
-            this.panel17.Controls.Add(this.btBackUp);
             this.panel17.Controls.Add(this.tbFindClient);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel17.Location = new System.Drawing.Point(3, 3);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(1585, 25);
+            this.panel17.Size = new System.Drawing.Size(1306, 25);
             this.panel17.TabIndex = 1;
-            // 
-            // btBackUp
-            // 
-            this.btBackUp.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btBackUp.Location = new System.Drawing.Point(1480, 0);
-            this.btBackUp.Name = "btBackUp";
-            this.btBackUp.Size = new System.Drawing.Size(105, 25);
-            this.btBackUp.TabIndex = 115;
-            this.btBackUp.Text = "BackUp";
-            this.btBackUp.UseVisualStyleBackColor = true;
-            this.btBackUp.Click += new System.EventHandler(this.btBackUp_Click);
             // 
             // tbFindClient
             // 
             this.tbFindClient.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbFindClient.Location = new System.Drawing.Point(0, 0);
             this.tbFindClient.Name = "tbFindClient";
-            this.tbFindClient.Size = new System.Drawing.Size(250, 21);
+            this.tbFindClient.Size = new System.Drawing.Size(250, 24);
             this.tbFindClient.TabIndex = 0;
             this.tbFindClient.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbFindClient_KeyUp);
             // 
@@ -1113,10 +1145,10 @@ namespace Orders
             // 
             this.tabConsum.Controls.Add(this.grCons);
             this.tabConsum.Controls.Add(this.panel5);
-            this.tabConsum.Location = new System.Drawing.Point(4, 24);
+            this.tabConsum.Location = new System.Drawing.Point(4, 27);
             this.tabConsum.Name = "tabConsum";
             this.tabConsum.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConsum.Size = new System.Drawing.Size(1591, 646);
+            this.tabConsum.Size = new System.Drawing.Size(1312, 643);
             this.tabConsum.TabIndex = 2;
             this.tabConsum.Text = "Расходы";
             this.tabConsum.UseVisualStyleBackColor = true;
@@ -1129,7 +1161,9 @@ namespace Orders
             this.csNumber,
             this.csTypeId,
             this.csType,
+            this.csDate,
             this.csAmount,
+            this.csIsCert,
             this.csComment,
             this.csWorkId,
             this.csDelete});
@@ -1148,7 +1182,7 @@ namespace Orders
             this.grCons.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grCons.RowHeadersVisible = false;
             this.grCons.RowTemplate.Height = 24;
-            this.grCons.Size = new System.Drawing.Size(1585, 612);
+            this.grCons.Size = new System.Drawing.Size(1306, 609);
             this.grCons.TabIndex = 1;
             this.grCons.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCons_CellClick);
             this.grCons.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCons_CellValueChanged);
@@ -1179,17 +1213,30 @@ namespace Orders
             // 
             // csType
             // 
+            this.csType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.csType.HeaderText = "Вид расхода";
             this.csType.Name = "csType";
-            this.csType.Width = 140;
+            this.csType.Width = 121;
+            // 
+            // csDate
+            // 
+            this.csDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.csDate.HeaderText = "Дата";
+            this.csDate.Name = "csDate";
+            this.csDate.Width = 81;
             // 
             // csAmount
             // 
-            this.csAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.csAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.csAmount.DataPropertyName = "csAmount";
-            this.csAmount.FillWeight = 40F;
             this.csAmount.HeaderText = "Сумма";
             this.csAmount.Name = "csAmount";
+            this.csAmount.Width = 81;
+            // 
+            // csIsCert
+            // 
+            this.csIsCert.HeaderText = "Сертификат";
+            this.csIsCert.Name = "csIsCert";
             // 
             // csComment
             // 
@@ -1200,9 +1247,11 @@ namespace Orders
             // 
             // csWorkId
             // 
+            this.csWorkId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.csWorkId.HeaderText = "Работа";
             this.csWorkId.Name = "csWorkId";
             this.csWorkId.ReadOnly = true;
+            this.csWorkId.Width = 84;
             // 
             // csDelete
             // 
@@ -1217,11 +1266,10 @@ namespace Orders
             // panel5
             // 
             this.panel5.Controls.Add(this.chShowAll);
-            this.panel5.Controls.Add(this.btConsSave);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 615);
+            this.panel5.Location = new System.Drawing.Point(3, 612);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1585, 28);
+            this.panel5.Size = new System.Drawing.Size(1306, 28);
             this.panel5.TabIndex = 0;
             // 
             // chShowAll
@@ -1230,31 +1278,20 @@ namespace Orders
             this.chShowAll.Dock = System.Windows.Forms.DockStyle.Left;
             this.chShowAll.Location = new System.Drawing.Point(0, 0);
             this.chShowAll.Name = "chShowAll";
-            this.chShowAll.Size = new System.Drawing.Size(105, 28);
+            this.chShowAll.Size = new System.Drawing.Size(125, 28);
             this.chShowAll.TabIndex = 1;
             this.chShowAll.Text = "Показать все";
             this.chShowAll.UseVisualStyleBackColor = true;
             this.chShowAll.CheckedChanged += new System.EventHandler(this.chShowAll_CheckedChanged);
             // 
-            // btConsSave
-            // 
-            this.btConsSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btConsSave.Location = new System.Drawing.Point(1467, 0);
-            this.btConsSave.Name = "btConsSave";
-            this.btConsSave.Size = new System.Drawing.Size(118, 28);
-            this.btConsSave.TabIndex = 0;
-            this.btConsSave.Text = "Сохранить";
-            this.btConsSave.UseVisualStyleBackColor = true;
-            this.btConsSave.Click += new System.EventHandler(this.btConsSave_Click);
-            // 
             // tabSert
             // 
             this.tabSert.Controls.Add(this.grCert);
             this.tabSert.Controls.Add(this.panel6);
-            this.tabSert.Location = new System.Drawing.Point(4, 24);
+            this.tabSert.Location = new System.Drawing.Point(4, 27);
             this.tabSert.Name = "tabSert";
             this.tabSert.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSert.Size = new System.Drawing.Size(1591, 646);
+            this.tabSert.Size = new System.Drawing.Size(1312, 643);
             this.tabSert.TabIndex = 1;
             this.tabSert.Text = "Сертификаты";
             this.tabSert.UseVisualStyleBackColor = true;
@@ -1264,20 +1301,27 @@ namespace Orders
             this.grCert.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grCert.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ccId,
-            this.ccPayerId,
-            this.ccClientId,
             this.ccNumber,
-            this.ccPayerName,
-            this.ccClientName,
+            this.ccPayerId,
+            this.ccPayer,
+            this.ccClientId,
+            this.ccClient,
+            this.ccTypeId,
+            this.ccType,
+            this.ccDatePay,
+            this.ccDateEnd,
             this.ccPrice,
-            this.ccCons,
-            this.ccHours});
+            this.ccConsed,
+            this.ccHours,
+            this.ccSourceId,
+            this.ccSource,
+            this.ccIsCash});
             this.grCert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grCert.Location = new System.Drawing.Point(3, 3);
             this.grCert.Name = "grCert";
             this.grCert.RowHeadersVisible = false;
             this.grCert.RowTemplate.Height = 24;
-            this.grCert.Size = new System.Drawing.Size(1585, 612);
+            this.grCert.Size = new System.Drawing.Size(1306, 609);
             this.grCert.TabIndex = 1;
             this.grCert.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grCert_CellClick);
             // 
@@ -1288,12 +1332,28 @@ namespace Orders
             this.ccId.Name = "ccId";
             this.ccId.Visible = false;
             // 
+            // ccNumber
+            // 
+            this.ccNumber.DataPropertyName = "ccNumber";
+            this.ccNumber.HeaderText = "";
+            this.ccNumber.Name = "ccNumber";
+            this.ccNumber.ReadOnly = true;
+            this.ccNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ccNumber.Width = 30;
+            // 
             // ccPayerId
             // 
             this.ccPayerId.DataPropertyName = "ccPayerId";
             this.ccPayerId.HeaderText = "PayerId";
             this.ccPayerId.Name = "ccPayerId";
             this.ccPayerId.Visible = false;
+            // 
+            // ccPayer
+            // 
+            this.ccPayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ccPayer.DataPropertyName = "ccPayerName";
+            this.ccPayer.HeaderText = "Плательщик";
+            this.ccPayer.Name = "ccPayer";
             // 
             // ccClientId
             // 
@@ -1302,75 +1362,111 @@ namespace Orders
             this.ccClientId.Name = "ccClientId";
             this.ccClientId.Visible = false;
             // 
-            // ccNumber
+            // ccClient
             // 
-            this.ccNumber.DataPropertyName = "ccNumber";
-            this.ccNumber.HeaderText = "";
-            this.ccNumber.Name = "ccNumber";
-            this.ccNumber.ReadOnly = true;
-            this.ccNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ccNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ccNumber.Width = 30;
+            this.ccClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ccClient.DataPropertyName = "ccClientName";
+            this.ccClient.HeaderText = "Клиент";
+            this.ccClient.Name = "ccClient";
             // 
-            // ccPayerName
+            // ccTypeId
             // 
-            this.ccPayerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ccPayerName.DataPropertyName = "ccPayerName";
-            this.ccPayerName.HeaderText = "Плательщик";
-            this.ccPayerName.Name = "ccPayerName";
+            this.ccTypeId.HeaderText = "TypeId";
+            this.ccTypeId.Name = "ccTypeId";
+            this.ccTypeId.Visible = false;
             // 
-            // ccClientName
+            // ccType
             // 
-            this.ccClientName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ccClientName.DataPropertyName = "ccClientName";
-            this.ccClientName.HeaderText = "Клиент";
-            this.ccClientName.Name = "ccClientName";
+            this.ccType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ccType.HeaderText = "Вид работы";
+            this.ccType.Name = "ccType";
+            this.ccType.Width = 106;
+            // 
+            // ccDatePay
+            // 
+            this.ccDatePay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ccDatePay.HeaderText = "Дата оплаты";
+            this.ccDatePay.Name = "ccDatePay";
+            this.ccDatePay.Width = 95;
+            // 
+            // ccDateEnd
+            // 
+            this.ccDateEnd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ccDateEnd.HeaderText = "Дата окончания";
+            this.ccDateEnd.Name = "ccDateEnd";
+            this.ccDateEnd.Width = 114;
             // 
             // ccPrice
             // 
+            this.ccPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ccPrice.DataPropertyName = "ccPrice";
             this.ccPrice.HeaderText = "Сумма";
             this.ccPrice.Name = "ccPrice";
+            this.ccPrice.Width = 81;
             // 
-            // ccCons
+            // ccConsed
             // 
-            this.ccCons.DataPropertyName = "ccCons";
-            this.ccCons.HeaderText = "Расход";
-            this.ccCons.Name = "ccCons";
+            this.ccConsed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ccConsed.HeaderText = "Израсходовано";
+            this.ccConsed.Name = "ccConsed";
+            this.ccConsed.Width = 143;
             // 
             // ccHours
             // 
+            this.ccHours.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ccHours.DataPropertyName = "ccHours";
             this.ccHours.HeaderText = "Часы";
             this.ccHours.Name = "ccHours";
+            this.ccHours.Width = 70;
+            // 
+            // ccSourceId
+            // 
+            this.ccSourceId.HeaderText = "SourceId";
+            this.ccSourceId.Name = "ccSourceId";
+            this.ccSourceId.Visible = false;
+            // 
+            // ccSource
+            // 
+            this.ccSource.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ccSource.HeaderText = "Источник";
+            this.ccSource.Name = "ccSource";
+            // 
+            // ccIsCash
+            // 
+            this.ccIsCash.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ccIsCash.HeaderText = "Обналичен";
+            this.ccIsCash.Name = "ccIsCash";
+            this.ccIsCash.Width = 92;
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.btCertSave);
+            this.panel6.Controls.Add(this.chCertAll);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(3, 615);
+            this.panel6.Location = new System.Drawing.Point(3, 612);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1585, 28);
+            this.panel6.Size = new System.Drawing.Size(1306, 28);
             this.panel6.TabIndex = 0;
             // 
-            // btCertSave
+            // chCertAll
             // 
-            this.btCertSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btCertSave.Location = new System.Drawing.Point(1467, 0);
-            this.btCertSave.Name = "btCertSave";
-            this.btCertSave.Size = new System.Drawing.Size(118, 28);
-            this.btCertSave.TabIndex = 0;
-            this.btCertSave.Text = "Сохранить";
-            this.btCertSave.UseVisualStyleBackColor = true;
+            this.chCertAll.AutoSize = true;
+            this.chCertAll.Dock = System.Windows.Forms.DockStyle.Left;
+            this.chCertAll.Location = new System.Drawing.Point(0, 0);
+            this.chCertAll.Name = "chCertAll";
+            this.chCertAll.Size = new System.Drawing.Size(123, 28);
+            this.chCertAll.TabIndex = 0;
+            this.chCertAll.Text = "Все за месяц";
+            this.chCertAll.UseVisualStyleBackColor = true;
+            this.chCertAll.CheckedChanged += new System.EventHandler(this.chCertAll_CheckedChanged);
             // 
             // tabGraph
             // 
             this.tabGraph.AutoScroll = true;
             this.tabGraph.Controls.Add(this.chrtSourceSum);
-            this.tabGraph.Location = new System.Drawing.Point(4, 24);
+            this.tabGraph.Location = new System.Drawing.Point(4, 27);
             this.tabGraph.Name = "tabGraph";
             this.tabGraph.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraph.Size = new System.Drawing.Size(1591, 646);
+            this.tabGraph.Size = new System.Drawing.Size(1312, 643);
             this.tabGraph.TabIndex = 4;
             this.tabGraph.Text = "Графики";
             this.tabGraph.UseVisualStyleBackColor = true;
@@ -1389,7 +1485,7 @@ namespace Orders
             chartArea1.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.Gold;
             chartArea1.Name = "arIncSum";
             chartArea1.Position.Auto = false;
-            chartArea1.Position.Height = 30F;
+            chartArea1.Position.Height = 22F;
             chartArea1.Position.Width = 50F;
             chartArea1.Position.Y = 4F;
             chartArea2.AxisX.Interval = 1D;
@@ -1404,9 +1500,9 @@ namespace Orders
             chartArea2.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.Gold;
             chartArea2.Name = "arSourceSum";
             chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 30F;
+            chartArea2.Position.Height = 22F;
             chartArea2.Position.Width = 50F;
-            chartArea2.Position.Y = 37F;
+            chartArea2.Position.Y = 29F;
             chartArea3.AxisX.Interval = 1D;
             chartArea3.AxisX.IsLabelAutoFit = false;
             chartArea3.AxisX.MajorGrid.Enabled = false;
@@ -1416,7 +1512,7 @@ namespace Orders
             chartArea3.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Tomato;
             chartArea3.Name = "arConsWork";
             chartArea3.Position.Auto = false;
-            chartArea3.Position.Height = 30F;
+            chartArea3.Position.Height = 22F;
             chartArea3.Position.Width = 50F;
             chartArea3.Position.X = 50F;
             chartArea3.Position.Y = 4F;
@@ -1429,12 +1525,11 @@ namespace Orders
             chartArea4.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Tomato;
             chartArea4.Name = "arConsType";
             chartArea4.Position.Auto = false;
-            chartArea4.Position.Height = 30F;
+            chartArea4.Position.Height = 22F;
             chartArea4.Position.Width = 50F;
             chartArea4.Position.X = 50F;
-            chartArea4.Position.Y = 37F;
+            chartArea4.Position.Y = 29F;
             chartArea5.AxisX.Interval = 1D;
-            chartArea5.AxisX.IsLabelAutoFit = false;
             chartArea5.AxisX.MajorGrid.Enabled = false;
             chartArea5.AxisX.MajorTickMark.Enabled = false;
             chartArea5.AxisY.LineColor = System.Drawing.Color.Empty;
@@ -1442,14 +1537,27 @@ namespace Orders
             chartArea5.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Green;
             chartArea5.Name = "arMonth";
             chartArea5.Position.Auto = false;
-            chartArea5.Position.Height = 30F;
+            chartArea5.Position.Height = 22F;
             chartArea5.Position.Width = 100F;
-            chartArea5.Position.Y = 70F;
+            chartArea5.Position.Y = 54F;
+            chartArea6.AxisX.Interval = 1D;
+            chartArea6.AxisX.MajorGrid.Enabled = false;
+            chartArea6.AxisX.MajorTickMark.Enabled = false;
+            chartArea6.AxisY.IsLabelAutoFit = false;
+            chartArea6.AxisY.LineColor = System.Drawing.Color.Empty;
+            chartArea6.AxisY.MajorGrid.LineColor = System.Drawing.Color.Green;
+            chartArea6.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Green;
+            chartArea6.Name = "arCerts";
+            chartArea6.Position.Auto = false;
+            chartArea6.Position.Height = 21F;
+            chartArea6.Position.Width = 100F;
+            chartArea6.Position.Y = 79F;
             this.chrtSourceSum.ChartAreas.Add(chartArea1);
             this.chrtSourceSum.ChartAreas.Add(chartArea2);
             this.chrtSourceSum.ChartAreas.Add(chartArea3);
             this.chrtSourceSum.ChartAreas.Add(chartArea4);
             this.chrtSourceSum.ChartAreas.Add(chartArea5);
+            this.chrtSourceSum.ChartAreas.Add(chartArea6);
             this.chrtSourceSum.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chrtSourceSum.Location = new System.Drawing.Point(3, 3);
             this.chrtSourceSum.Name = "chrtSourceSum";
@@ -1518,6 +1626,25 @@ namespace Orders
             series8.LabelToolTip = "#VAL";
             series8.Name = "serMonthP";
             series8.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series9.BorderWidth = 5;
+            series9.ChartArea = "arCerts";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series9.Color = System.Drawing.Color.Green;
+            series9.CustomProperties = "IsXAxisQuantitative=False, DrawingStyle=Cylinder, EmptyPointValue=Zero, LabelStyl" +
+                "e=Top";
+            series9.IsValueShownAsLabel = true;
+            series9.LabelToolTip = "#VAL";
+            series9.Name = "serCertInc";
+            series9.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
+            series10.BorderWidth = 5;
+            series10.ChartArea = "arCerts";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series10.Color = System.Drawing.Color.Tomato;
+            series10.CustomProperties = "DrawingStyle=Cylinder, EmptyPointValue=Zero, LabelStyle=Top";
+            series10.IsValueShownAsLabel = true;
+            series10.LabelToolTip = "#VAL";
+            series10.Name = "serCertCons";
+            series10.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             this.chrtSourceSum.Series.Add(series1);
             this.chrtSourceSum.Series.Add(series2);
             this.chrtSourceSum.Series.Add(series3);
@@ -1526,63 +1653,70 @@ namespace Orders
             this.chrtSourceSum.Series.Add(series6);
             this.chrtSourceSum.Series.Add(series7);
             this.chrtSourceSum.Series.Add(series8);
-            this.chrtSourceSum.Size = new System.Drawing.Size(1585, 640);
+            this.chrtSourceSum.Series.Add(series9);
+            this.chrtSourceSum.Series.Add(series10);
+            this.chrtSourceSum.Size = new System.Drawing.Size(1306, 637);
             this.chrtSourceSum.TabIndex = 0;
             title1.DockedToChartArea = "arIncSum";
             title1.DockingOffset = -6;
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             title1.Name = "titleIncSum";
             title1.Position.Auto = false;
-            title1.Position.Height = 3.409257F;
-            title1.Position.Width = 40.35125F;
-            title1.Position.X = 5F;
-            title1.Position.Y = 0.2F;
+            title1.Position.Height = 4F;
+            title1.Position.Width = 50F;
             title1.Text = "Виды работ";
             title2.DockedToChartArea = "arSourceSum";
             title2.DockingOffset = -6;
             title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             title2.Name = "titleSourceSum";
             title2.Position.Auto = false;
-            title2.Position.Height = 3.409257F;
-            title2.Position.Width = 40.35125F;
-            title2.Position.X = 5F;
-            title2.Position.Y = 33.2F;
+            title2.Position.Height = 4F;
+            title2.Position.Width = 50F;
+            title2.Position.Y = 25F;
             title2.Text = "Источники";
             title3.DockedToChartArea = "arConsWork";
             title3.DockingOffset = -6;
             title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             title3.Name = "titleConsWork";
             title3.Position.Auto = false;
-            title3.Position.Height = 3.409257F;
-            title3.Position.Width = 43.95781F;
-            title3.Position.X = 55F;
-            title3.Position.Y = 0.2F;
+            title3.Position.Height = 4F;
+            title3.Position.Width = 50F;
+            title3.Position.X = 50F;
             title3.Text = "Расходы по видам работ";
             title4.DockedToChartArea = "arConsType";
             title4.DockingOffset = -6;
             title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             title4.Name = "titleConsType";
             title4.Position.Auto = false;
-            title4.Position.Height = 3.409257F;
-            title4.Position.Width = 43.95781F;
-            title4.Position.X = 55F;
-            title4.Position.Y = 33.2F;
+            title4.Position.Height = 4F;
+            title4.Position.Width = 50F;
+            title4.Position.X = 50F;
+            title4.Position.Y = 25F;
             title4.Text = "Расходы по видам";
             title5.DockedToChartArea = "arMonth";
             title5.DockingOffset = -6;
             title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             title5.Name = "titleMonth";
             title5.Position.Auto = false;
-            title5.Position.Height = 3.409257F;
-            title5.Position.Width = 93.95781F;
-            title5.Position.X = 5F;
-            title5.Position.Y = 66.2F;
+            title5.Position.Height = 4F;
+            title5.Position.Width = 100F;
+            title5.Position.Y = 50F;
             title5.Text = "Доходы по месяцам";
+            title6.DockedToChartArea = "arCerts";
+            title6.DockingOffset = -6;
+            title6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            title6.Name = "titleCerts";
+            title6.Position.Auto = false;
+            title6.Position.Height = 4F;
+            title6.Position.Width = 100F;
+            title6.Position.Y = 75F;
+            title6.Text = "Сертификаты";
             this.chrtSourceSum.Titles.Add(title1);
             this.chrtSourceSum.Titles.Add(title2);
             this.chrtSourceSum.Titles.Add(title3);
             this.chrtSourceSum.Titles.Add(title4);
             this.chrtSourceSum.Titles.Add(title5);
+            this.chrtSourceSum.Titles.Add(title6);
             this.chrtSourceSum.MouseEnter += new System.EventHandler(this.chrtSourceSum_MouseEnter);
             this.chrtSourceSum.MouseLeave += new System.EventHandler(this.chrtSourceSum_MouseLeave);
             // 
@@ -1591,11 +1725,10 @@ namespace Orders
             this.tabWork.Controls.Add(this.grWork);
             this.tabWork.Controls.Add(this.panel3);
             this.tabWork.Controls.Add(this.panel2);
-            this.tabWork.Controls.Add(this.pHistory);
-            this.tabWork.Location = new System.Drawing.Point(4, 24);
+            this.tabWork.Location = new System.Drawing.Point(4, 27);
             this.tabWork.Name = "tabWork";
             this.tabWork.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWork.Size = new System.Drawing.Size(1591, 646);
+            this.tabWork.Size = new System.Drawing.Size(1312, 643);
             this.tabWork.TabIndex = 0;
             this.tabWork.Text = "Работа";
             this.tabWork.UseVisualStyleBackColor = true;
@@ -1610,23 +1743,27 @@ namespace Orders
             this.cwClient,
             this.cwTypeId,
             this.cwType,
+            this.cwDatePay,
             this.cwPrepay,
+            this.cwDateExcess,
             this.cwExcess,
             this.cwCons,
             this.cwHours,
             this.cwSourceId,
             this.cwSource,
+            this.cwDuty,
             this.cwCertId,
-            this.cwSert,
+            this.cwCert,
             this.cwDelete});
             this.grWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grWork.Location = new System.Drawing.Point(3, 43);
             this.grWork.Name = "grWork";
             this.grWork.RowHeadersVisible = false;
             this.grWork.RowTemplate.Height = 24;
-            this.grWork.Size = new System.Drawing.Size(1306, 560);
+            this.grWork.Size = new System.Drawing.Size(1306, 557);
             this.grWork.TabIndex = 5;
             this.grWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellClick);
+            this.grWork.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellContentClick);
             this.grWork.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grWork_CellValueChanged);
             // 
             // cwNumber
@@ -1664,29 +1801,52 @@ namespace Orders
             // 
             // cwType
             // 
+            this.cwType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwType.HeaderText = "Вид работы";
             this.cwType.Name = "cwType";
-            this.cwType.Width = 120;
+            this.cwType.Width = 116;
+            // 
+            // cwDatePay
+            // 
+            this.cwDatePay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cwDatePay.HeaderText = "Дата";
+            this.cwDatePay.Name = "cwDatePay";
+            this.cwDatePay.Width = 81;
             // 
             // cwPrepay
             // 
+            this.cwPrepay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwPrepay.HeaderText = "Предоплата";
             this.cwPrepay.Name = "cwPrepay";
+            this.cwPrepay.Width = 118;
+            // 
+            // cwDateExcess
+            // 
+            this.cwDateExcess.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cwDateExcess.HeaderText = "Дата допл.";
+            this.cwDateExcess.Name = "cwDateExcess";
+            this.cwDateExcess.Width = 92;
             // 
             // cwExcess
             // 
+            this.cwExcess.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwExcess.HeaderText = "Доплата";
             this.cwExcess.Name = "cwExcess";
+            this.cwExcess.Width = 94;
             // 
             // cwCons
             // 
+            this.cwCons.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwCons.HeaderText = "Расход";
             this.cwCons.Name = "cwCons";
+            this.cwCons.Width = 84;
             // 
             // cwHours
             // 
+            this.cwHours.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwHours.HeaderText = "Часы";
             this.cwHours.Name = "cwHours";
+            this.cwHours.Width = 70;
             // 
             // cwSourceId
             // 
@@ -1696,9 +1856,16 @@ namespace Orders
             // 
             // cwSource
             // 
+            this.cwSource.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwSource.HeaderText = "Источник";
             this.cwSource.Name = "cwSource";
-            this.cwSource.Width = 120;
+            // 
+            // cwDuty
+            // 
+            this.cwDuty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cwDuty.HeaderText = "Долг";
+            this.cwDuty.Name = "cwDuty";
+            this.cwDuty.Width = 69;
             // 
             // cwCertId
             // 
@@ -1707,16 +1874,20 @@ namespace Orders
             this.cwCertId.Name = "cwCertId";
             this.cwCertId.Visible = false;
             // 
-            // cwSert
+            // cwCert
             // 
-            this.cwSert.HeaderText = "Сертификат";
-            this.cwSert.Name = "cwSert";
-            this.cwSert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cwCert.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cwCert.FalseValue = "false";
+            this.cwCert.HeaderText = "Сертификат";
+            this.cwCert.Name = "cwCert";
+            this.cwCert.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cwCert.TrueValue = "true";
             // 
             // cwDelete
             // 
             this.cwDelete.HeaderText = "X";
             this.cwDelete.Name = "cwDelete";
+            this.cwDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.cwDelete.Text = "X";
             this.cwDelete.ToolTipText = "Удалить запись";
             this.cwDelete.UseColumnTextForButtonValue = true;
@@ -1733,7 +1904,7 @@ namespace Orders
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.lMonthC);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(3, 603);
+            this.panel3.Location = new System.Drawing.Point(3, 600);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1306, 40);
             this.panel3.TabIndex = 4;
@@ -1743,7 +1914,7 @@ namespace Orders
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(576, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 15);
+            this.label2.Size = new System.Drawing.Size(49, 18);
             this.label2.TabIndex = 47;
             this.label2.Text = "Часы:";
             // 
@@ -1781,7 +1952,7 @@ namespace Orders
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 15);
+            this.label1.Size = new System.Drawing.Size(58, 18);
             this.label1.TabIndex = 30;
             this.label1.Text = "Доход:";
             // 
@@ -1800,7 +1971,7 @@ namespace Orders
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(345, 11);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 15);
+            this.label6.Size = new System.Drawing.Size(72, 18);
             this.label6.TabIndex = 32;
             this.label6.Text = "Прибыль";
             // 
@@ -1818,7 +1989,7 @@ namespace Orders
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(147, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 15);
+            this.label4.Size = new System.Drawing.Size(63, 18);
             this.label4.TabIndex = 30;
             this.label4.Text = "Расход:";
             // 
@@ -1854,7 +2025,7 @@ namespace Orders
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(576, 11);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 15);
+            this.label3.Size = new System.Drawing.Size(49, 18);
             this.label3.TabIndex = 45;
             this.label3.Text = "Часы:";
             // 
@@ -1892,7 +2063,7 @@ namespace Orders
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(3, 11);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(46, 15);
+            this.label12.Size = new System.Drawing.Size(58, 18);
             this.label12.TabIndex = 36;
             this.label12.Text = "Доход:";
             // 
@@ -1919,7 +2090,7 @@ namespace Orders
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(757, 11);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(62, 15);
+            this.label14.Size = new System.Drawing.Size(78, 18);
             this.label14.TabIndex = 40;
             this.label14.Text = "Ср.доход:";
             // 
@@ -1937,7 +2108,7 @@ namespace Orders
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(345, 11);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 15);
+            this.label8.Size = new System.Drawing.Size(72, 18);
             this.label8.TabIndex = 38;
             this.label8.Text = "Прибыль";
             // 
@@ -1955,13 +2126,201 @@ namespace Orders
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(147, 11);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(51, 15);
+            this.label10.Size = new System.Drawing.Size(63, 18);
             this.label10.TabIndex = 36;
             this.label10.Text = "Расход:";
             // 
+            // tabApp
+            // 
+            this.tabApp.Controls.Add(this.tabWork);
+            this.tabApp.Controls.Add(this.tabGraph);
+            this.tabApp.Controls.Add(this.tabSert);
+            this.tabApp.Controls.Add(this.tabConsum);
+            this.tabApp.Controls.Add(this.tabDuty);
+            this.tabApp.Controls.Add(this.tabGloss);
+            this.tabApp.Controls.Add(this.tabArchive);
+            this.tabApp.Controls.Add(this.tabAdmin);
+            this.tabApp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabApp.Location = new System.Drawing.Point(0, 0);
+            this.tabApp.Name = "tabApp";
+            this.tabApp.SelectedIndex = 0;
+            this.tabApp.Size = new System.Drawing.Size(1320, 674);
+            this.tabApp.TabIndex = 0;
+            // 
+            // tabDuty
+            // 
+            this.tabDuty.Controls.Add(this.grDuty);
+            this.tabDuty.Location = new System.Drawing.Point(4, 27);
+            this.tabDuty.Name = "tabDuty";
+            this.tabDuty.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDuty.Size = new System.Drawing.Size(1312, 643);
+            this.tabDuty.TabIndex = 7;
+            this.tabDuty.Text = "Долги";
+            this.tabDuty.UseVisualStyleBackColor = true;
+            // 
+            // grDuty
+            // 
+            this.grDuty.AllowUserToAddRows = false;
+            this.grDuty.AllowUserToDeleteRows = false;
+            this.grDuty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grDuty.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cdNumber,
+            this.cdId,
+            this.cdClient,
+            this.cdType,
+            this.cdDate,
+            this.cdHours,
+            this.cdDuty,
+            this.cdConfirm,
+            this.cdConfirmAll});
+            this.grDuty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grDuty.Location = new System.Drawing.Point(3, 3);
+            this.grDuty.Name = "grDuty";
+            this.grDuty.RowHeadersVisible = false;
+            this.grDuty.RowTemplate.Height = 24;
+            this.grDuty.Size = new System.Drawing.Size(1306, 637);
+            this.grDuty.TabIndex = 6;
+            this.grDuty.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grDuty_CellContentClick);
+            // 
+            // cdNumber
+            // 
+            this.cdNumber.HeaderText = "";
+            this.cdNumber.Name = "cdNumber";
+            this.cdNumber.ReadOnly = true;
+            this.cdNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cdNumber.Width = 40;
+            // 
+            // cdId
+            // 
+            this.cdId.HeaderText = "Id";
+            this.cdId.Name = "cdId";
+            this.cdId.ReadOnly = true;
+            this.cdId.Visible = false;
+            // 
+            // cdClient
+            // 
+            this.cdClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cdClient.HeaderText = "Клиент";
+            this.cdClient.Name = "cdClient";
+            // 
+            // cdType
+            // 
+            this.cdType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cdType.HeaderText = "Вид работы";
+            this.cdType.Name = "cdType";
+            this.cdType.Width = 116;
+            // 
+            // cdDate
+            // 
+            this.cdDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cdDate.HeaderText = "Дата";
+            this.cdDate.Name = "cdDate";
+            this.cdDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cdDate.Width = 68;
+            // 
+            // cdHours
+            // 
+            this.cdHours.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cdHours.HeaderText = "Часы";
+            this.cdHours.Name = "cdHours";
+            this.cdHours.Width = 70;
+            // 
+            // cdDuty
+            // 
+            this.cdDuty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cdDuty.HeaderText = "Долг";
+            this.cdDuty.Name = "cdDuty";
+            this.cdDuty.Width = 69;
+            // 
+            // cdConfirm
+            // 
+            this.cdConfirm.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cdConfirm.HeaderText = "Вернуть";
+            this.cdConfirm.Name = "cdConfirm";
+            this.cdConfirm.Width = 89;
+            // 
+            // cdConfirmAll
+            // 
+            this.cdConfirmAll.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cdConfirmAll.HeaderText = "Вернуть всё";
+            this.cdConfirmAll.Name = "cdConfirmAll";
+            this.cdConfirmAll.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cdConfirmAll.Text = "Вернуть всё";
+            this.cdConfirmAll.ToolTipText = "Вернуть всё";
+            this.cdConfirmAll.UseColumnTextForButtonValue = true;
+            this.cdConfirmAll.Width = 98;
+            // 
+            // tabAdmin
+            // 
+            this.tabAdmin.Controls.Add(this.grErrors);
+            this.tabAdmin.Controls.Add(this.panel8);
+            this.tabAdmin.Location = new System.Drawing.Point(4, 27);
+            this.tabAdmin.Name = "tabAdmin";
+            this.tabAdmin.Size = new System.Drawing.Size(1312, 643);
+            this.tabAdmin.TabIndex = 6;
+            this.tabAdmin.Text = "Админ.";
+            this.tabAdmin.UseVisualStyleBackColor = true;
+            // 
+            // grErrors
+            // 
+            this.grErrors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grErrors.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grErrors.Location = new System.Drawing.Point(0, 25);
+            this.grErrors.Name = "grErrors";
+            this.grErrors.ReadOnly = true;
+            this.grErrors.RowHeadersVisible = false;
+            this.grErrors.Size = new System.Drawing.Size(1312, 618);
+            this.grErrors.TabIndex = 1;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.btClear);
+            this.panel8.Controls.Add(this.btReloadErrors);
+            this.panel8.Controls.Add(this.btBackUp);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1312, 25);
+            this.panel8.TabIndex = 0;
+            // 
+            // btClear
+            // 
+            this.btClear.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btClear.Location = new System.Drawing.Point(105, 0);
+            this.btClear.Name = "btClear";
+            this.btClear.Size = new System.Drawing.Size(105, 25);
+            this.btClear.TabIndex = 119;
+            this.btClear.Text = "Очистить";
+            this.btClear.UseVisualStyleBackColor = true;
+            this.btClear.Click += new System.EventHandler(this.btClear_Click);
+            // 
+            // btReloadErrors
+            // 
+            this.btReloadErrors.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btReloadErrors.Location = new System.Drawing.Point(0, 0);
+            this.btReloadErrors.Name = "btReloadErrors";
+            this.btReloadErrors.Size = new System.Drawing.Size(105, 25);
+            this.btReloadErrors.TabIndex = 118;
+            this.btReloadErrors.Text = "Обновить";
+            this.btReloadErrors.UseVisualStyleBackColor = true;
+            this.btReloadErrors.Click += new System.EventHandler(this.btReloadErrors_Click);
+            // 
+            // btBackUp
+            // 
+            this.btBackUp.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btBackUp.Location = new System.Drawing.Point(1207, 0);
+            this.btBackUp.Name = "btBackUp";
+            this.btBackUp.Size = new System.Drawing.Size(105, 25);
+            this.btBackUp.TabIndex = 117;
+            this.btBackUp.Text = "BackUp";
+            this.btBackUp.UseVisualStyleBackColor = true;
+            this.btBackUp.Click += new System.EventHandler(this.btBackUp_Click);
+            // 
             // pHistory
             // 
-            this.pHistory.Controls.Add(this.btSave);
+            this.pHistory.Controls.Add(this.label5);
+            this.pHistory.Controls.Add(this.lVirt);
+            this.pHistory.Controls.Add(this.panel7);
             this.pHistory.Controls.Add(this.label18);
             this.pHistory.Controls.Add(this.lYearL);
             this.pHistory.Controls.Add(this.lYearC);
@@ -2004,18 +2363,56 @@ namespace Orders
             this.pHistory.Controls.Add(this.btHistory2);
             this.pHistory.Controls.Add(this.btHistory1);
             this.pHistory.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pHistory.Location = new System.Drawing.Point(1309, 3);
+            this.pHistory.Location = new System.Drawing.Point(1320, 0);
             this.pHistory.Name = "pHistory";
-            this.pHistory.Size = new System.Drawing.Size(279, 640);
-            this.pHistory.TabIndex = 1;
+            this.pHistory.Size = new System.Drawing.Size(279, 674);
+            this.pHistory.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(7, 571);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 34);
+            this.label5.TabIndex = 50;
+            this.label5.Text = "Виртуальные:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lVirt
+            // 
+            this.lVirt.Location = new System.Drawing.Point(99, 571);
+            this.lVirt.Name = "lVirt";
+            this.lVirt.Size = new System.Drawing.Size(88, 34);
+            this.lVirt.TabIndex = 49;
+            this.lVirt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.btHome);
+            this.panel7.Controls.Add(this.btSave);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(0, 649);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(279, 25);
+            this.panel7.TabIndex = 48;
+            // 
+            // btHome
+            // 
+            this.btHome.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btHome.Location = new System.Drawing.Point(174, 0);
+            this.btHome.Name = "btHome";
+            this.btHome.Size = new System.Drawing.Size(105, 25);
+            this.btHome.TabIndex = 49;
+            this.btHome.Text = "Сегодня";
+            this.btHome.UseVisualStyleBackColor = true;
+            this.btHome.Click += new System.EventHandler(this.btHome_Click);
             // 
             // btSave
             // 
-            this.btSave.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btSave.Location = new System.Drawing.Point(0, 603);
+            this.btSave.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btSave.Location = new System.Drawing.Point(0, 0);
             this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(279, 37);
-            this.btSave.TabIndex = 47;
+            this.btSave.Size = new System.Drawing.Size(105, 25);
+            this.btSave.TabIndex = 48;
             this.btSave.Text = "Сохранить";
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
@@ -2385,21 +2782,6 @@ namespace Orders
             this.btHistory1.UseVisualStyleBackColor = true;
             this.btHistory1.Click += new System.EventHandler(this.History_Click);
             // 
-            // tabApp
-            // 
-            this.tabApp.Controls.Add(this.tabWork);
-            this.tabApp.Controls.Add(this.tabGraph);
-            this.tabApp.Controls.Add(this.tabSert);
-            this.tabApp.Controls.Add(this.tabConsum);
-            this.tabApp.Controls.Add(this.tabGloss);
-            this.tabApp.Controls.Add(this.tabArchive);
-            this.tabApp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabApp.Location = new System.Drawing.Point(0, 0);
-            this.tabApp.Name = "tabApp";
-            this.tabApp.SelectedIndex = 0;
-            this.tabApp.Size = new System.Drawing.Size(1599, 674);
-            this.tabApp.TabIndex = 0;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "";
@@ -2435,30 +2817,45 @@ namespace Orders
             // 
             // dataGridViewTextBoxColumn6
             // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn6.HeaderText = "Доплата";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 120;
+            // 
+            // calendarColumn1
+            // 
+            this.calendarColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.calendarColumn1.HeaderText = "Дата";
+            this.calendarColumn1.Name = "calendarColumn1";
             // 
             // dataGridViewTextBoxColumn7
             // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn7.HeaderText = "Расход";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
+            // calendarColumn2
+            // 
+            this.calendarColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.calendarColumn2.HeaderText = "Дата допл.";
+            this.calendarColumn2.Name = "calendarColumn2";
+            // 
             // dataGridViewTextBoxColumn8
             // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn8.HeaderText = "Часы";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // dataGridViewTextBoxColumn9
             // 
+            this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn9.DataPropertyName = "ccId";
             this.dataGridViewTextBoxColumn9.HeaderText = "";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.Visible = false;
-            this.dataGridViewTextBoxColumn9.Width = 30;
             // 
             // dataGridViewTextBoxColumn10
             // 
+            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn10.DataPropertyName = "ccPayerId";
             this.dataGridViewTextBoxColumn10.HeaderText = "Сумма";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
@@ -2466,7 +2863,6 @@ namespace Orders
             this.dataGridViewTextBoxColumn10.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn10.Visible = false;
-            this.dataGridViewTextBoxColumn10.Width = 30;
             // 
             // dataGridViewTextBoxColumn11
             // 
@@ -2481,11 +2877,11 @@ namespace Orders
             // 
             // dataGridViewTextBoxColumn12
             // 
+            this.dataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn12.DataPropertyName = "ccClientId";
             this.dataGridViewTextBoxColumn12.HeaderText = "";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.Visible = false;
-            this.dataGridViewTextBoxColumn12.Width = 120;
             // 
             // dataGridViewTextBoxColumn13
             // 
@@ -2646,6 +3042,7 @@ namespace Orders
             this.dataGridViewTextBoxColumn29.FillWeight = 70F;
             this.dataGridViewTextBoxColumn29.HeaderText = "Id";
             this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
+            this.dataGridViewTextBoxColumn29.ReadOnly = true;
             this.dataGridViewTextBoxColumn29.Visible = false;
             // 
             // dataGridViewTextBoxColumn30
@@ -2737,10 +3134,11 @@ namespace Orders
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1599, 674);
             this.Controls.Add(this.tabApp);
+            this.Controls.Add(this.pHistory);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1607, 701);
@@ -2762,6 +3160,7 @@ namespace Orders
             this.tabSert.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grCert)).EndInit();
             this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.tabGraph.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chrtSourceSum)).EndInit();
             this.tabWork.ResumeLayout(false);
@@ -2774,8 +3173,14 @@ namespace Orders
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.pHistory.ResumeLayout(false);
             this.tabApp.ResumeLayout(false);
+            this.tabDuty.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grDuty)).EndInit();
+            this.tabAdmin.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grErrors)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.pHistory.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2904,38 +3309,12 @@ namespace Orders
         private System.Windows.Forms.DataGridView grCons;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.CheckBox chShowAll;
-        private System.Windows.Forms.Button btConsSave;
         private System.Windows.Forms.TabPage tabSert;
         private System.Windows.Forms.DataGridView grCert;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccClientId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccClientName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ccHours;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button btCertSave;
         private System.Windows.Forms.TabPage tabGraph;
         private System.Windows.Forms.TabPage tabWork;
         private System.Windows.Forms.DataGridView grWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwClientId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwClient;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwTypeId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwPrepay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwExcess;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwCons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwHours;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwSourceId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cwCertId;
-        private System.Windows.Forms.DataGridViewButtonColumn cwSert;
-        private System.Windows.Forms.DataGridViewButtonColumn cwDelete;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lHoursC;
@@ -2960,8 +3339,13 @@ namespace Orders
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lConsY;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TabControl tabApp;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtSourceSum;
+        private System.Windows.Forms.DataGridView grDicClient;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.TextBox tbFindClient;
+        private System.Windows.Forms.FolderBrowserDialog sdBackUp;
         private System.Windows.Forms.Panel pHistory;
-        private System.Windows.Forms.Button btSave;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lYearL;
         private System.Windows.Forms.Label lYearC;
@@ -3003,18 +3387,72 @@ namespace Orders
         private System.Windows.Forms.Button btHistory3;
         private System.Windows.Forms.Button btHistory2;
         private System.Windows.Forms.Button btHistory1;
-        private System.Windows.Forms.TabControl tabApp;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chrtSourceSum;
-        private System.Windows.Forms.DataGridView grDicClient;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.TextBox tbFindClient;
-        private System.Windows.Forms.FolderBrowserDialog sdBackUp;
+        private System.Windows.Forms.CheckBox chCertAll;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btSave;
+        private Classes.CalendarColumn calendarColumn1;
+        private Classes.CalendarColumn calendarColumn2;
+        private System.Windows.Forms.TabPage tabAdmin;
+        private System.Windows.Forms.DataGridView grErrors;
+        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btBackUp;
+        private System.Windows.Forms.Button btReloadErrors;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwClientId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwClient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwTypeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwType;
+        private Classes.CalendarColumn cwDatePay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwPrepay;
+        private Classes.CalendarColumn cwDateExcess;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwExcess;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwCons;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwSourceId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwDuty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cwCertId;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn cwCert;
+        private System.Windows.Forms.DataGridViewButtonColumn cwDelete;
+        private System.Windows.Forms.Button btHome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayerId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccPayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccClientId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccClient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccTypeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccType;
+        private Classes.CalendarColumn ccDatePay;
+        private Classes.CalendarColumn ccDateEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccConsed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccSourceId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ccSource;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ccIsCash;
+        private System.Windows.Forms.TabPage tabDuty;
+        private System.Windows.Forms.DataGridView grDuty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdClient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdDuty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdConfirm;
+        private System.Windows.Forms.DataGridViewButtonColumn cdConfirmAll;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lVirt;
+        private System.Windows.Forms.Button btClear;
         private System.Windows.Forms.DataGridViewTextBoxColumn csId;
         private System.Windows.Forms.DataGridViewTextBoxColumn csNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn csTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn csType;
+        private Classes.CalendarColumn csDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn csAmount;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn csIsCert;
         private System.Windows.Forms.DataGridViewTextBoxColumn csComment;
         private System.Windows.Forms.DataGridViewTextBoxColumn csWorkId;
         private System.Windows.Forms.DataGridViewButtonColumn csDelete;

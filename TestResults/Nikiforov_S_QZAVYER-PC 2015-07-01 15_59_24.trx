@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="1b030407-18aa-4a63-9a8b-efdc8e10437a" name="Nikiforov_S@QZAVYER-PC 2015-07-01 15:59:24" runUser="NTSSOFT\Nikiforov_S" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Трассировка и влияние тестирования" id="3f9ebe92-6ed8-41a4-b5d0-ad244b8ffde4">
+    <Description>Это параметры для трассировки и влияния тестирования</Description>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Deployment runDeploymentRoot="Nikiforov_S_QZAVYER-PC 2015-07-01 15_59_24" />
+  </TestSettings>
+  <Times creation="2015-07-01T15:59:24.1046045+05:00" queuing="2015-07-01T15:59:27.5059446+05:00" start="2015-07-01T15:59:27.6249565+05:00" finish="2015-07-01T16:00:30.3672301+05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="1" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="QZAVYER-PC" outcome="Error" timestamp="2015-07-01T16:00:30.3662300+05:00">
+        <Text>Неожиданный выход из тестового хост-процесса.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethod1" storage="c:\users\qzavyer\documents\visual studio 2010\projects\orders\ordertest\bin\debug\ordertest.dll" id="dffad664-ddc6-8317-6b50-2f1bac501142">
+      <Execution id="a42648d9-6abe-4ba8-b62c-0a471db5621b" />
+      <TestMethod codeBase="c:/Users/Qzavyer/Documents/Visual Studio 2010/Projects/Orders/OrderTest/bin/Debug/OrderTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OrderTest.UnitTest1, OrderTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Отсутствующие в списке результаты" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="dffad664-ddc6-8317-6b50-2f1bac501142" executionId="a42648d9-6abe-4ba8-b62c-0a471db5621b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="a42648d9-6abe-4ba8-b62c-0a471db5621b" testId="dffad664-ddc6-8317-6b50-2f1bac501142" testName="TestMethod1" computerName="QZAVYER-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a42648d9-6abe-4ba8-b62c-0a471db5621b">
+    </UnitTestResult>
+  </Results>
+</TestRun>

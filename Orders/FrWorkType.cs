@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Orders.Properties;
 
@@ -10,7 +11,6 @@ namespace Orders
     {
         #region Поля класса
         
-        private static readonly OrderContext Db = new OrderContext();
         public EWorkType WorkType;
         
         #endregion
@@ -21,11 +21,12 @@ namespace Orders
         {
             InitializeComponent();
         }
+
         private void FrWorkType_Load(object sender, EventArgs e)
         {
-            var types = Db.WorkTypes.ToList();
-            types.Sort((item1, item2) => String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
-            grWorkTypes.DataSource = types;
+            if (WorkType != null)
+                tbFind.Text = WorkType.Name;
+            FilterTypes();
             var cId = grWorkTypes.Columns["Id"];
             if (cId != null)
             {
@@ -57,82 +58,91 @@ namespace Orders
         }
         private void FilterTypes()
         {
-            try
+            using (var db = new OrderContext())
             {
-                var text = tbFind.Text.Trim();
-                text = System.Text.RegularExpressions.Regex.Replace(text, " +", " ");
-                var types = Db.WorkTypes.ToList();
-                if (!string.IsNullOrEmpty(text))
+                try
                 {
-                    types = types.Where(r =>
-                        r.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1).ToList();
+                    var text = tbFind.Text.Trim();
+                    text = Regex.Replace(text, " +", " ");
+                    var types = db.WorkTypes.ToList();
+                    if (!string.IsNullOrEmpty(text))
+                    {
+                        types = types.Where(r =>
+                            r.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1).ToList();
+                    }
+                    types.Sort(
+                        (item1, item2) => String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
+                    grWorkTypes.DataSource = types;
+                    btAdd.Enabled = grWorkTypes.RowCount == 0 && !string.IsNullOrEmpty(text);
                 }
-                types.Sort(
-                    (item1, item2) => String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
-                grWorkTypes.DataSource = types;
-                btAdd.Enabled = grWorkTypes.RowCount == 0 && !string.IsNullOrEmpty(text);
-            }
-            catch (Exception exception)
-            {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
+                catch (Exception exception)
                 {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(exception.Message, cName + "/" + mName);
+                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                    if (declaringType != null)
+                    {
+                        var cName = declaringType.Name;
+                        var mName = MethodBase.GetCurrentMethod().Name;
+                        Errors.SaveError(exception, cName + "/" + mName);
+                    }
                 }
             }
         }
         private void btAdd_Click(object sender, EventArgs e)
         {
-            try
+            using (var db = new OrderContext())
             {
-                var text = tbFind.Text.Trim();
-                text = System.Text.RegularExpressions.Regex.Replace(text, " +", " ");
-                if (string.IsNullOrEmpty(text)) return;
-                Db.WorkTypes.Add(new EWorkType {Name = text});
-                Db.SaveChanges();
-                FilterTypes();
-            }
-            catch (Exception exception)
-            {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
+                try
                 {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(exception.Message, cName + "/" + mName);
+                    var text = tbFind.Text.Trim();
+                    text = Regex.Replace(text, " +", " ");
+                    if (string.IsNullOrEmpty(text)) return;
+                    db.WorkTypes.Add(new EWorkType { Name = text });
+                    db.SaveChanges();
+                    FilterTypes();
+                }
+                catch (Exception exception)
+                {
+                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                    if (declaringType != null)
+                    {
+                        var cName = declaringType.Name;
+                        var mName = MethodBase.GetCurrentMethod().Name;
+                        Errors.SaveError(exception, cName + "/" + mName);
+                    }
                 }
             }
         }
         private void btSave_Click(object sender, EventArgs e)
         {
-            try
+            using (var db = new OrderContext())
             {
-                foreach (DataGridViewRow row in grWorkTypes.Rows)
+                try
                 {
-                    if (string.IsNullOrEmpty(row.Cells["Id"].Value.ToString()) ||
-                        string.IsNullOrWhiteSpace(row.Cells["Id"].Value.ToString())) continue;
-                    var workType = Db.WorkTypes.Find(Convert.ToInt32(row.Cells["Id"].Value));
-                    var name = row.Cells["Name"].Value.ToString().Trim();
-                    name = System.Text.RegularExpressions.Regex.Replace(name, " +", " ");
-                    workType.Name = name;
+                    foreach (DataGridViewRow row in grWorkTypes.Rows)
+                    {
+                        if (string.IsNullOrEmpty(row.Cells["Id"].Value.ToString()) ||
+                            string.IsNullOrWhiteSpace(row.Cells["Id"].Value.ToString())) continue;
+                        var workType = db.WorkTypes.Find(Convert.ToInt32(row.Cells["Id"].Value));
+                        var name = row.Cells["Name"].Value.ToString().Trim();
+                        name = Regex.Replace(name, " +", " ");
+                        workType.Name = name;
+                    }
+                    db.SaveChanges();
+                    FilterTypes();
+                    MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
                 }
-                Db.SaveChanges();
-                FilterTypes();
-                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
-            }
-            catch (Exception exception)
-            {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
+                catch (Exception exception)
                 {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(exception.Message, cName + "/" + mName);
+                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+                    if (declaringType != null)
+                    {
+                        var cName = declaringType.Name;
+                        var mName = MethodBase.GetCurrentMethod().Name;
+                        Errors.SaveError(exception, cName + "/" + mName);
+                    }
+                    tbFind.Clear();
+                    FilterTypes();
                 }
-                tbFind.Clear();
-                FilterTypes();
             }
         }
 

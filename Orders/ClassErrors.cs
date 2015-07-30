@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Windows.Forms;
 using Orders.Properties;
 using System.Data.SQLite;
@@ -7,10 +8,21 @@ namespace Orders
 {
     public static class Errors
     {
-        public static void SaveError(string errorMessage, string function)
+        private static string GetInnerMessage(Exception error)
         {
-            OrderContext Db = new OrderContext();
-            var conn = new SQLiteConnection(Db.Database.Connection.ConnectionString);
+            var msg = error.Message;
+            if (error.InnerException != null)
+            {
+                msg = msg + "(" + GetInnerMessage(error.InnerException) + ")";
+            }
+            return msg;
+        }
+
+        public static void SaveError(Exception error, string function)
+        {
+            var errorMessage = GetInnerMessage(error);
+            var db = new OrderContext();
+            var conn = new SQLiteConnection(db.Database.Connection.ConnectionString);
             try
             {
                 conn.Open();
@@ -23,7 +35,7 @@ namespace Orders
                 insCom.Parameters["func"].Value = function;
                 insCom.Prepare();
                 insCom.ExecuteNonQuery();
-                MessageBox.Show(errorMessage, Resources.Error, MessageBoxButtons.OK);
+                MessageBox.Show(errorMessage, Resources.Error, MessageBoxButtons.OK);                
             }
             finally
             {

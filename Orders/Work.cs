@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Orders
 {
-    public class Work
+    internal class Work
     {
         public int Id { get; set; }
         public int ClientId { get; set; }

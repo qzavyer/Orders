@@ -44,7 +44,8 @@ namespace Orders
 
         public EClient()
         {
-            Date = DateTime.Now;
+            var date = DateTime.Now;
+            Date = new DateTime(date.Year, date.Month, date.Day);
         }
     }
 }

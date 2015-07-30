@@ -77,7 +77,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrEvents";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.FrEvents_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -88,6 +87,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btClose;
         private System.Windows.Forms.Panel list;
-
+        public readonly int ItemCount;
     }
 }
