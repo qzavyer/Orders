@@ -61,6 +61,15 @@ namespace Orders.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Сертификат.
+        /// </summary>
+        internal static string Cert {
+            get {
+                return ResourceManager.GetString("Cert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Данные были изменены. Сохранить?.
         /// </summary>
         internal static string ChangeData {
@@ -93,6 +102,15 @@ namespace Orders.Properties {
         internal static string ConsType {
             get {
                 return ResourceManager.GetString("ConsType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дата создания.
+        /// </summary>
+        internal static string CreateDate {
+            get {
+                return ResourceManager.GetString("CreateDate", resourceCulture);
             }
         }
         
@@ -160,6 +178,15 @@ namespace Orders.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Выбранный сертификат содержит ошибки и не будет сохранён. Продолжить работу?.
+        /// </summary>
+        internal static string FrCertsErrorData {
+            get {
+                return ResourceManager.GetString("FrCertsErrorData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Функционал сертификатов в разработке.
         /// </summary>
         internal static string Future {
@@ -192,6 +219,15 @@ namespace Orders.Properties {
         internal static string NotEmptyName {
             get {
                 return ResourceManager.GetString("NotEmptyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на OK.
+        /// </summary>
+        internal static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
             }
         }
         

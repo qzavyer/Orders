@@ -36,6 +36,9 @@ namespace Orders
         [Column("fExcess")]
         public double Excess { get; set; }
 
+        [Column("fDuty")]
+        public double Duty { get; set; }
+
         [Column("fHours")]
         public double Hours { get; set; }
 

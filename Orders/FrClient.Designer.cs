@@ -46,15 +46,17 @@
             this.panel1.Controls.Add(this.btOk);
             this.panel1.Controls.Add(this.btSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 559);
+            this.panel1.Location = new System.Drawing.Point(0, 558);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(521, 25);
+            this.panel1.Size = new System.Drawing.Size(865, 25);
             this.panel1.TabIndex = 3;
             // 
             // btOk
             // 
             this.btOk.Dock = System.Windows.Forms.DockStyle.Left;
             this.btOk.Location = new System.Drawing.Point(0, 0);
+            this.btOk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(105, 25);
             this.btOk.TabIndex = 4;
@@ -65,7 +67,8 @@
             // btSave
             // 
             this.btSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btSave.Location = new System.Drawing.Point(416, 0);
+            this.btSave.Location = new System.Drawing.Point(760, 0);
+            this.btSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(105, 25);
             this.btSave.TabIndex = 3;
@@ -79,14 +82,16 @@
             this.panel2.Controls.Add(this.tbFind);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(521, 25);
+            this.panel2.Size = new System.Drawing.Size(865, 25);
             this.panel2.TabIndex = 4;
             // 
             // btAdd
             // 
             this.btAdd.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btAdd.Location = new System.Drawing.Point(250, 0);
+            this.btAdd.Location = new System.Drawing.Point(249, 0);
+            this.btAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(105, 25);
             this.btAdd.TabIndex = 1;
@@ -98,8 +103,9 @@
             // 
             this.tbFind.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbFind.Location = new System.Drawing.Point(0, 0);
+            this.tbFind.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbFind.Name = "tbFind";
-            this.tbFind.Size = new System.Drawing.Size(250, 22);
+            this.tbFind.Size = new System.Drawing.Size(249, 22);
             this.tbFind.TabIndex = 0;
             this.tbFind.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbFind_KeyUp);
             // 
@@ -108,11 +114,12 @@
             this.grClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grClient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grClient.Location = new System.Drawing.Point(0, 25);
+            this.grClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grClient.Name = "grClient";
             this.grClient.RowHeadersVisible = false;
             this.grClient.RowTemplate.Height = 24;
             this.grClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grClient.Size = new System.Drawing.Size(521, 534);
+            this.grClient.Size = new System.Drawing.Size(865, 533);
             this.grClient.TabIndex = 5;
             this.grClient.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grClient_CellContentClick);
             this.grClient.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grClient_CellValueChanged);
@@ -121,11 +128,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 584);
+            this.ClientSize = new System.Drawing.Size(865, 583);
             this.Controls.Add(this.grClient);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrClient";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

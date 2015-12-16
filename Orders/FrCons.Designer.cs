@@ -39,7 +39,7 @@
             this.cTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cCert = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cIsCert = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,7 +110,7 @@
             this.cTypeId,
             this.cType,
             this.cAmount,
-            this.cCert,
+            this.cIsCert,
             this.cComment,
             this.cDelete});
             this.grCons.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,17 +147,12 @@
             this.cAmount.HeaderText = "Сумма";
             this.cAmount.Name = "cAmount";
             // 
-            // cCert
+            // cIsCert
             // 
-            this.cCert.DataPropertyName = "cCert";
-            this.cCert.FalseValue = "0";
-            this.cCert.HeaderText = "Услуга серт.";
-            this.cCert.Name = "cCert";
-            this.cCert.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cCert.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.cCert.TrueValue = "1";
-            this.cCert.Visible = false;
-            this.cCert.Width = 120;
+            this.cIsCert.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cIsCert.HeaderText = "Сертификат";
+            this.cIsCert.Name = "cIsCert";
+            this.cIsCert.Width = 95;
             // 
             // cComment
             // 
@@ -248,7 +243,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn cType;
         private System.Windows.Forms.DataGridViewTextBoxColumn cAmount;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn cCert;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn cIsCert;
         private System.Windows.Forms.DataGridViewTextBoxColumn cComment;
         private System.Windows.Forms.DataGridViewButtonColumn cDelete;
     }

@@ -14,21 +14,18 @@ namespace Orders
         [Column("fPayId")]
         public int PayId { get; set; }
 
-        [NotMapped]
         [ForeignKey("PayId")]
         public EClient Payer { get; set; }
 
         [Column("fClientId")]
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
 
-        [NotMapped]
         [ForeignKey("ClientId")]
         public EClient Client { get; set; }
 
         [Column("fTypeId")]
         public int TypeId { get; set; }
 
-        [NotMapped]
         [ForeignKey("TypeId")]
         public EWorkType Type { get; set; }
 
@@ -50,7 +47,23 @@ namespace Orders
         [Column("fSource")]
         public int SourceId { get; set; }
 
+        [Column("fConsed")]
+        public double consed { get; set; }
+
         [NotMapped]
+        public double Consed
+        {
+            get { return consed; }
+            set
+            {
+                consed = value;
+                /*if (consed == Price)
+                {
+                    IsCash = true;
+                }*/
+            }
+        }
+
         [ForeignKey("SourceId")]
         public ESourceType Source { get; set; }
 
@@ -67,6 +80,7 @@ namespace Orders
                 var date = new DateTime(1970, 1, 1, 0, 0, 0);
                 var span = value - date;
                 datePay = (int) span.TotalSeconds;
+                DateEnd = value.AddMonths(3);
             }
         }
 
@@ -85,5 +99,19 @@ namespace Orders
                 dateEnd = (int) span.TotalSeconds;
             }
         }
+
+        [NotMapped]
+        public bool IsCash 
+        {
+            get { return Cash == 1; }
+            set
+            {
+                Cash = value ? 1 : 0;
+                if (value) Consed = Price;
+            }
+        }
+
+        [NotMapped]
+        public int RowId { get; set; }
     }
 }

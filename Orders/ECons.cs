@@ -22,22 +22,13 @@ namespace Orders
 
         [Column("fComment")]
         public string Comment { get; set; }
-
-        [Column("fCertCons")]
-        public int CertCons { get; set; }
-
+        
         [Column("fWorkId")]
-        public int WorkId { get; set; }
+        public int? WorkId { get; set; }
 
         [ForeignKey("WorkId")]
         public EWork Work { get; set; }
-
-        [Column("fCertId")]
-        public int CertId { get; set; }
-
-        [ForeignKey("CertId")]
-        public ECert Cert { get; set; }
-
+      
         [Column("fDate")]
         public int date { get; set; }
 
@@ -56,6 +47,23 @@ namespace Orders
                 date = (int) span.TotalSeconds;
             }
         }
+
+        [Column("fIsCert")]
+        public int iscert { get; set; }
+
+        [NotMapped]
+        public bool IsCert
+        {
+            get
+            {
+                return iscert == 1;
+            }
+            set
+            {
+                iscert = value ? 1 : 0;
+            }
+        }
+
 
         [NotMapped]
         public int RowId { get; set; }
