@@ -64,13 +64,7 @@ namespace Orders
             }
             catch (Exception exception)
             {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
-                {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(exception, cName + "/" + mName);
-                }
+                Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
             }
             _hasChange = false;
         }
@@ -247,13 +241,7 @@ namespace Orders
                     }
                     catch (Exception exception)
                     {
-                        var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                        if (declaringType != null)
-                        {
-                            var cName = declaringType.Name;
-                            var mName = MethodBase.GetCurrentMethod().Name;
-                            Errors.SaveError(exception, cName + "/" + mName);
-                        }
+                        Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
                     }
                     break;
                 case "cwType":
@@ -827,15 +815,9 @@ namespace Orders
                 }
                 _hasChange = false;
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
-                {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(ex, cName + "/" + mName);
-                }
+                Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
             }
         }
 
@@ -1412,16 +1394,10 @@ namespace Orders
                     MessageBox.Show(ex.Message, Resources.Orders, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
                     t.Rollback();
-                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                    if (declaringType != null)
-                    {
-                        var cName = declaringType.Name;
-                        var mName = MethodBase.GetCurrentMethod().Name;
-                        Errors.SaveError(ex, cName + "/" + mName);
-                    }
+                    Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
                     return;
                 }
                 GridMonthLoad(_currentDate);
@@ -1600,15 +1576,9 @@ namespace Orders
                 }
                 _hasChange = false;
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
-                {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(ex, cName + "/" + mName);
-                }
+                Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
             }
         }
 
@@ -1781,13 +1751,7 @@ namespace Orders
             }
             catch (Exception exception)
             {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
-                {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(exception, cName + "/" + mName);
-                }
+                Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
             }
         }
 
@@ -1937,13 +1901,7 @@ namespace Orders
                 }
                 catch (Exception exception)
                 {
-                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                    if (declaringType != null)
-                    {
-                        var cName = declaringType.Name;
-                        var mName = MethodBase.GetCurrentMethod().Name;
-                        Errors.SaveError(exception, cName + "/" + mName);
-                    }
+                    Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
                 }
 
             }
@@ -1977,13 +1935,7 @@ namespace Orders
             }
             catch (Exception exception)
             {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
-                {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(exception, cName + "/" + mName);
-                }
+                Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
                 MessageBox.Show(Resources.Error);
             }
         }

@@ -65,15 +65,9 @@ namespace Orders
                         row.Cells["cIsCert"].Value = cons.IsCert;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                    if (declaringType != null)
-                    {
-                        var cName = declaringType.Name;
-                        var mName = MethodBase.GetCurrentMethod().Name;
-                        Errors.SaveError(ex, cName + "/" + mName);
-                    }
+                    Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
                 }
             }
         }
@@ -189,15 +183,9 @@ namespace Orders
             {
                 MessageBox.Show(Resources.CheckInputData, Resources.Orders, MessageBoxButtons.OK);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                if (declaringType != null)
-                {
-                    var cName = declaringType.Name;
-                    var mName = MethodBase.GetCurrentMethod().Name;
-                    Errors.SaveError(ex, cName + "/" + mName);
-                }
+                Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
             }
         }
         private void tbFind_KeyUp(object sender, KeyEventArgs e)

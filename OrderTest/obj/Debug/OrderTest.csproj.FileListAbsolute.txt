@@ -11,3 +11,11 @@ c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debu
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.csprojResolveAssemblyReference.cache
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.dll
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.pdb
+e:\Orders\OrderTest\bin\Debug\OrderTest.dll
+e:\Orders\OrderTest\bin\Debug\OrderTest.pdb
+e:\Orders\OrderTest\bin\Debug\GurkBurk.dll
+e:\Orders\OrderTest\bin\Debug\NBehave.Gherkin.dll
+e:\Orders\OrderTest\bin\Debug\NBehave.Narrator.Framework.dll
+e:\Orders\OrderTest\obj\Debug\OrderTest.csprojResolveAssemblyReference.cache
+e:\Orders\OrderTest\obj\Debug\OrderTest.dll
+e:\Orders\OrderTest\obj\Debug\OrderTest.pdb

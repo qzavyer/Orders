@@ -77,3 +77,40 @@ c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Deb
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.application
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.exe
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.pdb
+e:\Orders\Orders\bin\Debug\Orders.exe.config
+e:\Orders\Orders\obj\x86\Debug\Orders.exe
+e:\Orders\Orders\obj\x86\Debug\Orders.pdb
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.dll
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.EF6.dll
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.EF6.pdb
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.EF6.xml
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.Linq.dll
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.Linq.pdb
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.Linq.xml
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.pdb
+e:\Orders\Orders\bin\Debug\System.Data.SQLite.xml
+e:\Orders\Orders\bin\Debug\x64\SQLite.Interop.dll
+e:\Orders\Orders\bin\Debug\x86\SQLite.Interop.dll
+e:\Orders\Orders\bin\Debug\Orders.exe.manifest
+e:\Orders\Orders\bin\Debug\Orders.application
+e:\Orders\Orders\bin\Debug\Orders.exe
+e:\Orders\Orders\bin\Debug\EntityFramework.dll
+e:\Orders\Orders\bin\Debug\EntityFramework.SqlServer.dll
+e:\Orders\Orders\bin\Debug\SQLite.NET.dll
+e:\Orders\Orders\bin\Debug\EntityFramework.xml
+e:\Orders\Orders\bin\Debug\EntityFramework.SqlServer.xml
+e:\Orders\Orders\obj\x86\Debug\Orders.csprojResolveAssemblyReference.cache
+e:\Orders\Orders\obj\x86\Debug\Orders.FrAddClient.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.Form1.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.FrCerts.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.FrClient.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.FrCons.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.FrConsType.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.FrEvents.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.FrSource.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.FrWorkType.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.Properties.Resources.resources
+e:\Orders\Orders\obj\x86\Debug\Orders.csproj.GenerateResource.Cache
+e:\Orders\Orders\obj\x86\Debug\Orders.exe.manifest
+e:\Orders\Orders\obj\x86\Debug\Orders.application
+e:\Orders\Orders\bin\Debug\Orders.pdb

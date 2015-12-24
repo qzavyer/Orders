@@ -1604,7 +1604,6 @@ namespace Orders
             series2.CustomProperties = "DrawingStyle=Cylinder";
             series2.IsValueShownAsLabel = true;
             series2.LabelToolTip = "#VAL";
-            series2.Legend = "Legend1";
             series2.Name = "serIncCount";
             series2.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.Yes;
             series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Reflection;
 using System.Windows.Forms;
 using Orders.Properties;
 using System.Data.SQLite;
@@ -8,6 +9,17 @@ namespace Orders
 {
     public static class Errors
     {
+        public static void HandleError(MethodBase methodBase, Exception exception)
+        {
+            var declaringType = methodBase.DeclaringType;
+            if (declaringType != null)
+            {
+                var cName = declaringType.Name;
+                var mName = methodBase.Name;
+                SaveError(exception, cName + "/" + mName);
+            }
+        }
+
         private static string GetInnerMessage(Exception error)
         {
             var msg = error.Message;
@@ -18,7 +30,7 @@ namespace Orders
             return msg;
         }
 
-        public static void SaveError(Exception error, string function)
+        private static void SaveError(Exception error, string function)
         {
             var errorMessage = GetInnerMessage(error);
             var db = new OrderContext();

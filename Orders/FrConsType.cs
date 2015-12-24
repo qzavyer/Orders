@@ -75,13 +75,7 @@ namespace Orders
                 }
                 catch (Exception exception)
                 {
-                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                    if (declaringType != null)
-                    {
-                        var cName = declaringType.Name;
-                        var mName = MethodBase.GetCurrentMethod().Name;
-                        Errors.SaveError(exception, cName + "/" + mName);
-                    }
+                    Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
                 }
             }
         }
@@ -106,13 +100,7 @@ namespace Orders
                 }
                 catch (Exception exception)
                 {
-                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                    if (declaringType != null)
-                    {
-                        var cName = declaringType.Name;
-                        var mName = MethodBase.GetCurrentMethod().Name;
-                        Errors.SaveError(exception, cName + "/" + mName);
-                    }
+                    Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
                 }
             }
         }
@@ -155,13 +143,7 @@ namespace Orders
                 }
                 catch (Exception exception)
                 {
-                    var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-                    if (declaringType != null)
-                    {
-                        var cName = declaringType.Name;
-                        var mName = MethodBase.GetCurrentMethod().Name;
-                        Errors.SaveError(exception, cName + "/" + mName);
-                    }
+                    Errors.HandleError(MethodBase.GetCurrentMethod(), exception);
                     tbFind.Clear();
                     FilterTypes();
                 }
