@@ -36,7 +36,7 @@ namespace Orders
         {
             try
             {
-                DbCheck.CheckDatabase();
+                //DbCheck.CheckDatabase();
                 _currentDate = DateTime.Now;
                 GridMonthLoad(_currentDate);
                 GetClients();
@@ -117,7 +117,7 @@ namespace Orders
                  resultList.All(r => r.Date < DateTime.Now.AddDays(-1))))
             {
                 if (MessageBox.Show(
-                    "Последняя резервная копия была создана более недели назад. Создать резервную копию?",
+                    Resources.Backup_Warning,
                     Resources.Orders, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     var path = AppDomain.CurrentDomain.BaseDirectory + "order.db";
@@ -135,7 +135,7 @@ namespace Orders
                             i++;
                         }
                         File.Copy(path, file);
-                        MessageBox.Show("Резервная копия удачно создана");
+                        MessageBox.Show(Resources.BackUpOk);
                     }
                     dbContext.BackupLogs.Add(new BackupLog {Date = DateTime.Now, Result = true});
                 }
@@ -1404,22 +1404,6 @@ namespace Orders
                 LoadCerts();
                 LoadDuty();
             }
-        }
-
-        #endregion
-
-        #region Вкладка графики
-
-        private void chrtSourceSum_MouseLeave(object sender, EventArgs e)
-        {
-            if (chrtSourceSum.Focused)
-                chrtSourceSum.Parent.Focus();
-        }
-
-        private void chrtSourceSum_MouseEnter(object sender, EventArgs e)
-        {
-            if (!chrtSourceSum.Focused)
-                chrtSourceSum.Focus();
         }
 
         #endregion
