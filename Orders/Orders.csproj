@@ -117,9 +117,7 @@
     <Compile Include="FrAddClient.Designer.cs">
       <DependentUpon>FrAddClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CalendarColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Classes\CalendarColumn.cs" />
     <Compile Include="ClassErrors.cs" />
     <Compile Include="DateLib.cs" />
     <Compile Include="ECert.cs" />

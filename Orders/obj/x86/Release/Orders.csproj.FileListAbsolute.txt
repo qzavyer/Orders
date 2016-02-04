@@ -34,4 +34,3 @@ C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Release
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\bin\Release\Orders.application
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Release\Orders.exe.manifest
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Release\Orders.application
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Release\Orders.csprojResolveAssemblyReference.cache

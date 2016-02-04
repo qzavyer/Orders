@@ -3,19 +3,11 @@ C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\OrderTest\bin\Deb
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\OrderTest\obj\Debug\OrderTest.csprojResolveAssemblyReference.cache
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\OrderTest\obj\Debug\OrderTest.dll
 C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders2\OrderTest\obj\Debug\OrderTest.pdb
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.dll
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.pdb
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\GurkBurk.dll
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\NBehave.Gherkin.dll
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\NBehave.Narrator.Framework.dll
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.csprojResolveAssemblyReference.cache
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.dll
-c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.pdb
-e:\Orders\OrderTest\bin\Debug\OrderTest.dll
-e:\Orders\OrderTest\bin\Debug\OrderTest.pdb
-e:\Orders\OrderTest\bin\Debug\GurkBurk.dll
-e:\Orders\OrderTest\bin\Debug\NBehave.Gherkin.dll
-e:\Orders\OrderTest\bin\Debug\NBehave.Narrator.Framework.dll
-e:\Orders\OrderTest\obj\Debug\OrderTest.csprojResolveAssemblyReference.cache
-e:\Orders\OrderTest\obj\Debug\OrderTest.dll
-e:\Orders\OrderTest\obj\Debug\OrderTest.pdb
+c:\Users\Qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.dll
+c:\Users\Qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\OrderTest.pdb
+c:\Users\Qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.dll
+c:\Users\Qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.pdb
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\obj\Debug\OrderTest.csprojResolveAssemblyReference.cache
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\GurkBurk.dll
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\NBehave.Gherkin.dll
+C:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\OrderTest\bin\Debug\NBehave.Narrator.Framework.dll
