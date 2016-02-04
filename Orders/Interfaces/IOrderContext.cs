@@ -15,5 +15,6 @@ namespace Orders.Interfaces
         DbSet<EWorkType> WorkTypes { get; set; }
 
         void Save();
+        string ConnectionString { get; }
     }
 }

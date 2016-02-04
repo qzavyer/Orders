@@ -79,15 +79,6 @@ c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Deb
 c:\Users\qzavyer\Documents\Visual Studio 2010\Projects\Orders\Orders\obj\x86\Debug\Orders.application
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\Orders.exe.config
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.csprojResolveAssemblyReference.cache
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.FrAddClient.resources
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Form1.resources
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.FrCerts.resources
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.FrClient.resources
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.FrCons.resources
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.FrConsType.resources
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.FrEvents.resources
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.FrSource.resources
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.FrWorkType.resources
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Properties.Resources.resources
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.csproj.GenerateResource.Cache
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.exe.manifest
@@ -111,3 +102,12 @@ C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\Orders.pdb
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\EntityFramework.dll
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\EntityFramework.xml
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.application
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.FrAddClient.resources
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.Form1.resources
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.FrCerts.resources
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.FrClient.resources
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.FrCons.resources
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.FrConsType.resources
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.FrEvents.resources
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.FrSource.resources
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.Forms.FrWorkType.resources

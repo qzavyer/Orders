@@ -100,7 +100,10 @@
     <Compile Include="Classes\ErrorSaver.cs" />
     <Compile Include="Classes\Exceptions\HandledException.cs" />
     <Compile Include="Executers\ClientExecuter.cs" />
+    <Compile Include="Executers\SourceTypeExecuter.cs" />
     <Compile Include="Executers\WorkExecuter.cs" />
+    <Compile Include="Executers\WorkTypeExecuter.cs" />
+    <Compile Include="Interfaces\IOrderEntry.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Executers\ErrorExecuter.cs" />
     <Compile Include="Forms\FrAddClient.cs">
@@ -171,6 +174,7 @@
     <Compile Include="Interfaces\IContextable.cs" />
     <Compile Include="Interfaces\IOrderContext.cs" />
     <Compile Include="Classes\Maybe.cs" />
+    <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\OrderContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

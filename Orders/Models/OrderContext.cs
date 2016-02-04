@@ -14,10 +14,14 @@ namespace Orders.Models
         public DbSet<EWorkType> WorkTypes { get; set; }
         public DbSet<Error> Errors { get; set; }
 
+        public string ConnectionString => Database.Connection.ConnectionString;
+
         public void Save()
         {
             SaveChanges();
         }
+
+        
     }
 }
 

@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Data.SQLite;
 using System.Windows.Forms;
-using Orders.Models;
+using Orders.Executers;
 
 namespace Orders.Forms
 {
@@ -9,7 +8,23 @@ namespace Orders.Forms
     {
         public FrEvents()
         {
-            using (var dbContext = new OrderContext())
+            var workExecuter = new WorkExecuter();
+            var heroes = workExecuter.GetHeroes();
+            var i = 0;
+            foreach (var hero in heroes)
+            {
+                new Label
+                {
+                    Parent = list,
+                    Text = $"{hero.Name}: {hero.Type} {hero.Date:dd.MM.yyyy}",
+                    Top = i * 20 + 5,
+                    Left = 5,
+                    AutoSize = true
+                };
+                i++;
+            }
+            ItemCount = i;
+            /*using (var dbContext = new OrderContext())
             {
                 InitializeComponent();
                 const string evCmd = "SELECT date(W.fDate,'unixepoch'), C.fName, T.fName " +
@@ -37,7 +52,7 @@ namespace Orders.Forms
                             new Label
                             {
                                 Parent = list,
-                                Text = string.Format("{0}: {1} {2:dd.MM.yyyy}", name, type, date),
+                                Text = $"{name}: {type} {date:dd.MM.yyyy}",
                                 Top = i * 20 + 5,
                                 Left = 5,
                                 AutoSize = true
@@ -47,7 +62,7 @@ namespace Orders.Forms
                         ItemCount = i;
                     }
                 }
-            }
+            }//*/
         }
 
         private void btClose_Click(object sender, EventArgs e)
