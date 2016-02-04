@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Orders.ico</ApplicationIcon>
+    <ApplicationIcon>Resourses\Orders.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>2A50F260EDB4ABCDA28F90A218F1E73B5D420C1E</ManifestCertificateThumbprint>
@@ -68,14 +68,7 @@
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="SQLite.NET">
-      <HintPath>.\SQLite.NET.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -94,118 +87,121 @@
     </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
-    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BackUpSaver.cs" />
     <Compile Include="Classes\SortedList.cs" />
-    <Compile Include="Error.cs" />
-    <Compile Include="FrAddClient.cs">
+    <Compile Include="Classes\ErrorSaver.cs" />
+    <Compile Include="Classes\Exceptions\HandledException.cs" />
+    <Compile Include="Executers\ClientExecuter.cs" />
+    <Compile Include="Executers\WorkExecuter.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Executers\ErrorExecuter.cs" />
+    <Compile Include="Forms\FrAddClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrAddClient.Designer.cs">
+    <Compile Include="Forms\FrAddClient.Designer.cs">
       <DependentUpon>FrAddClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CalendarColumn.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ClassErrors.cs" />
-    <Compile Include="DateLib.cs" />
-    <Compile Include="ECert.cs" />
-    <Compile Include="EClient.cs" />
-    <Compile Include="ECons.cs" />
-    <Compile Include="EConsType.cs" />
-    <Compile Include="ESourceType.cs" />
-    <Compile Include="EWork.cs" />
-    <Compile Include="EWorkType.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Classes\DateLib.cs" />
+    <Compile Include="Models\ECert.cs" />
+    <Compile Include="Models\EClient.cs" />
+    <Compile Include="Models\ECons.cs" />
+    <Compile Include="Models\EConsType.cs" />
+    <Compile Include="Models\ESourceType.cs" />
+    <Compile Include="Models\EWork.cs" />
+    <Compile Include="Models\EWorkType.cs" />
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrCerts.cs">
+    <Compile Include="Forms\FrCerts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrCerts.Designer.cs">
+    <Compile Include="Forms\FrCerts.Designer.cs">
       <DependentUpon>FrCerts.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrClient.cs">
+    <Compile Include="Forms\FrClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrClient.Designer.cs">
+    <Compile Include="Forms\FrClient.Designer.cs">
       <DependentUpon>FrClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrCons.cs">
+    <Compile Include="Forms\FrCons.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrCons.Designer.cs">
+    <Compile Include="Forms\FrCons.Designer.cs">
       <DependentUpon>FrCons.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrConsType.cs">
+    <Compile Include="Forms\FrConsType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrConsType.Designer.cs">
+    <Compile Include="Forms\FrConsType.Designer.cs">
       <DependentUpon>FrConsType.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrEvents.cs">
+    <Compile Include="Forms\FrEvents.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrEvents.Designer.cs">
+    <Compile Include="Forms\FrEvents.Designer.cs">
       <DependentUpon>FrEvents.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrSource.cs">
+    <Compile Include="Forms\FrSource.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrSource.Designer.cs">
+    <Compile Include="Forms\FrSource.Designer.cs">
       <DependentUpon>FrSource.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrWorkType.cs">
+    <Compile Include="Forms\FrWorkType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrWorkType.Designer.cs">
+    <Compile Include="Forms\FrWorkType.Designer.cs">
       <DependentUpon>FrWorkType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maybe.cs" />
-    <Compile Include="OrderContext.cs" />
+    <Compile Include="Interfaces\IContextable.cs" />
+    <Compile Include="Interfaces\IOrderContext.cs" />
+    <Compile Include="Classes\Maybe.cs" />
+    <Compile Include="Models\OrderContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorkLib.cs" />
-    <EmbeddedResource Include="FrAddClient.resx">
+    <Compile Include="Classes\Exceptions\WorkException.cs" />
+    <Compile Include="Classes\WorkLib.cs" />
+    <EmbeddedResource Include="Forms\FrAddClient.resx">
       <DependentUpon>FrAddClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrCerts.resx">
+    <EmbeddedResource Include="Forms\FrCerts.resx">
       <DependentUpon>FrCerts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrClient.resx">
+    <EmbeddedResource Include="Forms\FrClient.resx">
       <DependentUpon>FrClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrCons.resx">
+    <EmbeddedResource Include="Forms\FrCons.resx">
       <DependentUpon>FrCons.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrConsType.resx">
+    <EmbeddedResource Include="Forms\FrConsType.resx">
       <DependentUpon>FrConsType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrEvents.resx">
+    <EmbeddedResource Include="Forms\FrEvents.resx">
       <DependentUpon>FrEvents.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrSource.resx">
+    <EmbeddedResource Include="Forms\FrSource.resx">
       <DependentUpon>FrSource.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrWorkType.resx">
+    <EmbeddedResource Include="Forms\FrWorkType.resx">
       <DependentUpon>FrWorkType.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -236,7 +232,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Orders.ico" />
+    <Content Include="Resourses\Orders.ico" />
     <Content Include="System.Data.SQLite.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
