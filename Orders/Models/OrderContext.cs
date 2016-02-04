@@ -5,6 +5,7 @@ namespace Orders.Models
 {
     public class OrderContext : DbContext, IOrderContext
     {
+        public DbSet<BackupLog> BackupLogs { get; set; }
         public DbSet<EClient> Clients { get; set; }
         public DbSet<ECons> Conses { get; set; }
         public DbSet<EConsType> ConsTypes { get; set; }
@@ -15,13 +16,11 @@ namespace Orders.Models
         public DbSet<Error> Errors { get; set; }
 
         public string ConnectionString => Database.Connection.ConnectionString;
-
+        
         public void Save()
         {
             SaveChanges();
         }
-
-        
     }
 }
 

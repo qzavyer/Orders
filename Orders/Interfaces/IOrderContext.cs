@@ -13,6 +13,7 @@ namespace Orders.Interfaces
         DbSet<ESourceType> SourceTypes { get; set; }
         DbSet<EWork> Works { get; set; }
         DbSet<EWorkType> WorkTypes { get; set; }
+        DbSet<BackupLog> BackupLogs { get; set; }
 
         void Save();
         string ConnectionString { get; }

@@ -4,7 +4,7 @@ using System.Data.SQLite;
 using System.Reflection;
 using System.Windows.Forms;
 using Orders.Classes.Exceptions;
-using Orders.Models;
+using Orders.Executers;
 using Orders.Properties;
 
 namespace Orders.Classes
@@ -42,11 +42,10 @@ namespace Orders.Classes
 
         private static void SaveError(string funcName, Exception exception)
         {
-            var dbContext = new OrderContext();
-            using (var conn = new SQLiteConnection(dbContext.Database.Connection.ConnectionString))
+            var errorExecuter = new ErrorExecuter();
+            using (var conn = new SQLiteConnection(errorExecuter.Context.ConnectionString))
             {
                 var message = GetInnerException(exception);
-                conn.Open();
                 conn.Open();
                 const string insCmd = "INSERT INTO tError (fDate,fError,fFunc) " +
                                       "VALUES(strftime('%s', 'now'),:error,:func)";

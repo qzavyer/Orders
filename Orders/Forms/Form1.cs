@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -140,6 +141,11 @@ namespace Orders.Forms
                 ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
             }
             _hasChange = false;
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
         }
 
         private void btHome_Click(object sender, EventArgs e)
@@ -519,14 +525,14 @@ namespace Orders.Forms
             var yearHours = yearWorkLst.Sum(r => r.Hours);
             // средний доход за год
             var monthCount = DateTime.Now.Year == date.Year ? DateTime.Now.Month : 12;
-            var yearAvgIncome = yearIncome/monthCount;
+            var yearAvgIncome = yearIncome / monthCount;
             // доходы по месяцам за текущий год
             var currYearIncLst = new List<double>();
             for (var i = 1; i <= 12; i++)
             {
                 var dateStart = new DateTime(date.Year, i, 1);
-                var workStart = new EWork {DatePay = dateStart};
-                var workEnd = new EWork {DatePay = dateStart.AddMonths(1)};
+                var workStart = new EWork { DatePay = dateStart };
+                var workEnd = new EWork { DatePay = dateStart.AddMonths(1) };
                 double sum;
                 try
                 {
@@ -549,8 +555,8 @@ namespace Orders.Forms
             {
 
                 var dateStart = new DateTime(date.Year - 1, i, 1);
-                var workStart = new EWork {DatePay = dateStart};
-                var workEnd = new EWork {DatePay = dateStart.AddMonths(1)};
+                var workStart = new EWork { DatePay = dateStart };
+                var workEnd = new EWork { DatePay = dateStart.AddMonths(1) };
                 double sum;
                 try
                 {
@@ -582,9 +588,11 @@ namespace Orders.Forms
             lYearL.Text = date.AddYears(-1).ToString("yyyy");
             lMonthC.Text = date.ToString("MMMM");
 
-            Text = $"Обсчёт заказов ({_currentDate:MMMM yyyy})";
+            Text = string.Format("Обсчёт заказов ({0:MMMM yyyy})", _currentDate);
 
             #region Графики
+
+            #region Месячный
 
             var incSumDic = new Dictionary<string, double>();
             var incCountDic = new Dictionary<string, double>();
@@ -632,7 +640,6 @@ namespace Orders.Forms
             chrtSourceSum.Series["serSourceSum"].Points.DataBind(sourceSumDic, "Key", "Value", "");
             chrtSourceSum.Series["serSourceCount"].Points.DataBind(sourceCountDic, "Key", "Value", "");
 
-            var consWorkDic = new Dictionary<string, double>();
             var consTypeDic = new Dictionary<string, double>();
             foreach (var cons in monthConsLst)
             {
@@ -644,20 +651,7 @@ namespace Orders.Forms
                 {
                     consTypeDic.Add(cons.Type.Name, cons.Amount);
                 }
-
-                if (cons.WorkId == null) continue;
-                if (consWorkDic.ContainsKey(cons.Work.Type.Name))
-                {
-                    consWorkDic[cons.Work.Type.Name] += cons.Amount;
-                }
-                else
-                {
-                    consWorkDic.Add(cons.Work.Type.Name, cons.Amount);
-                }
-
-
             }
-            chrtSourceSum.Series["serConsWork"].Points.DataBind(consWorkDic, "Key", "Value", "");
             chrtSourceSum.Series["serConsType"].Points.DataBind(consTypeDic, "Key", "Value", "");
 
             var incMonthDic = new Dictionary<string, double>();
@@ -739,7 +733,88 @@ namespace Orders.Forms
 
             #endregion
 
+            #region Годовой
+
+            var incSumYearDic = new Dictionary<string, double>();
+            var incCountYearDic = new Dictionary<string, double>();
+            var sourceSumYearDic = new Dictionary<string, double>();
+            var sourceCountYearDic = new Dictionary<string, double>();
+            foreach (var work in yearWorkLst)
+            {
+                if (incSumYearDic.ContainsKey(work.Type.Name))
+                {
+                    incSumYearDic[work.Type.Name] += (work.Prepay + work.Excess);
+                }
+                else
+                {
+                    incSumYearDic.Add(work.Type.Name, work.Prepay + work.Excess);
+                }
+                if (incCountYearDic.ContainsKey(work.Type.Name))
+                {
+                    incCountYearDic[work.Type.Name] += 1;
+                }
+                else
+                {
+                    incCountYearDic.Add(work.Type.Name, 1);
+                }
+
+                if (sourceSumYearDic.ContainsKey(work.Source.Name))
+                {
+                    sourceSumYearDic[work.Source.Name] += (work.Prepay + work.Excess);
+                }
+                else
+                {
+                    sourceSumYearDic.Add(work.Source.Name, work.Prepay + work.Excess);
+                }
+                if (sourceCountYearDic.ContainsKey(work.Source.Name))
+                {
+                    sourceCountYearDic[work.Source.Name] += 1;
+                }
+                else
+                {
+                    sourceCountYearDic.Add(work.Source.Name, 1);
+                }
+            }
+
+            chartYear.Series["serIncSum"].Points.DataBind(incSumYearDic, "Key", "Value", "");
+            chartYear.Series["serIncCount"].Points.DataBind(incCountYearDic, "Key", "Value", "");
+            chartYear.Series["serSourceSum"].Points.DataBind(sourceSumYearDic, "Key", "Value", "");
+            chartYear.Series["serSourceCount"].Points.DataBind(sourceCountYearDic, "Key", "Value", "");
+
+            var consWorkYearDic = new Dictionary<string, double>();
+            var consTypeYearDic = new Dictionary<string, double>();
+            foreach (var cons in yearConsList)
+            {
+                if (consTypeYearDic.ContainsKey(cons.Type.Name))
+                {
+                    consTypeYearDic[cons.Type.Name] += cons.Amount;
+                }
+                else
+                {
+                    consTypeYearDic.Add(cons.Type.Name, cons.Amount);
+                }
+
+                if (cons.WorkId == null) continue;
+                if (consWorkYearDic.ContainsKey(cons.Work.Type.Name))
+                {
+                    consWorkYearDic[cons.Work.Type.Name] += cons.Amount;
+                }
+                else
+                {
+                    consWorkYearDic.Add(cons.Work.Type.Name, cons.Amount);
+                }
+
+
+            }
+            chartYear.Series["serConsWork"].Points.DataBind(consWorkYearDic, "Key", "Value", "");
+            chartYear.Series["serConsType"].Points.DataBind(consTypeYearDic, "Key", "Value", "");
+
+            #endregion
+
+            #endregion
+
         }
+
 
         private void WorkLoad(IEnumerable<EWork> works)
         {
@@ -1360,6 +1435,50 @@ namespace Orders.Forms
                 LoadDuty();
             }
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            var dbContext = new OrderContext();
+            var resultList = dbContext.BackupLogs.ToList();
+
+            // если есть записи о созданых бекапах последняя запись обудачном бекапе более недели назад, 
+            // последняя запись более суток назад
+            if (!resultList.Any() ||
+                (resultList.Where(r => r.Result).All(r => r.Date < DateTime.Now.AddDays(-7)) &&
+                 resultList.All(r => r.Date < DateTime.Now.AddDays(-1))))
+            {
+                if (MessageBox.Show(
+                    "Последняя резервная копия была создана более недели назад. Создать резервную копию?",
+                    Resources.Orders, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    var path = AppDomain.CurrentDomain.BaseDirectory + "order.db";
+                    if (File.Exists(path))
+                    {
+                        var file = AppDomain.CurrentDomain.BaseDirectory + "order_" +
+                                   DateTime.Now.ToString("yyyyMMdd") +
+                                   ".db";
+                        var i = 1;
+                        while (File.Exists(file))
+                        {
+                            file = AppDomain.CurrentDomain.BaseDirectory + "order_" +
+                                   DateTime.Now.ToString("yyyyMMdd") +
+                                   "[" + i + "].db";
+                            i++;
+                        }
+                        File.Copy(path, file);
+                        MessageBox.Show("Резервная копия удачно создана");
+                    }
+                    dbContext.BackupLogs.Add(new BackupLog { Date = DateTime.Now, Result = true });
+                }
+                else
+                {
+                    dbContext.BackupLogs.Add(new BackupLog { Date = DateTime.Now, Result = false });
+                }
+                dbContext.SaveChanges();
+            }
+        }
+
 
         #endregion
 
