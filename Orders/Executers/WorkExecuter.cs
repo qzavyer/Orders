@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SQLite;
 using System.Linq;
+using Orders.Classes;
 using Orders.Interfaces;
 using Orders.Models;
 
@@ -55,6 +56,20 @@ namespace Orders.Executers
             return Context.Works.Where(r => r.Duty > 0)
                 .Include(r => r.Type).Include(r => r.Client)
                 .OrderBy(r=>r.datePay);
+        }
+
+        public IEnumerable<EWork> GetPeriodWorks(DatePeriod period)
+        {
+            return Context.Works.Where(w => w.datePay >= period.SqlStart && w.datePay < period.SqlEnd)
+                .Include(r => r.Client).Include(r => r.Conses).Include(r => r.Source).Include(r => r.Type);
+        }
+
+        public DateTime? GetMinDate()
+        {
+            if (!Context.Works.Any()) return null;
+            var mindate = Context.Works.Min(r => r.datePay);
+            if (mindate == 0) return null;
+            return mindate.ToDateTime();
         }
 
         public IOrderContext Context { get; }

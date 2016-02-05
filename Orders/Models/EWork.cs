@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using Orders.Classes;
 
 namespace Orders.Models
@@ -15,9 +16,6 @@ namespace Orders.Models
 
         [Column("fClientId")]
         public int ClientId { get; set; }
-
-        [ForeignKey("ClientId")]
-        public EClient Client { get; set; }
 
         [Column("fTypeId")]
         public int TypeId { get; set; }
@@ -46,17 +44,22 @@ namespace Orders.Models
         [Column("fSourceId")]
         public int SourceId { get; set; }
 
+        [Column("fSertId")]
+        public int? CertId { get; set; }
+
         [ForeignKey("SourceId")]
         public ESourceType Source { get; set; }
 
-        [Column("fSertId")]
-        public int? CertId { get; set; }
+        [ForeignKey("ClientId")]
+        public EClient Client { get; set; }
 
         [ForeignKey("CertId")]
         public ECert Cert { get; set; }
 
+        public ICollection<ECons> Conses { get; set; }
+
         [NotMapped]
-        public double Cons { get; set; }
+        public double Cons => Conses?.Sum(r => r.Amount) ?? 0;
         
         [NotMapped]
         public DateTime DatePay
@@ -93,6 +96,6 @@ namespace Orders.Models
             }
         }
 
-        public List<ECons> Conses { get; set; }
+        //public List<ECons> Conses { get; set; }
     }
 }

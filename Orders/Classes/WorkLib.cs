@@ -10,196 +10,152 @@ namespace Orders.Classes
 {
     public static class WorkLib
     {
+        /// <summary>
+        /// Получить работы за месяц
+        /// </summary>
+        /// <param name="date">Дата, входящая в исследуемый период</param>
         public static IEnumerable<EWork> GetMonthWorks(DateTime date)
         {
-            using (var db = new OrderContext())
+            var monthWorkLst = new List<EWork>();
+            try
             {
-                var monthWorkLst = new List<EWork>();
-                try
-                {
-                    var dateMonthStart = new DateTime(date.Year, date.Month, 1);
-                    var dateMonthEnd = dateMonthStart.AddMonths(1);
-                    var dateMonthStartInt =dateMonthStart.ToSqlDate();
-                    var dateMonthEndInt = dateMonthEnd.ToSqlDate();
-                    // список всех работ за месяц
-                    monthWorkLst = db.Works
-                        .Where(w => w.datePay >= dateMonthStartInt && w.datePay < dateMonthEndInt)
-                        .Include(r => r.Client).Include(r => r.Source)
-                        .Include(r => r.Type).ToList();
-                    foreach (var eWork in monthWorkLst)
-                    {
-                        eWork.Cons = db.Conses.Where(r => r.WorkId == eWork.Id).ToList().Sum(r => r.Amount);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
-                return monthWorkLst;
+                var month = date.MonthPeriod();
+                var workExecuter = new WorkExecuter();
+                monthWorkLst = workExecuter.GetPeriodWorks(month).ToList();
             }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
+            return monthWorkLst;
         }
 
+        /// <summary>
+        /// Получить работы за год
+        /// </summary>
+        /// <param name="date">Дата, входящая в исследуемый период</param>
         public static IEnumerable<EWork> GetYearWorks(DateTime date)
         {
-            using (var db = new OrderContext())
+            var monthWorkLst = new List<EWork>();
+            try
             {
-                var monthWorkLst = new List<EWork>();
-                try
-                {
-                    var dateYearStart = new DateTime(date.Year, 1, 1);
-                    var dateYearEnd = dateYearStart.AddYears(1);
-                    var dateYearStartInt = dateYearStart.ToSqlDate();
-                    var dateYearEndInt = dateYearEnd.ToSqlDate();
-                    // список всех работ за год
-                    monthWorkLst = db.Works.Where(w =>
-                        w.datePay >= dateYearStartInt && w.datePay < dateYearEndInt)
-                        .Include(r => r.Client)
-                        .Include(r => r.Source)
-                        .Include(r => r.Type)
-                        .ToList();
-                    foreach (var eWork in monthWorkLst)
-                    {
-                        eWork.Cons = db.Conses.Where(r => r.WorkId == eWork.Id).ToList().Sum(r => r.Amount);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
-                return monthWorkLst;
+                var year = date.YearPeriod();
+                var workExecuter = new WorkExecuter();
+                monthWorkLst = workExecuter.GetPeriodWorks(year).ToList();
             }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
+            return monthWorkLst;
         }
 
+        /// <summary>
+        /// Получить расходы за месяц
+        /// </summary>
+        /// <param name="date">Дата, входящая в исследуемый период</param>
         public static IEnumerable<ECons> GetMonthConses(DateTime date)
         {
-            using (var db = new OrderContext())
+            var monthConses = new List<ECons>();
+            try
             {
-                var monthWorkLst = new List<ECons>();
-                try
-                {
-                    var dateMonthStart = new DateTime(date.Year, date.Month, 1);
-                    var dateMonthEnd = dateMonthStart.AddMonths(1);
-                    var dateMonthStartInt = dateMonthStart.ToSqlDate();
-                    var dateMonthEndInt = dateMonthEnd.ToSqlDate();
-                    // список всех расходов за месяц
-                    monthWorkLst = db.Conses.Where(w =>
-                        w.date >= dateMonthStartInt && w.date < dateMonthEndInt)
-                        .Include(r => r.Work)
-                        .Include(r => r.Work.Type)
-                        .Include(r => r.Type).OrderBy(r => r.date)
-                        .ToList();
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
-                return monthWorkLst;
+                var month = date.MonthPeriod();
+                var consExecuter = new ConsExecuter();
+                monthConses = consExecuter.GetPeriodConses(month).ToList();
             }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
+            return monthConses;
         }
 
+        /// <summary>
+        /// Получить расходы за указанный год
+        /// </summary>
+        /// <param name="date">Дата, входящая в исследуемый период</param>
         public static IEnumerable<ECons> GetYearConses(DateTime date)
         {
-            using (var db = new OrderContext())
+            var yearConses = new List<ECons>();
+            try
             {
-                var monthWorkLst = new List<ECons>();
-                try
-                {
-                    var dateYearStart = new DateTime(date.Year, 1, 1);
-                    var dateYearEnd = dateYearStart.AddYears(1);
-                    var dateYearStartInt = dateYearStart.ToSqlDate();
-                    var dateYearEndInt = dateYearEnd.ToSqlDate();
-                    // список всех расходов за год
-                    monthWorkLst = db.Conses.Where(w =>
-                        w.date >= dateYearStartInt && w.date < dateYearEndInt)
-                        .Include(r => r.Work)
-                        .Include(r => r.Work.Type)
-                        .Include(r => r.Type).OrderBy(r => r.date)
-                        .ToList();
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
-                return monthWorkLst;
+                var year = date.YearPeriod();
+                var consExecuter = new ConsExecuter();
+                yearConses = consExecuter.GetPeriodConses(year).ToList();
             }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
+            return yearConses;
         }
 
-        public static IEnumerable<ECert> GetCerts(DateTime date)
+        /// <summary>
+        /// Получить все сертификаты за месяц
+        /// </summary>
+        /// <param name="date">Дата, входящая в исследуемый период</param>
+        public static IEnumerable<ECert> GetMonthCerts(DateTime date)
         {
-            using (var db = new OrderContext())
+            var lst = new List<ECert>();
+            try
             {
-                var lst = new List<ECert>();
-                try
-                {
-                    var dateMonthStart = new DateTime(date.Year, date.Month, 1);
-                    var dateMonthEnd = dateMonthStart.AddMonths(1);
-                    var dateMonthStartInt = dateMonthStart.ToSqlDate();
-                    var dateMonthEndInt = dateMonthEnd.ToSqlDate();
-                    // список всех расходов за год
-                    lst = db.Certs.Where(w =>
-                        w.datePay >= dateMonthStartInt && w.datePay < dateMonthEndInt)
-                        .Include(r => r.Type).Include(r => r.Client).Include(r => r.Payer).Include(r => r.Source)
-                        .OrderBy(r => r.datePay)
-                        .ToList();
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
-                return lst;
+                var month = date.MonthPeriod();
+                var certExecuter = new CertExecuter();
+                lst = certExecuter.GetPeriodCerts(month).ToList();
             }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
+            return lst;
         }
 
-        public static IEnumerable<ECert> GetCerts()
-        {
-            using (var db = new OrderContext())
-            {
-                var lst = new List<ECert>();
-                try
-                {
-                    var workLst = db.Works.Select(r => r.CertId).ToList();
-                    lst = db.Certs.Where(w => !workLst.Contains(w.Id))
-                        .Include(r => r.Type).Include(r => r.Client).Include(r => r.Payer).Include(r => r.Source)
-                        .OrderBy(r => r.datePay)
-                        .ToList();
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
-                return lst;
-            }
-        }
-
+        /// <summary>
+        /// Получить сертификаты за год
+        /// </summary>
+        /// <param name="date">Дата, входящая в исследуемый период</param>
         public static IEnumerable<ECert> GetYearCerts(DateTime date)
         {
-            using (var db = new OrderContext())
+            var lst = new List<ECert>();
+            try
             {
-                var lst = new List<ECert>();
-                try
-                {
-                    var dateYearStart = new DateTime(date.Year, 1, 1);
-                    var dateYearEnd = dateYearStart.AddYears(1);
-                    var dateYearStartInt = dateYearStart.ToSqlDate();
-                    var dateYearEndInt =dateYearEnd.ToSqlDate();
-                    // список всех расходов за год
-                    lst = db.Certs.Where(w =>
-                        w.datePay >= dateYearStartInt && w.datePay < dateYearEndInt).ToList();
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
-                return lst;
+                var year = date.YearPeriod();
+                var certExecuter = new CertExecuter();
+                lst = certExecuter.GetPeriodCerts(year).ToList();
             }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
+            return lst;
         }
 
+        /// <summary>
+        /// Получить все сертификаты
+        /// </summary>
+        public static IEnumerable<ECert> GetCerts()
+        {
+            var lst = new List<ECert>();
+            try
+            {
+                var certExecuter = new CertExecuter();
+                lst = certExecuter.GetUnworkedCerts().ToList();
+            }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
+            return lst;
+        }
+
+        /// <summary>
+        /// Получить должников
+        /// </summary>
         public static IEnumerable<EWork> GetDuty()
         {
             var lst = new SortableBindingList<EWork>();
             try
             {
-
                 var workExecuter = new WorkExecuter();
                 var list = workExecuter.GetDuty().ToList();
                 lst = new SortableBindingList<EWork>(list);
@@ -211,15 +167,13 @@ namespace Orders.Classes
             return lst;
         }
 
+        /// <summary>
+        /// Получение минимальной даты в базе
+        /// </summary>
         public static DateTime? GetMinDate()
         {
-            using (var db = new OrderContext())
-            {
-                if (!db.Works.Any()) return null;
-                var mindate = db.Works.Min(r => r.datePay);
-                if (mindate == 0) return null;
-                return mindate.ToDateTime();
-            }
+            var workExecuter = new WorkExecuter();
+            return workExecuter.GetMinDate();
         }
     }
 }

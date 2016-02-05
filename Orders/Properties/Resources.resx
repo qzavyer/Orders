@@ -189,4 +189,10 @@
   <data name="FrCertsErrorData" xml:space="preserve">
     <value>Выбранный сертификат содержит ошибки и не будет сохранён. Продолжить работу?</value>
   </data>
+  <data name="BacupTimeWarning" xml:space="preserve">
+    <value>Последняя резервная копия была создана более недели назад. Создать резервную копию?</value>
+  </data>
+  <data name="BackupOk" xml:space="preserve">
+    <value>Резервная копия удачно создана</value>
+  </data>
 </root>

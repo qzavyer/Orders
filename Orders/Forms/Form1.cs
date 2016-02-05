@@ -40,75 +40,10 @@ namespace Orders.Forms
         {
             try
             {
-
-                var connStr =
-                    System.Configuration.ConfigurationManager.ConnectionStrings["OrderContext"].ConnectionString;
-                var conn = new SQLiteConnection(connStr);
-                try
+                var dbExecuter = new DataBaseExecuter();
+                if (!dbExecuter.CheckDatabase())
                 {
-                    conn.Open();
-                    const string cmd = "SELECT COUNT(*) FROM \"tWork\"";
-                    var com = new SQLiteCommand(cmd, conn);
-                    com.ExecuteNonQuery();
-                }
-                catch (Exception)
-                {
-                    var com = new SQLiteCommand("CREATE TABLE \"tClient\" (\"fId\" INTEGER PRIMARY KEY AUTOINCREMENT " +
-                                                "NOT NULL,\"fName\" TEXT NOT NULL,\"fPhone\" TEXT,\"fEmail\" TEXT," +
-                                                "\"fNote\" TEXT,\"fDate\" INTEGER NOT NULL DEFAULT 0);", conn);
-                    com.ExecuteNonQuery();
-                    com = new SQLiteCommand("CREATE TABLE \"tCons\" (\"fId\" INTEGER PRIMARY KEY AUTOINCREMENT " +
-                                            "NOT NULL,\"fTypeId\" INTEGER NOT NULL,\"fAmount\" REAL NOT NULL " +
-                                            "DEFAULT 0,\"fDate\" INTEGER NOT NULL,\"fComment\" TEXT,\"fCertCons\" " +
-                                            "INTEGER NOT NULL DEFAULT 0,\"fWorkId\" INTEGER,\"fCertId\" INTEGER," +
-                                            "CONSTRAINT \"Type\" FOREIGN KEY (\"fTypeId\") REFERENCES \"tConsType\" " +
-                                            "(\"fId\") ON UPDATE RESTRICT);", conn);
-                    com.ExecuteNonQuery();
-                    com = new SQLiteCommand("CREATE TABLE \"tConsType\" (\"fId\" INTEGER PRIMARY KEY AUTOINCREMENT " +
-                                            "NOT NULL,\"fName\" TEXT NOT NULL,\"fCertCons\" INTEGER NOT NULL DEFAULT " +
-                                            "0);", conn);
-                    com.ExecuteNonQuery();
-                    com = new SQLiteCommand("CREATE TABLE \"tError\" (\"fDate\" INTEGER NOT NULL,\"fError\" TEXT NOT " +
-                                            "NULL,\"fFunc\"  TEXT);", conn);
-                    com.ExecuteNonQuery();
-                    com = new SQLiteCommand("CREATE TABLE \"tSource\" (\"fId\" INTEGER PRIMARY KEY AUTOINCREMENT NOT " +
-                                            "NULL,\"fName\"  TEXT NOT NULL);", conn);
-                    com.ExecuteNonQuery();
-                    com =
-                        new SQLiteCommand("CREATE TABLE \"tWorkType\" (\"fId\" INTEGER PRIMARY KEY AUTOINCREMENT NOT " +
-                                          "NULL,\"fName\" TEXT NOT NULL);", conn);
-                    com.ExecuteNonQuery();
-                    com =
-                        new SQLiteCommand(
-                            "CREATE TABLE \"tSert\" (\"fId\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                            "\"fPayId\" INTEGER NOT NULL,\"fClientId\" INTEGER NOT NULL,\"fTypeId\" " +
-                            "INTEGER NOT NULL,\"fDatePay\" INTEGER NOT NULL,\"fDateEnd\" INTEGER NOT NULL," +
-                            "\"fPrice\" REAL NOT NULL DEFAULT 0,\"fHours\" REAL NOT NULL DEFAULT 0,\"fCash\" " +
-                            "INTEGER NOT NULL DEFAULT 0,\"fSource\" INTEGER NOT NULL,\"fConsed\" REAL NOT " +
-                            "NULL DEFAULT 0,CONSTRAINT \"Sourse\" FOREIGN KEY (\"fSource\") REFERENCES " +
-                            "\"tSource\" (\"fId\") ON UPDATE RESTRICT,CONSTRAINT \"Client\" FOREIGN KEY " +
-                            "(\"fClientId\") REFERENCES \"tClient\" (\"fId\") ON UPDATE RESTRICT,CONSTRAINT " +
-                            "\"Type\" FOREIGN KEY (\"fTypeId\") REFERENCES \"tWorkType\" (\"fId\") ON UPDATE " +
-                            "RESTRICT,CONSTRAINT \"Payer\" FOREIGN KEY (\"fPayId\") REFERENCES \"tClient\" " +
-                            "(\"fId\") ON UPDATE RESTRICT);", conn);
-                    com.ExecuteNonQuery();
-                    com =
-                        new SQLiteCommand(
-                            "CREATE TABLE \"tWork\" (\"fId\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                            "\"fClientId\" INTEGER NOT NULL,\"fTypeId\" INTEGER NOT NULL,\"fDate\" INTEGER " +
-                            "NOT NULL,\"fPrepay\" REAL NOT NULL DEFAULT 0,\"fExcess\" REAL NOT NULL DEFAULT 0," +
-                            "\"fHours\" REAL NOT NULL DEFAULT 0,\"fSourceId\" INTEGER NOT NULL,\"fSertId\" " +
-                            "INTEGER,\"fExcessDate\" INTEGER,\"fDuty\" REAL NOT NULL DEFAULT 0,CONSTRAINT " +
-                            "\"Client\" FOREIGN KEY (\"fClientId\") REFERENCES \"tClient\" (\"fId\") ON UPDATE " +
-                            "RESTRICT,CONSTRAINT \"Type\" FOREIGN KEY (\"fTypeId\") REFERENCES \"tWorkType\" " +
-                            "(\"fId\") ON UPDATE RESTRICT,CONSTRAINT \"Source\" FOREIGN KEY (\"fSourceId\") " +
-                            "REFERENCES \"tSource\" (\"fId\") ON UPDATE RESTRICT,CONSTRAINT \"Sert\" " +
-                            "FOREIGN KEY (\"fSertId\") REFERENCES \"tSert\" (\"fId\") ON UPDATE RESTRICT);", conn);
-                    com.ExecuteNonQuery();
-                }
-                finally
-                {
-                    conn.Close();
+                    dbExecuter.CreateDatabase();
                 }
 
                 _currentDate = DateTime.Now;
@@ -212,140 +147,165 @@ namespace Orders.Forms
             var iCol = e.ColumnIndex;
             switch (grWork.Columns[iCol].Name)
             {
-                case "cwCons":
-                    using (var frCons = new FrCons())
-                    {
-                        frCons.Conses = _workConses.Where(r => r.RowId == iRow).ToList();
-                        try
-                        {
-                            frCons.WorkId = Convert.ToInt32(grWork.Rows[iRow].Cells["cwId"].Value);
-                            frCons.ConsId = new List<int>();
-                        }
-                        catch (Exception)
-                        {
-                            frCons.WorkId = 0;
-                            frCons.ConsId = new List<int>();
-                            foreach (var con in _workCons.Where(c => c.Value == iRow))
-                            {
-                                frCons.ConsId.Add(con.Key);
-                            }
-                        }
-                        frCons.ShowDialog();
-                        if (frCons.Conses == null || !frCons.FrOk) return;
-                        _hasChange = true;
-                        var conses = frCons.Conses;
-                        _workConses.RemoveAll(r => r.RowId == iRow);
-                        foreach (var cons in conses)
-                        {
-                            cons.RowId = iRow;
-                        }
-                        _workConses.AddRange(conses);
+                case WorkConsColumn:
+                    WorkConsClick(iRow, iCol);
+                    break;
+                case WorkClientColumn:
+                    WorkClientClick(iRow);
+                    break;
+                case WorkTypeColumn:
+                    WorkTypeClick(iRow);
+                    break;
+                case WorkSourceColumn:
+                    WorkSourceClick(iRow);
+                    break;
+                case WorkDeleteColumn:
+                    WorkDeleteClick(iRow);
+                    break;
+            }
+        }
 
-                        foreach (var i in frCons.DeleteConsList.Where(i => !_deleteConsList.Contains(i)))
-                        {
-                            _deleteConsList.Add(i);
-                        }
+        private void WorkDeleteClick(int iRow)
+        {
+            var res = MessageBox.Show(Resources.DeleteRecord, Resources.Orders, MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                try
+                {
+                    var id = Convert.ToInt32(grWork.Rows[iRow].Cells["cwId"].Value);
+                    _deleteWorkList.Add(id);
+                }
+                catch
+                {
+                    // ignored
+                }
+                try
+                {
+                    grWork.Rows.RemoveAt(iRow);
+                    _workConses.RemoveAll(r => r.RowId == iRow);
+                    foreach (var cons in _workConses.Where(r => r.RowId > iRow))
+                    {
+                        cons.RowId = cons.RowId - 1;
+                    }
+                    _workCerts.RemoveAll(r => r.RowId == iRow);
+                    foreach (var cert in _workCerts)
+                    {
+                        cert.RowId = cert.RowId - 1;
+                    }
+                    _hasChange = true;
+                }
+                catch (InvalidOperationException)
+                {
+                }
+            }
+        }
 
-                        grWork.Rows[iRow].Cells[iCol].Value = frCons.Conses.Sum(r => r.Amount);
-                    }
-                    break;
-                case "cwClient":
-                    var fr = new FrClient();
-                    string cwName;
-                    try
+        private void WorkSourceClick(int iRow)
+        {
+            var frSource = new FrSource();
+            string swName;
+            try
+            {
+                swName = grWork.Rows[iRow].Cells[WorkSourceColumn].Value.ToString();
+            }
+            catch
+            {
+                swName = "";
+            }
+            frSource.Source = new ESourceType {Name = swName};
+            frSource.ShowDialog();
+            if (frSource.Source != null && frSource.Source.Id > 0)
+            {
+                grWork.Rows[iRow].Cells["cwSourceId"].Value = frSource.Source.Id;
+                grWork.Rows[iRow].Cells[WorkSourceColumn].Value = frSource.Source.Name;
+            }
+        }
+
+        private void WorkTypeClick(int iRow)
+        {
+            var frWType = new FrWorkType();
+            string twName;
+            try
+            {
+                twName = grWork.Rows[iRow].Cells[WorkTypeColumn].Value.ToString();
+            }
+            catch
+            {
+                twName = "";
+            }
+            frWType.WorkType = new EWorkType {Name = twName};
+            frWType.ShowDialog();
+            if (frWType.WorkType != null && frWType.WorkType.Id > 0)
+            {
+                grWork.Rows[iRow].Cells["cwTypeId"].Value = frWType.WorkType.Id;
+                grWork.Rows[iRow].Cells[WorkTypeColumn].Value = frWType.WorkType.Name;
+            }
+        }
+
+        private void WorkClientClick(int iRow)
+        {
+            var fr = new FrClient();
+            string cwName;
+            try
+            {
+                cwName = grWork.Rows[iRow].Cells[WorkClientColumn].Value.ToString();
+            }
+            catch
+            {
+                cwName = "";
+            }
+            fr.ClientName = new EClient {Name = cwName};
+            fr.ShowDialog();
+            try
+            {
+                if (fr.ClientName != null && fr.ClientName.Id > 0)
+                {
+                    grWork.Rows[iRow].Cells["cwClientId"].Value = fr.ClientName.Id;
+                    grWork.Rows[iRow].Cells[WorkClientColumn].Value = fr.ClientName.Name;
+                }
+            }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
+        }
+
+        private void WorkConsClick(int iRow, int iCol)
+        {
+            using (var frCons = new FrCons())
+            {
+                frCons.Conses = _workConses.Where(r => r.RowId == iRow).ToList();
+                try
+                {
+                    frCons.WorkId = Convert.ToInt32(grWork.Rows[iRow].Cells["cwId"].Value);
+                    frCons.ConsId = new List<int>();
+                }
+                catch (Exception)
+                {
+                    frCons.WorkId = 0;
+                    frCons.ConsId = new List<int>();
+                    foreach (var con in _workCons.Where(c => c.Value == iRow))
                     {
-                        cwName = grWork.Rows[iRow].Cells["cwClient"].Value.ToString();
+                        frCons.ConsId.Add(con.Key);
                     }
-                    catch
-                    {
-                        cwName = "";
-                    }
-                    fr.ClientName = new EClient {Name = cwName};
-                    fr.ShowDialog();
-                    try
-                    {
-                        if (fr.ClientName != null && fr.ClientName.Id > 0)
-                        {
-                            grWork.Rows[iRow].Cells["cwClientId"].Value = fr.ClientName.Id;
-                            grWork.Rows[iRow].Cells["cwClient"].Value = fr.ClientName.Name;
-                        }
-                    }
-                    catch (Exception exception)
-                    {
-                        ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                    }
-                    break;
-                case "cwType":
-                    var frWType = new FrWorkType();
-                    string twName;
-                    try
-                    {
-                        twName = grWork.Rows[iRow].Cells["cwType"].Value.ToString();
-                    }
-                    catch
-                    {
-                        twName = "";
-                    }
-                    frWType.WorkType = new EWorkType {Name = twName};
-                    frWType.ShowDialog();
-                    if (frWType.WorkType != null && frWType.WorkType.Id > 0)
-                    {
-                        grWork.Rows[iRow].Cells["cwTypeId"].Value = frWType.WorkType.Id;
-                        grWork.Rows[iRow].Cells["cwType"].Value = frWType.WorkType.Name;
-                    }
-                    break;
-                case "cwSource":
-                    var frSource = new FrSource();
-                    string swName;
-                    try
-                    {
-                        swName = grWork.Rows[iRow].Cells["cwSource"].Value.ToString();
-                    }
-                    catch
-                    {
-                        swName = "";
-                    }
-                    frSource.Source = new ESourceType {Name = swName};
-                    frSource.ShowDialog();
-                    if (frSource.Source != null && frSource.Source.Id > 0)
-                    {
-                        grWork.Rows[iRow].Cells["cwSourceId"].Value = frSource.Source.Id;
-                        grWork.Rows[iRow].Cells["cwSource"].Value = frSource.Source.Name;
-                    }
-                    break;
-                case "cwDelete":
-                    var res = MessageBox.Show(Resources.DeleteRecord, Resources.Orders, MessageBoxButtons.YesNo);
-                    if (res == DialogResult.Yes)
-                    {
-                        try
-                        {
-                            var id = Convert.ToInt32(grWork.Rows[iRow].Cells["cwId"].Value);
-                            _deleteWorkList.Add(id);
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-                        try
-                        {
-                            grWork.Rows.RemoveAt(iRow);
-                            _workConses.RemoveAll(r => r.RowId == iRow);
-                            foreach (var cons in _workConses.Where(r => r.RowId > iRow))
-                            {
-                                cons.RowId = cons.RowId - 1;
-                            }
-                            _workCerts.RemoveAll(r => r.RowId == iRow);
-                            foreach (var cert in _workCerts)
-                            {
-                                cert.RowId = cert.RowId - 1;
-                            }
-                            _hasChange = true;
-                        }
-                        catch (InvalidOperationException)
-                        {
-                        }
-                    }
-                    break;
+                }
+                frCons.ShowDialog();
+                if (frCons.Conses == null || !frCons.FrOk) return;
+                _hasChange = true;
+                var conses = frCons.Conses;
+                _workConses.RemoveAll(r => r.RowId == iRow);
+                foreach (var cons in conses)
+                {
+                    cons.RowId = iRow;
+                }
+                _workConses.AddRange(conses);
+
+                foreach (var i in frCons.DeleteConsList.Where(i => !_deleteConsList.Contains(i)))
+                {
+                    _deleteConsList.Add(i);
+                }
+
+                grWork.Rows[iRow].Cells[iCol].Value = frCons.Conses.Sum(r => r.Amount);
             }
         }
 
@@ -356,7 +316,7 @@ namespace Orders.Forms
             var iCol = e.ColumnIndex;
             switch (grWork.Columns[iCol].Name)
             {
-                case "cwCert":
+                case WorkCertColumn:
                     var ch = (grWork.Rows[iRow].Cells[iCol] as DataGridViewCheckBoxCell);
                     if (ch != null)
                     {
@@ -467,19 +427,19 @@ namespace Orders.Forms
                                     work.Type = db.WorkTypes.Find(fr.Cert.TypeId);
                                 }
                                 grWork.Rows[iRow].Cells["cwClientId"].Value = work.ClientId;
-                                grWork.Rows[iRow].Cells["cwClient"].Value = work.With(r => r.Client)
+                                grWork.Rows[iRow].Cells[WorkClientColumn].Value = work.With(r => r.Client)
                                     .Return(r => r.Name, "");
                                 grWork.Rows[iRow].Cells["cwTypeId"].Value = work.TypeId;
-                                grWork.Rows[iRow].Cells["cwType"].Value = work.With(r => r.Type).Return(r => r.Name, "");
+                                grWork.Rows[iRow].Cells[WorkTypeColumn].Value = work.With(r => r.Type).Return(r => r.Name, "");
                                 grWork.Rows[iRow].Cells["cwDatePay"].Value = work.DatePay.ToString("dd.MM.yyyy");
                                 grWork.Rows[iRow].Cells["cwPrepay"].Value = work.Prepay;
                                 grWork.Rows[iRow].Cells["cwExcess"].Value = work.Return(r => r.Excess, 0);
                                 grWork.Rows[iRow].Cells["cwDateExcess"].Value = work.Return(
                                     r => r.DateExcess?.ToString("dd.MM.yyyy") ?? "", "");
-                                grWork.Rows[iRow].Cells["cwCons"].Value = work.Cons;
+                                grWork.Rows[iRow].Cells[WorkConsColumn].Value = work.Cons;
                                 grWork.Rows[iRow].Cells["cwHours"].Value = work.Hours;
                                 grWork.Rows[iRow].Cells["cwSourceId"].Value = work.SourceId;
-                                grWork.Rows[iRow].Cells["cwSource"].Value = work.With(r => r.Source)
+                                grWork.Rows[iRow].Cells[WorkSourceColumn].Value = work.With(r => r.Source)
                                     .Return(r => r.Name, "");
                             }
                             else
@@ -588,7 +548,7 @@ namespace Orders.Forms
             lYearL.Text = date.AddYears(-1).ToString("yyyy");
             lMonthC.Text = date.ToString("MMMM");
 
-            Text = string.Format("Обсчёт заказов ({0:MMMM yyyy})", _currentDate);
+            Text = $"Обсчёт заказов ({_currentDate:MMMM yyyy})";
 
             #region Графики
 
@@ -828,20 +788,20 @@ namespace Orders.Forms
                     iRow["cwNumber"].Value = grWork.RowCount - 1;
                     iRow["cwId"].Value = work.Id;
                     iRow["cwClientId"].Value = work.ClientId;
-                    iRow["cwClient"].Value = work.Client.Name;
+                    iRow[WorkClientColumn].Value = work.Client.Name;
                     iRow["cwTypeId"].Value = work.TypeId;
-                    iRow["cwType"].Value = work.Type.Name;
+                    iRow[WorkTypeColumn].Value = work.Type.Name;
                     iRow["cwDatePay"].Value = work.DatePay.ToString("dd.MM.yyyy");
                     iRow["cwPrepay"].Value = work.Prepay;
                     iRow["cwDuty"].Value = work.Duty;
                     iRow["cwExcess"].Value = work.Return(r => r.Excess, 0);
                     iRow["cwDateExcess"].Value = work.Return(r => r.DateExcess?.ToString("dd.MM.yyyy") ?? "", "");
-                    iRow["cwCons"].Value = work.Cons;
+                    iRow[WorkConsColumn].Value = work.Cons;
                     iRow["cwHours"].Value = work.Hours;
                     iRow["cwSourceId"].Value = work.SourceId;
-                    iRow["cwSource"].Value = work.Source.Name;
+                    iRow[WorkSourceColumn].Value = work.Source.Name;
                     iRow["cwCertId"].Value = work.CertId;
-                    iRow["cwCert"].Value = work.CertId != null;
+                    iRow[WorkCertColumn].Value = work.CertId != null;
                 }
                 _hasChange = false;
             }
@@ -984,7 +944,7 @@ namespace Orders.Forms
 
                         if (_workCerts.Select(r => r.RowId).Contains(rowId))
                         {
-                            var ch = (row.Cells["cwCert"] as DataGridViewCheckBoxCell);
+                            var ch = (row.Cells[WorkCertColumn] as DataGridViewCheckBoxCell);
                             var chVal = ch.EditingCellFormattedValue;
                             if (Convert.ToBoolean(chVal))
                             {
@@ -1448,8 +1408,7 @@ namespace Orders.Forms
                 (resultList.Where(r => r.Result).All(r => r.Date < DateTime.Now.AddDays(-7)) &&
                  resultList.All(r => r.Date < DateTime.Now.AddDays(-1))))
             {
-                if (MessageBox.Show(
-                    "Последняя резервная копия была создана более недели назад. Создать резервную копию?",
+                if (MessageBox.Show(Resources.BacupTimeWarning,
                     Resources.Orders, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     var path = AppDomain.CurrentDomain.BaseDirectory + "order.db";
@@ -1467,7 +1426,7 @@ namespace Orders.Forms
                             i++;
                         }
                         File.Copy(path, file);
-                        MessageBox.Show("Резервная копия удачно создана");
+                        MessageBox.Show(Resources.BackupOk);
                     }
                     dbContext.BackupLogs.Add(new BackupLog { Date = DateTime.Now, Result = true });
                 }
@@ -1482,22 +1441,6 @@ namespace Orders.Forms
 
         #endregion
 
-        #region Вкладка графики
-
-        private void chrtSourceSum_MouseLeave(object sender, EventArgs e)
-        {
-            if (chrtSourceSum.Focused)
-                chrtSourceSum.Parent.Focus();
-        }
-
-        private void chrtSourceSum_MouseEnter(object sender, EventArgs e)
-        {
-            if (!chrtSourceSum.Focused)
-                chrtSourceSum.Focus();
-        }
-
-        #endregion
-
         #region Вкладка Сертификаты
 
         private void grCert_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1508,84 +1451,99 @@ namespace Orders.Forms
 
             switch (grCert.Columns[iCol].Name)
             {
-                case "ccPayer":
-                    var frP = new FrClient();
-                    string pName;
-                    try
-                    {
-                        pName = grCert.Rows[iRow].Cells[iCol].Value.ToString();
-                    }
-                    catch
-                    {
-                        pName = "";
-                    }
-                    frP.ClientName = new EClient {Name = pName};
-                    frP.ShowDialog();
-                    if (frP.ClientName != null && frP.ClientName.Id > 0)
-                    {
-                        grCert.Rows[iRow].Cells["ccPayerId"].Value = frP.ClientName.Id;
-                        grCert.Rows[iRow].Cells["ccPayer"].Value = frP.ClientName.Name;
-                    }
+                case CertPayerColumn:
+                    CertPayerCliick(iRow, iCol);
                     break;
-                case "ccClient":
-                    var frC = new FrClient();
-                    string cName;
-                    try
-                    {
-                        cName = grCert.Rows[iRow].Cells[iCol].Value.ToString();
-                    }
-                    catch
-                    {
-                        cName = "";
-                    }
-                    frC.ClientName = new EClient {Name = cName};
-                    frC.ShowDialog();
-                    if (frC.ClientName != null && frC.ClientName.Id > 0)
-                    {
-                        grCert.Rows[iRow].Cells["ccClientId"].Value = frC.ClientName.Id;
-                        grCert.Rows[iRow].Cells["ccClient"].Value = frC.ClientName.Name;
-                    }
+                case CertClientColumn:
+                    CertClientClick(iRow, iCol);
                     break;
-                case "ccType":
-                    var frW = new FrWorkType();
-                    string tName;
-                    try
-                    {
-                        tName = grCert.Rows[iRow].Cells[iCol].Value.ToString();
-                    }
-                    catch
-                    {
-                        tName = "";
-                    }
-                    frW.WorkType = new EWorkType {Name = tName};
-                    frW.ShowDialog();
-                    if (frW.WorkType != null && frW.WorkType.Id > 0)
-                    {
-                        grCert.Rows[iRow].Cells["ccTypeId"].Value = frW.WorkType.Id;
-                        grCert.Rows[iRow].Cells["ccType"].Value = frW.WorkType.Name;
-                    }
+                case CertTypeColumn:
+                    CertTypeClick(iRow, iCol);
                     break;
-                case "ccSource":
-                    var frS = new FrSource();
-                    string sName;
-                    try
-                    {
-                        sName = grCert.Rows[iRow].Cells[iCol].Value.ToString();
-                    }
-                    catch
-                    {
-                        sName = "";
-                    }
-                    frS.Source = new ESourceType {Name = sName};
-                    frS.ShowDialog();
-                    if (frS.Source != null && frS.Source.Id > 0)
-                    {
-                        grCert.Rows[iRow].Cells["ccSourceId"].Value = frS.Source.Id;
-                        grCert.Rows[iRow].Cells["ccSource"].Value = frS.Source.Name;
-                    }
+                case CertSourceColumn:
+                    CertSourceClick(iRow, iCol);
                     break;
             }
         }
+
+        private void CertSourceClick(int iRow, int iCol)
+        {
+            var frS = new FrSource();
+            string sName;
+            try
+            {
+                sName = grCert.Rows[iRow].Cells[iCol].Value.ToString();
+            }
+            catch
+            {
+                sName = "";
+            }
+            frS.Source = new ESourceType {Name = sName};
+            frS.ShowDialog();
+            if (frS.Source == null || frS.Source.Id <= 0) return;
+            grCert.Rows[iRow].Cells["ccSourceId"].Value = frS.Source.Id;
+            grCert.Rows[iRow].Cells[CertSourceColumn].Value = frS.Source.Name;
+        }
+
+        private void CertTypeClick(int iRow, int iCol)
+        {
+            var frW = new FrWorkType();
+            string tName;
+            try
+            {
+                tName = grCert.Rows[iRow].Cells[iCol].Value.ToString();
+            }
+            catch
+            {
+                tName = "";
+            }
+            frW.WorkType = new EWorkType {Name = tName};
+            frW.ShowDialog();
+            if (frW.WorkType == null || frW.WorkType.Id <= 0) return;
+            grCert.Rows[iRow].Cells["ccTypeId"].Value = frW.WorkType.Id;
+            grCert.Rows[iRow].Cells[CertTypeColumn].Value = frW.WorkType.Name;
+        }
+
+        private void CertClientClick(int iRow, int iCol)
+        {
+            var frC = new FrClient();
+            string cName;
+            try
+            {
+                cName = grCert.Rows[iRow].Cells[iCol].Value.ToString();
+            }
+            catch
+            {
+                cName = "";
+            }
+            frC.ClientName = new EClient {Name = cName};
+            frC.ShowDialog();
+            if (frC.ClientName == null || frC.ClientName.Id <= 0) return;
+            grCert.Rows[iRow].Cells["ccClientId"].Value = frC.ClientName.Id;
+            grCert.Rows[iRow].Cells[CertClientColumn].Value = frC.ClientName.Name;
+        }
+
+        private void CertPayerCliick(int iRow, int iCol)
+        {
+            var frP = new FrClient();
+            string pName;
+            try
+            {
+                pName = grCert.Rows[iRow].Cells[iCol].Value.ToString();
+            }
+            catch
+            {
+                pName = "";
+            }
+            frP.ClientName = new EClient {Name = pName};
+            frP.ShowDialog();
+            if (frP.ClientName != null && frP.ClientName.Id > 0)
+            {
+                grCert.Rows[iRow].Cells["ccPayerId"].Value = frP.ClientName.Id;
+                grCert.Rows[iRow].Cells[CertPayerColumn].Value = frP.ClientName.Name;
+            }
+        }
+
 
         private void CertGraph()
         {
@@ -1594,7 +1552,7 @@ namespace Orders.Forms
 
         private void LoadCerts()
         {
-            var certs = chCertAll.Checked ? WorkLib.GetCerts(_currentDate) : WorkLib.GetCerts();
+            var certs = chCertAll.Checked ? WorkLib.GetMonthCerts(_currentDate) : WorkLib.GetCerts();
             grCert.Rows.Clear();
             foreach (var cert in certs)
             {
@@ -1603,18 +1561,18 @@ namespace Orders.Forms
                 iRow["ccNumber"].Value = grCert.RowCount - 1;
                 iRow["ccId"].Value = cert.Id;
                 iRow["ccClientId"].Value = cert.ClientId;
-                iRow["ccClient"].Value = cert.Client.Return(r => r.Name, "");
+                iRow[CertClientColumn].Value = cert.Client.Return(r => r.Name, "");
                 iRow["ccPayerId"].Value = cert.PayId;
-                iRow["ccPayer"].Value = cert.Payer.Name;
+                iRow[CertPayerColumn].Value = cert.Payer.Name;
                 iRow["ccTypeId"].Value = cert.TypeId;
-                iRow["ccType"].Value = cert.Type.Name;
+                iRow[CertTypeColumn].Value = cert.Type.Name;
                 iRow["ccDatePay"].Value = cert.DatePay.ToString("dd.MM.yyyy");
                 iRow["ccDateEnd"].Value = cert.DateEnd.ToString("dd.MM.yyyy");
                 iRow["ccPrice"].Value = cert.Price;
                 iRow["ccConsed"].Value = cert.Consed;
                 iRow["ccHours"].Value = cert.Hours;
                 iRow["ccSourceId"].Value = cert.SourceId;
-                iRow["ccSource"].Value = cert.Source.Name;
+                iRow[CertSourceColumn].Value = cert.Source.Name;
                 iRow["ccIsCash"].Value = cert.IsCash;
             }
         }
@@ -1641,7 +1599,7 @@ namespace Orders.Forms
                     iRow["csNumber"].Value = grCons.RowCount - 1;
                     iRow["csId"].Value = cons.Id;
                     iRow["csTypeId"].Value = cons.TypeId;
-                    iRow["csType"].Value = cons.With(r => r.Type).Return(r => r.Name, "");
+                    iRow[ConsTypeColumn].Value = cons.With(r => r.Type).Return(r => r.Name, "");
                     iRow["csDate"].Value = cons.Date.ToString("dd.MM.yyyy");
                     iRow["csAmount"].Value = cons.Amount;
                     iRow["csComment"].Value = cons.Comment;
@@ -1662,6 +1620,8 @@ namespace Orders.Forms
             ConsLoad(monthConsLst);
         }
 
+        
+
         private void grCons_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var iRow = e.RowIndex;
@@ -1669,44 +1629,50 @@ namespace Orders.Forms
             var iCol = e.ColumnIndex;
             switch (grCons.Columns[iCol].Name)
             {
-                case "csType":
-                    using (var fr = new FrConsType())
-                    {
-                        string type;
-                        try
-                        {
-                            type = grCons.Rows[iRow].Cells["csType"].Value.ToString();
-                        }
-                        catch
-                        {
-                            type = "";
-                        }
-                        fr.ConsType = new EConsType {Name = type};
-                        fr.ShowDialog(this);
-                        if (fr.ConsType != null && fr.ConsType.Id > 0)
-                        {
-                            grCons.Rows[iRow].Cells["csTypeId"].Value = fr.ConsType.Id;
-                            grCons.Rows[iRow].Cells["csType"].Value = fr.ConsType.Name;
-                        }
-                    }
+                case ConsTypeColumn:
+                    ConsTypeClick(iRow);
                     break;
-                case "csDelete":
-                    var res = MessageBox.Show(Resources.DeleteRecord, Resources.Orders, MessageBoxButtons.YesNo);
-                    if (res == DialogResult.Yes)
-                    {
-                        try
-                        {
-                            var id = Convert.ToInt32(grCons.Rows[iRow].Cells["csId"].Value);
-                            _deleteConsList.Add(id);
-                        }
-                        catch
-                        {
-                            // ignored
-                        }
-                        grCons.Rows.RemoveAt(iRow);
-                        _hasChange = true;
-                    }
+                case ConsDeleteColumn:
+                    ConsDeleteClick(iRow);
                     break;
+            }
+        }
+
+        private void ConsDeleteClick(int iRow)
+        {
+            var res = MessageBox.Show(Resources.DeleteRecord, Resources.Orders, MessageBoxButtons.YesNo);
+            if (res != DialogResult.Yes) return;
+            try
+            {
+                var id = Convert.ToInt32(grCons.Rows[iRow].Cells["csId"].Value);
+                _deleteConsList.Add(id);
+            }
+            catch
+            {
+                // ignored
+            }
+            grCons.Rows.RemoveAt(iRow);
+            _hasChange = true;
+        }
+
+        private void ConsTypeClick(int iRow)
+        {
+            using (var fr = new FrConsType())
+            {
+                string type;
+                try
+                {
+                    type = grCons.Rows[iRow].Cells[ConsTypeColumn].Value.ToString();
+                }
+                catch
+                {
+                    type = "";
+                }
+                fr.ConsType = new EConsType {Name = type};
+                fr.ShowDialog(this);
+                if (fr.ConsType == null || fr.ConsType.Id <= 0) return;
+                grCons.Rows[iRow].Cells["csTypeId"].Value = fr.ConsType.Id;
+                grCons.Rows[iRow].Cells[ConsTypeColumn].Value = fr.ConsType.Name;
             }
         }
 
@@ -1745,7 +1711,7 @@ namespace Orders.Forms
             var iCol = e.ColumnIndex;
             switch (grDuty.Columns[iCol].Name)
             {
-                case "cdConfirmAll":
+                case DutyConfAllColumn:
                     int id;
                     try
                     {

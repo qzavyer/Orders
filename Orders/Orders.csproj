@@ -104,11 +104,16 @@
     <Compile Include="Classes\SortedList.cs" />
     <Compile Include="Classes\ErrorSaver.cs" />
     <Compile Include="Classes\Exceptions\HandledException.cs" />
+    <Compile Include="Executers\CertExecuter.cs" />
     <Compile Include="Executers\ClientExecuter.cs" />
+    <Compile Include="Executers\ConsExecuter.cs" />
+    <Compile Include="Executers\DataBaseExecuter.cs" />
     <Compile Include="Executers\SourceTypeExecuter.cs" />
     <Compile Include="Executers\WorkExecuter.cs" />
     <Compile Include="Executers\WorkTypeExecuter.cs" />
     <Compile Include="Interfaces\IOrderEntry.cs" />
+    <Compile Include="Models\BackupLog.cs" />
+    <Compile Include="Models\DatePeriod.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Executers\ErrorExecuter.cs" />
     <Compile Include="Forms\FrAddClient.cs">
