@@ -1253,7 +1253,7 @@ namespace Orders.Forms
             // 
             this.csType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.csType.HeaderText = "Вид расхода";
-            this.csType.Name = ConsTypeColumn;
+            this.csType.Name = "csType";
             this.csType.Width = 104;
             // 
             // csDate
@@ -1294,7 +1294,7 @@ namespace Orders.Forms
             // csDelete
             // 
             this.csDelete.HeaderText = "X";
-            this.csDelete.Name = ConsDeleteColumn;
+            this.csDelete.Name = "csDelete";
             this.csDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.csDelete.Text = "X";
             this.csDelete.ToolTipText = "Удалить запись";
@@ -1391,7 +1391,7 @@ namespace Orders.Forms
             this.ccPayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ccPayer.DataPropertyName = "ccPayerName";
             this.ccPayer.HeaderText = "Плательщик";
-            this.ccPayer.Name = CertPayerColumn;
+            this.ccPayer.Name = "ccPayer";
             // 
             // ccClientId
             // 
@@ -1405,7 +1405,7 @@ namespace Orders.Forms
             this.ccClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ccClient.DataPropertyName = "ccClientName";
             this.ccClient.HeaderText = "Клиент";
-            this.ccClient.Name = CertClientColumn;
+            this.ccClient.Name = "ccClient";
             // 
             // ccTypeId
             // 
@@ -1417,7 +1417,7 @@ namespace Orders.Forms
             // 
             this.ccType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ccType.HeaderText = "Вид работы";
-            this.ccType.Name = CertTypeColumn;
+            this.ccType.Name = "ccType";
             this.ccType.Width = 93;
             // 
             // ccDatePay
@@ -1467,7 +1467,7 @@ namespace Orders.Forms
             // 
             this.ccSource.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ccSource.HeaderText = "Источник";
-            this.ccSource.Name = CertSourceColumn;
+            this.ccSource.Name = "ccSource";
             this.ccSource.Width = 87;
             // 
             // ccIsCash
@@ -1988,7 +1988,7 @@ namespace Orders.Forms
             // 
             this.cwClient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.cwClient.HeaderText = "Клиент";
-            this.cwClient.Name = WorkClientColumn;
+            this.cwClient.Name = "cwClient";
             // 
             // cwTypeId
             // 
@@ -2000,7 +2000,7 @@ namespace Orders.Forms
             // 
             this.cwType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwType.HeaderText = "Вид работы";
-            this.cwType.Name = WorkTypeColumn;
+            this.cwType.Name = "cwType";
             this.cwType.Width = 101;
             // 
             // cwDatePay
@@ -2035,7 +2035,7 @@ namespace Orders.Forms
             // 
             this.cwCons.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwCons.HeaderText = "Расход";
-            this.cwCons.Name = WorkConsColumn;
+            this.cwCons.Name = "cwCons";
             this.cwCons.Width = 73;
             // 
             // cwHours
@@ -2055,7 +2055,7 @@ namespace Orders.Forms
             // 
             this.cwSource.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwSource.HeaderText = "Источник";
-            this.cwSource.Name = WorkSourceColumn;
+            this.cwSource.Name = "cwSource";
             this.cwSource.Width = 87;
             // 
             // cwDuty
@@ -2077,7 +2077,7 @@ namespace Orders.Forms
             this.cwCert.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cwCert.FalseValue = "false";
             this.cwCert.HeaderText = "Сертификат";
-            this.cwCert.Name = WorkCertColumn;
+            this.cwCert.Name = "cwCert";
             this.cwCert.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.cwCert.TrueValue = "true";
             this.cwCert.Width = 87;
@@ -2085,7 +2085,7 @@ namespace Orders.Forms
             // cwDelete
             // 
             this.cwDelete.HeaderText = "X";
-            this.cwDelete.Name = WorkDeleteColumn;
+            this.cwDelete.Name = "cwDelete";
             this.cwDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.cwDelete.Text = "X";
             this.cwDelete.ToolTipText = "Удалить запись";
@@ -2442,7 +2442,7 @@ namespace Orders.Forms
             // 
             this.cdConfirmAll.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cdConfirmAll.HeaderText = "Вернуть всё";
-            this.cdConfirmAll.Name = DutyConfAllColumn;
+            this.cdConfirmAll.Name = "cdConfirmAll";
             this.cdConfirmAll.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.cdConfirmAll.Text = "Вернуть всё";
             this.cdConfirmAll.ToolTipText = "Вернуть всё";

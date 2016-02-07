@@ -24,10 +24,10 @@ namespace Orders.Executers
                 .OrderBy(r => r.datePay);
         }
 
-        public IEnumerable<ECert> GetUnworkedCerts()
+        public IEnumerable<ECert> GetUnworkedCerts(int? certId=null)
         {
             var workLst = Context.Works.Select(r => r.CertId).ToList();
-            return Context.Certs.Where(w => !workLst.Contains(w.Id))
+            return Context.Certs.Where(w => !workLst.Contains(w.Id)||w.Id==certId)
                         .Include(r => r.Type).Include(r => r.Client).Include(r => r.Payer).Include(r => r.Source)
                         .OrderBy(r => r.datePay);
         }

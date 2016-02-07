@@ -1723,13 +1723,9 @@ namespace Orders.Forms
                     }
                     if (id > 0)
                     {
-                        using (var db = new OrderContext())
-                        {
-
-
-                            var work = db.Works.Find(id);
-                            grDuty.Rows[iRow].Cells["cdConfirm"].Value = work.Duty;
-                        }
+                        var workExecuter = new WorkExecuter();
+                        var work = workExecuter.Get(id);
+                        grDuty.Rows[iRow].Cells["cdConfirm"].Value = work.Duty;                        
                     }
                     break;
             }

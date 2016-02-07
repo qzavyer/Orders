@@ -40,6 +40,19 @@ namespace Orders.Executers
             return result.OrderByDescending(r => r.Date).ThenBy(r => r.Name);
         }
 
+        public EClient Get(object Id)
+        {
+            try
+            {
+                var clientId = Convert.ToInt32(Id);
+                return Context.Clients.SingleOrDefault(r => r.Id == clientId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public IOrderContext Context { get; }
-    }
+    }    
 }

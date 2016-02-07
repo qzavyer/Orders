@@ -2,6 +2,11 @@
 {
     partial class FrCerts
     {
+        private const string CertClientColumn = "cClient";
+        private const string CertPayerColumn = "cPayer";
+        private const string CertTypeColumn = "cType";
+        private const string CertSourceColumn = "cSource";
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
