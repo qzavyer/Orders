@@ -63,8 +63,7 @@ namespace Orders.Models
                 iscert = value ? 1 : 0;
             }
         }
-
-
+        
         [NotMapped]
         public int RowId { get; set; }
     }

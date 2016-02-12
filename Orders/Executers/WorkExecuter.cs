@@ -51,6 +51,11 @@ namespace Orders.Executers
             return list;
         }
 
+        public EWork Get( int id)
+        {
+            return Context.Works.SingleOrDefault(r => r.Id == id);
+        }
+
         public IEnumerable<EWork> GetDuty()
         {
             return Context.Works.Where(r => r.Duty > 0)

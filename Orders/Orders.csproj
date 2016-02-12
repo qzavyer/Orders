@@ -183,6 +183,15 @@
     <Compile Include="Interfaces\IOrderContext.cs" />
     <Compile Include="Classes\Maybe.cs" />
     <Compile Include="Models\Hero.cs" />
+    <Compile Include="Interfaces\IBackupLog.cs" />
+    <Compile Include="Interfaces\IECert.cs" />
+    <Compile Include="Interfaces\IEClient.cs" />
+    <Compile Include="Interfaces\IECons.cs" />
+    <Compile Include="Interfaces\IEConsType.cs" />
+    <Compile Include="Interfaces\IError.cs" />
+    <Compile Include="Interfaces\IESourceType.cs" />
+    <Compile Include="Interfaces\IEWork.cs" />
+    <Compile Include="Interfaces\IEWorkType.cs" />
     <Compile Include="Models\OrderContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

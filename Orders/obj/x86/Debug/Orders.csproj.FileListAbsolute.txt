@@ -147,3 +147,5 @@ e:\Projects\Orders\Orders\obj\x86\Debug\Orders.exe.manifest
 e:\Projects\Orders\Orders\obj\x86\Debug\Orders.application
 e:\Projects\Orders\Orders\obj\x86\Debug\Orders.exe
 e:\Projects\Orders\Orders\obj\x86\Debug\Orders.pdb
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\EntityFramework.SqlServer.xml
