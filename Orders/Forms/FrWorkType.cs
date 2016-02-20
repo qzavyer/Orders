@@ -13,13 +13,13 @@ namespace Orders.Forms
     public partial class FrWorkType : Form
     {
         #region Поля класса
-        
+
         public EWorkType WorkType;
-        
+
         #endregion
 
         #region Управление формой
-        
+
         public FrWorkType()
         {
             InitializeComponent();
@@ -52,13 +52,15 @@ namespace Orders.Forms
         {
             FilterTypes();
         }
+
         private void btOk_Click(object sender, EventArgs e)
         {
             var row = grWorkTypes.SelectedRows[0];
-            if(row==null) return;
-            WorkType = new EWorkType {Id = Convert.ToInt32(row.Cells[0].Value), Name = row.Cells[1].Value.ToString()};
+            if (row == null) return;
+            WorkType = new EWorkType { Id = Convert.ToInt32(row.Cells[0].Value), Name = row.Cells[1].Value.ToString() };
             Close();
         }
+
         private void FilterTypes()
         {
             try
@@ -84,7 +86,7 @@ namespace Orders.Forms
                 text = Regex.Replace(text, " +", " ");
                 if (string.IsNullOrEmpty(text)) return;
                 var typeExecuter = new WorkTypeExecuter();
-                typeExecuter.Add(new EWorkType {Name = text});
+                typeExecuter.Add(new EWorkType { Name = text });
                 typeExecuter.Context.Save();
                 FilterTypes();
             }
@@ -104,7 +106,7 @@ namespace Orders.Forms
                     if (string.IsNullOrEmpty(row.Cells["Id"].Value.ToString())) continue;
                     var name = row.Cells["Name"].Value.ToString().Trim();
                     name = Regex.Replace(name, " +", " ");
-                    typeExecuter.Update(new EWorkType {Name = name, Id = Convert.ToInt32(row.Cells["Id"].Value)});
+                    typeExecuter.Update(new EWorkType { Name = name, Id = Convert.ToInt32(row.Cells["Id"].Value) });
                 }
                 typeExecuter.Context.Save();
                 FilterTypes();

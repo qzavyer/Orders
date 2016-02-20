@@ -30,7 +30,7 @@ namespace Orders.Executers
                 }
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
@@ -53,6 +53,7 @@ namespace Orders.Executers
                                             "NOT NULL,\"fTypeId\" INTEGER NOT NULL,\"fAmount\" REAL NOT NULL " +
                                             "DEFAULT 0,\"fDate\" INTEGER NOT NULL,\"fComment\" TEXT,\"fCertCons\" " +
                                             "INTEGER NOT NULL DEFAULT 0,\"fWorkId\" INTEGER,\"fCertId\" INTEGER," +
+                                            "\"fIsCert\" INTEGER NOT NULL DEFAULT 0," +
                                             "CONSTRAINT \"Type\" FOREIGN KEY (\"fTypeId\") REFERENCES \"tConsType\" " +
                                             "(\"fId\") ON UPDATE RESTRICT);", conn);
                     com.ExecuteNonQuery();

@@ -67,141 +67,72 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Orders.exe" size="205208">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NLog.dll" size="493056">
+      <assemblyIdentity name="NLog" version="4.0.0.0" publicKeyToken="5120E14C03D0593C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>B1gajeiedPq7+uMP3M5dzeBRZGc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Orders.exe" size="204696">
       <assemblyIdentity name="Orders" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>zfWSjt/e+6IKRiu1bytHprjUr/0=</dsig:DigestValue>
+        <dsig:DigestValue>WqM2ajPmu0S1KNr33+ao3fKC/48=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.dll" size="275968">
-      <assemblyIdentity name="System.Data.SQLite" version="1.0.94.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.dll" size="299008">
+      <assemblyIdentity name="System.Data.SQLite" version="1.0.99.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>rJlQg0ggntkuyNYaeOJe51u2aNk=</dsig:DigestValue>
+        <dsig:DigestValue>i5DdYYkZg+BJ5ivxhDtFulrG2LE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.EF6.dll" size="183808">
-      <assemblyIdentity name="System.Data.SQLite.EF6" version="1.0.94.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.EF6.dll" size="186368">
+      <assemblyIdentity name="System.Data.SQLite.EF6" version="1.0.99.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>O+hk+LEIyM3eMtD5uYit9T4lXh0=</dsig:DigestValue>
+        <dsig:DigestValue>1VjNOSkiypk0H+SWiArS6zhZCg4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.Linq.dll" size="183808">
-      <assemblyIdentity name="System.Data.SQLite.Linq" version="1.0.94.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.Linq.dll" size="186368">
+      <assemblyIdentity name="System.Data.SQLite.Linq" version="1.0.99.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>KAeQ9eLZnb+JqCDdwl1L2p/OgAM=</dsig:DigestValue>
+        <dsig:DigestValue>LcUU9EaTfHWvM51fHwf8HWcbetY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="lib\System.Data.SQLite.dll" size="275968">
+  <file name="Orders.exe.config" size="2600">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>rJlQg0ggntkuyNYaeOJe51u2aNk=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="lib\System.Data.SQLite.EF6.dll" size="183808">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>O+hk+LEIyM3eMtD5uYit9T4lXh0=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="lib\System.Data.SQLite.EF6.pdb" size="204288">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>6iC9wa0UM7Arn9IWI8rZ7HF3EMk=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="lib\System.Data.SQLite.EF6.xml" size="116593" writeableType="applicationData">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>9wp0eKLIfyJC/pKOkyXyYhWOdPA=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="lib\System.Data.SQLite.Linq.dll" size="183808">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>KAeQ9eLZnb+JqCDdwl1L2p/OgAM=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="lib\System.Data.SQLite.Linq.pdb" size="204288">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>7Tbk9A2Buowj7vhr/+yIW3AFnuQ=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="lib\System.Data.SQLite.Linq.xml" size="114457" writeableType="applicationData">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>oXRInlKq4KrmawTgOZ7t4IyoUHc=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="lib\System.Data.SQLite.pdb" size="527872">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>emuXqFjHPDdVe0WBbLlmr2RK7fY=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="lib\System.Data.SQLite.xml" size="704577" writeableType="applicationData">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ZOU2KQDh6rXkbAEyOOiSjy40DZg=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Orders.exe.config" size="1951">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>Aao58XJD08Wp27B2YCObktdO4T8=</dsig:DigestValue>
+      <dsig:DigestValue>dvdR9e7C9xykxA+3+3J1rrEP4Mg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resourses\Orders.ico" size="1078">
@@ -211,24 +142,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>Iw23k+1BrSPyebExvin5umvMNlc=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="x64\SQLite.Interop.dll" size="1020416">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>wRf0fcFySqSmP0I5MoTecln3FOE=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="x86\SQLite.Interop.dll" size="768000">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>anQytseDsqO9q6p+3I5i9B7a49U=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using NLog;
 using Orders.Classes;
 using Orders.Classes.Exceptions;
 using Orders.Executers;
@@ -26,6 +27,7 @@ namespace Orders.Forms
         private DateTime _currentDate = DateTime.Now;
         private readonly List<int> _deleteWorkList = new List<int>();
         private readonly List<int> _deleteConsList = new List<int>();
+        Logger loger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -39,7 +41,7 @@ namespace Orders.Forms
         private void Form1_Load(object sender, EventArgs e)
         {
             try
-            {
+            {   
                 var dbExecuter = new DataBaseExecuter();
                 if (!dbExecuter.CheckDatabase())
                 {
@@ -69,10 +71,10 @@ namespace Orders.Forms
                 {
                     fr.Close();
                 }
-                LoadErrors();
+                LoadErrors();                
             }
             catch (Exception exception)
-            {
+            {                
                 ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
             }
             _hasChange = false;

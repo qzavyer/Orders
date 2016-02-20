@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Reflection;
 using System.Windows.Forms;
+using NLog;
 using Orders.Classes.Exceptions;
 using Orders.Executers;
 using Orders.Properties;
@@ -13,6 +14,7 @@ namespace Orders.Classes
     {
         private static ErrorSaver _saver;
         private Exception _lastException;
+        Logger loger = LogManager.GetCurrentClassLogger();
 
         private ErrorSaver()
         {
@@ -32,11 +34,12 @@ namespace Orders.Classes
                 : exception;
             if (_lastException == currentException) return;
             if (currentException.GetType() == typeof(WorkException)) return;
-            var declaringType = methodBase?.DeclaringType;
-            if (declaringType == null) return;
-            var cName = declaringType.Name;
-            var mName = methodBase.Name;
-            SaveError(cName + "/" + mName, exception);
+            loger.Fatal(currentException);
+            //var declaringType = methodBase?.DeclaringType;
+            //if (declaringType == null) return;
+            //var cName = declaringType.Name;
+            //var mName = methodBase.Name;
+            //SaveError(cName + "/" + mName, exception);
             _lastException = currentException;
         }
 

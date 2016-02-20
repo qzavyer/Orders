@@ -86,15 +86,8 @@ C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.exe
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\obj\x86\Debug\Orders.pdb
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.dll
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.EF6.dll
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.EF6.pdb
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.EF6.xml
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.Linq.dll
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.Linq.pdb
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.Linq.xml
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.pdb
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\System.Data.SQLite.xml
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\x64\SQLite.Interop.dll
-C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\x86\SQLite.Interop.dll
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\Orders.exe.manifest
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\Orders.application
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\Orders.exe
@@ -149,3 +142,5 @@ e:\Projects\Orders\Orders\obj\x86\Debug\Orders.exe
 e:\Projects\Orders\Orders\obj\x86\Debug\Orders.pdb
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\NLog.dll
+C:\Users\Nikiforov_S\Source\Repos\Orders\Orders\bin\Debug\NLog.xml
