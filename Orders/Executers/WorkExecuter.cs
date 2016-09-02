@@ -9,16 +9,11 @@ using Orders.Models;
 
 namespace Orders.Executers
 {
-    public class WorkExecuter : IContextable
+    public class WorkExecuter : BaseExecuter<EWork, EWork>
     {
-        public WorkExecuter(IOrderContext context)
-        {
-            Context = context;
-        }
-
-        public WorkExecuter() : this(new OrderContext())
-        {
-        }
+        public WorkExecuter(IExecuter executer) : base(executer){ }
+        public WorkExecuter(IOrderContext context) : base(context){ }
+        public WorkExecuter() { }
 
         public IEnumerable<Hero> GetHeroes()
         {
@@ -51,32 +46,25 @@ namespace Orders.Executers
             return list;
         }
 
-        public EWork Get( int id)
-        {
-            return Context.Works.SingleOrDefault(r => r.Id == id);
-        }
-
         public IEnumerable<EWork> GetDuty()
         {
-            return Context.Works.Where(r => r.Duty > 0)
+            return GetAll(r => r.Duty > 0)
                 .Include(r => r.Type).Include(r => r.Client)
                 .OrderBy(r=>r.datePay);
         }
 
         public IEnumerable<EWork> GetPeriodWorks(DatePeriod period)
         {
-            return Context.Works.Where(w => w.datePay >= period.SqlStart && w.datePay < period.SqlEnd)
+            return GetAll(w => w.datePay >= period.SqlStart && w.datePay < period.SqlEnd)
                 .Include(r => r.Client).Include(r => r.Conses).Include(r => r.Source).Include(r => r.Type);
         }
 
         public DateTime? GetMinDate()
         {
-            if (!Context.Works.Any()) return null;
-            var mindate = Context.Works.Min(r => r.datePay);
+            if (!GetAll().Any()) return null;
+            var mindate = GetAll().Min(r => r.datePay);
             if (mindate == 0) return null;
             return mindate.ToDateTime();
         }
-
-        public IOrderContext Context { get; }
     }
 }

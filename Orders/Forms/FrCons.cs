@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Orders.Classes;
+using Orders.Executers;
 using Orders.Models;
 using Orders.Properties;
 
@@ -30,17 +31,15 @@ namespace Orders.Forms
         }
         private void FrCons_Load(object sender, EventArgs e)
         {
-            using (var db = new OrderContext())
+            var consExecuter = new ConsExecuter();
+            FrOk = false;
+            if (WorkId != 0)
             {
-                FrOk = false;
-                if (WorkId != 0)
-                {
-                    var conses = db.Conses.Where(r => r.WorkId == WorkId).ToList();
-                    conses.RemoveAll(r => Conses.Select(l => l.Id).Contains(r.Id));
-                    Conses.AddRange(conses);
-                }
-                ConsLoad(Conses);
+                var conses = consExecuter.GetAll(r => r.WorkId == WorkId).ToList();
+                conses.RemoveAll(r => Conses.Select(l => l.Id).Contains(r.Id));
+                Conses.AddRange(conses);
             }
+            ConsLoad(Conses);
         }
 
         #endregion
@@ -49,30 +48,29 @@ namespace Orders.Forms
         
         private void ConsLoad(IEnumerable<ECons> list)
         {
-            using (var db = new OrderContext())
+            var constypeExecuter = new ConsTypeExecuter();
+            grCons.Rows.Clear();
+            try
             {
-                grCons.Rows.Clear();
-                try
+                foreach (var cons in list)
                 {
-                    foreach (var cons in list)
-                    {
-                        var iRow = grCons.RowCount - 1;
-                        grCons.RowCount = grCons.RowCount + 1;
-                        var row = grCons.Rows[iRow];
-                        row.Cells["cId"].Value = cons.Id;
-                        row.Cells["cTypeId"].Value = cons.TypeId;
-                        row.Cells["cType"].Value = db.ConsTypes.Find(cons.TypeId).Return(r => r.Name, "");
-                        row.Cells["cComment"].Value = cons.Comment;
-                        row.Cells["cAmount"].Value = cons.Amount;
-                        row.Cells["cIsCert"].Value = cons.IsCert;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+                    var iRow = grCons.RowCount - 1;
+                    grCons.RowCount = grCons.RowCount + 1;
+                    var row = grCons.Rows[iRow];
+                    row.Cells["cId"].Value = cons.Id;
+                    row.Cells["cTypeId"].Value = cons.TypeId;
+                    row.Cells["cType"].Value = constypeExecuter.Get(cons.TypeId).Return(r => r.Name, "");
+                    row.Cells["cComment"].Value = cons.Comment;
+                    row.Cells["cAmount"].Value = cons.Amount;
+                    row.Cells["cIsCert"].Value = cons.IsCert;
                 }
             }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+            }
         }
+
         private void grCons_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var iRow = e.RowIndex;

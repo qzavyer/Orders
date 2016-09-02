@@ -87,7 +87,7 @@ namespace Orders.Forms
                 if (string.IsNullOrEmpty(text)) return;
                 var typeExecuter = new WorkTypeExecuter();
                 typeExecuter.Add(new EWorkType { Name = text });
-                typeExecuter.Context.Save();
+                typeExecuter.Save();
                 FilterTypes();
             }
             catch (Exception exception)
@@ -108,7 +108,7 @@ namespace Orders.Forms
                     name = Regex.Replace(name, " +", " ");
                     typeExecuter.Update(new EWorkType { Name = name, Id = Convert.ToInt32(row.Cells["Id"].Value) });
                 }
-                typeExecuter.Context.Save();
+                typeExecuter.Save();
                 FilterTypes();
                 MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
             }

@@ -6,52 +6,27 @@ using Orders.Models;
 
 namespace Orders.Executers
 {
-    public class ClientExecuter : IContextable
+    public class ClientExecuter : BaseExecuter<EClient, EClient>
     {
-        public ClientExecuter(IOrderContext context)
-        {
-            Context = context;
-        }
-
-        public ClientExecuter() : this(new OrderContext())
-        {
-        }
-
-        public IEnumerable<EClient> GetClients()
-        {
-            return Context.Clients;
-        }
+        public ClientExecuter(IExecuter executer) : base(executer){}
+        public ClientExecuter(IOrderContext context) : base(context){}
+        public ClientExecuter(){}
 
         public IEnumerable<EClient> GetFiltrdClients(string filter)
         {
             IEnumerable<EClient> result;
             if (string.IsNullOrEmpty(filter))
             {
-                result = GetClients();
+                result = GetAll();
             }
             else
             {
-                result = GetClients().ToList().Where(r =>
+                result = GetAll().ToList().Where(r =>
                     (!string.IsNullOrEmpty(r.Name) && r.Name.IndexOf(filter, StringComparison.OrdinalIgnoreCase) > -1) ||
                     (!string.IsNullOrEmpty(r.Phone) && r.Phone.IndexOf(filter, StringComparison.OrdinalIgnoreCase) > -1) ||
                     (!string.IsNullOrEmpty(r.Mail) && r.Mail.IndexOf(filter, StringComparison.OrdinalIgnoreCase) > -1));
             }
             return result.OrderByDescending(r => r.Date).ThenBy(r => r.Name);
         }
-
-        public EClient Get(object Id)
-        {
-            try
-            {
-                var clientId = Convert.ToInt32(Id);
-                return Context.Clients.SingleOrDefault(r => r.Id == clientId);
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        public IOrderContext Context { get; }
-    }    
+    }
 }

@@ -8,11 +8,16 @@ using Orders.Classes;
 namespace Orders.Models
 {
     [Table("tWork")]
-    public class EWork
+    public class EWork:OrderEntity<EWork>
     {
         [Key]
         [Column("fId")]
-        public int Id { get; set; }
+        public override int Id { get; set; }
+
+        public override void Edit(OrderEntity<EWork> entity)
+        {
+            
+        }
 
         [Column("fClientId")]
         public int ClientId { get; set; }

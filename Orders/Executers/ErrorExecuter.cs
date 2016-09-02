@@ -4,26 +4,15 @@ using Orders.Models;
 
 namespace Orders.Executers
 {
-    public class ErrorExecuter:IContextable
+    public class ErrorExecuter : BaseExecuter<Error, Error>
     {
-        public ErrorExecuter(IOrderContext context)
-        {
-            Context = context;
-        }
-
-        public ErrorExecuter():this(new OrderContext()){}
-
-        public IEnumerable<Error> GetErrors()
-        {
-            return Context.Errors;
-        }
+        public ErrorExecuter(IExecuter executer) : base(executer){ }
+        public ErrorExecuter(IOrderContext context) : base(context){ }
+        public ErrorExecuter() { }
 
         public void ClearErrors()
         {
-            Context.Errors.RemoveRange(Context.Errors);
-            Context.Save();
+            
         }
-
-        public IOrderContext Context { get; }
     }
 }

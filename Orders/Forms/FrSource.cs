@@ -75,7 +75,7 @@ namespace Orders.Forms
                 text = Regex.Replace(text, " +", " ");
                 if (string.IsNullOrEmpty(text)) return;
                 typeExecuter.Add(new ESourceType {Name = text});
-                typeExecuter.Context.Save();
+                typeExecuter.Save();
                 FilterTypes();
             }
             catch (Exception exception)
@@ -96,7 +96,7 @@ namespace Orders.Forms
                     name = Regex.Replace(name, " +", " ");
                     typeExecuter.Update(new ESourceType {Id = Convert.ToInt32(row.Cells["Id"].Value), Name = name});
                 }
-                typeExecuter.Context.Save();
+                typeExecuter.Save();
                 FilterTypes();
                 MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
             }

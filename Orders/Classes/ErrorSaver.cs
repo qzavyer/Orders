@@ -46,7 +46,7 @@ namespace Orders.Classes
         private static void SaveError(string funcName, Exception exception)
         {
             var errorExecuter = new ErrorExecuter();
-            using (var conn = new SQLiteConnection(errorExecuter.Context.ConnectionString))
+            using (var conn = new SQLiteConnection(errorExecuter.GetConnectionString()))
             {
                 var message = GetInnerException(exception);
                 conn.Open();

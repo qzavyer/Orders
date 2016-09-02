@@ -5,7 +5,7 @@ namespace Orders.Interfaces
 {
     public interface IOrderContext
     {
-        DbSet<ECert> Certs { get; set; }
+        /*DbSet<ECert> Certs { get; set; }
         DbSet<EClient> Clients { get; set; }
         DbSet<ECons> Conses { get; set; }
         DbSet<EConsType> ConsTypes { get; set; }
@@ -13,7 +13,9 @@ namespace Orders.Interfaces
         DbSet<ESourceType> SourceTypes { get; set; }
         DbSet<EWork> Works { get; set; }
         DbSet<EWorkType> WorkTypes { get; set; }
-        DbSet<BackupLog> BackupLogs { get; set; }
+        DbSet<BackupLog> BackupLogs { get; set; }*/
+        DbSet<TEntity> Set<TEntity>()
+            where TEntity : class;
 
         void Save();
         string ConnectionString { get; }

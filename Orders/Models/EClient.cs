@@ -5,11 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Orders.Models
 {
     [Table("tClient")]
-    public class EClient
+    public class EClient : OrderEntity<EClient>
     {
         [Key]
         [Column("fId")]
-        public int Id { get; set; }
+        public override int Id { get; set; }
+
+        public override void Edit(OrderEntity<EClient> entity)
+        {
+            
+        }
 
         [Column("fName")]
         public string Name { get; set; }

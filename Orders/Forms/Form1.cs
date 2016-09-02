@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using NLog;
 using Orders.Classes;
 using Orders.Classes.Exceptions;
 using Orders.Executers;
@@ -27,7 +25,6 @@ namespace Orders.Forms
         private DateTime _currentDate = DateTime.Now;
         private readonly List<int> _deleteWorkList = new List<int>();
         private readonly List<int> _deleteConsList = new List<int>();
-        Logger loger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -335,38 +332,10 @@ namespace Orders.Forms
                             double certPrice;
                             double certHours;
                             DateTime certDatePay;
-                            try
-                            {
-                                certId = Convert.ToInt32(row.Cells["cwCertId"].Value);
-                            }
-                            catch
-                            {
-                                certId = 0;
-                            }
-                            try
-                            {
-                                certPayer = Convert.ToInt32(row.Cells["cwClientId"].Value);
-                            }
-                            catch
-                            {
-                                certPayer = 0;
-                            }
-                            try
-                            {
-                                certType = Convert.ToInt32(row.Cells["cwTypeId"].Value);
-                            }
-                            catch
-                            {
-                                certType = 0;
-                            }
-                            try
-                            {
-                                certSource = Convert.ToInt32(row.Cells["cwSourceId"].Value);
-                            }
-                            catch
-                            {
-                                certSource = 0;
-                            }
+                            int.TryParse(row.Cells["cwCertId"].Value.ToString(), out certId);
+                            int.TryParse(row.Cells["cwClientId"].Value.ToString(),out certPayer);
+                            int.TryParse(row.Cells["cwTypeId"].Value.ToString(), out certType);
+                            int.TryParse(row.Cells["cwSourceId"].Value.ToString(), out certSource);
                             try
                             {
                                 var price = row.Cells["cwPrepay"].Value.ToString().Trim();
@@ -416,23 +385,24 @@ namespace Orders.Forms
                                 cert.RowId = iRow;
                                 _workCerts.Add(cert);
                                 var work = new EWork();
-                                using (var db = new OrderContext())
-                                {
-                                    work.ClientId = fr.Cert.PayId;
-                                    work.Client = db.Clients.Find(fr.Cert.PayId);
-                                    work.DatePay = fr.Cert.DatePay;
-                                    work.Hours = fr.Cert.Hours;
-                                    work.Prepay = fr.Cert.Price;
-                                    work.SourceId = fr.Cert.SourceId;
-                                    work.Source = db.SourceTypes.Find(fr.Cert.SourceId);
-                                    work.TypeId = fr.Cert.TypeId;
-                                    work.Type = db.WorkTypes.Find(fr.Cert.TypeId);
-                                }
+                                var clientExecuter = new ClientExecuter();
+                                work.ClientId = fr.Cert.PayId;
+                                work.Client = clientExecuter.Get(fr.Cert.PayId);
+                                work.DatePay = fr.Cert.DatePay;
+                                work.Hours = fr.Cert.Hours;
+                                work.Prepay = fr.Cert.Price;
+                                work.SourceId = fr.Cert.SourceId;
+                                var sourceExecuter = new SourceTypeExecuter(clientExecuter);
+                                work.Source = sourceExecuter.Get(fr.Cert.SourceId);
+                                work.TypeId = fr.Cert.TypeId;
+                                var workTypeExecuter = new WorkTypeExecuter(clientExecuter);
+                                work.Type = workTypeExecuter.Get(fr.Cert.TypeId);
                                 grWork.Rows[iRow].Cells["cwClientId"].Value = work.ClientId;
                                 grWork.Rows[iRow].Cells[WorkClientColumn].Value = work.With(r => r.Client)
                                     .Return(r => r.Name, "");
                                 grWork.Rows[iRow].Cells["cwTypeId"].Value = work.TypeId;
-                                grWork.Rows[iRow].Cells[WorkTypeColumn].Value = work.With(r => r.Type).Return(r => r.Name, "");
+                                grWork.Rows[iRow].Cells[WorkTypeColumn].Value =
+                                    work.With(r => r.Type).Return(r => r.Name, "");
                                 grWork.Rows[iRow].Cells["cwDatePay"].Value = work.DatePay.ToString("dd.MM.yyyy");
                                 grWork.Rows[iRow].Cells["cwPrepay"].Value = work.Prepay;
                                 grWork.Rows[iRow].Cells["cwExcess"].Value = work.Return(r => r.Excess, 0);
@@ -489,7 +459,7 @@ namespace Orders.Forms
             var monthCount = DateTime.Now.Year == date.Year ? DateTime.Now.Month : 12;
             var yearAvgIncome = yearIncome / monthCount;
             // доходы по месяцам за текущий год
-            var currYearIncLst = new List<double>();
+            //var currYearIncLst = new List<double>();
             for (var i = 1; i <= 12; i++)
             {
                 var dateStart = new DateTime(date.Year, i, 1);
@@ -506,7 +476,7 @@ namespace Orders.Forms
                 {
                     sum = 0;
                 }
-                currYearIncLst.Add(sum);
+               // currYearIncLst.Add(sum);
                 Controls.Find("lSumC" + i, true)[0].Text = sum.ToString("### ### ##0");
             }
 
@@ -815,594 +785,582 @@ namespace Orders.Forms
 
         private void SaveChanges()
         {
-            using (var db = new OrderContext())
+            try
             {
-                var t = db.Database.BeginTransaction();
-                try
+                var workExecuter = new WorkExecuter();
+                var consExecuter = new ConsExecuter(workExecuter);
+                var clientExecuter = new ClientExecuter(workExecuter);
+                var certExecuter = new CertExecuter(workExecuter);
+
+                #region SaveWorks
+
+                foreach (DataGridViewRow row in grWork.Rows)
                 {
-
-                    #region SaveWorks
-
-                    foreach (DataGridViewRow row in grWork.Rows)
+                    var rowId = row.Index;
+                    var work = new EWork();
+                    double excess;
+                    try
                     {
-                        var rowId = row.Index;
-                        var work = new EWork();
-                        double excess;
+                        work.Id = Convert.ToInt32(row.Cells["cwId"].Value);
+                    }
+                    catch
+                    {
+                        work.Id = 0;
+                    }
+                    try
+                    {
+                        work.ClientId = Convert.ToInt32(row.Cells["cwClientId"].Value);
+                    }
+                    catch
+                    {
+                        work.ClientId = 0;
+                    }
+                    try
+                    {
+                        var dateStr = row.Cells["cwDatePay"].Value.ToString().Trim();
+                        dateStr = Regex.Replace(dateStr, ",", ".");
+                        work.DatePay = Convert.ToDateTime(dateStr);
+                    }
+                    catch
+                    {
+                        work.DatePay = DateTime.Now;
+                    }
+                    try
+                    {
+                        var payStr = row.Cells["cwPrepay"].Value.ToString().Trim();
+                        payStr = payStr.Replace(".", ",");
+                        work.Prepay = Convert.ToDouble(payStr);
+                    }
+                    catch
+                    {
+                        work.Prepay = 0;
+                    }
+                    try
+                    {
+                        var dutyStr = row.Cells["cwDuty"].Value.ToString().Trim();
+                        dutyStr = Regex.Replace(dutyStr, " +", "");
+                        dutyStr = dutyStr.Replace(".", ",");
+                        work.Duty = Convert.ToDouble(dutyStr);
+                    }
+                    catch
+                    {
+                        work.Duty = 0;
+                    }
+                    try
+                    {
+                        work.TypeId = Convert.ToInt32(row.Cells["cwTypeId"].Value);
+                    }
+                    catch
+                    {
+                        work.TypeId = 0;
+                    }
+                    try
+                    {
+                        var hoursStr = row.Cells["cwHours"].Value.ToString().Trim();
+                        hoursStr = Regex.Replace(hoursStr, " +", "");
+                        hoursStr = hoursStr.Replace(".", ",");
+                        work.Hours = Convert.ToDouble(hoursStr);
+                    }
+                    catch
+                    {
+                        work.Hours = 0;
+                    }
+                    try
+                    {
+                        work.SourceId = Convert.ToInt32(row.Cells["cwSourceId"].Value);
+                    }
+                    catch
+                    {
+                        work.SourceId = 0;
+                    }
+                    try
+                    {
+                        work.CertId = Convert.ToInt32(row.Cells["cwCertId"].Value);
+                        if (work.CertId == 0) work.CertId = null;
+                    }
+                    catch
+                    {
+                        work.CertId = null;
+                    }
+                    try
+                    {
+                        var payExcess = row.Cells["cwExcess"].Value.ToString().Trim();
+                        payExcess = Regex.Replace(payExcess, " +", "");
+                        excess = Convert.ToInt32(payExcess);
+                    }
+                    catch
+                    {
+                        excess = 0;
+                    }
+                    if (excess > 0)
+                    {
+                        work.Excess = excess;
                         try
                         {
-                            work.Id = Convert.ToInt32(row.Cells["cwId"].Value);
-                        }
-                        catch
-                        {
-                            work.Id = 0;
-                        }
-                        try
-                        {
-                            work.ClientId = Convert.ToInt32(row.Cells["cwClientId"].Value);
-                        }
-                        catch
-                        {
-                            work.ClientId = 0;
-                        }
-                        try
-                        {
-                            var dateStr = row.Cells["cwDatePay"].Value.ToString().Trim();
+                            var dateStr = row.Cells["cwDateExcess"].Value.ToString().Trim();
                             dateStr = Regex.Replace(dateStr, ",", ".");
-                            work.DatePay = Convert.ToDateTime(dateStr);
+                            work.DateExcess = Convert.ToDateTime(dateStr);
                         }
                         catch
                         {
-                            work.DatePay = DateTime.Now;
+                            work.DateExcess = DateTime.Now;
                         }
-                        try
-                        {
-                            var payStr = row.Cells["cwPrepay"].Value.ToString().Trim();
-                            payStr = payStr.Replace(".", ",");
-                            work.Prepay = Convert.ToDouble(payStr);
-                        }
-                        catch
-                        {
-                            work.Prepay = 0;
-                        }
-                        try
-                        {
-                            var dutyStr = row.Cells["cwDuty"].Value.ToString().Trim();
-                            dutyStr = Regex.Replace(dutyStr, " +", "");
-                            dutyStr = dutyStr.Replace(".", ",");
-                            work.Duty = Convert.ToDouble(dutyStr);
-                        }
-                        catch
-                        {
-                            work.Duty = 0;
-                        }
-                        try
-                        {
-                            work.TypeId = Convert.ToInt32(row.Cells["cwTypeId"].Value);
-                        }
-                        catch
-                        {
-                            work.TypeId = 0;
-                        }
-                        try
-                        {
-                            var hoursStr = row.Cells["cwHours"].Value.ToString().Trim();
-                            hoursStr = Regex.Replace(hoursStr, " +", "");
-                            hoursStr = hoursStr.Replace(".", ",");
-                            work.Hours = Convert.ToDouble(hoursStr);
-                        }
-                        catch
-                        {
-                            work.Hours = 0;
-                        }
-                        try
-                        {
-                            work.SourceId = Convert.ToInt32(row.Cells["cwSourceId"].Value);
-                        }
-                        catch
-                        {
-                            work.SourceId = 0;
-                        }
-                        try
-                        {
-                            work.CertId = Convert.ToInt32(row.Cells["cwCertId"].Value);
-                            if (work.CertId == 0) work.CertId = null;
-                        }
-                        catch
-                        {
-                            work.CertId = null;
-                        }
-                        try
-                        {
-                            var payExcess = row.Cells["cwExcess"].Value.ToString().Trim();
-                            payExcess = Regex.Replace(payExcess, " +", "");
-                            excess = Convert.ToInt32(payExcess);
-                        }
-                        catch
-                        {
-                            excess = 0;
-                        }
-                        if (excess > 0)
-                        {
-                            work.Excess = excess;
-                            try
-                            {
-                                var dateStr = row.Cells["cwDateExcess"].Value.ToString().Trim();
-                                dateStr = Regex.Replace(dateStr, ",", ".");
-                                work.DateExcess = Convert.ToDateTime(dateStr);
-                            }
-                            catch
-                            {
-                                work.DateExcess = DateTime.Now;
-                            }
+                    }
+                    else
+                    {
+                        work.Excess = 0;
+                        work.DateExcess = null;
+                    }
+                    if (work.TypeId == 0 || work.ClientId == 0 || work.SourceId == 0) continue;
+                    //throw new ArgumentException("Ошибка данных в работах");
 
-                        }
-                        else
+                    if (_workCerts.Select(r => r.RowId).Contains(rowId))
+                    {
+                        var ch = (row.Cells[WorkCertColumn] as DataGridViewCheckBoxCell);
+                        var chVal = ch.EditingCellFormattedValue;
+                        if (Convert.ToBoolean(chVal))
                         {
-                            work.Excess = 0;
-                            work.DateExcess = null;
-                        }
-                        if (work.TypeId == 0 || work.ClientId == 0 || work.SourceId == 0) continue;
-                        //throw new ArgumentException("Ошибка данных в работах");
-
-                        if (_workCerts.Select(r => r.RowId).Contains(rowId))
-                        {
-                            var ch = (row.Cells[WorkCertColumn] as DataGridViewCheckBoxCell);
-                            var chVal = ch.EditingCellFormattedValue;
-                            if (Convert.ToBoolean(chVal))
+                            var cert = _workCerts.First(r => r.RowId == rowId);
+                            cert.Hours = work.Hours;
+                            cert.PayId = work.ClientId;
+                            cert.Price = work.Prepay;
+                            cert.SourceId = work.SourceId;
+                            cert.TypeId = work.TypeId;
+                            if (cert.Id == 0)
                             {
-                                var cert = _workCerts.First(r => r.RowId == rowId);
-                                cert.Hours = work.Hours;
-                                cert.PayId = work.ClientId;
-                                cert.Price = work.Prepay;
-                                cert.SourceId = work.SourceId;
-                                cert.TypeId = work.TypeId;
-                                if (cert.Id == 0)
-                                {
-                                    cert = db.Certs.Add(cert);
-                                }
-                                else
-                                {
-                                    var tcert = db.Certs.Find(cert.Id);
-                                    tcert.ClientId = cert.ClientId;
-                                    tcert.Consed = cert.Consed;
-                                    tcert.DateEnd = cert.DateEnd;
-                                    tcert.DatePay = cert.DatePay;
-                                    tcert.Hours = cert.Hours;
-                                    tcert.PayId = cert.PayId;
-                                    tcert.Price = cert.Price;
-                                    tcert.SourceId = cert.SourceId;
-                                    tcert.TypeId = cert.TypeId;
-                                }
-
-                                work.CertId = cert.Id;
+                                cert = certExecuter.Add(cert);
                             }
                             else
                             {
-                                work.CertId = 0;
+                                var tcert = certExecuter.Get(cert.Id);
+                                tcert.ClientId = cert.ClientId;
+                                tcert.Consed = cert.Consed;
+                                tcert.DateEnd = cert.DateEnd;
+                                tcert.DatePay = cert.DatePay;
+                                tcert.Hours = cert.Hours;
+                                tcert.PayId = cert.PayId;
+                                tcert.Price = cert.Price;
+                                tcert.SourceId = cert.SourceId;
+                                tcert.TypeId = cert.TypeId;
                             }
-                            _workCerts.RemoveAll(r => r.RowId == rowId);
-                        }
 
-                        if (work.Id == 0)
-                        {
-                            work = db.Works.Add(work);
-                            db.SaveChanges();
+                            work.CertId = cert.Id;
                         }
                         else
                         {
-                            var twork = db.Works.Find(work.Id);
-                            twork.ClientId = work.ClientId;
-                            twork.DatePay = work.DatePay;
-                            twork.Prepay = work.Prepay;
-                            twork.Duty = work.Duty;
-                            twork.TypeId = work.TypeId;
-                            twork.Hours = work.Hours;
-                            twork.Excess = work.Excess;
-                            twork.DateExcess = work.DateExcess;
-                            twork.CertId = work.CertId;
+                            work.CertId = 0;
                         }
-                        var conses = _workConses.Where(r => r.RowId == rowId && r.Id == 0).ToList();
-                        foreach (var cons in conses)
-                        {
-                            cons.Date = work.DatePay;
-                            cons.WorkId = work.Id;
-                        }
-                        db.Conses.AddRange(conses);
-                        _workConses.RemoveAll(r => r.RowId == rowId && r.Id == 0);
-                        conses = _workConses.Where(r => r.RowId == rowId).ToList();
-                        foreach (var cons in conses)
-                        {
-                            var dCons = db.Conses.Find(cons.Id);
-                            dCons.TypeId = cons.TypeId;
-                            dCons.Amount = cons.Amount;
-                            dCons.Comment = cons.Comment;
-                            dCons.Date = work.DatePay;
-                            dCons.WorkId = work.Id;
-                            dCons.IsCert = cons.IsCert;
-                        }
-                        _workConses.RemoveAll(r => r.RowId == rowId);
-
-                        db.SaveChanges();
+                        _workCerts.RemoveAll(r => r.RowId == rowId);
                     }
-
-
-                    _workConses.Clear();
-                    foreach (var i in _deleteWorkList)
+                    if (work.Id == 0)
                     {
-                        var work = db.Works.Find(i);
-                        if (work == null) continue;
-                        var workCons = db.Conses.Where(r => r.WorkId == work.Id);
-                        db.Conses.RemoveRange(workCons);
-                        db.Works.Remove(work);
+                        work = workExecuter.Add(work);
+                        workExecuter.Save();
                     }
-
-                    #endregion
-
-                    #region SaveCons
-
-                    foreach (DataGridViewRow row in grCons.Rows)
+                    else
                     {
-                        var cons = new ECons();
-                        try
-                        {
-                            cons.Id = Convert.ToInt32(row.Cells["csId"].Value);
-                        }
-                        catch
-                        {
-                            cons.Id = 0;
-                        }
-                        try
-                        {
-                            cons.TypeId = Convert.ToInt32(row.Cells["csTypeId"].Value);
-                        }
-                        catch
-                        {
-                            cons.TypeId = 0;
-                        }
-
-                        try
-                        {
-                            var amount = row.Cells["csAmount"].Value.ToString().Trim();
-                            amount = Regex.Replace(amount, " +", "");
-                            amount = amount.Replace(".", ",");
-                            cons.Amount = Convert.ToDouble(amount);
-                        }
-                        catch
-                        {
-                            cons.Amount = 0;
-                        }
-                        try
-                        {
-                            var comment = row.Cells["csComment"].Value.ToString().Trim();
-                            comment = Regex.Replace(comment, " +", " ");
-                            cons.Comment = comment;
-                        }
-                        catch
-                        {
-                            cons.Comment = null;
-                        }
-                        try
-                        {
-                            var date = row.Cells["csDate"].Value.ToString().Trim();
-                            date = Regex.Replace(date, " +", " ");
-                            date = Regex.Replace(date, ",", ".");
-                            cons.Date = Convert.ToDateTime(date);
-                        }
-                        catch
-                        {
-                            cons.Date = DateTime.Now;
-                        }
-                        try
-                        {
-                            var isCertCell = row.Cells["csIsCert"] as DataGridViewCheckBoxCell;
-                            var isCert = (isCertCell?.Value != null && (bool) isCertCell.Value);
-                            cons.IsCert = Convert.ToBoolean(isCert);
-                        }
-                        catch
-                        {
-                            cons.IsCert = false;
-                        }
-                        if (cons.TypeId == 0 || cons.Amount < 0.01 || cons.Date == DateTime.MinValue)
-                            continue; // throw new ArgumentException("Ошибка данных в расходах");
-                        if (cons.Id == 0)
-                        {
-                            db.Conses.Add(cons);
-                        }
-                        else
-                        {
-                            var tcons = db.Conses.Find(cons.Id);
-                            tcons.Amount = cons.Amount;
-                            tcons.Comment = cons.Comment;
-                            tcons.Date = cons.Date;
-                            tcons.TypeId = cons.TypeId;
-                        }
+                        var twork = workExecuter.Get(work.Id);
+                        twork.ClientId = work.ClientId;
+                        twork.DatePay = work.DatePay;
+                        twork.Prepay = work.Prepay;
+                        twork.Duty = work.Duty;
+                        twork.TypeId = work.TypeId;
+                        twork.Hours = work.Hours;
+                        twork.Excess = work.Excess;
+                        twork.DateExcess = work.DateExcess;
+                        twork.CertId = work.CertId;
                     }
-                    foreach (var i in _deleteConsList)
+                    var conses = _workConses.Where(r => r.RowId == rowId && r.Id == 0).ToList();
+                    foreach (var cons in conses)
                     {
-                        var cons = db.Conses.Find(i);
-                        if (cons == null) continue;
-                        db.Conses.Remove(cons);
+                        cons.Date = work.DatePay;
+                        cons.WorkId = work.Id;
+                        consExecuter.Add(cons);
                     }
-
-                    db.SaveChanges();
-
-                    #endregion
-
-                    #region SaveClients
-
-                    foreach (DataGridViewRow row in grDicClient.Rows)
+                    _workConses.RemoveAll(r => r.RowId == rowId && r.Id == 0);
+                    conses = _workConses.Where(r => r.RowId == rowId).ToList();
+                    foreach (var cons in conses)
                     {
-                        var client = new EClient();
-                        try
-                        {
-                            client.Id = Convert.ToInt32(row.Cells["Id"].Value);
-                        }
-                        catch
-                        {
-                            client.Id = 0;
-                        }
-                        try
-                        {
-                            var name = row.Cells["Name"].Value.ToString().Trim();
-                            name = Regex.Replace(name, " +", " ");
-                            client.Name = name;
-                        }
-                        catch
-                        {
-                            client.Name = null;
-                        }
-
-                        try
-                        {
-                            var phone = row.Cells["Phone"].Value.ToString().Trim();
-                            phone = Regex.Replace(phone, " +", " ");
-                            client.Phone = phone;
-                        }
-                        catch
-                        {
-                            client.Phone = null;
-                        }
-                        try
-                        {
-                            var mail = row.Cells["Mail"].Value.ToString().Trim();
-                            mail = Regex.Replace(mail, " +", " ");
-                            client.Mail = mail;
-                        }
-                        catch
-                        {
-                            client.Mail = null;
-                        }
-                        try
-                        {
-                            var note = row.Cells["Note"].Value.ToString().Trim();
-                            note = Regex.Replace(note, " +", " ");
-                            client.Note = note;
-                        }
-                        catch
-                        {
-                            client.Note = null;
-                        }
-                        if (client.Id == 0 || string.IsNullOrEmpty(client.Name))
-                            continue; // throw new ArgumentException("Ошибка данных в кликнтах");
-                        var tclient = db.Clients.Find(client.Id);
-                        tclient.Name = client.Name;
-                        tclient.Phone = client.Phone;
-                        tclient.Mail = client.Mail;
-                        tclient.Note = client.Note;
+                        var dCons = consExecuter.Get(cons.Id);
+                        dCons.TypeId = cons.TypeId;
+                        dCons.Amount = cons.Amount;
+                        dCons.Comment = cons.Comment;
+                        dCons.Date = work.DatePay;
+                        dCons.WorkId = work.Id;
+                        dCons.IsCert = cons.IsCert;
                     }
-                    db.SaveChanges();
+                    _workConses.RemoveAll(r => r.RowId == rowId);
 
-                    #endregion
-
-                    #region SaveCerts
-
-                    foreach (DataGridViewRow row in grCert.Rows)
-                    {
-                        var cert = new ECert();
-                        try
-                        {
-                            cert.Id = Convert.ToInt32(row.Cells["ccId"].Value);
-                        }
-                        catch
-                        {
-                            cert.Id = 0;
-                        }
-                        try
-                        {
-                            cert.ClientId = Convert.ToInt32(row.Cells["ccClientId"].Value);
-                        }
-                        catch
-                        {
-                            cert.ClientId = null;
-                        }
-
-                        try
-                        {
-                            cert.PayId = Convert.ToInt32(row.Cells["ccPayerId"].Value);
-                        }
-                        catch
-                        {
-                            cert.PayId = 0;
-                        }
-
-                        try
-                        {
-                            var dateStr = row.Cells["ccDatePay"].Value.ToString().Trim();
-                            cert.DatePay = Convert.ToDateTime(dateStr);
-                        }
-                        catch
-                        {
-                            cert.DatePay = DateTime.Now;
-                        }
-                        try
-                        {
-                            var dateStr = row.Cells["ccDateEnd"].Value.ToString().Trim();
-                            cert.DateEnd = Convert.ToDateTime(dateStr);
-                        }
-                        catch
-                        {
-                            cert.DateEnd = DateTime.Now;
-                        }
-                        try
-                        {
-                            var prcStr = row.Cells["ccPrice"].Value.ToString().Trim();
-                            prcStr = Regex.Replace(prcStr, " +", "");
-                            prcStr = prcStr.Replace(".", ",");
-                            cert.Price = Convert.ToDouble(prcStr);
-                        }
-                        catch
-                        {
-                            cert.Price = 0;
-                        }
-                        try
-                        {
-                            var consStr = row.Cells["ccConsed"].Value.ToString().Trim();
-                            consStr = Regex.Replace(consStr, " +", "");
-                            consStr = consStr.Replace(".", ",");
-                            cert.Consed = Convert.ToDouble(consStr);
-                        }
-                        catch
-                        {
-                            cert.Consed = 0;
-                        }
-                        try
-                        {
-                            var hourStr = row.Cells["ccHours"].Value.ToString().Trim();
-                            hourStr = Regex.Replace(hourStr, " +", "");
-                            hourStr = hourStr.Replace(".", ",");
-                            cert.Hours = Convert.ToDouble(hourStr);
-                        }
-                        catch
-                        {
-                            cert.Hours = 0;
-                        }
-                        try
-                        {
-                            cert.SourceId = Convert.ToInt32(row.Cells["ccSourceId"].Value);
-                        }
-                        catch
-                        {
-                            cert.SourceId = 0;
-                        }
-                        try
-                        {
-                            cert.TypeId = Convert.ToInt32(row.Cells["ccTypeId"].Value);
-                        }
-                        catch
-                        {
-                            cert.TypeId = 0;
-                        }
-                        try
-                        {
-                            var ch = (row.Cells["ccIsCash"] as DataGridViewCheckBoxCell);
-                            var chVal = ch.EditingCellFormattedValue;
-                            cert.IsCash = Convert.ToBoolean(chVal);
-                        }
-                        catch
-                        {
-                            cert.IsCash = false;
-                        }
-
-                        if (cert.ClientId == 0 || cert.PayId == 0 || cert.SourceId == 0 || cert.TypeId == 0)
-                            continue; // throw new ArgumentException("Ошибка данных в сертификатах");
-                        if (cert.Id == 0)
-                        {
-                            db.Certs.Add(cert);
-                        }
-                        else
-                        {
-                            var tcert = db.Certs.Find(cert.Id);
-                            tcert.ClientId = cert.ClientId;
-                            tcert.Consed = cert.Consed;
-                            tcert.DatePay = cert.DatePay;
-                            tcert.DateEnd = cert.DateEnd;
-                            tcert.Hours = cert.Hours;
-                            tcert.PayId = cert.PayId;
-                            tcert.Price = cert.Price;
-                            tcert.SourceId = cert.SourceId;
-                            tcert.TypeId = cert.TypeId;
-                            tcert.IsCash = cert.IsCash;
-                        }
-                    }
-                    db.SaveChanges();
-
-                    #endregion
-
-                    #region SaveDuty
-
-                    foreach (DataGridViewRow row in grDuty.Rows)
-                    {
-                        var work = new EWork();
-                        var confirm = 0D;
-                        try
-                        {
-                            work.Id = Convert.ToInt32(row.Cells["cdId"].Value);
-                        }
-                        catch
-                        {
-                            work.Id = 0;
-                        }
-                        try
-                        {
-                            var payStr = row.Cells["cdConfirm"].Value.ToString().Trim();
-                            payStr = Regex.Replace(payStr, " +", "");
-                            payStr = payStr.Replace(".", ",");
-                            confirm = Convert.ToDouble(payStr);
-                        }
-                        catch
-                        {
-                            work.Prepay = 0;
-                        }
-
-                        if (work.Id == 0 || confirm < 0.01) continue;
-                        //throw new ArgumentException("Ошибка данных в работах");
-
-
-                        var twork = db.Works.Find(work.Id);
-                        if (twork.Duty < confirm) continue;
-                        if (twork.Excess < 0.01)
-                        {
-                            twork.Excess = confirm;
-                            twork.DateExcess = DateTime.Now;
-                        }
-                        else
-                        {
-                            twork.Excess = twork.Excess + confirm;
-                        }
-                        twork.Duty = twork.Duty - confirm;
-                        db.SaveChanges();
-                    }
-
-                    #endregion
-
-                    t.Commit();
-                    MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
-                    _hasChange = false;
-                    //_currentDate = DateTime.Now;
+                    workExecuter.Save();
                 }
-                catch (ArgumentException ex)
+
+
+                _workConses.Clear();
+                foreach (var i in _deleteWorkList)
                 {
-                    t.Rollback();
-                    MessageBox.Show(ex.Message, Resources.Orders, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    consExecuter.DeleteRange(r => r.WorkId == i);
+                    workExecuter.Delete(i);
                 }
-                catch (Exception ex)
+
+                #endregion
+
+                #region SaveCons
+
+                foreach (DataGridViewRow row in grCons.Rows)
                 {
-                    t.Rollback();
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), ex);
-                    return;
+                    var cons = new ECons();
+                    try
+                    {
+                        cons.Id = Convert.ToInt32(row.Cells["csId"].Value);
+                    }
+                    catch
+                    {
+                        cons.Id = 0;
+                    }
+                    try
+                    {
+                        cons.TypeId = Convert.ToInt32(row.Cells["csTypeId"].Value);
+                    }
+                    catch
+                    {
+                        cons.TypeId = 0;
+                    }
+
+                    try
+                    {
+                        var amount = row.Cells["csAmount"].Value.ToString().Trim();
+                        amount = Regex.Replace(amount, " +", "");
+                        amount = amount.Replace(".", ",");
+                        cons.Amount = Convert.ToDouble(amount);
+                    }
+                    catch
+                    {
+                        cons.Amount = 0;
+                    }
+                    try
+                    {
+                        var comment = row.Cells["csComment"].Value.ToString().Trim();
+                        comment = Regex.Replace(comment, " +", " ");
+                        cons.Comment = comment;
+                    }
+                    catch
+                    {
+                        cons.Comment = null;
+                    }
+                    try
+                    {
+                        var date = row.Cells["csDate"].Value.ToString().Trim();
+                        date = Regex.Replace(date, " +", " ");
+                        date = Regex.Replace(date, ",", ".");
+                        cons.Date = Convert.ToDateTime(date);
+                    }
+                    catch
+                    {
+                        cons.Date = DateTime.Now;
+                    }
+                    try
+                    {
+                        var isCertCell = row.Cells["csIsCert"] as DataGridViewCheckBoxCell;
+                        var isCert = (isCertCell?.Value != null && (bool) isCertCell.Value);
+                        cons.IsCert = Convert.ToBoolean(isCert);
+                    }
+                    catch
+                    {
+                        cons.IsCert = false;
+                    }
+                    if (cons.TypeId == 0 || cons.Amount < 0.01 || cons.Date == DateTime.MinValue)
+                        continue; // throw new ArgumentException("Ошибка данных в расходах");
+                    if (cons.Id == 0)
+                    {
+                        consExecuter.Add(cons);
+                    }
+                    else
+                    {
+                        var tcons = consExecuter.Get(cons.Id);
+                        tcons.Amount = cons.Amount;
+                        tcons.Comment = cons.Comment;
+                        tcons.Date = cons.Date;
+                        tcons.TypeId = cons.TypeId;
+                    }
                 }
-                GridMonthLoad(_currentDate);
-                LoadCerts();
-                LoadDuty();
+                foreach (var i in _deleteConsList)
+                {
+                    consExecuter.Delete(i);
+                }
+
+                workExecuter.Save();
+
+                #endregion
+
+                #region SaveClients
+
+                foreach (DataGridViewRow row in grDicClient.Rows)
+                {
+                    var client = new EClient();
+                    try
+                    {
+                        client.Id = Convert.ToInt32(row.Cells["Id"].Value);
+                    }
+                    catch
+                    {
+                        client.Id = 0;
+                    }
+                    try
+                    {
+                        var name = row.Cells["Name"].Value.ToString().Trim();
+                        name = Regex.Replace(name, " +", " ");
+                        client.Name = name;
+                    }
+                    catch
+                    {
+                        client.Name = null;
+                    }
+
+                    try
+                    {
+                        var phone = row.Cells["Phone"].Value.ToString().Trim();
+                        phone = Regex.Replace(phone, " +", " ");
+                        client.Phone = phone;
+                    }
+                    catch
+                    {
+                        client.Phone = null;
+                    }
+                    try
+                    {
+                        var mail = row.Cells["Mail"].Value.ToString().Trim();
+                        mail = Regex.Replace(mail, " +", " ");
+                        client.Mail = mail;
+                    }
+                    catch
+                    {
+                        client.Mail = null;
+                    }
+                    try
+                    {
+                        var note = row.Cells["Note"].Value.ToString().Trim();
+                        note = Regex.Replace(note, " +", " ");
+                        client.Note = note;
+                    }
+                    catch
+                    {
+                        client.Note = null;
+                    }
+                    if (client.Id == 0 || string.IsNullOrEmpty(client.Name))
+                        continue; // throw new ArgumentException("Ошибка данных в кликнтах");
+                    var tclient = clientExecuter.Get(client.Id);
+                    tclient.Name = client.Name;
+                    tclient.Phone = client.Phone;
+                    tclient.Mail = client.Mail;
+                    tclient.Note = client.Note;
+                }
+           
+                #endregion
+
+                #region SaveCerts
+
+                foreach (DataGridViewRow row in grCert.Rows)
+                {
+                    var cert = new ECert();
+                    try
+                    {
+                        cert.Id = Convert.ToInt32(row.Cells["ccId"].Value);
+                    }
+                    catch
+                    {
+                        cert.Id = 0;
+                    }
+                    try
+                    {
+                        cert.ClientId = Convert.ToInt32(row.Cells["ccClientId"].Value);
+                    }
+                    catch
+                    {
+                        cert.ClientId = null;
+                    }
+
+                    try
+                    {
+                        cert.PayId = Convert.ToInt32(row.Cells["ccPayerId"].Value);
+                    }
+                    catch
+                    {
+                        cert.PayId = 0;
+                    }
+
+                    try
+                    {
+                        var dateStr = row.Cells["ccDatePay"].Value.ToString().Trim();
+                        cert.DatePay = Convert.ToDateTime(dateStr);
+                    }
+                    catch
+                    {
+                        cert.DatePay = DateTime.Now;
+                    }
+                    try
+                    {
+                        var dateStr = row.Cells["ccDateEnd"].Value.ToString().Trim();
+                        cert.DateEnd = Convert.ToDateTime(dateStr);
+                    }
+                    catch
+                    {
+                        cert.DateEnd = DateTime.Now;
+                    }
+                    try
+                    {
+                        var prcStr = row.Cells["ccPrice"].Value.ToString().Trim();
+                        prcStr = Regex.Replace(prcStr, " +", "");
+                        prcStr = prcStr.Replace(".", ",");
+                        cert.Price = Convert.ToDouble(prcStr);
+                    }
+                    catch
+                    {
+                        cert.Price = 0;
+                    }
+                    try
+                    {
+                        var consStr = row.Cells["ccConsed"].Value.ToString().Trim();
+                        consStr = Regex.Replace(consStr, " +", "");
+                        consStr = consStr.Replace(".", ",");
+                        cert.Consed = Convert.ToDouble(consStr);
+                    }
+                    catch
+                    {
+                        cert.Consed = 0;
+                    }
+                    try
+                    {
+                        var hourStr = row.Cells["ccHours"].Value.ToString().Trim();
+                        hourStr = Regex.Replace(hourStr, " +", "");
+                        hourStr = hourStr.Replace(".", ",");
+                        cert.Hours = Convert.ToDouble(hourStr);
+                    }
+                    catch
+                    {
+                        cert.Hours = 0;
+                    }
+                    try
+                    {
+                        cert.SourceId = Convert.ToInt32(row.Cells["ccSourceId"].Value);
+                    }
+                    catch
+                    {
+                        cert.SourceId = 0;
+                    }
+                    try
+                    {
+                        cert.TypeId = Convert.ToInt32(row.Cells["ccTypeId"].Value);
+                    }
+                    catch
+                    {
+                        cert.TypeId = 0;
+                    }
+                    try
+                    {
+                        var ch = (row.Cells["ccIsCash"] as DataGridViewCheckBoxCell);
+                        var chVal = ch.EditingCellFormattedValue;
+                        cert.IsCash = Convert.ToBoolean(chVal);
+                    }
+                    catch
+                    {
+                        cert.IsCash = false;
+                    }
+
+                    if (cert.ClientId == 0 || cert.PayId == 0 || cert.SourceId == 0 || cert.TypeId == 0)
+                        continue; // throw new ArgumentException("Ошибка данных в сертификатах");
+                    if (cert.Id == 0)
+                    {
+                        certExecuter.Add(cert);
+                    }
+                    else
+                    {
+                        var tcert = certExecuter.Get(cert.Id);
+                        tcert.ClientId = cert.ClientId;
+                        tcert.Consed = cert.Consed;
+                        tcert.DatePay = cert.DatePay;
+                        tcert.DateEnd = cert.DateEnd;
+                        tcert.Hours = cert.Hours;
+                        tcert.PayId = cert.PayId;
+                        tcert.Price = cert.Price;
+                        tcert.SourceId = cert.SourceId;
+                        tcert.TypeId = cert.TypeId;
+                        tcert.IsCash = cert.IsCash;
+                    }
+                }
+                
+                #endregion
+
+                #region SaveDuty
+
+                foreach (DataGridViewRow row in grDuty.Rows)
+                {
+                    var work = new EWork();
+                    var confirm = 0D;
+                    try
+                    {
+                        work.Id = Convert.ToInt32(row.Cells["cdId"].Value);
+                    }
+                    catch
+                    {
+                        work.Id = 0;
+                    }
+                    try
+                    {
+                        var payStr = row.Cells["cdConfirm"].Value.ToString().Trim();
+                        payStr = Regex.Replace(payStr, " +", "");
+                        payStr = payStr.Replace(".", ",");
+                        confirm = Convert.ToDouble(payStr);
+                    }
+                    catch
+                    {
+                        work.Prepay = 0;
+                    }
+
+                    if (work.Id == 0 || confirm < 0.01) continue;
+                    //throw new ArgumentException("Ошибка данных в работах");
+
+
+                    var twork = workExecuter.Get(work.Id);
+                    if (twork.Duty < confirm) continue;
+                    if (twork.Excess < 0.01)
+                    {
+                        twork.Excess = confirm;
+                        twork.DateExcess = DateTime.Now;
+                    }
+                    else
+                    {
+                        twork.Excess = twork.Excess + confirm;
+                    }
+                    twork.Duty = twork.Duty - confirm;
+                }
+
+                #endregion
+
+                workExecuter.Save();
+                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
+                _hasChange = false;
+                //_currentDate = DateTime.Now;
             }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, Resources.Orders, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            catch (Exception ex)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), ex);
+                return;
+            }
+            GridMonthLoad(_currentDate);
+            LoadCerts();
+            LoadDuty();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            var dbContext = new OrderContext();
-            var resultList = dbContext.BackupLogs.ToList();
+            var backExecuter = new BackupLogExecuter();
+            var resultList = backExecuter.GetAll().ToList();
 
             // если есть записи о созданых бекапах последняя запись обудачном бекапе более недели назад, 
             // последняя запись более суток назад
@@ -1430,13 +1388,13 @@ namespace Orders.Forms
                         File.Copy(path, file);
                         MessageBox.Show(Resources.BackupOk);
                     }
-                    dbContext.BackupLogs.Add(new BackupLog { Date = DateTime.Now, Result = true });
+                    backExecuter.Add(new BackupLog { Date = DateTime.Now, Result = true });
                 }
                 else
                 {
-                    dbContext.BackupLogs.Add(new BackupLog { Date = DateTime.Now, Result = false });
+                    backExecuter.Add(new BackupLog { Date = DateTime.Now, Result = false });
                 }
-                dbContext.SaveChanges();
+                backExecuter.Save();
             }
         }
 
@@ -1903,7 +1861,7 @@ namespace Orders.Forms
         private void LoadErrors()
         {
             var errorExecuter = new ErrorExecuter();
-            var errors = errorExecuter.GetErrors().ToList();
+            var errors = errorExecuter.GetAll().ToList();
             errors.Sort((item1, item2) => item2.Date.CompareTo(item1.Date));
             grErrors.DataSource = errors;
             var cId = grErrors.Columns["Id"];

@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Orders.Classes;
+using Orders.Executers;
 using Orders.Models;
 using Orders.Properties;
 
@@ -17,38 +18,36 @@ namespace Orders.Forms
 
         private void btOk_Click(object sender, EventArgs e)
         {
-            using (var dbContext = new OrderContext())
+            try
             {
-                try
+                var name = tbName.Text.Trim();
+                name = Regex.Replace(name, " +", " ");
+                var phone = tbPhone.Text.Trim();
+                phone = Regex.Replace(phone, " +", " ");
+                var mail = tbMail.Text.Trim();
+                mail = Regex.Replace(mail, " +", " ");
+                var note = tbNote.Text.Trim();
+                note = Regex.Replace(note, " +", " ");
+                if (string.IsNullOrEmpty(name))
                 {
-                    var name = tbName.Text.Trim();
-                    name = Regex.Replace(name, " +", " ");
-                    var phone = tbPhone.Text.Trim();
-                    phone = Regex.Replace(phone, " +", " ");
-                    var mail = tbMail.Text.Trim();
-                    mail = Regex.Replace(mail, " +", " ");
-                    var note = tbNote.Text.Trim();
-                    note = Regex.Replace(note, " +", " ");
-                    if (string.IsNullOrEmpty(name))
-                    {
-                        MessageBox.Show(Resources.NotEmptyName, Resources.Orders, MessageBoxButtons.OK);
-                        return;
-                    }
-                    var client = new EClient
-                    {
-                        Name = name,
-                        Phone = phone,
-                        Mail = mail,
-                        Note = note
-                    };
-                    dbContext.Clients.Add(client);
-                    dbContext.SaveChanges();
-                    Close();
+                    MessageBox.Show(Resources.NotEmptyName, Resources.Orders, MessageBoxButtons.OK);
+                    return;
                 }
-                catch (Exception exception)
+                var client = new EClient
                 {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
+                    Name = name,
+                    Phone = phone,
+                    Mail = mail,
+                    Note = note
+                };
+                var clientExecuter = new ClientExecuter();
+                clientExecuter.Add(client);
+                clientExecuter.Save();
+                Close();
+            }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
             }
         }
 

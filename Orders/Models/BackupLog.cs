@@ -6,11 +6,16 @@ using Orders.Classes;
 namespace Orders.Models
 {
     [Table("tBackupLog")]
-    public class BackupLog
+    public class BackupLog : OrderEntity<BackupLog>
     {
         [Key]
         [Column("fId")]
-        public int Id { get; set; }
+        public override int Id { get; set; }
+
+        public override void Edit(OrderEntity<BackupLog> entity)
+        {
+            
+        }
 
         [Column("fDate")]
         public int date { get; set; }

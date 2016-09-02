@@ -7,12 +7,17 @@ using Orders.Classes;
 namespace Orders.Models
 {
     [Table("tError")]
-    public class Error
+    public class Error:OrderEntity<Error>
     {
         [Key]
         [DisplayName("ID")]
         [Column("fDate")]
-        public int Id { get; set; }
+        public override int Id { get; set; }
+
+        public override void Edit(OrderEntity<Error> entity)
+        {
+            
+        }
 
         [NotMapped]
         [DisplayName("Дата")]

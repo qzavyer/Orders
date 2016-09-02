@@ -6,23 +6,16 @@ using Orders.Models;
 
 namespace Orders.Executers
 {
-    public class ConsExecuter: IContextable
+    public class ConsExecuter : BaseExecuter<ECons, ECons>
     {
-        public ConsExecuter(IOrderContext context)
-        {
-            Context = context;
-        }
-
-        public ConsExecuter() : this(new OrderContext())
-        {
-        }
+        public ConsExecuter(IExecuter executer) : base(executer){ }
+        public ConsExecuter(IOrderContext context) : base(context){ }
+        public ConsExecuter() { }
 
         public IEnumerable<ECons> GetPeriodConses(DatePeriod period)
         {
-            return Context.Conses.Where(w => w.date >= period.SqlStart && w.date < period.SqlEnd)
+            return GetAll(w => w.date >= period.SqlStart && w.date < period.SqlEnd)
                 .Include(r => r.Work).Include(r => r.Work.Type).Include(r => r.Type).OrderBy(r => r.date);
         }
-
-        public IOrderContext Context { get; }
     }
 }

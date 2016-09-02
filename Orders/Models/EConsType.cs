@@ -4,11 +4,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Orders.Models
 {
     [Table("tConsType")]
-    public class EConsType
+    public class EConsType:OrderEntity<EConsType>
     {
         [Key]
         [Column("fId")]
-        public int Id { get; set; }
+        public override int Id { get; set; }
+
+        public override void Edit(OrderEntity<EConsType> entity)
+        {
+            
+        }
 
         [Column("fName")]
         public string Name { get; set; }

@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Orders.Classes;
+using Orders.Executers;
 using Orders.Models;
 using Orders.Properties;
 
@@ -64,48 +65,46 @@ namespace Orders.Forms
         }
         private void btAdd_Click(object sender, EventArgs e)
         {
-            using (var dbContext = new OrderContext())
+            var constypeExecuter = new ConsTypeExecuter();
+            try
             {
-                try
-                {
-                    var text = tbFind.Text.Trim();
-                    text = Regex.Replace(text, " +", " ");
-                    if (string.IsNullOrEmpty(text)) return;
-                    dbContext.ConsTypes.Add(new EConsType { Name = text });
-                    dbContext.SaveChanges();
-                    FilterTypes();
-                }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
+                var text = tbFind.Text.Trim();
+                text = Regex.Replace(text, " +", " ");
+                if (string.IsNullOrEmpty(text)) return;
+                constypeExecuter.Add(new EConsType {Name = text});
+                constypeExecuter.Save();
+                FilterTypes();
+            }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
             }
         }
+
         private void FilterTypes()
         {
-            using (var dbContext = new OrderContext())
+            try
             {
-                try
+                var constypeExecuter = new ConsTypeExecuter();
+                var text = tbFind.Text.Trim();
+                text = Regex.Replace(text, " +", " ");
+                var types = constypeExecuter.GetAll().ToList();
+                if (!string.IsNullOrEmpty(text))
                 {
-                    var text = tbFind.Text.Trim();
-                    text = Regex.Replace(text, " +", " ");
-                    var types = dbContext.ConsTypes.ToList();
-                    if (!string.IsNullOrEmpty(text))
-                    {
-                        types = types.Where(r =>
-                            r.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1).ToList();
-                    }
-                    types.Sort(
-                        (item1, item2) => String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
-                    grConsTypes.DataSource = types;
-                    btAdd.Enabled = grConsTypes.RowCount == 0 && !string.IsNullOrEmpty(text);
+                    types = types.Where(r =>
+                        r.Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) > -1).ToList();
                 }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                }
+                types.Sort(
+                    (item1, item2) => String.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase));
+                grConsTypes.DataSource = types;
+                btAdd.Enabled = grConsTypes.RowCount == 0 && !string.IsNullOrEmpty(text);
+            }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
             }
         }
+
         private void btOk_Click(object sender, EventArgs e)
         {
             var row = grConsTypes.SelectedRows[0];
@@ -115,40 +114,38 @@ namespace Orders.Forms
         }
         private void btSave_Click(object sender, EventArgs e)
         {
-            using (var dbContext = new OrderContext())
+            try
             {
-                try
+                var constypeExecuter = new ConsTypeExecuter();
+                foreach (DataGridViewRow row in grConsTypes.Rows)
                 {
-                    foreach (DataGridViewRow row in grConsTypes.Rows)
+                    if (string.IsNullOrEmpty(row.Cells["Id"].Value.ToString()) ||
+                        string.IsNullOrWhiteSpace(row.Cells["Id"].Value.ToString())) continue;
+                    var consType = constypeExecuter.Get(Convert.ToInt32(row.Cells["Id"].Value));
+                    var name = row.Cells["Name"].Value.ToString().Trim();
+                    name = Regex.Replace(name, " +", " ");
+                    var cell = row.Cells["IsCertCons"];
+                    var ch = (row.Cells["IsCertCons"] as DataGridViewCheckBoxCell);
+                    if (ch != null)
                     {
-                        if (string.IsNullOrEmpty(row.Cells["Id"].Value.ToString()) ||
-                            string.IsNullOrWhiteSpace(row.Cells["Id"].Value.ToString())) continue;
-                        var consType = dbContext.ConsTypes.Find(Convert.ToInt32(row.Cells["Id"].Value));
-                        var name = row.Cells["Name"].Value.ToString().Trim();
-                        name = Regex.Replace(name, " +", " ");
-                        var cell = row.Cells["IsCertCons"];
-                        var ch = (row.Cells["IsCertCons"] as DataGridViewCheckBoxCell);
-                        if (ch != null)
-                        {
-                            var chVal = Convert.ToBoolean(cell.Value);
-                            consType.IsCertCons = chVal;
-                        }
-                        else
-                        {
-                            consType.IsCertCons = false;
-                        }
-                        consType.Name = name;
+                        var chVal = Convert.ToBoolean(cell.Value);
+                        consType.IsCertCons = chVal;
                     }
-                    dbContext.SaveChanges();
-                    FilterTypes();
-                    MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
+                    else
+                    {
+                        consType.IsCertCons = false;
+                    }
+                    consType.Name = name;
                 }
-                catch (Exception exception)
-                {
-                    ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
-                    tbFind.Clear();
-                    FilterTypes();
-                }
+                constypeExecuter.Save();
+                FilterTypes();
+                MessageBox.Show(Resources.SaveChange, Resources.Orders, MessageBoxButtons.OK);
+            }
+            catch (Exception exception)
+            {
+                ErrorSaver.GetInstance().HandleError(MethodBase.GetCurrentMethod(), exception);
+                tbFind.Clear();
+                FilterTypes();
             }
         }
 

@@ -5,11 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Orders.Models
 {
     [Table("tSert")]
-    public class ECert
+    public class ECert:OrderEntity<ECert>
     {
         [Key]
         [Column("fId")]
-        public int Id { get; set; }
+        public override int Id { get; set; }
+
+        public override void Edit(OrderEntity<ECert> entity)
+        {
+            var cert = (ECert) entity;
+            PayId = cert.PayId;
+        }
 
         [Column("fPayId")]
         public int PayId { get; set; }
@@ -109,6 +115,12 @@ namespace Orders.Models
 
         [NotMapped]
         public int RowId { get; set; }
+    }
+
+    public abstract class OrderEntity<T>
+    {
+        public virtual int Id { get; set; }
+        public abstract void Edit(OrderEntity<T> entity);
     }
 }
 
